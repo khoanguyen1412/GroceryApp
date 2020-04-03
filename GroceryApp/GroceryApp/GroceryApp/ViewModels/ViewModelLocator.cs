@@ -14,6 +14,7 @@ namespace GroceryApp.ViewModels
             builder.RegisterType<HomePageViewModel>().As<IHomePageViewModel>().SingleInstance();
             builder.RegisterType<ListStoresViewModel>().As<IListStoresViewModel>().SingleInstance();
             builder.RegisterType<CartViewModel>().As<ICartViewModel>().SingleInstance();
+            builder.RegisterType<ListOrdersViewModel>().As<IListOrdersViewModel>().SingleInstance();
             _container = builder.Build();
         }
         public IHomePageViewModel HomePage
@@ -29,6 +30,11 @@ namespace GroceryApp.ViewModels
         public ICartViewModel Cart
         {
             get { return _container.Resolve<ICartViewModel>(); }
+        }
+
+        public IListOrdersViewModel ListOrders
+        {
+            get { return _container.Resolve<IListOrdersViewModel>(); }
         }
     }
 }

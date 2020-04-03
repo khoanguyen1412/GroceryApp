@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JqW7LQZxAMSZvGVvFJaxDdMYOS/X2aUe2TfjD9Tm4ujDzoEi+bnTxQITT85GdYx9I6+ZbXtnquxonzgsPkOOsw==",
+  "dgSpecHash": "3baVZ54aCLyU7+7fAK1onJ+kRClfq5ijR9YeNjbU1TzdaOGdzl148QIkD/cGRUOQNjVhP9i0pUr7PbifdkqAvw==",
   "success": true,
   "projectFilePath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj",
   "expectedPackageFiles": [
@@ -8,11 +8,12 @@
     "C:\\Users\\User\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\rg.plugins.popup\\1.2.0.223\\rg.plugins.popup.1.2.0.223.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.2\\system.threading.tasks.extensions.4.5.2.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.essentials\\1.5.2\\xamarin.essentials.1.5.2.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\xamarin.forms\\4.5.0.495\\xamarin.forms.4.5.0.495.nupkg.sha512"
+    "C:\\Users\\User\\.nuget\\packages\\xamarin.forms\\4.5.0.530\\xamarin.forms.4.5.0.530.nupkg.sha512"
   ],
   "logs": []
 }

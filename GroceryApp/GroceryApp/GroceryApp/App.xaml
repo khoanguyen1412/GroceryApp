@@ -5,10 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:GroceryApp.ViewModels"
+             xmlns:converter="clr-namespace:GroceryApp.Views.Converters"
              x:Class="GroceryApp.App">
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="Locator"/>
+            <converter:ShortStringTitleConverter x:Key="ShortStringTitleConverter"/>
+            <converter:DateTimeConverter x:Key="DateTimeConverter"/>
+            <converter:DateTimeNoYearConverter x:Key="DateTimeNoYearConverter"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"
                         x:TypeArguments="x:String"

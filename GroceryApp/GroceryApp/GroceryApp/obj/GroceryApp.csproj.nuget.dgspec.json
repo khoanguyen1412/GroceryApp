@@ -53,13 +53,17 @@
               "version": "[2.0.3, )",
               "autoReferenced": true
             },
+            "Rg.Plugins.Popup": {
+              "target": "Package",
+              "version": "[1.2.0.223, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.5.2, )"
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.5.0.495, )"
+              "version": "[4.5.0.530, )"
             }
           },
           "imports": [
