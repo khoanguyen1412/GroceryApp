@@ -13,6 +13,9 @@
             <converter:ShortStringTitleConverter x:Key="ShortStringTitleConverter"/>
             <converter:DateTimeConverter x:Key="DateTimeConverter"/>
             <converter:DateTimeNoYearConverter x:Key="DateTimeNoYearConverter"/>
+            <converter:OrderDetailButtonTextConverter x:Key="OrderDetailButtonTextConverter"/>
+            <converter:OrderDetailButtonColorConverter x:Key="OrderDetailButtonColorConverter"/>
+            <converter:OrderDetailButtonVisibleConverter x:Key="OrderDetailButtonVisibleConverter"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"
                         x:TypeArguments="x:String"
@@ -25,6 +28,7 @@
         <Color x:Key="AccentColor">#90bc1b</Color>
         <Color x:Key="DarkAccentColor">#7ea710</Color>
         <Color x:Key="MainColor">#fc6353</Color>
+        
         <Style TargetType="Label" x:Key="LabelDefaultStyle">
             <Setter Property="FontFamily" Value="{StaticResource Avo}"/>
             <Setter Property="FontSize" Value="15"/>

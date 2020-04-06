@@ -9,7 +9,8 @@
             SelectedTabColor="White"
              xmlns:local="clr-namespace:GroceryApp.Views.Screens"
              x:Class="GroceryApp.Views.TabBars.TabBarCustomer"
-            x:Name="TabCustomer">
+            x:Name="TabCustomer"
+            NavigationPage.HasNavigationBar="False">
     <local:HomePageView Title="Home" IconImageSource="home"/>
     <local:ListStoresView Title="Stores" IconImageSource="storetab"/>
     <local:CartView Title="Your Cart" IconImageSource="greencart"/>

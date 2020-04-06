@@ -1,8 +1,11 @@
 ﻿using GroceryApp.Models;
+using GroceryApp.Views.Screens;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace GroceryApp.ViewModels
 {
@@ -19,9 +22,17 @@ namespace GroceryApp.ViewModels
             get { return _stores; }
             set { _stores = value; OnPropertyChanged(nameof(Stores)); }
         }
+
+        public ICommand ShowStoreCommand { get; set; }
         public ListStoresViewModel()
         {
             LoadData();
+            ShowStoreCommand = new Command(ShowStore);
+        }
+
+        public async void ShowStore()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new ShowStoreView(), true);
         }
 
         public void LoadData()

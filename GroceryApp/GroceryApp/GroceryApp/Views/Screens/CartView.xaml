@@ -89,7 +89,7 @@
                             <Label  Margin="-5,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="58" FontSize="20" TextColor="Black"/>
                         </StackLayout>
 
-                        <Button CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" BackgroundColor="#f7436a" Text="Confirm Order" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"/>
+                        <Button Command="{Binding ShowConfirmInforCommand}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" BackgroundColor="#f7436a" Text="Confirm Order" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"/>
                     </Grid>
                 </Frame>
             </Grid>

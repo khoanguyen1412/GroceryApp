@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BindingContext="{Binding ShowStore,Source={StaticResource Locator}}"
+             x:Class="GroceryApp.Views.Screens.ShowStoreView"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Margin="0" Padding="0">
+            <AbsoluteLayout  HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand">
+                <Label Text="Groceriers" FontSize="25" TextColor="ForestGreen" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource LabelTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" />
+                <Image Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+            </AbsoluteLayout>
+            <ScrollView  Grid.Row="2" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" Padding="0" Orientation="Horizontal" Margin="20,15,20,15" HeightRequest="36">
+                <StackLayout Orientation="Horizontal" HeightRequest="60">
+                    <Frame HeightRequest="60" WidthRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="OrangeRed" HorizontalOptions="Start" Padding="0,0,5,0">
+                        <Label TextColor="White" Text="All" HorizontalOptions="Center" FontSize="17"  VerticalTextAlignment="Center"  Style="{StaticResource BoldTitleStyle}"/>
+                    </Frame>
+                    <Frame HeightRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="#8dd0b3" HorizontalOptions="Start" Padding="0,0,5,0">
+                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
+                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="#fdb6f0">
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image Source="greenveget" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
+                                </StackLayout>
+                            </Frame>
+                            <Label Text="Vegetable"   VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame HeightRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="#fc6353" HorizontalOptions="Start" Padding="0,0,5,0">
+                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
+                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="#fdb6f0">
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image Source="colorfruit" VerticalOptions="Center" HeightRequest="37" WidthRequest="37" Aspect="AspectFit"/>
+                                </StackLayout>
+                            </Frame>
+                            <Label Text="Fruit" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame HeightRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="#ffed5e" HorizontalOptions="Start" Padding="0,0,5,0">
+                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
+                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="#fdb6f0">
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image Source="colorcandy" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
+                                </StackLayout>
+                            </Frame>
+                            <Label Text="Candy" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame HeightRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="#2daefd" HorizontalOptions="Start" Padding="0,0,5,0">
+                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
+                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="#fdb6f0">
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image Source="colordrink" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
+                                </StackLayout>
+                            </Frame>
+                            <Label Text="Drink" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame HeightRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="#e1c693" HorizontalOptions="Start" Padding="0,0,5,0">
+                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
+                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="#fdb6f0">
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image Source="colorcake" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
+                                </StackLayout>
+                            </Frame>
+                            <Label Text="Cake" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <Label  Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Products"/>
+            <Grid VerticalOptions="FillAndExpand" Margin="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ListView  Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding Products}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid BackgroundColor="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="110"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame Grid.Column="1" Margin="5" Padding="0" HasShadow="False" CornerRadius="5" IsClippedToBounds="True">
+                                        <Image Grid.Column="1" Source="{Binding ImageURL}" HeightRequest="90" WidthRequest="90"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
+                                    </Frame>
+                                    <StackLayout Grid.Column="2" Orientation="Vertical" VerticalOptions="Center">
+                                        <Label  Margin="0,0,0,-5" Style="{StaticResource BoldTitleStyle}" Text="{Binding ProductName}" FontSize="16"/>
+                                        <Label  Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Unit}" FontSize="16" TextColor="#a6a8a5"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Margin="-3,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
+                                            <Label  Margin="-7,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Price}" FontSize="18" TextColor="#d54a71"/>
+                                            <BoxView Grid.Column="3"  Margin="10,0,0,0" HorizontalOptions="Center" HeightRequest="20" BackgroundColor="DarkGray" WidthRequest="1"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    
+                                    <StackLayout Grid.Column="4" Orientation="Vertical" VerticalOptions="Start" Margin="0,10,10,0">
+                                        <Grid Margin="0,2,5,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Button Grid.Row="0" Margin="0,0,0,0" Padding="0" HeightRequest="30" WidthRequest="30"  FontSize="25" ImageSource="https://bom.to/vmDHq4" BackgroundColor="#e9ebea" CornerRadius="15"/>
+                                            <Label Grid.Row="1" Text="0" Margin="0,0,0,0" Padding="0" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                                            <Button Grid.Row="2" Margin="0,0,0,0" Padding="0" HeightRequest="30" WidthRequest="30"  FontSize="25" ImageSource="https://bom.to/HC04tn" BackgroundColor="#e9ebea" CornerRadius="15"/>
+
+                                        </Grid>
+                                        
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <Grid VerticalOptions="FillAndExpand" Margin="0,-5,0,0"  BackgroundColor="Green" Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Frame  BackgroundColor="White" Grid.Column="0" x:Name="ConfirmCard" Margin="0" HeightRequest="110" VerticalOptions="End" HorizontalOptions="FillAndExpand"  CornerRadius="0" HasShadow="True"  WidthRequest="340" Padding="0" IsClippedToBounds="True">
+                    <Grid Margin="20,10,20,0" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label  Grid.Row="0" HorizontalOptions="End" Grid.Column="0" Margin="25,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Total:" FontSize="20" TextColor="Black"/>
+
+                        <StackLayout Margin="0,0,0,0"  HorizontalOptions="Start" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                            <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
+                            <Label  Margin="-5,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="58" FontSize="20" TextColor="Black"/>
+                        </StackLayout>
+
+                        <Button CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" Padding="0" TextColor="White" Margin="0,0,0,0" BackgroundColor="#f7436a" Text="ADD TO CARD" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="300" HeightRequest="45"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -17,6 +17,8 @@ namespace GroceryApp.Models
         public string Review { get; set; }
         public string StoreAnswer { get; set; }
         public double Rating { get; set; }
+        public double SubTotalPrice { get; set; }
+        public double DeliveryPrice { get; set; }
         public double TotalPrice { get; set; }
         public List<Product> OrderedProducts { get; set; }
     }

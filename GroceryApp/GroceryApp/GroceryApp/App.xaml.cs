@@ -12,7 +12,7 @@ namespace GroceryApp
         {
             InitializeComponent();
 
-            MainPage = new TabBarCustomer();
+            MainPage = new NavigationPage(new TabBarCustomer());
         }
 
         protected override void OnStart()

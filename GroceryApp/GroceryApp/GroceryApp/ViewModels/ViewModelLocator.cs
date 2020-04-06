@@ -15,6 +15,8 @@ namespace GroceryApp.ViewModels
             builder.RegisterType<ListStoresViewModel>().As<IListStoresViewModel>().SingleInstance();
             builder.RegisterType<CartViewModel>().As<ICartViewModel>().SingleInstance();
             builder.RegisterType<ListOrdersViewModel>().As<IListOrdersViewModel>().SingleInstance();
+            builder.RegisterType<OrderDetailPopupViewModel>().As<IOrderDetailPopupViewModel>().SingleInstance();
+            builder.RegisterType<ShowStoreViewModel>().As<IShowStoreViewModel>().SingleInstance();
             _container = builder.Build();
         }
         public IHomePageViewModel HomePage
@@ -35,6 +37,15 @@ namespace GroceryApp.ViewModels
         public IListOrdersViewModel ListOrders
         {
             get { return _container.Resolve<IListOrdersViewModel>(); }
+        }
+        public IOrderDetailPopupViewModel OrderDetail
+        {
+            get { return _container.Resolve<IOrderDetailPopupViewModel>(); }
+        }
+
+        public IShowStoreViewModel ShowStore
+        {
+            get { return _container.Resolve<IShowStoreViewModel>(); }
         }
     }
 }

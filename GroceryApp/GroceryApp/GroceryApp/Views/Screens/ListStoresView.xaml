@@ -7,6 +7,7 @@
              BackgroundColor="{StaticResource BgColor}"
              xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
              BindingContext="{Binding ListStores,Source={StaticResource Locator}}"
+             x:Name="ListStoresPage"
              x:Class="GroceryApp.Views.Screens.ListStoresView">
     <ContentPage.Content>
         <ScrollView Orientation="Vertical"  HorizontalScrollBarVisibility="Never">
@@ -18,7 +19,7 @@
                     <Image Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
 
                 </AbsoluteLayout>
-                <Frame HasShadow="True" IsClippedToBounds="True" Margin="20,10,20,0" HeightRequest="60" CornerRadius="10" Padding="0">
+                <Frame  HasShadow="True" IsClippedToBounds="True" Margin="20,10,20,0" HeightRequest="60" CornerRadius="10" Padding="0">
                     <controls:CustomEntry Placeholder="Search" 
                        BorderColor="White" 
                        BackgroundColor="White" 
@@ -94,37 +95,34 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame  Margin="0,10" HorizontalOptions="Center" Grid.Column="0" CornerRadius="5" HasShadow="True"  WidthRequest="340" Padding="0" IsClippedToBounds="True">
-                                    <StackLayout Orientation="Vertical" Margin="0">
-                                        <Frame Margin="10,10,10,0" Padding="0" HasShadow="False" CornerRadius="5" IsClippedToBounds="True">
-                                            <Image Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="150"/>
-                                        </Frame>
-                                        <Frame Padding="10" Margin="10,-25,90,0"  CornerRadius="10" IsClippedToBounds="True" HasShadow="True" >
-                                            <StackLayout >
-                                                <Label Margin="0" Text="{Binding StoreName}" Style="{StaticResource BoldTitleStyle}" />
-                                                <Label Margin="0" Text="{Binding StoreDescription}" Style="{StaticResource LabelDefaultStyle}" />
-                                            </StackLayout>
-                                        </Frame>
-                                        <BoxView Margin="10,0,10,0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
-                                        <Frame Margin="0,-210,240,200" WidthRequest="50" Padding="2" HasShadow="False" CornerRadius="15" BackgroundColor="Red" IsClippedToBounds="True">
-                                            <StackLayout Orientation="Horizontal"  HeightRequest="25" WidthRequest="50">
-                                                <Image Margin="10,0,0,0" Source="star" Aspect="AspectFit" HeightRequest="25" WidthRequest="25" />
-                                                <Label Margin="0" Text="2.5" Style="{StaticResource BoldTitleStyle}" FontSize="15" TextColor="White"/>
-                                                <Label Margin="-5,0,0,0" Text="/5" Style="{StaticResource LabelDefaultStyle}" VerticalTextAlignment="End" TextColor="White"/>
+                                <Frame HeightRequest="310" HorizontalOptions="Fill" VerticalOptions="Fill" CornerRadius="0" BackgroundColor="{StaticResource BgColor}">
+                                    <Frame  Margin="0,10" HorizontalOptions="Center" Grid.Column="0" CornerRadius="5" HasShadow="True"  WidthRequest="340" Padding="0" IsClippedToBounds="True">
+                                        <StackLayout Orientation="Vertical" Margin="0">
+                                            <Frame Margin="10,10,10,0" Padding="0" HasShadow="False" CornerRadius="5" IsClippedToBounds="True">
+                                                <Image Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="150"/>
+                                            </Frame>
+                                            <Frame Padding="10" Margin="10,-25,90,0"  CornerRadius="10" IsClippedToBounds="True" HasShadow="True" >
+                                                <StackLayout >
+                                                    <Label Margin="0" Text="{Binding StoreName}" Style="{StaticResource BoldTitleStyle}" />
+                                                    <Label Margin="0" Text="{Binding StoreDescription}" Style="{StaticResource LabelDefaultStyle}" />
+                                                </StackLayout>
+                                            </Frame>
+                                            <BoxView Margin="10,0,10,0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
+                                            <Frame Margin="0,-210,240,200" WidthRequest="50" Padding="2" HasShadow="False" CornerRadius="15" BackgroundColor="Red" IsClippedToBounds="True">
+                                                <StackLayout Orientation="Horizontal"  HeightRequest="25" WidthRequest="50">
+                                                    <Image Margin="10,0,0,0" Source="star" Aspect="AspectFit" HeightRequest="25" WidthRequest="25" />
+                                                    <Label Margin="0" Text="2.5" Style="{StaticResource BoldTitleStyle}" FontSize="15" TextColor="White"/>
+                                                    <Label Margin="-5,0,0,0" Text="/5" Style="{StaticResource LabelDefaultStyle}" VerticalTextAlignment="End" TextColor="White"/>
 
-                                            </StackLayout>
-                                        </Frame>
-                                        <Frame CornerRadius="15" Margin="20,-25,20,10" Padding="0">
-                                            <AbsoluteLayout HeightRequest="50"  HorizontalOptions="FillAndExpand" BackgroundColor="#5362fb">
-                                                <Label FontSize="20" TextColor="White" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource BoldTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Go to"/>
-                                                <Image Source="bluearrow" Margin="0,0,0,0"  Aspect="AspectFill" AbsoluteLayout.LayoutBounds="1,0.5,35,35" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
-                                                </Image>
-                                            </AbsoluteLayout>
-                                        </Frame>
-                                        
-                                        
-                                    </StackLayout>
+                                                </StackLayout>
+                                            </Frame>
+
+                                            <Button Command="{Binding BindingContext.ShowStoreCommand,Source={x:Reference Name=ListStoresPage}}" CornerRadius="15" FontSize="18" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="30,-25,30,30" BackgroundColor="#5362fb" Text="Go to" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"/>
+                                            <Image Source="bluearrow" Margin="225,-77,0,0"  Aspect="AspectFit" HeightRequest="37" WidthRequest="37"/>
+                                        </StackLayout>
+                                    </Frame>
                                 </Frame>
+                                
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

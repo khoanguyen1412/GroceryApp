@@ -1,8 +1,12 @@
 ﻿using GroceryApp.Models;
+using GroceryApp.Views.Popups;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace GroceryApp.ViewModels
 {
@@ -60,10 +64,16 @@ namespace GroceryApp.ViewModels
         }
 
 
-
+        public ICommand ShowDetailOrderCommand { get; set; }
         public ListOrdersViewModel()
         {
             LoadData();
+            ShowDetailOrderCommand = new Command(ShowDetailOrder);
+        }
+
+        public async void ShowDetailOrder()
+        {
+            await PopupNavigation.Instance.PushAsync(new OrderDetailPopupView());
         }
 
         public void LoadData()
@@ -151,7 +161,9 @@ namespace GroceryApp.ViewModels
                     IDUser=1,
                     IDStore=1,
                     Date=new DateTime(2020, 4, 3),
-                    TotalPrice=120000,
+                    SubTotalPrice=120000,
+                    DeliveryPrice=10000,
+                    TotalPrice=130000,
                     CustomerAddress="25 Trần Duy Hưng, Hà Nội",
                     Note="Giao hàng từ 6->8h sáng",
                     State="WAITING",
@@ -165,7 +177,9 @@ namespace GroceryApp.ViewModels
                     IDUser=1,
                     IDStore=1,
                     Date=new DateTime(2020, 4, 1),
-                    TotalPrice=500000,
+                    SubTotalPrice=500000,
+                    DeliveryPrice=10000,
+                    TotalPrice=510000,
                     CustomerAddress="25 Trần Duy Hưng, Hà Nội",
                     Note="Giao hàng từ 6->8h sáng",
                     State="WAITING",
@@ -179,7 +193,9 @@ namespace GroceryApp.ViewModels
                     IDUser=1,
                     IDStore=1,
                     Date=new DateTime(2020, 3, 26),
-                    TotalPrice=48000,
+                    SubTotalPrice=48000,
+                    DeliveryPrice=10000,
+                    TotalPrice=58000,
                     CustomerAddress="25 Trần Duy Hưng, Hà Nội",
                     Note="Giao hàng từ 6->8h sáng",
                     State="DELIVERING",
@@ -193,7 +209,9 @@ namespace GroceryApp.ViewModels
                     IDUser=1,
                     IDStore=1,
                     Date=new DateTime(2020, 3, 26),
-                    TotalPrice=77000,
+                    SubTotalPrice=77000,
+                    DeliveryPrice=10000,
+                    TotalPrice=87000,
                     CustomerAddress="25 Trần Duy Hưng, Hà Nội",
                     Note="Giao hàng từ 6->8h sáng",
                     State="DELIVERING",
@@ -207,7 +225,9 @@ namespace GroceryApp.ViewModels
                     IDUser=1,
                     IDStore=1,
                     Date=new DateTime(2020, 2, 24),
-                    TotalPrice=25000,
+                    SubTotalPrice=25000,
+                    DeliveryPrice=10000,
+                    TotalPrice=35000,
                     CustomerAddress="25 Trần Duy Hưng, Hà Nội",
                     Note="Giao hàng từ 6->8h sáng",
                     State="DELIVERING",
@@ -221,7 +241,9 @@ namespace GroceryApp.ViewModels
                     IDUser=1,
                     IDStore=1,
                     Date=new DateTime(2020, 1, 12),
-                    TotalPrice=1000000,
+                    SubTotalPrice=1000000,
+                    DeliveryPrice=10000,
+                    TotalPrice=1010000,
                     CustomerAddress="25 Trần Duy Hưng, Hà Nội",
                     Note="Giao hàng từ 6->8h sáng",
                     State="RECEIVED",
@@ -235,7 +257,9 @@ namespace GroceryApp.ViewModels
                     IDUser=1,
                     IDStore=1,
                     Date=new DateTime(2019, 12, 11),
-                    TotalPrice=120000,
+                    SubTotalPrice=120000,
+                    DeliveryPrice=10000,
+                    TotalPrice=130000,
                     CustomerAddress="25 Trần Duy Hưng, Hà Nội",
                     Note="Giao hàng từ 6->8h sáng",
                     State="RECEIVED",

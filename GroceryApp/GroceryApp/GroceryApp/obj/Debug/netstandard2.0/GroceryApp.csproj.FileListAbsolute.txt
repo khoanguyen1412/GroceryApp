@@ -12,6 +12,11 @@ F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\HomePageView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\ListStoresView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\TabBars\TabBarCustomer.xaml.g.cs
-F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csprojAssemblyReference.cache
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\CartView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\ListOrdersView.xaml.g.cs
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Popups\OrderDetailPopupView.xaml.g.cs
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csproj.CoreCompileInputs.cache
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\XamlC.stamp
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csprojAssemblyReference.cache
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\ShowStoreView.xaml.g.cs
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Popups\ConfirmInforOrderPopupView.xaml.g.cs

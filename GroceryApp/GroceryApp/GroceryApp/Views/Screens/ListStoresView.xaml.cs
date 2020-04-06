@@ -18,15 +18,7 @@ namespace GroceryApp.Views.Screens
             
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            List.SelectedItem = -1;
-            
-        }
 
-        private void List_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            List.SelectedItem = null;
-        }
+        
     }
 }

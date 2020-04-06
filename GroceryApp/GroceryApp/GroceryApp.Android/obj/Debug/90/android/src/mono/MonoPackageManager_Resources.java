@@ -6,6 +6,8 @@ public class MonoPackageManager_Resources {
 		"Autofac.dll",
 		"FormsViewGroup.dll",
 		"GroceryApp.dll",
+		"Rg.Plugins.Popup.dll",
+		"Rg.Plugins.Popup.Droid.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",
 		"Xamarin.Android.Arch.Core.Runtime.dll",
 		"Xamarin.Android.Arch.Lifecycle.Common.dll",
