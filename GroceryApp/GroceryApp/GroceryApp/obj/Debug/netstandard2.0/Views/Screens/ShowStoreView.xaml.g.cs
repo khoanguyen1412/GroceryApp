@@ -17,12 +17,16 @@ namespace GroceryApp.Views.Screens {
     public partial class ShowStoreView : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Frame ConfirmCard;
+        private global::Xamarin.Forms.BoxView CartPopupFade;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::GroceryApp.Views.Popups.SelectedProductsPopupView CartPopup;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(ShowStoreView));
-            ConfirmCard = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Frame>(this, "ConfirmCard");
+            CartPopupFade = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.BoxView>(this, "CartPopupFade");
+            CartPopup = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::GroceryApp.Views.Popups.SelectedProductsPopupView>(this, "CartPopup");
         }
     }
 }

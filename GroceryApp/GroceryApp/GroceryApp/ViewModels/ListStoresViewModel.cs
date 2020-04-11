@@ -13,7 +13,7 @@ namespace GroceryApp.ViewModels
     {
 
     }
-    public class ListStoresViewModel: BaseViewModel, IListStoresViewModel
+    public class ListStoresViewModel : BaseViewModel, IListStoresViewModel
     {
         private ObservableCollection<Store> _stores;
 

@@ -4,154 +4,214 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             BindingContext="{Binding ShowStore,Source={StaticResource Locator}}"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
+             xmlns:popup="clr-namespace:GroceryApp.Views.Popups"
+             Padding="0"
+             BindingContext="{Binding ShowStore, Source={StaticResource Locator}}"
+             BackgroundColor="{StaticResource BgColor }"
              x:Class="GroceryApp.Views.Screens.ShowStoreView"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             sharedTransitions:SharedTransitionNavigationPage.TransitionSelectedGroup="{Binding SelectedProductId }"
+             sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Fade"
+             sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="300">
     <ContentPage.Content>
-        <StackLayout Margin="0" Padding="0">
-            <AbsoluteLayout  HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand">
-                <Label Text="Groceriers" FontSize="25" TextColor="ForestGreen" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource LabelTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" />
-                <Image Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
-            </AbsoluteLayout>
-            <ScrollView  Grid.Row="2" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" Padding="0" Orientation="Horizontal" Margin="20,15,20,15" HeightRequest="36">
-                <StackLayout Orientation="Horizontal" HeightRequest="60">
-                    <Frame HeightRequest="60" WidthRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="OrangeRed" HorizontalOptions="Start" Padding="0,0,5,0">
-                        <Label TextColor="White" Text="All" HorizontalOptions="Center" FontSize="17"  VerticalTextAlignment="Center"  Style="{StaticResource BoldTitleStyle}"/>
-                    </Frame>
-                    <Frame HeightRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="#8dd0b3" HorizontalOptions="Start" Padding="0,0,5,0">
-                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
-                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="#fdb6f0">
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                                    <Image Source="greenveget" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                </StackLayout>
-                            </Frame>
-                            <Label Text="Vegetable"   VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame HeightRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="#fc6353" HorizontalOptions="Start" Padding="0,0,5,0">
-                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
-                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="#fdb6f0">
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                                    <Image Source="colorfruit" VerticalOptions="Center" HeightRequest="37" WidthRequest="37" Aspect="AspectFit"/>
-                                </StackLayout>
-                            </Frame>
-                            <Label Text="Fruit" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame HeightRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="#ffed5e" HorizontalOptions="Start" Padding="0,0,5,0">
-                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
-                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="#fdb6f0">
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                                    <Image Source="colorcandy" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                </StackLayout>
-                            </Frame>
-                            <Label Text="Candy" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame HeightRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="#2daefd" HorizontalOptions="Start" Padding="0,0,5,0">
-                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
-                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="#fdb6f0">
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                                    <Image Source="colordrink" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                </StackLayout>
-                            </Frame>
-                            <Label Text="Drink" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame HeightRequest="60" CornerRadius="13" HasShadow="True" Margin="0,0,15,0" IsClippedToBounds="True" BackgroundColor="#e1c693" HorizontalOptions="Start" Padding="0,0,5,0">
-                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
-                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="#fdb6f0">
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                                    <Image Source="colorcake" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                </StackLayout>
-                            </Frame>
-                            <Label Text="Cake" VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
-            </ScrollView>
-            <Label  Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Products"/>
-            <Grid VerticalOptions="FillAndExpand" Margin="0" >
+
+        <Grid  >
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition Height="225" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <ListView  Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding Products}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid BackgroundColor="White">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="110"/>
-                                    </Grid.RowDefinitions>
-                                    <Frame Grid.Column="1" Margin="5" Padding="0" HasShadow="False" CornerRadius="5" IsClippedToBounds="True">
-                                        <Image Grid.Column="1" Source="{Binding ImageURL}" HeightRequest="90" WidthRequest="90"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
-                                    </Frame>
-                                    <StackLayout Grid.Column="2" Orientation="Vertical" VerticalOptions="Center">
-                                        <Label  Margin="0,0,0,-5" Style="{StaticResource BoldTitleStyle}" Text="{Binding ProductName}" FontSize="16"/>
-                                        <Label  Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Unit}" FontSize="16" TextColor="#a6a8a5"/>
+                <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="2" Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="225" HorizontalOptions="FillAndExpand"
+                                           />
+                <controls:ParallaxControl Grid.Row="0" Grid.RowSpan="3" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="225" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackLayout BackgroundColor="{StaticResource BgColor }" Orientation="Vertical" Grid.Row="1">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="250"/>
+                                </Grid.RowDefinitions>
+
+
+                                <Frame Padding="10" Margin="20,-40,20,0" Grid.Row="1" CornerRadius="15" IsClippedToBounds="True" HasShadow="True" 
+                                       >
+                                    <StackLayout >
                                         <StackLayout Orientation="Horizontal">
-                                            <Image Margin="-3,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
-                                            <Label  Margin="-7,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Price}" FontSize="18" TextColor="#d54a71"/>
-                                            <BoxView Grid.Column="3"  Margin="10,0,0,0" HorizontalOptions="Center" HeightRequest="20" BackgroundColor="DarkGray" WidthRequest="1"/>
+                                            <Label Text="{Binding StoreName}" HorizontalOptions="StartAndExpand" Style="{StaticResource LabelTitleStyle}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Margin="0,3,3,3" Text="{Binding StoreDescription}" Style="{StaticResource LabelDefaultStyle}" HorizontalOptions="Center"/>
+                                            <Image Margin="10,-5,3,3" Source="star35" WidthRequest="100" HeightRequest="40" Aspect="AspectFit" HorizontalOptions="Start"/>
+
                                         </StackLayout>
                                     </StackLayout>
-                                    
-                                    <StackLayout Grid.Column="4" Orientation="Vertical" VerticalOptions="Start" Margin="0,10,10,0">
-                                        <Grid Margin="0,2,5,8">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition/>
-                                                <RowDefinition Height="auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Button Grid.Row="0" Margin="0,0,0,0" Padding="0" HeightRequest="30" WidthRequest="30"  FontSize="25" ImageSource="https://bom.to/vmDHq4" BackgroundColor="#e9ebea" CornerRadius="15"/>
-                                            <Label Grid.Row="1" Text="0" Margin="0,0,0,0" Padding="0" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
-                                            <Button Grid.Row="2" Margin="0,0,0,0" Padding="0" HeightRequest="30" WidthRequest="30"  FontSize="25" ImageSource="https://bom.to/HC04tn" BackgroundColor="#e9ebea" CornerRadius="15"/>
+                                </Frame>
+                                <!--MENU + LIST PRODUCTS-->
 
-                                        </Grid>
-                                        
-                                    </StackLayout>
+                                <Grid Grid.Row="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="500" />
+                                    </Grid.RowDefinitions>
+                                    <Label Text="Menu" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}"/>
+
+                                    <CollectionView Margin="20,0"
+                                        Grid.Row="1"
+                                        ItemsSource="{Binding Products}"
+                                        >
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout 
+                                            Orientation="Vertical"
+                                            Span="2" />
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate >
+                                                <Grid  Margin="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <pancake:PancakeView HorizontalOptions="Center" BackgroundColor="#93CCAB"  Grid.Column="0" CornerRadius="0,0,25,25" HasShadow="False"  WidthRequest="250" Padding="0" Margin="5">
+                                                        <pancake:PancakeView.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding ShowStore.ShowDetailProductCommand, Source={StaticResource Locator}}"
+                                                                CommandParameter="{Binding .}"/>
+                                                        </pancake:PancakeView.GestureRecognizers>
+                                                        <StackLayout Orientation="Vertical" Margin="0" HorizontalOptions="FillAndExpand">
+                                                            <pancake:PancakeView Margin="0" Padding="0" HasShadow="False" CornerRadius="0,0,10,10" IsClippedToBounds="True">
+                                                                <Image Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="150"
+                                                                       sharedTransitions:Transition.Name="ProductImage" 
+                                                                        sharedTransitions:Transition.Group="{Binding ID}"/>
+                                                            </pancake:PancakeView>
+                                                            <StackLayout Margin="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                                <Grid >
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="2*"/>
+                                                                        <ColumnDefinition Width="1*"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <Label Grid.Column="0" Margin="10,0" Text="{Binding ProductName}" Style="{StaticResource LabelTitleStyle}"/>
+                                                                    <Label Grid.Column="1" Margin="0" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding Price}" Style="{StaticResource LabelTitleStyle}" FontSize="15"/>
+
+                                                                </Grid>
+                                                            </StackLayout>
+                                                            <pancake:PancakeView
+                                                                HeightRequest="30"
+                                                                CornerRadius="30"
+                                                                BorderThickness="1"
+                                                                BackgroundColor="White"
+                                                                BorderColor="Gray" 
+                                                                Margin="30,0,30,10">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="1*" />
+                                                                        <ColumnDefinition Width="*" />
+                                                                        <ColumnDefinition Width="1*" />
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <Label 
+                                                            x:Name="MinusButton"
+                                                            Grid.Column="0"
+                                                            Text="-"
+                                                            Margin="20, 0, 0, 0"
+                                                            FontSize="20">
+                                                                    </Label>
+                                                                    <Label 
+                                                            x:Name="ValueText"
+                                                            Grid.Column="1" 
+                                                            HorizontalTextAlignment="Center"
+                                                            HorizontalOptions="Center"
+                                                            VerticalOptions="Center"
+                                                            VerticalTextAlignment="Center"
+                                                            Text="0"/>
+                                                                    <Label 
+                                                               x:Name="PlusButton"
+                                                               Grid.Column="2"
+                                                               Text="+"
+                                                                FontSize="20"
+                                                               Margin="0, 0, 15, 0">
+
+                                                                    </Label>
+                                                                </Grid>
+                                                            </pancake:PancakeView>
+                                                        </StackLayout>
+                                                    </pancake:PancakeView>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
                                 </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-            <Grid VerticalOptions="FillAndExpand" Margin="0,-5,0,0"  BackgroundColor="Green" Padding="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Frame  BackgroundColor="White" Grid.Column="0" x:Name="ConfirmCard" Margin="0" HeightRequest="110" VerticalOptions="End" HorizontalOptions="FillAndExpand"  CornerRadius="0" HasShadow="True"  WidthRequest="340" Padding="0" IsClippedToBounds="True">
-                    <Grid Margin="20,10,20,0" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="60"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
 
-                        <Label  Grid.Row="0" HorizontalOptions="End" Grid.Column="0" Margin="25,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Total:" FontSize="20" TextColor="Black"/>
+                                <!--List REVIEW-->
+                                <Label Grid.Row="3" Text="Review" Margin="20,20,20,0" Style="{StaticResource LabelWellcomeStyle}"/>
+                                <StackLayout Grid.Row="4" Orientation="Vertical" Margin="20,0,20,10" BackgroundColor="LightGray">
+                                    <CollectionView
+                            ItemsSource="{Binding FeedBacks}" 
+                            Margin="0">
+                                        <CollectionView.ItemsLayout>
+                                            <LinearItemsLayout
+                                Orientation="Horizontal"/>
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate >
+                                                <Grid VerticalOptions="FillAndExpand">
+                                                    <pancake:PancakeView VerticalOptions="FillAndExpand" Margin="5" CornerRadius="10" BackgroundColor="White" WidthRequest="180">
+                                                        <Grid  Padding="10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="auto"/>
+                                                                <RowDefinition Height="auto"/>
+                                                                <RowDefinition Height="auto"/>
+                                                                <RowDefinition Height="auto"/>
+                                                                <RowDefinition Height="auto"/>
+                                                            </Grid.RowDefinitions>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Image Source="user" HeightRequest="25" WidthRequest="25"/>
+                                                                <Label Text="Khoa" Style="{StaticResource LabelWellcomeStyle}" FontSize="20"/>
+                                                            </StackLayout>
+                                                            <Label Grid.Row="1" Text="{Binding CustomerReview}" FontSize="15" Style="{StaticResource LabelWellcomeStyle}" />
+                                                            <BoxView Grid.Row="2" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
+                                                            <Label Grid.Row="3" HorizontalOptions="End" Text="Kingdom" FontSize="20" Style="{StaticResource LabelWellcomeStyle}" />
+                                                            <Label Grid.Row="4" Margin="30,0,0,0" HorizontalOptions="End" Text="{Binding StoreAnswer}" FontSize="15" Style="{StaticResource LabelWellcomeStyle}" />
 
-                        <StackLayout Margin="0,0,0,0"  HorizontalOptions="Start" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-                            <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
-                            <Label  Margin="-5,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="58" FontSize="20" TextColor="Black"/>
+                                                        </Grid>
+                                                    </pancake:PancakeView>
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
+                                </StackLayout>
+
+                            </Grid>
+
                         </StackLayout>
-
-                        <Button CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" Padding="0" TextColor="White" Margin="0,0,0,0" BackgroundColor="#f7436a" Text="ADD TO CARD" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="300" HeightRequest="45"/>
                     </Grid>
-                </Frame>
+
+                </controls:ParallaxControl>
             </Grid>
-        </StackLayout>
+            <BoxView
+                x:Name="CartPopupFade"
+                Grid.Row="0"
+                Grid.RowSpan="1"
+                BackgroundColor="#AA000000"
+                IsVisible="false"
+                Opacity="0">
+            </BoxView>
+            <popup:SelectedProductsPopupView
+                x:Name="CartPopup" />
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

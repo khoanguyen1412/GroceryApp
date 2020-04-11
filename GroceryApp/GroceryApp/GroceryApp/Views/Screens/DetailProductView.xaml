@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="GroceryApp.Views.Screens.DetailProductView"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="225" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="2" Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="225" HorizontalOptions="FillAndExpand" 
+                                        sharedTransitions:Transition.Name="ProductImage"/>
+            <controls:ParallaxControl Grid.Row="0" Grid.RowSpan="3" VerticalScrollBarVisibility="Never">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="225" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackLayout  BackgroundColor="{StaticResource BgColor }" Orientation="Vertical" Grid.Row="1">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+
+                            <Frame Padding="10" BackgroundColor="Transparent" Margin="20,-80,20,0" Grid.Row="0" CornerRadius="15" IsClippedToBounds="True" HasShadow="True" >
+                                <StackLayout >
+                                    <Grid BackgroundColor="Transparent" >
+                                        <Label TextColor="White" FontSize="30" Text="{Binding ProductName}" HorizontalTextAlignment="Center" HorizontalOptions="Center" Style="{StaticResource BoldTitleStyle}"/>
+                                    </Grid>
+
+                                </StackLayout>
+                            </Frame>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Orientation="Vertical" Margin="20,0,0,0">
+                                    <Label Text="Quantity" TextColor="Gray" Style="{StaticResource LabelDefaultStyle}"/>
+                                    <Label Margin="0,-5,0,0" FontSize="25" Text="{Binding Unit}" Style="{StaticResource LabelDefaultStyle}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" Grid.Column="1" HorizontalOptions="End" Margin="0,0,20,0">
+                                    <Label Text="Price"  TextColor="Gray" Style="{StaticResource LabelDefaultStyle}"/>
+                                    <Label Margin="0,-5,0,0" FontSize="25" Text="{Binding Price}" Style="{StaticResource LabelDefaultStyle}"/>
+                                </StackLayout>
+                            </Grid>
+                            <Label Margin="20,20,0,0" Grid.Row="2" TextColor="Gray" Text="Description" Style="{StaticResource LabelDefaultStyle}"/>
+                            <Label Margin="20,0,0,0" Grid.Row="3" FontSize="20" Text="{Binding ProductDescription}" Style="{StaticResource LabelDefaultStyle}"/>
+                            <Grid Grid.Row="4" Margin="0,20,0,0"  Padding="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Frame HorizontalOptions="End" Padding="0" BackgroundColor="Transparent" Margin="0,0,10,0" Grid.Column="0" HeightRequest="50" WidthRequest="50"  VerticalOptions="Center">
+                                    <Button Text="-"  HeightRequest="60" WidthRequest="60" CornerRadius="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                </Frame>
+                                <Label Margin="0,7,0,0" FontSize="25" Grid.Column="1" Text="1" />
+                                <Frame HorizontalOptions="Start" Padding="0" BackgroundColor="Transparent" Margin="10,0,0,0" Grid.Column="2" HeightRequest="50" WidthRequest="50" VerticalOptions="Center">
+                                    <Button Text="+"  HeightRequest="60" WidthRequest="60" CornerRadius="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                </Frame>
+                                
+                            </Grid>
+                            <Button BackgroundColor="#f7436a" Margin="40,170,40,0" TextColor="White" CornerRadius="10" VerticalOptions="End" Grid.Row="5" HeightRequest="60" WidthRequest="200"  Text="Add to order" Style="{StaticResource LabelWellcomeStyle}"/>
+                        </Grid>
+                        <Frame BackgroundColor="Transparent" HeightRequest="200"/>
+                    </StackLayout>
+                </Grid>
+            </controls:ParallaxControl>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

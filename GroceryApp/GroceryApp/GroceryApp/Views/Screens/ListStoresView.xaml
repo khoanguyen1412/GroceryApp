@@ -122,7 +122,7 @@
                                         </StackLayout>
                                     </Frame>
                                 </Frame>
-                                
+
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+              BindingContext="{Binding ShowStore,Source={StaticResource Locator}}"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="GroceryApp.Views.Popups.SelectedProductsPopupView">
+    <ContentView.Content>
+        <ScrollView Orientation="Vertical">
+            
+        <Grid              
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <pancake:PancakeView
+                    Grid.Row="0"
+                    BackgroundColor="#32A060"
+                    CornerRadius="36, 36, 0, 0"
+                    VerticalOptions="Start">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="colorlist" WidthRequest="30" HeightRequest="30" Margin="15,0,0,-2"/>
+                    <Label 
+                        TextColor="White"
+                        Grid.Column="1"
+                        Text="Selected Products"
+                        Style="{StaticResource LabelTitleStyle}"
+                        FontSize="25"
+                        Margin="0,20,0,0"
+                        />
+                    <!-- SUMMARY BASKET ITEMS -->
+                    <CollectionView 
+                        x:Name="BasketSummary"
+                        Grid.Column="2"
+                        >
+                    </CollectionView>
+                    <Grid
+                        Grid.Column="3">
+                        <!-- EXPAND BUTTON -->
+                        <pancake:PancakeView
+                            x:Name="ExpandButton"
+                            CornerRadius="24, 24, 0, 0"
+                            BackgroundColor="#28804C"
+                            WidthRequest="38"
+                            HeightRequest="80"
+                            Margin="0, 18, 48, 0">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Expanded">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="False" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Collapsed">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="True" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label 
+                                Text="↑"
+                                FontSize="45"
+                                Margin="0, -10, 0, 0"
+                                TextColor="#93CCAB"
+                                HorizontalOptions="Center"
+                                />
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Tapped="ExpandTapped" />
+                            </pancake:PancakeView.GestureRecognizers>
+                        </pancake:PancakeView>
+                        <!-- COLLAPSE BUTTON -->
+                        <pancake:PancakeView
+                            x:Name="CollapseButton"
+                            CornerRadius="0, 0, 24, 24"
+                            BackgroundColor="#28804C"
+                            WidthRequest="38"
+                            HeightRequest="80"
+                            Margin="0, 0, 48, 18"
+                            IsVisible="False">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Expanded">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="True" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Collapsed">
+                                        <VisualState.Setters>
+                                            <Setter Property="IsVisible" Value="False" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label 
+                                Text="↓"
+                                FontSize="45"
+                                Margin="0, -10, 0, 0"
+                                TextColor="#93CCAB"
+                                HorizontalOptions="Center"
+                                />
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer                                  
+                                    Tapped="CollapseTapped" />
+                            </pancake:PancakeView.GestureRecognizers>
+                        </pancake:PancakeView>
+                    </Grid>
+                </Grid>
+            </pancake:PancakeView>
+            <Grid
+                Grid.Row="1"
+                BackgroundColor="#32A060">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <ListView Grid.Row="0"  Margin="20,20,20,0" ItemsSource="{Binding Products}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Orientation="Horizontal" Margin="0,5" HorizontalOptions="FillAndExpand" >
+                                        <Frame CornerRadius="40" HeightRequest="50" WidthRequest="50" Padding="0">
+                                            <Image Source="{Binding ImageURL}" Aspect="AspectFill" WidthRequest="70" HeightRequest="70"/>
+                                        </Frame>
+                                        <Label TextColor="White" VerticalOptions="Center" Margin="10,0,0,0" Text="x1" Style="{StaticResource LabelTitleStyle}"/>
+                                        <Label TextColor="White" FontSize="20" VerticalOptions="Center" Margin="10,0,0,0" Text="{Binding ProductName}" Style="{StaticResource BoldTitleStyle}"/>
+
+                                    </StackLayout>
+                                    <Label TextColor="White" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,10,0"  Text="{Binding Price}" Style="{StaticResource LabelTitleStyle}"/>
+
+                                </Grid>
+                                
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                        <Label TextColor="White" Margin="145,0,0,0" Text="Total:" FontSize="25" Style="{StaticResource BoldTitleStyle}"/>
+                        <Label VerticalTextAlignment="Center" HorizontalOptions="End" Margin="0,0,30,0" Grid.Column="1" TextColor="White" Text="20000" Style="{StaticResource LabelTitleStyle}"/>
+                    </Grid>
+                <pancake:PancakeView
+                    Grid.Row="2"
+                    HeightRequest="48"
+                    CornerRadius="24, 0, 24, 0"
+                    BackgroundColor="White"
+                    Margin="24, 20, 0, 0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label 
+                            Grid.Column="1"
+                            Text="Add to Cart"
+                            FontSize="25"
+                            Margin="0,5,0,0"
+                            Style="{StaticResource LabelTitleStyle}"/>
+                        <Image Source="greencart" Margin="0,0,20,0" WidthRequest="25" HeightRequest="25" Grid.Column="2"/>
+                    </Grid>
+                </pancake:PancakeView>
+            </Grid>
+        </Grid>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>
