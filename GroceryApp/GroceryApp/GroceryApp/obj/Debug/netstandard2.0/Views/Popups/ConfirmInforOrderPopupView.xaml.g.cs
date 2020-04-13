@@ -20,9 +20,25 @@ namespace GroceryApp.Views.Popups {
         private global::Rg.Plugins.Popup.Pages.PopupPage ConfirmOrder;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Grid background;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.StackLayout card;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::GroceryApp.Views.CustomedControls.CustomEntry address;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::GroceryApp.Views.CustomedControls.CustomEntry note;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(ConfirmInforOrderPopupView));
             ConfirmOrder = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Rg.Plugins.Popup.Pages.PopupPage>(this, "ConfirmOrder");
+            background = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "background");
+            card = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "card");
+            address = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::GroceryApp.Views.CustomedControls.CustomEntry>(this, "address");
+            note = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::GroceryApp.Views.CustomedControls.CustomEntry>(this, "note");
         }
     }
 }

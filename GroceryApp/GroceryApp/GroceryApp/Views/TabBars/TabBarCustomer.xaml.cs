@@ -17,6 +17,7 @@ namespace GroceryApp.Views.TabBars
         public TabBarCustomer()
         {
             InitializeComponent();
+            this.SelectedTabColor=Color.White;
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
         }
     }

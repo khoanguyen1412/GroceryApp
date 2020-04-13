@@ -1,4 +1,5 @@
-﻿using GroceryApp.Models;
+﻿using GroceryApp.DataProviders;
+using GroceryApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -158,7 +159,7 @@ namespace GroceryApp.ViewModels
                 OrderedProducts = products
             };
 
-            _order = order;
+            _order = DataProvider.ListOrders[0];
         }
     }
 }

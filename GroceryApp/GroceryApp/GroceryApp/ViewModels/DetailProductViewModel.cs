@@ -24,6 +24,8 @@ namespace GroceryApp.ViewModels
 
         void LoadData()
         {
+
+            //DATA KHÔNG CÒN SỬ DỤNG, DO PRODUCT ĐÃ ĐƯỢC GỬI TỪ BINDING CONTEXT Ở SCREEN TRƯỚC
             Product product = new Product
             {
                 ID = 0,
@@ -38,7 +40,7 @@ namespace GroceryApp.ViewModels
                 ImageURL = "https://www.jessicagavin.com/wp-content/uploads/2019/02/carrots-7-1200.jpg",
             };
             
-            this._product = product;
+            //this._product = product;
 
         }
     }

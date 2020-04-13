@@ -15,6 +15,25 @@ namespace GroceryApp.Views.Screens
         public ListOrdersView()
         {
             InitializeComponent();
+
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) => {
+                GoHome();
+            };
+            tapGestureRecognizer.NumberOfTapsRequired = 1;
+            backLabel.GestureRecognizers.Add(tapGestureRecognizer);
+        }
+
+        public void GoHome()
+        {
+            var masterPage = this.Parent as TabbedPage;
+            masterPage.CurrentPage = masterPage.Children[0];
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            GoHome();
+            return true;
         }
     }
 }

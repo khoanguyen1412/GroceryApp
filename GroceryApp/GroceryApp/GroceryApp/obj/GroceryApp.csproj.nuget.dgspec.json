@@ -61,6 +61,10 @@
               "target": "Package",
               "version": "[2.0.0.2, )"
             },
+            "Xam.Plugins.Forms.KeyboardOverlap": {
+              "target": "Package",
+              "version": "[1.0.0.4, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.5.2, )"

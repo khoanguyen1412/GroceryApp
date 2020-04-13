@@ -24,33 +24,48 @@
          HasBackgroundAnimation="True"/>
 
     </popup:PopupPage.Animation>
-    
-    <StackLayout HeightRequest="400" Margin="20,50" BackgroundColor="White" Orientation="Vertical" >
-        <Grid  Margin="15,0,15,20" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            
-            <Label Grid.Row="0" TextColor="Black" Margin="0,20,0,20" Style="{StaticResource LabelWellcomeStyle}" Text="Deliver to:"/>
-            <StackLayout Grid.Row="1" Orientation="Horizontal" >
-                <CheckBox   />
-                <Label Text="125 Trần Hưng Dụ, Hà Nội" VerticalOptions="Center" FontSize="20"/>
-            </StackLayout>
-            <StackLayout Grid.Row="2" Orientation="Horizontal" >
-                <CheckBox/>
-                <Label Text="Another Address:" VerticalOptions="Center" FontSize="20"/>
-            </StackLayout>
-            <controls:CustomEntry Grid.Row="3" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
-            <Label Grid.Row="4" TextColor="Black" Margin="0,20,0,20" Style="{StaticResource LabelWellcomeStyle}" Text="Order Note:"/>
-            <controls:CustomEntry Grid.Row="5" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
-        </Grid>
-        
-        <Button  CornerRadius="10" FontSize="25" Padding="0" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" BackgroundColor="#00cc00" Text="SEND ORDER"  HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
-    </StackLayout>
+        <ScrollView  Orientation="Vertical" WidthRequest="180"  >
+
+            <Grid x:Name="background" BackgroundColor="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout x:Name="card" Margin="30,130,30,0" BackgroundColor="White" Orientation="Vertical" >
+                    
+                    <Grid  Margin="15,0,15,20" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" TextColor="Black" Margin="0,20,0,20" Style="{StaticResource LabelWellcomeStyle}" Text="Deliver to:"/>
+                        <StackLayout Grid.Row="1" Orientation="Horizontal" >
+                            <CheckBox   />
+                            <Label Text="125 Trần Hưng Dụ, Hà Nội" VerticalOptions="Center" FontSize="20"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" Orientation="Horizontal" >
+                            <CheckBox/>
+                            <Label Text="Another Address:" VerticalOptions="Center" FontSize="20"/>
+                        </StackLayout>
+                        <controls:CustomEntry x:Name="address" Grid.Row="3" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
+                        <Label Grid.Row="4" TextColor="Black" Margin="0,20,0,20" Style="{StaticResource LabelWellcomeStyle}" Text="Order Note:"/>
+                        <controls:CustomEntry x:Name="note" Grid.Row="5" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
+                    </Grid>
+
+                    <Button  CornerRadius="10" FontSize="25" Padding="0" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" BackgroundColor="#00cc00" Text="SEND ORDER"  HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"/>
+
+                </StackLayout>
+            </Grid>
+
+        </ScrollView>
+    </Grid>
 </popup:PopupPage>

@@ -63,12 +63,45 @@
                                 <Grid Grid.Row="2">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="90" />
                                         <RowDefinition Height="500" />
                                     </Grid.RowDefinitions>
                                     <Label Text="Menu" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}"/>
-
+                                    <!--LIST TYPES-->
+                                    <CollectionView HeightRequest="90" Grid.Row="1" Margin="20,0" ItemsSource="{Binding ProductTypes}">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout 
+                                            Orientation="Horizontal"/>
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate >
+                                                <Grid Margin="5,0" >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="60"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60"/>
+                                                        <RowDefinition Height="30"/>
+                                                    </Grid.RowDefinitions>
+                                                    <pancake:PancakeView BackgroundColor="White" CornerRadius="40" WidthRequest="60" HasShadow="False" >
+                                                        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="40"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="40"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Image Source="{Binding ImageURL}" HeightRequest="50" WidthRequest="50" Aspect="AspectFit"/>
+                                                        </Grid>
+                                                    </pancake:PancakeView>
+                                                    <Label HorizontalOptions="Center" Grid.Row="1" Text="{Binding TypeName}" Margin="0,-5,0,0" Style="{StaticResource LabelDefaultStyle}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                    <!--LIST PRODUCTS-->
                                     <CollectionView Margin="20,0"
-                                        Grid.Row="1"
+                                        Grid.Row="2"
                                         ItemsSource="{Binding Products}"
                                         >
                                         <CollectionView.ItemsLayout>
@@ -201,6 +234,7 @@
 
                 </controls:ParallaxControl>
             </Grid>
+            
             <BoxView
                 x:Name="CartPopupFade"
                 Grid.Row="0"

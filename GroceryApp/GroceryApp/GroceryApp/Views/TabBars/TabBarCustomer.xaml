@@ -7,8 +7,10 @@
             
             BarBackgroundColor="#fc6353"
             SelectedTabColor="White"
+            UnselectedTabColor="#666666"
              xmlns:local="clr-namespace:GroceryApp.Views.Screens"
              x:Class="GroceryApp.Views.TabBars.TabBarCustomer"
+            
             x:Name="TabCustomer"
             NavigationPage.HasNavigationBar="False">
     <local:HomePageView Title="Home" IconImageSource="home"/>

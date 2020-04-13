@@ -21,6 +21,7 @@ namespace GroceryApp.Models
         public double DeliveryPrice { get; set; }
         public double TotalPrice { get; set; }
         public List<Product> OrderedProducts { get; set; }
+        public int OrderNumber { get; set; }
     }
 
    

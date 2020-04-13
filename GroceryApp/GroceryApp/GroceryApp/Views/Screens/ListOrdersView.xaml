@@ -13,7 +13,7 @@
             <StackLayout Orientation="Vertical">
                 <AbsoluteLayout HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                     <Label FontSize="25" TextColor="ForestGreen" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource LabelTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Your Orders"/>
-                    <Image Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+                    <Image x:Name="backLabel" Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
                 </AbsoluteLayout>
                 <Label Margin="20,20,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Waiting Orders"/>
                 <Grid HeightRequest="200">
@@ -24,58 +24,74 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <ContentView HorizontalOptions="Fill" VerticalOptions="Fill">
-                                        <ContentView.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" />
-                                        </ContentView.GestureRecognizers>
-                                        <Grid BackgroundColor="White">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition Width="30"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="100"/>
-                                            </Grid.RowDefinitions>
-                                            <Button  Grid.Column="0" Text="1" FontSize="15" Padding="0" Margin="12,32" TextColor="#f7436a" BackgroundColor="Transparent" BorderWidth="1" BorderColor="DarkGray"/>
-                                            <Grid Grid.Column="1">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition />
-                                                    <RowDefinition />
-                                                </Grid.RowDefinitions>
-                                                <!--Dòng: tên + giá-->
-                                                <Grid Grid.Row="0" Margin="0,15,0,0">
+                                    <SwipeView>
+                                        <SwipeView.RightItems>
+                                            <SwipeItems Mode="Reveal">
+                                                <SwipeItemView>
+                                                    <Grid WidthRequest="60" BackgroundColor="#fc6353">
+                                                        <Image
+                                                            Source="bin"
+                                                            HorizontalOptions="Center" VerticalOptions="Center"
+                                                            HeightRequest="80" WidthRequest="80"
+                                                            Margin="15" Aspect="AspectFit"/>
+                                                    </Grid>
+                                                </SwipeItemView>
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
+                                        <SwipeView.Content>
+                                            <ContentView VerticalOptions="Fill" HorizontalOptions="Fill" >
+                                                <ContentView.GestureRecognizers>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" CommandParameter="{Binding .}"/>
+                                                </ContentView.GestureRecognizers>
+                                                <Grid BackgroundColor="White" Margin="0,0,5,0">
                                                     <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50"/>
                                                         <ColumnDefinition/>
-                                                        <ColumnDefinition Width="auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding OrderedProducts, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
-                                                    <StackLayout  Grid.Column="1" Orientation="Horizontal">
-                                                        <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
-                                                        <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>
-                                                    </StackLayout>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="100"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Button Grid.Column="0" Text="{Binding OrderNumber}" FontSize="15" Padding="0" Margin="12,32" TextColor="#f7436a" BackgroundColor="Transparent" BorderWidth="1" BorderColor="DarkGray"/>
+                                                    <Grid Grid.Column="1">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition />
+                                                            <RowDefinition />
+                                                        </Grid.RowDefinitions>
+                                                        <!--Dòng: tên + giá-->
+                                                        <Grid Grid.Row="0" Margin="0,15,0,0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding OrderedProducts, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
+                                                            <StackLayout  Grid.Column="1" Orientation="Horizontal">
+                                                                <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
+                                                                <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>
+                                                            </StackLayout>
 
+                                                        </Grid>
+                                                        <!--Dòng: mô tả + date-->
+                                                        <Grid Grid.Row="1">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding CustomerAddress, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="DarkGray"/>
+                                                            <Label Grid.Column="1" Text="{Binding Date, Converter={StaticResource DateTimeConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="Black"/>
+                                                        </Grid>
+                                                    </Grid>
                                                 </Grid>
-                                                <!--Dòng: mô tả + date-->
-                                                <Grid Grid.Row="1">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition Width="auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding CustomerAddress, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="DarkGray"/>
-                                                    <Label Grid.Column="1" Text="{Binding Date, Converter={StaticResource DateTimeNoYearConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="Black"/>
-                                                </Grid>
-                                            </Grid>
-                                            <Button  Grid.Column="2" Text="X" FontSize="15" Padding="0" Margin="0,22" Style="{StaticResource BoldTitleStyle}" TextColor="Black" BackgroundColor="Red"  BorderWidth="1" BorderColor="DarkGray"/>
-                                        </Grid>
-                                    </ContentView>
-                                    
+                                            </ContentView>
+                                        </SwipeView.Content>
+                                    </SwipeView>
+
+
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
-                
+
                 <Label Margin="20,0,20,0"  Style="{StaticResource LabelWellcomeStyle}" Text="Delivering Orders"/>
                 <Grid HeightRequest="200">
                     <Grid.RowDefinitions>
@@ -85,50 +101,68 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <ContentView VerticalOptions="Fill" HorizontalOptions="Fill">
-                                        <ContentView.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" />
-                                        </ContentView.GestureRecognizers>
-                                        <Grid BackgroundColor="White">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="100"/>
-                                            </Grid.RowDefinitions>
-                                            <Button Grid.Column="0" Text="1" FontSize="15" Padding="0" Margin="12,32" TextColor="#f7436a" BackgroundColor="Transparent" BorderWidth="1" BorderColor="DarkGray"/>
-                                            <Grid Grid.Column="1">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition />
-                                                    <RowDefinition />
-                                                </Grid.RowDefinitions>
-                                                <!--Dòng: tên + giá-->
-                                                <Grid Grid.Row="0" Margin="0,15,0,0">
+                                    <SwipeView>
+                                        <SwipeView.RightItems>
+                                            <SwipeItems Mode="Reveal">
+                                                <SwipeItemView>
+                                                    <Grid WidthRequest="60" BackgroundColor="#00cc44">
+                                                        <Image
+                                                            Source="receive"
+                                                            HorizontalOptions="Center" VerticalOptions="Center"
+                                                            HeightRequest="80" WidthRequest="80"
+                                                            Margin="10" Aspect="AspectFit"/>
+                                                    </Grid>
+                                                </SwipeItemView>
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
+                                        <SwipeView.Content>
+                                            <ContentView VerticalOptions="Fill" HorizontalOptions="Fill" >
+                                                <ContentView.GestureRecognizers>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" />
+                                                </ContentView.GestureRecognizers>
+                                                <Grid BackgroundColor="White" Margin="0,0,5,0">
                                                     <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50"/>
                                                         <ColumnDefinition/>
-                                                        <ColumnDefinition Width="auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding OrderedProducts, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
-                                                    <StackLayout  Grid.Column="1" Orientation="Horizontal">
-                                                        <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
-                                                        <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>
-                                                    </StackLayout>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="100"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Button Grid.Column="0" Text="{Binding OrderNumber}" FontSize="15" Padding="0" Margin="12,32" TextColor="#f7436a" BackgroundColor="Transparent" BorderWidth="1" BorderColor="DarkGray"/>
+                                                    <Grid Grid.Column="1">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition />
+                                                            <RowDefinition />
+                                                        </Grid.RowDefinitions>
+                                                        <!--Dòng: tên + giá-->
+                                                        <Grid Grid.Row="0" Margin="0,15,0,0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding OrderedProducts, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
+                                                            <StackLayout  Grid.Column="1" Orientation="Horizontal">
+                                                                <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
+                                                                <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>
+                                                            </StackLayout>
 
+                                                        </Grid>
+                                                        <!--Dòng: mô tả + date-->
+                                                        <Grid Grid.Row="1">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding CustomerAddress, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="DarkGray"/>
+                                                            <Label Grid.Column="1" Text="{Binding Date, Converter={StaticResource DateTimeConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="Black"/>
+                                                        </Grid>
+                                                    </Grid>
                                                 </Grid>
-                                                <!--Dòng: mô tả + date-->
-                                                <Grid Grid.Row="1">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition Width="auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding CustomerAddress, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="DarkGray"/>
-                                                    <Label Grid.Column="1" Text="{Binding Date, Converter={StaticResource DateTimeConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="Black"/>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </ContentView>
+                                            </ContentView>
+                                        </SwipeView.Content>
+                                    </SwipeView>
                                     
+
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -146,7 +180,7 @@
                                 <ViewCell>
                                     <ContentView HorizontalOptions="Fill" VerticalOptions="Fill">
                                         <ContentView.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" />
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" />
                                         </ContentView.GestureRecognizers>
                                         <Grid BackgroundColor="White">
                                             <Grid.ColumnDefinitions>
@@ -156,7 +190,7 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="100"/>
                                             </Grid.RowDefinitions>
-                                            <Button Grid.Column="0" Text="1" FontSize="15" Padding="0" Margin="12,32" TextColor="#f7436a" BackgroundColor="Transparent" BorderWidth="1" BorderColor="DarkGray"/>
+                                            <Button Grid.Column="0" Text="{Binding OrderNumber}" FontSize="15" Padding="0" Margin="12,32" TextColor="#f7436a" BackgroundColor="Transparent" BorderWidth="1" BorderColor="DarkGray"/>
                                             <Grid Grid.Column="1">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition />
@@ -187,7 +221,7 @@
                                             </Grid>
                                         </Grid>
                                     </ContentView>
-                                    
+
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

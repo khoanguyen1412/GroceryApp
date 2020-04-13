@@ -4,16 +4,28 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             BindingContext="{Binding OrderDetail,Source={StaticResource Locator}}"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              x:Class="GroceryApp.Views.Popups.OrderDetailPopupView">
+    <popup:PopupPage.Animation>
+
+        <animations:MoveAnimation 
+         PositionIn="Right"
+         PositionOut="Right"
+         DurationIn="300"
+         DurationOut="300"
+         EasingIn="SinOut"
+         EasingOut="SinIn"
+         HasBackgroundAnimation="True"/>
+
+    </popup:PopupPage.Animation>
     <StackLayout Margin="20,50" BackgroundColor="White" Orientation="Vertical" >
         <Label  Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Products"/>
         <Grid VerticalOptions="FillAndExpand" Margin="0" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ListView x:Name="List" Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding Products}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
+            <ListView x:Name="List" Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding OrderedProducts}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
