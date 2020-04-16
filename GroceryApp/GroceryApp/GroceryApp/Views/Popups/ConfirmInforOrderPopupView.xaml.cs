@@ -1,4 +1,6 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using GroceryApp.Models;
+using GroceryApp.ViewModels;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,11 @@ namespace GroceryApp.Views.Popups
         public ConfirmInforOrderPopupView()
         {
             InitializeComponent();
+            initStuff();
+        }
+
+        public void initStuff()
+        {
             ConfirmOrder.HeightRequest = 400;
 
             var tapGestureRecognizer1 = new TapGestureRecognizer();//background
@@ -39,39 +46,24 @@ namespace GroceryApp.Views.Popups
             await PopupNavigation.Instance.PopAsync();
         }
 
-        /*
-        protected override void LayoutChildren(double x, double y, double width, double height)
+    
+        private void address_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var maxHeight = 600;
-            var maxWidth = Application.Current.MainPage.Width-20;
-            base.LayoutChildren(x + (width - maxWidth) / 2, y + (height - maxHeight) / 2, maxWidth, maxHeight);
-        }
-        */
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            address.Focused += InputFocused;
-            note.Focused += InputFocused;
-            address.Unfocused += InputUnfocused;
-            note.Unfocused += InputUnfocused;
+            UpdateInfor(e.NewTextValue, note.Text);
         }
 
-        protected override void OnDisappearing()
+
+        private void note_TextChanged(object sender, TextChangedEventArgs e)
         {
-            base.OnDisappearing();
-            address.Focused -= InputFocused;
-            note.Focused -= InputFocused;
-            address.Unfocused -= InputUnfocused;
-            note.Unfocused -= InputUnfocused;
-        }
-        void InputFocused(object sender, EventArgs args)
-        {
-            Content.LayoutTo(new Rectangle(0, -360, Content.Bounds.Width, Content.Bounds.Height));
+            UpdateInfor(address.Text, e.NewTextValue);
         }
 
-        void InputUnfocused(object sender, EventArgs args)
+        public void UpdateInfor(string address, string note)
         {
-            Content.LayoutTo(new Rectangle(0, 0, Content.Bounds.Width, Content.Bounds.Height));
+            (this.BindingContext as OrderBill).CustomerAddress = address;
+            (this.BindingContext as OrderBill).Note = note;
+
         }
+
     }
 }

@@ -18,6 +18,9 @@ namespace GroceryApp.ViewModels
             builder.RegisterType<OrderDetailPopupViewModel>().As<IOrderDetailPopupViewModel>().SingleInstance();
             builder.RegisterType<ShowStoreViewModel>().As<IShowStoreViewModel>().SingleInstance();
             builder.RegisterType<DetailProductViewModel>().As<IDetailProductViewModel>().SingleInstance();
+            builder.RegisterType<ConfirmInforOrderPopupViewModel>().As<IConfirmInforOrderPopupViewModel>().SingleInstance();
+            builder.RegisterType<ReviewStorePopupViewModel>().As<IReviewStorePopupViewModel>().SingleInstance();
+            builder.RegisterType<FinalBillViewModel>().As<IFinalBillViewModel>().SingleInstance();
             _container = builder.Build();
         }
         public IHomePageViewModel HomePage
@@ -51,6 +54,21 @@ namespace GroceryApp.ViewModels
         public IDetailProductViewModel DetailProduct
         {
             get { return _container.Resolve<IDetailProductViewModel>(); }
+        }
+
+        public IConfirmInforOrderPopupViewModel ConfirmOrder
+        {
+            get { return _container.Resolve<IConfirmInforOrderPopupViewModel>(); }
+        }
+
+        public IReviewStorePopupViewModel ReviewStorePopup
+        {
+            get { return _container.Resolve<IReviewStorePopupViewModel>(); }
+        }
+
+        public IFinalBillViewModel FinalBill
+        {
+            get { return _container.Resolve<IFinalBillViewModel>(); }
         }
     }
 }

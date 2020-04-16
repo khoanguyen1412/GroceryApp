@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             
+             x:Class="GroceryApp.Views.Screens.FinalBillView"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="Normal" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource Rubik}"/>
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="Bold" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource RubikBold}"/>
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="Medium" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource RubikBold}"/>
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollView Orientation="Vertical">
+                <Grid BackgroundColor="White" Margin="20,10,20,5" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <AbsoluteLayout HeightRequest="50" Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
+                        <Label  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"  Style="{StaticResource Bold}" Text="KING DOM GROCERY"  HorizontalOptions="Center"/>
+                        <Image Source="backarrow" Margin="0,-30,0,0" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+                        
+                    </AbsoluteLayout>
+                    <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Center" Grid.Row="1" Text="Khu phố Khánh Chữ 2, Thị Trấn Khánh Hải, Huyện Ninh Hải, Tỉnh Ninh Thuận, Việt Nam"/>
+                    <BoxView Grid.Row="2" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
+                    <Label Grid.Row="3" Style="{StaticResource Bold}" HorizontalTextAlignment="Center"  Text="PAYMENT SLIP"/>
+                    <Grid Grid.Row="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="0" Text="Bill Code:"/>
+                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="1" Text="Date:"/>
+                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="1" Text="{Binding ID}" Margin="20,0,0,0"/>
+                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="1" Grid.Column="1" Text="14/02/2020" Margin="20,0,0,0"/>
+
+                    </Grid>
+                    <BoxView Grid.Row="5" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Style="{StaticResource Bold}" FontSize="20" HorizontalTextAlignment="Center" Grid.Column="0" Text="Quantity"/>
+                        <Label Style="{StaticResource Bold}" FontSize="20" HorizontalTextAlignment="Center" Grid.Column="1" Text="Price"/>
+                        <Label Style="{StaticResource Bold}" FontSize="20" HorizontalTextAlignment="End" Grid.Column="2" Text="Subtotal"/>
+                    </Grid>
+                    <Grid Grid.Row="7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="350"/>
+                        </Grid.RowDefinitions>
+                        <CollectionView Grid.Row="0" ItemsSource="{Binding OrderedProducts}" >
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate >
+                                    <Grid Margin="0,5" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding ProductName}" Style="{StaticResource Medium}"/>
+                                        <Label Grid.Column="0" Grid.Row="1"  Text="{Binding QuantityOrder}" Style="{StaticResource Normal}" HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Column="1" Grid.Row="1" Text="{Binding Price}" Style="{StaticResource Normal}" HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Column="2" Grid.Row="1"  Text="{Binding Price}" Style="{StaticResource Normal}" HorizontalTextAlignment="End"/>
+
+                                    </Grid>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                    <BoxView Grid.Row="8" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
+                    <Grid Grid.Row="9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Total:" Style="{StaticResource Normal}" HorizontalOptions="Start"/>
+                        <Label Grid.Column="1" Text="{Binding SubTotalPrice}" Style="{StaticResource Normal}" HorizontalOptions="End"/>
+
+                    </Grid>
+                    <Grid Grid.Row="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Payment (rounded):" Style="{StaticResource Bold}" HorizontalOptions="Start" FontSize="18"/>
+                        <Label Grid.Column="1" Text="200000" Style="{StaticResource Bold}" HorizontalOptions="End" FontSize="18"/>
+                    </Grid>
+                    <BoxView Grid.Row="11" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
+                    <Label Grid.Row="12" FontSize="15" Text="(Above prices included VAT)" HorizontalOptions="Center" FontAttributes="Italic"  />
+                </Grid>
+            </ScrollView>
+            <Button Grid.Row="1" Margin="0,5" Text="Finish Order" HorizontalOptions="Center" WidthRequest="300" FontSize="20" CornerRadius="10"
+                    Command="{Binding FinalBill.SendOrderCommand,Source={StaticResource Locator}}"
+                    CommandParameter="{Binding .}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

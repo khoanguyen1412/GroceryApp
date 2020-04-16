@@ -56,13 +56,26 @@
                             <CheckBox/>
                             <Label Text="Another Address:" VerticalOptions="Center" FontSize="20"/>
                         </StackLayout>
-                        <controls:CustomEntry x:Name="address" Grid.Row="3" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
+                        <controls:CustomEntry TextChanged="address_TextChanged" x:Name="address" Grid.Row="3" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
                         <Label Grid.Row="4" TextColor="Black" Margin="0,20,0,20" Style="{StaticResource LabelWellcomeStyle}" Text="Order Note:"/>
-                        <controls:CustomEntry x:Name="note" Grid.Row="5" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
+                        <controls:CustomEntry TextChanged="note_TextChanged" x:Name="note" Grid.Row="5" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
                     </Grid>
 
-                    <Button  CornerRadius="10" FontSize="25" Padding="0" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" BackgroundColor="#00cc00" Text="SEND ORDER"  HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"/>
-
+                    <Frame x:Name="btnNext" CornerRadius="10" BackgroundColor="#00cc00" HeightRequest="45" Margin="17,0,17,10" Padding="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ConfirmOrder.ShowBillCommand, Source={StaticResource Locator}}"
+                                                                CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label Margin="120,0,0,0" Text="NEXT" Style="{StaticResource LabelDefaultStyle}" FontSize="25" TextColor="White"/>
+                            <StackLayout Orientation="Horizontal" Margin="60,0,0,0">
+                                <Image Source="rightarrow" WidthRequest="26" HeightRequest="26"/>
+                                <Image Margin="-20,0,0,0" Source="rightarrow" WidthRequest="26" HeightRequest="26" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    
+                    
                 </StackLayout>
             </Grid>
 

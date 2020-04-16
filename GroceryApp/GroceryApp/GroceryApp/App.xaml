@@ -24,6 +24,15 @@
         <OnPlatform x:Key="AvoBold"
                         x:TypeArguments="x:String"
                         Android="UTMAvoBold.ttf#UTM Avo"/>
+        <OnPlatform x:Key="Rubik"
+                        x:TypeArguments="x:String"
+                        Android="Rubik-Regular.ttf#Rubik"/>
+        <OnPlatform x:Key="RubikMedium"
+                        x:TypeArguments="x:String"
+                        Android="Rubik-Medium.ttf#Rubik"/>
+        <OnPlatform x:Key="RubikBold"
+                        x:TypeArguments="x:String"
+                        Android="Rubik-Bold.ttf#Rubik"/>
         <Color x:Key="TextColor">#323131</Color>
         <Color x:Key="BgColor">#f7f7f7</Color>
         <Color x:Key="AccentColor">#90bc1b</Color>

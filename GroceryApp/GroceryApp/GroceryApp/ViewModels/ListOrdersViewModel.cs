@@ -76,10 +76,18 @@ namespace GroceryApp.ViewModels
 
 
         public ICommand ShowDetailOrderCommand { get; set; }
+        public ICommand ShowReviewPopupCommand { get; set; }
         public ListOrdersViewModel()
         {
             LoadData();
             ShowDetailOrderCommand = new Command<OrderBill>(ShowDetailOrder);
+            ShowReviewPopupCommand = new Command(ShowReviewPopup);
+        }
+
+        public async void ShowReviewPopup()
+        {
+            var ReviewPopup = new ReviewStorePopupView();
+            await PopupNavigation.Instance.PushAsync(ReviewPopup);
         }
 
         public async void ShowDetailOrder(OrderBill order)

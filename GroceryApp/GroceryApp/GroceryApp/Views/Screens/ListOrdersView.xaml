@@ -28,6 +28,7 @@
                                         <SwipeView.RightItems>
                                             <SwipeItems Mode="Reveal">
                                                 <SwipeItemView>
+                                                    
                                                     <Grid WidthRequest="60" BackgroundColor="#fc6353">
                                                         <Image
                                                             Source="bin"
@@ -105,6 +106,9 @@
                                         <SwipeView.RightItems>
                                             <SwipeItems Mode="Reveal">
                                                 <SwipeItemView>
+                                                    <SwipeItemView.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding ListOrders.ShowReviewPopupCommand, Source={StaticResource Locator}}"/>
+                                                    </SwipeItemView.GestureRecognizers>
                                                     <Grid WidthRequest="60" BackgroundColor="#00cc44">
                                                         <Image
                                                             Source="receive"

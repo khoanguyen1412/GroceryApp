@@ -1,9 +1,13 @@
 ﻿using GroceryApp.DataProviders;
 using GroceryApp.Models;
+using GroceryApp.Views.Popups;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace GroceryApp.ViewModels
 {
@@ -56,11 +60,19 @@ namespace GroceryApp.ViewModels
         {
             get { return "RECEIVED"; }
         }
+
+        public ICommand ShowReviewPopupCommand { get; set; }
         public OrderDetailPopupViewModel()
         {
             LoadData();
+            ShowReviewPopupCommand = new Command(ShowReviewPopup);
         }
-
+        public async void ShowReviewPopup()
+        {
+            
+            var ReviewPopup = new ReviewStorePopupView();
+            await PopupNavigation.Instance.PushAsync(ReviewPopup);
+        }
 
 
         public void LoadData()

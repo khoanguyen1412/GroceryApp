@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls" 
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 x:Class="GroceryApp.Views.Popups.ReviewStorePopupView"
+                 HeightRequest="400"
+                 x:Name="ReviewPopup"
+                 
+                 >
+    <popup:PopupPage.Animation>
+
+        <animations:MoveAnimation 
+         PositionIn="Right"
+         PositionOut="Right"
+         DurationIn="300"
+         DurationOut="300"
+         EasingIn="SinOut"
+         EasingOut="SinIn"
+         HasBackgroundAnimation="True"/>
+
+    </popup:PopupPage.Animation>
+    <ContentView VerticalOptions="FillAndExpand">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <ScrollView  Orientation="Vertical" WidthRequest="180"  >
+
+                <Grid x:Name="background" BackgroundColor="Transparent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout x:Name="card" Margin="30,160,30,0" BackgroundColor="White" Orientation="Vertical" >
+
+                        <Grid  Margin="15,0,15,20" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" Orientation="Horizontal">
+                                <Image Margin="0,20,0,0" Source="write" WidthRequest="40" HeightRequest="40"/>
+                                <Label  TextColor="Black" Margin="0,20,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Review:"/>
+                            </StackLayout>
+
+                            <controls:CustomEntry  x:Name="address" Grid.Row="1" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
+                            <StackLayout Grid.Row="2" Orientation="Horizontal">
+                                <Image Margin="0,20,0,0" Source="rate" WidthRequest="40" HeightRequest="40"/>
+                                <Label  TextColor="Black" Margin="0,20,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Rate us:"/>
+                            </StackLayout>
+                            <StackLayout  Grid.Row="3" Orientation="Horizontal" Margin="0,-5,0,0" HorizontalOptions="Center">
+                                <controls:ToggleButton
+                                        x:Name="star1"
+                                        Grid.Column="0"
+                                        Checked="False"
+                                        Animate="True"
+                                        CheckedImage="fullstar"
+                                        UnCheckedImage="emptystar"
+                                        Margin="0, 0, 0, 0"
+                                        WidthRequest="40"
+                                        HeightRequest="40">
+                                    <controls:ToggleButton.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped1"/>
+                                    </controls:ToggleButton.GestureRecognizers>
+                                </controls:ToggleButton>
+                                <controls:ToggleButton
+                                        x:Name="star2"
+                                        Grid.Column="0"
+                                        Checked="False"
+                                        Animate="True"
+                                        CheckedImage="fullstar"
+                                        UnCheckedImage="emptystar"
+                                        Margin="0, 0, 0, 0"
+                                        WidthRequest="40"
+                                        HeightRequest="40">
+                                    <controls:ToggleButton.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped2"/>
+                                    </controls:ToggleButton.GestureRecognizers>
+                                </controls:ToggleButton>
+                                <controls:ToggleButton
+                                        x:Name="star3"
+                                        Grid.Column="0"
+                                        Checked="False"
+                                        Animate="True"
+                                        CheckedImage="fullstar"
+                                        UnCheckedImage="emptystar"
+                                        Margin="0, 0, 0, 0"
+                                        WidthRequest="40"
+                                        HeightRequest="40">
+                                    <controls:ToggleButton.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped3"/>
+                                    </controls:ToggleButton.GestureRecognizers>
+                                </controls:ToggleButton>
+                                <controls:ToggleButton
+                                        x:Name="star4"
+                                        Grid.Column="0"
+                                        Checked="False"
+                                        Animate="True"
+                                        CheckedImage="fullstar"
+                                        UnCheckedImage="emptystar"
+                                        Margin="0, 0, 0, 0"
+                                        WidthRequest="40"
+                                        HeightRequest="40">
+                                    <controls:ToggleButton.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped4"/>
+                                    </controls:ToggleButton.GestureRecognizers>
+                                </controls:ToggleButton>
+                                <controls:ToggleButton
+                                        x:Name="star5"
+                                        Grid.Column="0"
+                                        Checked="False"
+                                        Animate="True"
+                                        CheckedImage="fullstar"
+                                        UnCheckedImage="emptystar"
+                                        Margin="0, 0, 0, 0"
+                                        WidthRequest="40"
+                                        HeightRequest="40">
+                                    <controls:ToggleButton.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped5"/>
+                                    </controls:ToggleButton.GestureRecognizers>
+                                </controls:ToggleButton>
+                            </StackLayout>
+                        </Grid>
+
+
+                        <Button Text="Send" WidthRequest="200" HeightRequest="50" Padding="0" BackgroundColor="#00cc00" CornerRadius="10" FontSize="25" TextColor="White" Margin="20,0,20,10"
+                            Command="{Binding ReviewStorePopup.SendReviewCommand, Source={StaticResource Locator}}"/>
+
+
+                    </StackLayout>
+                </Grid>
+
+            </ScrollView>
+        </Grid>
+    </ContentView>
+</popup:PopupPage>

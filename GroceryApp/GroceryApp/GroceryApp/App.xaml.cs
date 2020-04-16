@@ -13,8 +13,8 @@ namespace GroceryApp
         {
             InitializeComponent();
 
-            MainPage = new SharedTransitionNavigationPage(new TabBarCustomer());
-            //MainPage = new NavigationPage(new TabBarCustomer());
+            ///MainPage = new SharedTransitionNavigationPage(new FinalBillView());
+            MainPage = new NavigationPage(new TabBarCustomer());
             //MainPage = new NavigationPage(new DetailProductView());
         }
 
