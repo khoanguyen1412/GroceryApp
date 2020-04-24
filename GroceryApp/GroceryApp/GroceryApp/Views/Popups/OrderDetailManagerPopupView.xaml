@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="GroceryApp.Views.Popups.OrderDetailManagerPopupView">
+    <popup:PopupPage.Animation>
+
+        <animations:MoveAnimation 
+         PositionIn="Right"
+         PositionOut="Right"
+         DurationIn="300"
+         DurationOut="300"
+         EasingIn="SinOut"
+         EasingOut="SinIn"
+         HasBackgroundAnimation="True"/>
+
+    </popup:PopupPage.Animation>
+    <StackLayout Margin="20,50" BackgroundColor="White" Orientation="Vertical" >
+        <Grid Margin="0,10,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Margin="20,0,20,0" Style="{StaticResource BoldTitleStyle}" Text="Customer:" FontSize="20"/>
+            <Label Grid.Row="1" Grid.Column="0" Margin="20,0,20,0" Style="{StaticResource BoldTitleStyle}" Text="Phone:" FontSize="20"/>
+            <Label Grid.Row="2" Grid.Column="0" Margin="20,0,20,0" Style="{StaticResource BoldTitleStyle}" Text="Address:" FontSize="20"/>
+            <Label Grid.Row="0" Grid.Column="1" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Nguyen Hong Khoa" FontSize="20"/>
+            <Label Grid.Row="1" Grid.Column="1" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="0377337952" FontSize="20"/>
+            <Label Grid.Row="2" Grid.Column="1" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding CustomerAddress}" FontSize="20"/>
+
+        </Grid>
+        <Label  Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Products"/>
+        <Grid VerticalOptions="FillAndExpand" Margin="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="List" Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding OrderedProducts}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid BackgroundColor="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100"/>
+                                </Grid.RowDefinitions>
+                                <Frame Grid.Column="1" Margin="5" Padding="0" HasShadow="False" CornerRadius="5" IsClippedToBounds="True">
+                                    <Image Grid.Column="1" Source="{Binding ImageURL}" HeightRequest="90" WidthRequest="90" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
+                                </Frame>
+                                <StackLayout Grid.Column="2" Orientation="Vertical" VerticalOptions="Center">
+                                    <Label  Margin="0,0,0,-5" Style="{StaticResource BoldTitleStyle}" Text="{Binding ProductName}" FontSize="16"/>
+                                    <Label  Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Unit}" FontSize="16" TextColor="#a6a8a5"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Margin="-3,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
+                                        <Label  Margin="-7,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Price}" FontSize="18" TextColor="#d54a71"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <BoxView Grid.Column="3"  Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray" WidthRequest="1"/>
+                                <StackLayout Grid.Column="4" Orientation="Vertical" VerticalOptions="Start" Margin="0,10,10,0">
+                                    <Label  Margin="0,0,0,-5" HorizontalOptions="Start" Style="{StaticResource LabelWellcomeStyle}" Text="Quantity" FontSize="16"/>
+                                    <Label  Margin="0,0,0,0" HorizontalOptions="End" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding QuantityOrder}" FontSize="16" TextColor="#d54a71"/>
+
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid VerticalOptions="FillAndExpand" Margin="0,-5,0,0"  BackgroundColor="Green" Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Frame  BackgroundColor="White" Grid.Column="0" x:Name="ConfirmCard" Margin="0" HeightRequest="190" VerticalOptions="End" HorizontalOptions="FillAndExpand"  CornerRadius="0" HasShadow="True"  WidthRequest="340" Padding="0" IsClippedToBounds="True">
+                <Grid Margin="20,20,20,0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Subtotal" FontSize="20" TextColor="Black"/>
+                    <Label Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Delivery" FontSize="20" TextColor="Black"/>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Subtotal" FontSize="20" TextColor="Black"/>
+                    <Label Grid.Row="2" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Total" FontSize="20" TextColor="Black"/>
+                    <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                        <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
+                        <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding SubTotalPrice}" FontSize="20" TextColor="Black"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                        <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
+                        <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding DeliveryPrice}" FontSize="20" TextColor="Black"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                        <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
+                        <Label  Margin="-5,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="{Binding TotalPrice}" FontSize="20" TextColor="Black"/>
+                    </StackLayout>
+
+                    <Button IsVisible="{Binding State,Converter={StaticResource OrderDetailButtonVisibleConverter}}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" BackgroundColor="{Binding State, Converter={StaticResource OrderDetailButtonColorConverter}}" Text="{Binding State, Converter={StaticResource OrderDetailButtonTextConverter}}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"
+                            Command="{Binding OrderDetail.ShowReviewPopupCommand, Source={StaticResource Locator}}"
+                            />
+                </Grid>
+            </Frame>
+        </Grid>
+    </StackLayout>
+</popup:PopupPage>

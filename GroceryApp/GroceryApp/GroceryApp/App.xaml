@@ -17,6 +17,7 @@
             <converter:OrderDetailButtonTextConverter x:Key="OrderDetailButtonTextConverter"/>
             <converter:OrderDetailButtonColorConverter x:Key="OrderDetailButtonColorConverter"/>
             <converter:OrderDetailButtonVisibleConverter x:Key="OrderDetailButtonVisibleConverter"/>
+            <converter:ShortStringHiddenProductConverter x:Key="ShortStringHiddenProductConverter"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"
                         x:TypeArguments="x:String"

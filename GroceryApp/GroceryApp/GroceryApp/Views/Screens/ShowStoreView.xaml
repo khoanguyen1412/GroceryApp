@@ -14,13 +14,15 @@
              BackgroundColor="{StaticResource BgColor }"
              x:Class="GroceryApp.Views.Screens.ShowStoreView"
              NavigationPage.HasNavigationBar="False"
+             
              sharedTransitions:SharedTransitionNavigationPage.TransitionSelectedGroup="{Binding SelectedProductId }"
              sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Fade"
              sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="300">
+
     <ContentPage.Content>
 
         <Grid  >
-            <Grid>
+            <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="225" />
                     <RowDefinition Height="40" />
@@ -41,7 +43,7 @@
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="250"/>
+                                    <RowDefinition Height="350"/>
                                 </Grid.RowDefinitions>
 
 
@@ -188,7 +190,7 @@
 
                                 <!--List REVIEW-->
                                 <Label Grid.Row="3" Text="Review" Margin="20,20,20,0" Style="{StaticResource LabelWellcomeStyle}"/>
-                                <StackLayout Grid.Row="4" Orientation="Vertical" Margin="20,0,20,10" BackgroundColor="LightGray">
+                                <StackLayout Grid.Row="4" Orientation="Vertical" Margin="20,0,20,100" BackgroundColor="LightGray">
                                     <CollectionView
                             ItemsSource="{Binding FeedBacks}" 
                             Margin="0">

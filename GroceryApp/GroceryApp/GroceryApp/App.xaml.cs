@@ -1,4 +1,5 @@
-﻿using GroceryApp.Views.Screens;
+﻿using GroceryApp.Views.Drawer;
+using GroceryApp.Views.Screens;
 using GroceryApp.Views.TabBars;
 using Plugin.SharedTransitions;
 using System;
@@ -14,8 +15,11 @@ namespace GroceryApp
             InitializeComponent();
 
             ///MainPage = new SharedTransitionNavigationPage(new FinalBillView());
-            MainPage = new NavigationPage(new TabBarCustomer());
             //MainPage = new NavigationPage(new DetailProductView());
+            //MainPage = new SharedTransitionNavigationPage(new TabBarCustomer());
+
+            //MainPage = new AppDrawer();
+            MainPage = new ReviewManagerView();
         }
 
         protected override void OnStart()

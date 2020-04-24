@@ -17,8 +17,28 @@ namespace GroceryApp.Views.TabBars
         public TabBarCustomer()
         {
             InitializeComponent();
-            this.SelectedTabColor=Color.White;
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+        }
+        private static TabBarCustomer _instance;
+
+        public static TabBarCustomer GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new TabBarCustomer();
+            }
+            return _instance;
+        }
+
+        public void GoHome()
+        {
+            var tabbar = TabBarCustomer.GetInstance();
+            if(tabbar.CurrentPage == tabbar.Children[0])
+            {
+                //System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+                System.Environment.Exit(0);
+            }
+            tabbar.CurrentPage = tabbar.Children[0];
         }
     }
 }

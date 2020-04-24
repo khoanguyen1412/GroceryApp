@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sharedTransitions:SharedTransitionShell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:local="clr-namespace:GroceryApp.Views.Screens"
+             xmlns:tab="clr-namespace:GroceryApp.Views.TabBars"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="GroceryApp.Views.Drawer.AppDrawer"
+             Shell.NavBarIsVisible="False"
+             x:Name="appShell"
+             >
+
+    <FlyoutItem   Title="Your store" Icon="store" FlyoutDisplayOptions="AsMultipleItems">
+
+        <Tab x:Name="group1" Title="Domestic" 
+         FlyoutDisplayOptions="AsMultipleItems" 
+         Icon="paw.png">
+            <ShellContent Shell.TabBarIsVisible="False"
+                      Title="Your store"
+                      Icon="store"                          
+                      ContentTemplate="{DataTemplate local:ListStoresView}" />
+            
+        </Tab>
+    </FlyoutItem>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <ContentView NavigationPage.HasNavigationBar="False">
+                <Grid HeightRequest="60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Image  Grid.Column="0" Source="{Binding Icon}" WidthRequest="10" HeightRequest="10"
+                       Margin="15"/>
+                    <Label  Grid.Column="1"
+                        FontSize="20"
+                       Text="{Binding Title}" TextColor="Black"
+                       VerticalTextAlignment="Center" />
+                    <Image  Grid.Column="2" Source="goarrow" WidthRequest="10" HeightRequest="10"
+                       Margin="18"/>
+                </Grid>
+            </ContentView>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <ContentView HeightRequest="180" BackgroundColor="#FFFFFF">
+                <pancake:PancakeView  CornerRadius="0,20,0,20" Margin="0,20,20,10" BackgroundColor="Accent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <pancake:PancakeView BackgroundColor="LightPink" CornerRadius="90" Margin="20,30,30,30">
+                            <Grid BackgroundColor="Transparent" Margin="4">
+                                <pancake:PancakeView BackgroundColor="White"  CornerRadius="90" Margin="0" Padding="0">
+                                    <Grid BackgroundColor="Transparent" Margin="4">
+                                        <pancake:PancakeView BackgroundColor="MediumPurple"  CornerRadius="90" Margin="0" Padding="0">
+                                            <Image Source="https://bom.to/RzHFe9" Aspect="AspectFit"/>
+                                        </pancake:PancakeView>
+                                    </Grid>
+                                </pancake:PancakeView>
+                            </Grid>
+
+                        </pancake:PancakeView>
+                        <StackLayout Grid.Column="1" VerticalOptions="Center" BackgroundColor="Transparent" Margin="-20,0,0,0">
+                            <Label Text="Khoa Nguyen" TextColor="White" FontSize="22"  Style="{StaticResource BoldTitleStyle}" />
+                            <Label Text="khoanguyen1412v@gmail.com" TextColor="White" Style="{StaticResource LabelTitleStyle}"  FontSize="13"/>
+                        </StackLayout>
+                    </Grid>
+                </pancake:PancakeView>
+            </ContentView>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="Red">
+
+        </Grid>
+    </Shell.FlyoutHeader>
+</sharedTransitions:SharedTransitionShell>

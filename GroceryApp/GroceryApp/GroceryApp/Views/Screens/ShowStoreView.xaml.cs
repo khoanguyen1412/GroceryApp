@@ -18,6 +18,7 @@ namespace GroceryApp.Views.Screens
         public ShowStoreView()
         {
             InitializeComponent();
+            
         }
 
         protected override void OnAppearing()

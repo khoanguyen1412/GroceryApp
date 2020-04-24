@@ -16,5 +16,6 @@ namespace GroceryApp.Models
         public int QuantityOrder { get; set; }
         public double Price { get; set; }
         public string ImageURL { get; set; }
+        public string StateInStore { get; set; }
     }
 }

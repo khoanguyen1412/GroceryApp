@@ -1,6 +1,7 @@
 ﻿using GroceryApp.DataProviders;
 using GroceryApp.Models;
 using GroceryApp.Views.Screens;
+using Plugin.SharedTransitions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

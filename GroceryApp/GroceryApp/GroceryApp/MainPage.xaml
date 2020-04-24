@@ -4,13 +4,116 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="GroceryApp.MainPage">
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="GroceryApp.MainPage"
+             xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
+             BackgroundColor="#607D8B">
+    <ScrollView Orientation="Vertical">
+        <Grid Margin="20"  BackgroundColor="White" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <pancake:PancakeView Grid.ColumnSpan="2" HeightRequest="150"  BackgroundColor="LightGray" CornerRadius="10" Margin="0,0,0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Grid.RowSpan="2" Source="https://lh3.googleusercontent.com/proxy/mR984IFbCitLD9jK2MhJG-pZJ79Y5PI-ehVndrfYNa2Aqh5W_CixV3SCfEdbYjpVN0aAE9J7YWVPxz8ts5AfFUN3dPWPOvpHgW56OLGAvpd3gLo-" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
+                    <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black" Opacity="0.4">
+                    </Frame>
+                    <Image Grid.Row="1" Margin="13" Source="addphoto" HorizontalOptions="Center" Opacity="1" VerticalOptions="Center" Aspect="AspectFit"/>
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+                </Grid>
+            </pancake:PancakeView>
+            <Label Grid.Row="1" Grid.Column="0" Text="Name:"  Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+
+            <controls:CustomEntry  Grid.Row="1" Grid.Column="1"  HorizontalOptions="FillAndExpand"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Text="Type:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <pancake:PancakeView Margin="0,0,0,10" HasShadow="True" Grid.Row="2" Elevation="2" Grid.Column="1" CornerRadius="10" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                <Picker  Margin="7,0,0,0">
+                    <Picker.Items>
+                        <x:String>Vegetable</x:String>
+                        <x:String>Fruit</x:String>
+                        <x:String>Drink</x:String>
+                        <x:String>Candy</x:String>
+                        <x:String>Cake</x:String>
+                    </Picker.Items>
+                </Picker>
+            </pancake:PancakeView>
+
+            <Label Grid.Row="3" Grid.Column="0" Text="Unit:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center">
+                <CheckBox/>
+                <pancake:PancakeView BorderColor="Black" HasShadow="True" Grid.Row="2" Elevation="2" Grid.Column="1" CornerRadius="10" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                    <Picker  Margin="7,0,0,0">
+                        <Picker.Items>
+                            <x:String>Kg</x:String>
+                            <x:String>Gram</x:String>
+                            <x:String>Cup</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </pancake:PancakeView>
+
+            </StackLayout>
+            <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center" Margin="0,0,0,10">
+                <CheckBox/>
+                <controls:CustomEntry  Placeholder="Other.."  HorizontalOptions="FillAndExpand"/>
+
+            </StackLayout>
+
+            <Label Grid.Row="5"  Grid.Column="0" Text="Unit/" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <Label Grid.Row="6" Margin="0,-5,0,0" Grid.Column="0" Text="1 Product:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Start" />
+            <StackLayout Grid.Row="5" Margin="0,0,0,20" Grid.Column="1" Grid.RowSpan="2" BackgroundColor="Transparent"  VerticalOptions="Center" Orientation="Horizontal">
+                <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image Source="subtract" Margin="3"/>
+                </pancake:PancakeView>
+                <controls:CustomEntry Keyboard="Numeric" Placeholder="0"  HorizontalOptions="Center" WidthRequest="50"/>
+                <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image Source="plus" Margin="3"/>
+                </pancake:PancakeView>
+            </StackLayout>
+
+            <Label Grid.Row="7"  Grid.Column="0" Text="Quantiy" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <Label Grid.Row="8" Margin="0,-5,0,0" Grid.Column="0" Text="in stock:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Start" />
+            <StackLayout Grid.Row="7" Margin="0,0,0,20"  Grid.Column="1" Grid.RowSpan="2" BackgroundColor="Transparent" VerticalOptions="Center" Orientation="Horizontal">
+                <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image Source="subtract" Margin="3"/>
+                </pancake:PancakeView>
+                <controls:CustomEntry Keyboard="Numeric" Placeholder="0"  HorizontalOptions="Center" WidthRequest="50"/>
+                <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image Source="plus" Margin="3"/>
+                </pancake:PancakeView>
+            </StackLayout>
+
+            <Label Grid.Row="9" Grid.Column="0" Text="Price:"  Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <controls:CustomEntry Keyboard="Numeric" Grid.Row="9" Grid.Column="1"  HorizontalOptions="FillAndExpand"/>
+
+            <Label Grid.Row="10" Grid.Column="0" Text="Description:"  Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <controls:CustomEntry  Grid.Row="10" Grid.Column="1"  HorizontalOptions="FillAndExpand"/>
+
+            <StackLayout Orientation="Horizontal" Margin="0,20,0,0" Grid.Row="11" Grid.ColumnSpan="2" HorizontalOptions="End" HeightRequest="50" VerticalOptions="End">
+                <Button Text="Hủy" Margin="0,0,-15,0" TextColor="Accent" BackgroundColor="White"/>
+                <Button Text="Thêm" TextColor="Accent" BackgroundColor="White"/>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+    
 
 </ContentPage>
