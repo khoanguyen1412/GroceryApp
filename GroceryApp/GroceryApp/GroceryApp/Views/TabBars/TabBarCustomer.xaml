@@ -5,9 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
             
-            BarBackgroundColor="#fc6353"
-            SelectedTabColor="White"
-            UnselectedTabColor="#666666"
+            BarBackgroundColor="#FAFAFA"
+            SelectedTabColor="{StaticResource RedTheme}"
+            UnselectedTabColor="#A6AAA9"
              xmlns:local="clr-namespace:GroceryApp.Views.Screens"
              x:Class="GroceryApp.Views.TabBars.TabBarCustomer"
             
@@ -17,4 +17,5 @@
     <local:ListStoresView Title="Stores" IconImageSource="storetab"/>
     <local:CartView Title="Your Cart" IconImageSource="greencart"/>
     <local:ListOrdersView Title="Your Orders" IconImageSource="list"/>
+
 </TabbedPage>

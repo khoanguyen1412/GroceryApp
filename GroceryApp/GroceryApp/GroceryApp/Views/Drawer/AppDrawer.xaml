@@ -12,12 +12,13 @@
              Shell.NavBarIsVisible="False"
              x:Name="appShell"
              >
-
+    <!--
     <FlyoutItem   Title="Your store" Icon="store" FlyoutDisplayOptions="AsMultipleItems">
-
+        
         <Tab x:Name="group1" Title="Domestic" 
          FlyoutDisplayOptions="AsMultipleItems" 
          Icon="paw.png">
+            
             <ShellContent Shell.TabBarIsVisible="False"
                       Title="Your store"
                       Icon="store"                          
@@ -25,7 +26,7 @@
             
         </Tab>
     </FlyoutItem>
-
+-->
     <Shell.ItemTemplate>
         <DataTemplate>
             <ContentView NavigationPage.HasNavigationBar="False">

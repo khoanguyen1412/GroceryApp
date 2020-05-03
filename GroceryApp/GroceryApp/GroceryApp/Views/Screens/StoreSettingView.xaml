@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BindingContext="{Binding StoreSetting, Source={StaticResource Locator}}"
+             x:Class="GroceryApp.Views.Screens.StoreSettingView">
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="Normal">
+            <Setter Property="FontFamily" Value="{StaticResource Cata}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style TargetType="Label" x:Key="Medium">
+            <Setter Property="FontFamily" Value="{StaticResource CataMedium}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style TargetType="Label" x:Key="Bold">
+            <Setter Property="FontFamily" Value="{StaticResource CataBold}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Margin="20,20,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Text="Store Settings" VerticalOptions="End" VerticalTextAlignment="End" FontSize="35" Style="{StaticResource Bold}" />
+                <Image Source="setting" Grid.Column="1" VerticalOptions="End" HorizontalOptions="End" WidthRequest="40" HeightRequest="40"/>
+            </Grid>
+            <Label Grid.Row="1" Text="Update your settings like Store edit, change infor ect." VerticalOptions="End" VerticalTextAlignment="End" FontSize="17" TextColor="Gray" Style="{StaticResource Medium}" />
+
+            <AbsoluteLayout Grid.Row="2" HeightRequest="200" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" >
+                <pancake:PancakeView  CornerRadius="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1"   AbsoluteLayout.LayoutFlags="All" >
+                    <Image Source="{Binding StoreImage}" Aspect="AspectFill"/>
+                </pancake:PancakeView>
+                <pancake:PancakeView HeightRequest="35" WidthRequest="120" Margin="10" CornerRadius="10"  BackgroundColor="Black" Opacity="0.7" AbsoluteLayout.LayoutBounds="1,0" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="whitedelete" Margin="12,12,0,12" RotationX="0.5" RotationY="0.5" Rotation="45"/>
+                        <Label Text="Change" TextColor="White" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="20" Margin="0,-5,0,0" Style="{StaticResource Medium}" />
+                    </StackLayout>
+                </pancake:PancakeView>
+                
+            </AbsoluteLayout>
+            <BoxView Grid.Row="3"  Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+            <Grid Grid.Row="4">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
+                </Grid.GestureRecognizers>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="infor" WidthRequest="30" HeightRequest="30"/>
+                <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                    <Label Text="Store information"   FontSize="18"   Style="{StaticResource Bold}" />
+                    <Label Text="Change store's name, description ect."  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                </StackLayout>
+                <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+            </Grid>
+            <BoxView Grid.Row="5"  Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+            <Grid Grid.Row="6">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddressSettingCommand}"/>
+                </Grid.GestureRecognizers>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="location" WidthRequest="30" HeightRequest="30"/>
+                <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                    <Label Text="Location"   FontSize="18"   Style="{StaticResource Bold}" />
+                    <Label Text="Change store's address"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                </StackLayout>
+                <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+            </Grid>
+            <BoxView Grid.Row="7"  Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              xmlns:converter="clr-namespace:GroceryApp.Views.Converters"
+             xmlns:selector="clr-namespace:GroceryApp.Views.Selectors"
              x:Class="GroceryApp.App"
              >
     <Application.Resources>
@@ -18,6 +19,8 @@
             <converter:OrderDetailButtonColorConverter x:Key="OrderDetailButtonColorConverter"/>
             <converter:OrderDetailButtonVisibleConverter x:Key="OrderDetailButtonVisibleConverter"/>
             <converter:ShortStringHiddenProductConverter x:Key="ShortStringHiddenProductConverter"/>
+            <converter:ShortStringReviewConverter x:Key="ShortStringReviewConverter"/>
+            <selector:DataTemplateSliderSelector x:Key="DataTemplateSliderSelector"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"
                         x:TypeArguments="x:String"
@@ -34,11 +37,22 @@
         <OnPlatform x:Key="RubikBold"
                         x:TypeArguments="x:String"
                         Android="Rubik-Bold.ttf#Rubik"/>
+        <OnPlatform x:Key="Cata"
+                        x:TypeArguments="x:String"
+                        Android="Catamaran-Regular.ttf#Catamaran"/>
+        <OnPlatform x:Key="CataMedium"
+                        x:TypeArguments="x:String"
+                        Android="Catamaran-Medium.ttf#Catamaran"/>
+        <OnPlatform x:Key="CataBold"
+                        x:TypeArguments="x:String"
+                        Android="Catamaran-Bold.ttf#Catamaran"/>
         <Color x:Key="TextColor">#323131</Color>
         <Color x:Key="BgColor">#f7f7f7</Color>
         <Color x:Key="AccentColor">#90bc1b</Color>
         <Color x:Key="DarkAccentColor">#7ea710</Color>
         <Color x:Key="MainColor">#fc6353</Color>
+
+        <Color x:Key="RedTheme">#f7436a</Color>
         
         <Style TargetType="Label" x:Key="LabelDefaultStyle">
             <Setter Property="FontFamily" Value="{StaticResource Avo}"/>

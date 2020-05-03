@@ -22,9 +22,10 @@ namespace GroceryApp.Droid
             base.OnCreate(savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
+            Forms.SetFlags(new string[] { "IndicatorView_Experimental", "SwipeView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
-            Forms.SetFlags("SwipeView_Experimental");
+            
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Window.SetSoftInputMode(Android.Views.SoftInput.AdjustPan);
 

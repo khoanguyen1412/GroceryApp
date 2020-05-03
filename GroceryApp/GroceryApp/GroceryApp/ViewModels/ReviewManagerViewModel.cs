@@ -1,8 +1,12 @@
 ﻿using GroceryApp.Models;
+using GroceryApp.Views.Popups;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace GroceryApp.ViewModels
 {
@@ -10,19 +14,23 @@ namespace GroceryApp.ViewModels
     {
 
     }
-    public class ReviewItem
-    {
-        public string CustomerImage { get; set; }
-        public string CustomerName { get; set; }
-        public string Date { get; set; }
-        public string Content { get; set; }
-    }
+    
     public class ReviewManagerViewModel: BaseViewModel,IReviewManagerViewModel
     {
+        public ICommand ReplyCommand { get; set; }
         public ReviewManagerViewModel()
         {
             LoadData();
-           
+            ReplyCommand = new Command<ReviewItem>(ShowConfirmInfor);
+        }
+
+        public async void ShowConfirmInfor(ReviewItem reviewItem)
+        {
+            
+            var replyPopup = new ReplyPopupView();
+            replyPopup.BindingContext = reviewItem;
+            // addressPopup.Setup();
+            await PopupNavigation.Instance.PushAsync(replyPopup);
         }
 
         private ObservableCollection<OrderBill> _orders;
@@ -73,6 +81,7 @@ namespace GroceryApp.ViewModels
             }
         }
 
+        
         public ObservableCollection<OrderBill> GetCompletedOrders()
         {
             ObservableCollection<OrderBill> result = new ObservableCollection<OrderBill>();
@@ -80,6 +89,7 @@ namespace GroceryApp.ViewModels
                 if (order.State == "RECEIVED")
                     result.Add(order);
             return result;
+            
         }
 
         public void LoadData()

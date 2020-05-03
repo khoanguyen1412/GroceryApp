@@ -35,38 +35,40 @@
                        CornerRadius="10" 
                        IsCurvedCornersEnabled="True"/>
                 </Frame>
-                <StackLayout Grid.Row="2" Orientation="Horizontal" HeightRequest="60">
-                    <Frame HeightRequest="60" WidthRequest="60" CornerRadius="13" HasShadow="True" Margin="20,10,0,10" IsClippedToBounds="True" BackgroundColor="OrangeRed" HorizontalOptions="Start" Padding="0,0,5,0">
-                        <Label TextColor="White" Text="All" HorizontalOptions="Center" FontSize="17"  VerticalTextAlignment="Center"  Style="{StaticResource BoldTitleStyle}"/>
-                    </Frame>
-                    <CollectionView HeightRequest="60" Margin="0,10" ItemsSource="{Binding ProductTypes}">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout  Orientation="Horizontal"/>
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="5,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <pancake:PancakeView HeightRequest="60" CornerRadius="13" HasShadow="False" Margin="0"  BackgroundColor="#93CCAB" Padding="0,0,0,0">
-                                        <StackLayout Orientation="Horizontal" HeightRequest="60" >
-                                            <Frame Margin="-10,0,0,0" HeightRequest="60" WidthRequest="60" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="{StaticResource AccentColor}">
-                                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                                                    <Image Source="{Binding ImageURL}" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                                </StackLayout>
-                                            </Frame>
-                                            <Label Text="{Binding TypeName}" Margin="0,0,5,0"  VerticalTextAlignment="Center" TextColor="Black" Style="{StaticResource LabelDefaultStyle}"/>
-                                        </StackLayout>
-                                    </pancake:PancakeView>
-                                </Grid>
+                <CollectionView HeightRequest="100" Grid.Row="2" Margin="20,10,20,0" ItemsSource="{Binding ProductTypes}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout 
+                                            Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate >
+                            <Grid Margin="5,0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="60"/>
+                                </Grid.RowDefinitions>
+                                <Label HorizontalOptions="Center"  VerticalOptions="End" Text="{Binding TypeName}" Margin="0,0,0,-10" Style="{StaticResource LabelDefaultStyle}"/>
 
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    
-                </StackLayout>
-                
+                                <pancake:PancakeView Grid.Row="1" BackgroundColor="White" CornerRadius="16" WidthRequest="60" HasShadow="True"  Margin="5,10,5,0">
+                                    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="{Binding ImageURL}" HeightRequest="50" WidthRequest="50" Aspect="AspectFit"/>
+                                    </Grid>
+                                </pancake:PancakeView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
                 <ListView x:Name="List"  HeightRequest="500"  ItemsSource="{Binding Stores}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -83,8 +85,7 @@
                                                     <Label Margin="0" Text="{Binding StoreDescription}" Style="{StaticResource LabelDefaultStyle}" />
                                                 </StackLayout>
                                             </Frame>
-                                            <BoxView Margin="10,0,10,0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
-                                            <Frame Margin="0,-210,240,200" WidthRequest="50" Padding="2" HasShadow="False" CornerRadius="15" BackgroundColor="Red" IsClippedToBounds="True">
+                                            <Frame Margin="0,-210,240,175" WidthRequest="50" Padding="2" HasShadow="False" CornerRadius="15" BackgroundColor="Red" IsClippedToBounds="True">
                                                 <StackLayout Orientation="Horizontal"  HeightRequest="25" WidthRequest="50">
                                                     <Image Margin="10,0,0,0" Source="star" Aspect="AspectFit" HeightRequest="25" WidthRequest="25" />
                                                     <Label Margin="0" Text="2.5" Style="{StaticResource BoldTitleStyle}" FontSize="15" TextColor="White"/>
@@ -92,9 +93,60 @@
 
                                                 </StackLayout>
                                             </Frame>
+                                            <BoxView Margin="10,0,10,0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
+                                            <!--
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Image Grid.Row="0"
+                                                       Source="longrightarrow" 
+                                                       Aspect="AspectFit" 
+                                                       Margin="0,-30,0,0"
+                                                       WidthRequest="30" HeightRequest="30"
+                                                       />
+                                                <Button Command="{Binding BindingContext.ShowStoreCommand,Source={x:Reference Name=ListStoresPage}}" 
+                                                        CornerRadius="15" FontSize="18" 
+                                                        Style="{StaticResource LabelWellcomeStyle}" 
+                                                        TextColor="White"  
+                                                        BackgroundColor="{StaticResource RedTheme}" 
+                                                        Text="Go to"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        WidthRequest="300" HeightRequest="45"
+                                                        Opacity="0.3"
+                                                        />
+                                                
+                                            </Grid>
+                                            -->
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <pancake:PancakeView HorizontalOptions="FillAndExpand" 
+                                                                     CornerRadius="15" HeightRequest="45" 
+                                                                     BackgroundColor="{StaticResource RedTheme}"
+                                                                     Margin="20,0,20,0">
+                                                    <pancake:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.ShowStoreCommand,Source={x:Reference Name=ListStoresPage}}"/>
+                                                    </pancake:PancakeView.GestureRecognizers>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="1*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="1*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Grid.Column="1" Text="Go to" FontSize="24" FontAttributes="Bold"  TextColor="White" Style="{StaticResource LabelWellcomeStyle}"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                                        <Image Grid.Column="2"
+                                                           Source="longrightarrow" 
+                                                           Aspect="AspectFit" 
+                                                           Margin="10"
+                                                           WidthRequest="30" HeightRequest="30"
+                                                           />
+                                                    </Grid>
+                                                </pancake:PancakeView>
+                                            </Grid>
 
-                                            <Button Command="{Binding BindingContext.ShowStoreCommand,Source={x:Reference Name=ListStoresPage}}" CornerRadius="15" FontSize="18" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="30,-25,30,30" BackgroundColor="#5362fb" Text="Go to" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"/>
-                                            <Image Source="bluearrow" Margin="225,-77,0,0"  Aspect="AspectFit" HeightRequest="37" WidthRequest="37"/>
+                                           
                                         </StackLayout>
                                     </Frame>
                                 </Frame>

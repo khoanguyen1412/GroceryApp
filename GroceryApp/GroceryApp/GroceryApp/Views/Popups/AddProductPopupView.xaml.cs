@@ -16,6 +16,7 @@ namespace GroceryApp.Views.Popups
         public AddProductPopupView()
         {
             InitializeComponent();
+            
         }
     }
 }

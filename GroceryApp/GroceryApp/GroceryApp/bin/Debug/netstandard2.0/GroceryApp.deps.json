@@ -9,14 +9,17 @@
     ".NETStandard,Version=v2.0/": {
       "GroceryApp/1.0.0": {
         "dependencies": {
-          "Autofac": "5.1.2",
+          "Autofac": "5.1.4",
+          "Microcharts": "0.7.1",
+          "Microcharts.Forms": "0.7.1",
           "NETStandard.Library": "2.0.3",
           "Prism.DryIoc.Forms": "7.2.0.1422",
           "Rg.Plugins.Popup": "2.0.0.2",
-          "Xamarin.Essentials": "1.5.2",
+          "SkiaSharp": "1.68.1.1",
+          "Xamarin.Essentials": "1.5.3.1",
           "Xamarin.FFImageLoading": "2.4.11.982",
           "Xamarin.FFImageLoading.Forms": "2.4.11.982",
-          "Xamarin.Forms": "4.5.0.617",
+          "Xamarin.Forms": "4.6.0.726",
           "Xamarin.Forms.PancakeView": "1.3.7",
           "Xamarin.Plugin.SharedTransitions": "2.1.0"
         },
@@ -24,14 +27,14 @@
           "GroceryApp.dll": {}
         }
       },
-      "Autofac/5.1.2": {
+      "Autofac/5.1.4": {
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "1.1.0"
         },
         "runtime": {
           "lib/netstandard2.0/Autofac.dll": {
-            "assemblyVersion": "5.1.2.0",
-            "fileVersion": "5.1.2.0"
+            "assemblyVersion": "5.1.4.0",
+            "fileVersion": "5.1.4.0"
           }
         }
       },
@@ -43,6 +46,31 @@
           "lib/netstandard2.0/DryIoc.dll": {
             "assemblyVersion": "4.0.7.0",
             "fileVersion": "4.0.7.0"
+          }
+        }
+      },
+      "Microcharts/0.7.1": {
+        "dependencies": {
+          "SkiaSharp": "1.68.1.1",
+          "System.ValueTuple": "4.4.0"
+        },
+        "runtime": {
+          "lib/netstandard1.4/Microcharts.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microcharts.Forms/0.7.1": {
+        "dependencies": {
+          "SkiaSharp.Views.Forms": "1.59.1.1",
+          "System.ValueTuple": "4.4.0",
+          "Xamarin.Forms": "4.6.0.726"
+        },
+        "runtime": {
+          "lib/netstandard1.4/Microcharts.Forms.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -87,7 +115,7 @@
       "Prism.Forms/7.2.0.1422": {
         "dependencies": {
           "Prism.Core": "7.2.0.1422",
-          "Xamarin.Forms": "4.5.0.617"
+          "Xamarin.Forms": "4.6.0.726"
         },
         "runtime": {
           "lib/netstandard2.0/Prism.Forms.dll": {
@@ -98,13 +126,59 @@
       },
       "Rg.Plugins.Popup/2.0.0.2": {
         "dependencies": {
-          "Xamarin.Forms": "4.5.0.617"
+          "Xamarin.Forms": "4.6.0.726"
         },
         "runtime": {
           "lib/netstandard2.0/Rg.Plugins.Popup.dll": {
             "assemblyVersion": "2.0.0.2",
             "fileVersion": "2.0.0.2"
           }
+        }
+      },
+      "SkiaSharp/1.68.1.1": {
+        "dependencies": {
+          "System.IO.UnmanagedMemoryStream": "4.3.0",
+          "System.Memory": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard1.3/SkiaSharp.dll": {
+            "assemblyVersion": "1.68.0.0",
+            "fileVersion": "1.68.1.1"
+          }
+        }
+      },
+      "SkiaSharp.Views.Forms/1.59.1.1": {
+        "dependencies": {
+          "SkiaSharp": "1.68.1.1",
+          "Xamarin.Forms": "4.6.0.726"
+        },
+        "runtime": {
+          "lib/netstandard1.3/SkiaSharp.Views.Forms.dll": {
+            "assemblyVersion": "1.59.0.0",
+            "fileVersion": "1.59.1.0"
+          }
+        }
+      },
+      "System.Buffers/4.4.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.Buffers.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.25519.3"
+          }
+        }
+      },
+      "System.Diagnostics.Debug/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Globalization/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
         }
       },
       "System.IO/4.3.0": {
@@ -114,6 +188,49 @@
           "System.Runtime": "4.3.0",
           "System.Text.Encoding": "4.3.0",
           "System.Threading.Tasks": "4.3.0"
+        }
+      },
+      "System.IO.FileSystem.Primitives/4.3.0": {
+        "dependencies": {
+          "System.Runtime": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.IO.FileSystem.Primitives.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.24705.1"
+          }
+        }
+      },
+      "System.IO.UnmanagedMemoryStream/4.3.0": {
+        "dependencies": {
+          "System.Buffers": "4.4.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.IO.UnmanagedMemoryStream.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.24705.1"
+          }
+        }
+      },
+      "System.Memory/4.5.3": {
+        "dependencies": {
+          "System.Buffers": "4.4.0",
+          "System.Numerics.Vectors": "4.5.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Memory.dll": {
+            "assemblyVersion": "4.0.1.1",
+            "fileVersion": "4.6.27617.2"
+          }
         }
       },
       "System.Numerics.Vectors/4.5.0": {
@@ -167,6 +284,15 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.Resources.ResourceManager/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Globalization": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
       "System.Runtime/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -181,11 +307,40 @@
           }
         }
       },
+      "System.Runtime.Handles/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Runtime.InteropServices/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Handles": "4.3.0"
+        }
+      },
       "System.Text.Encoding/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Threading/4.3.0": {
+        "dependencies": {
+          "System.Runtime": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Threading.dll": {
+            "assemblyVersion": "4.0.12.0",
+            "fileVersion": "4.6.24705.1"
+          }
         }
       },
       "System.Threading.Tasks/4.3.0": {
@@ -206,7 +361,8 @@
           }
         }
       },
-      "Xamarin.Essentials/1.5.2": {
+      "System.ValueTuple/4.4.0": {},
+      "Xamarin.Essentials/1.5.3.1": {
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
         },
@@ -232,7 +388,7 @@
       "Xamarin.FFImageLoading.Forms/2.4.11.982": {
         "dependencies": {
           "Xamarin.FFImageLoading": "2.4.11.982",
-          "Xamarin.Forms": "4.5.0.617"
+          "Xamarin.Forms": "4.6.0.726"
         },
         "runtime": {
           "lib/netstandard1.0/FFImageLoading.Forms.dll": {
@@ -241,25 +397,25 @@
           }
         }
       },
-      "Xamarin.Forms/4.5.0.617": {
+      "Xamarin.Forms/4.6.0.726": {
         "runtime": {
           "lib/netstandard2.0/Xamarin.Forms.Core.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.5.0.216"
+            "fileVersion": "4.6.0.446"
           },
           "lib/netstandard2.0/Xamarin.Forms.Platform.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.5.0.216"
+            "fileVersion": "4.6.0.446"
           },
           "lib/netstandard2.0/Xamarin.Forms.Xaml.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.5.0.216"
+            "fileVersion": "4.6.0.446"
           }
         }
       },
       "Xamarin.Forms.PancakeView/1.3.7": {
         "dependencies": {
-          "Xamarin.Forms": "4.5.0.617"
+          "Xamarin.Forms": "4.6.0.726"
         },
         "runtime": {
           "lib/netstandard2.0/Xamarin.Forms.PancakeView.dll": {
@@ -270,7 +426,7 @@
       },
       "Xamarin.Plugin.SharedTransitions/2.1.0": {
         "dependencies": {
-          "Xamarin.Forms": "4.5.0.617"
+          "Xamarin.Forms": "4.6.0.726"
         },
         "runtime": {
           "lib/netstandard2.0/Plugin.SharedTransitions.dll": {
@@ -287,12 +443,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Autofac/5.1.2": {
+    "Autofac/5.1.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iGEx5Cm6Uor6/bZkgCHHjJO8cEQvDSOxgzNmHGJgGOnLDCe0b8NpOlhotsqx8dFvBDCsEX/V3YGRR30sRQLsxw==",
-      "path": "autofac/5.1.2",
-      "hashPath": "autofac.5.1.2.nupkg.sha512"
+      "sha512": "sha512-MsAEZJNCBTwZ21cBaFosWvR+zNG3VXB8y8qn3HmYl6m9iR/CDqDQykqBzfApbqj3N1l2I4qVBPA2exIdHJvANQ==",
+      "path": "autofac/5.1.4",
+      "hashPath": "autofac.5.1.4.nupkg.sha512"
     },
     "DryIoc.dll/4.0.7": {
       "type": "package",
@@ -300,6 +456,20 @@
       "sha512": "sha512-CHSWiSNf0tTpnHFt+DPB8mzgQMM9PbaFk7DP4g70+kTXsAS7fQlUI/yW4S+b6COOYsVQ+FPhxAw9NMU/2PGE7Q==",
       "path": "dryioc.dll/4.0.7",
       "hashPath": "dryioc.dll.4.0.7.nupkg.sha512"
+    },
+    "Microcharts/0.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Py79bYXqvsqthZtk1ChdDhy/n4mb7T2CKjzTVU7ldj4dnjgFC2nbOJMGeAJkDk1lZPoQPSPx3obSq7S29Zrt8g==",
+      "path": "microcharts/0.7.1",
+      "hashPath": "microcharts.0.7.1.nupkg.sha512"
+    },
+    "Microcharts.Forms/0.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/oeY4j/x3I8PY6sNV3B6CHKdvZl3cJHxfkxIKSPaX86bc50mq1C0L+LqVnbRMwMa1PpywPtwL1+aqlKGM8bL3w==",
+      "path": "microcharts.forms/0.7.1",
+      "hashPath": "microcharts.forms.0.7.1.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.0": {
       "type": "package",
@@ -357,12 +527,68 @@
       "path": "rg.plugins.popup/2.0.0.2",
       "hashPath": "rg.plugins.popup.2.0.0.2.nupkg.sha512"
     },
+    "SkiaSharp/1.68.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fJteGIKAMmLD9tSQgdvZqLqECub6B55pK1MH5QyanLOr8JQ8uUMKKcrAcpocNnmIS/YsUJOL4AD7dO6mAwP7mQ==",
+      "path": "skiasharp/1.68.1.1",
+      "hashPath": "skiasharp.1.68.1.1.nupkg.sha512"
+    },
+    "SkiaSharp.Views.Forms/1.59.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9SvUAas8A7Tj4NuvFX3Z+tCQFbC+XSayRJPI3zxrzfc8g0WTc2S0yCj8+wm/eSTB5fHmFguu9FOoiyYMj53fiw==",
+      "path": "skiasharp.views.forms/1.59.1.1",
+      "hashPath": "skiasharp.views.forms.1.59.1.1.nupkg.sha512"
+    },
+    "System.Buffers/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AwarXzzoDwX6BgrhjoJsk6tUezZEozOT5Y9QKF94Gl4JK91I4PIIBkBco9068Y9/Dra8Dkbie99kXB8+1BaYKw==",
+      "path": "system.buffers/4.4.0",
+      "hashPath": "system.buffers.4.4.0.nupkg.sha512"
+    },
+    "System.Diagnostics.Debug/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-o1P3IM5uVOmsvKNLNyP1E1iSLpXJfjJQ2D3r1xqlVBAJQPbGUuvhi9ZZmyObW4T29c/pZULcUdCZaeZg4XAJCQ==",
+      "path": "system.diagnostics.debug/4.3.0",
+      "hashPath": "system.diagnostics.debug.4.3.0.nupkg.sha512"
+    },
+    "System.Globalization/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iD+dOmkW7XuRmv0lhwSxUpFN9CqxkzzCHs2js2dwGnpUvWmYzz+sTtLO0M4nmPj7jRksynDXMpVRMHF6wP8mpA==",
+      "path": "system.globalization/4.3.0",
+      "hashPath": "system.globalization.4.3.0.nupkg.sha512"
+    },
     "System.IO/4.3.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-lLcLzbdAaeRlN5HHZPG1d4aP9zjBXnlq2Ofo7KvtEZpmT9UagTvYxQJN5OVYiN0yZphMhvdUBO16koXy8lXPjw==",
       "path": "system.io/4.3.0",
       "hashPath": "system.io.4.3.0.nupkg.sha512"
+    },
+    "System.IO.FileSystem.Primitives/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ycRUvm/zPa3ywqmvb+RqvedCQ4jUnyhtwWyoezcdJUj/PSPFku/AJvHi3Rc5a2X98qZVFeIwEaz9iQJnuHwZ4Q==",
+      "path": "system.io.filesystem.primitives/4.3.0",
+      "hashPath": "system.io.filesystem.primitives.4.3.0.nupkg.sha512"
+    },
+    "System.IO.UnmanagedMemoryStream/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tS89nK7pw8ebkkEfWujA05+ZReHKzz39W+bcX1okVR0GJCJuzPyfYfQZyiLSrjp121BB5J4uewZQiUTKri2pSQ==",
+      "path": "system.io.unmanagedmemorystream/4.3.0",
+      "hashPath": "system.io.unmanagedmemorystream.4.3.0.nupkg.sha512"
+    },
+    "System.Memory/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
+      "path": "system.memory/4.5.3",
+      "hashPath": "system.memory.4.5.3.nupkg.sha512"
     },
     "System.Numerics.Vectors/4.5.0": {
       "type": "package",
@@ -399,6 +625,13 @@
       "path": "system.reflection.primitives/4.3.0",
       "hashPath": "system.reflection.primitives.4.3.0.nupkg.sha512"
     },
+    "System.Resources.ResourceManager/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dUPij+OFV3MoxsupTcU0qbXF6aOWpBZjkA5HLSiOi0mEgp1KvIEhRKXz4xfxOZXWyILyoXhSncL/NGcnwfkNhg==",
+      "path": "system.resources.resourcemanager/4.3.0",
+      "hashPath": "system.resources.resourcemanager.4.3.0.nupkg.sha512"
+    },
     "System.Runtime/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -413,12 +646,33 @@
       "path": "system.runtime.compilerservices.unsafe/4.5.2",
       "hashPath": "system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
     },
+    "System.Runtime.Handles/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-J9jwoypVOfmA1ezWcT35WFZKKt0XA8F67pUb31yKhRIU+h9QPwqd3HcJRGzq9eVJRH2MLvJ7oV0Mtp/h9hmS5Q==",
+      "path": "system.runtime.handles/4.3.0",
+      "hashPath": "system.runtime.handles.4.3.0.nupkg.sha512"
+    },
+    "System.Runtime.InteropServices/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jt0YoV6ObDjuCidcSZfyZcbkVbS6xwbvT6Qh8kDja420OWq55jriuzQjXaPCCeTn2ZiFuquX/JN57zjWiV+VcA==",
+      "path": "system.runtime.interopservices/4.3.0",
+      "hashPath": "system.runtime.interopservices.4.3.0.nupkg.sha512"
+    },
     "System.Text.Encoding/4.3.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-vAsZsGRlK9zDbB641sxh2i78VXW1rBQixaqNOBx1uynelnUm8dNogGIH0bzgK/U3Na0Tijsja3OWm08QN36AmQ==",
       "path": "system.text.encoding/4.3.0",
       "hashPath": "system.text.encoding.4.3.0.nupkg.sha512"
+    },
+    "System.Threading/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-d1M2vXpSE/sYxr/b6r35/e+kTLp/z5bi6YeHSzeXePJidLng3k5MOEOt2zHJl0aw4XtHakuRu0C+5Z3JBBBCTA==",
+      "path": "system.threading/4.3.0",
+      "hashPath": "system.threading.4.3.0.nupkg.sha512"
     },
     "System.Threading.Tasks/4.3.0": {
       "type": "package",
@@ -434,12 +688,19 @@
       "path": "system.threading.tasks.extensions/4.5.2",
       "hashPath": "system.threading.tasks.extensions.4.5.2.nupkg.sha512"
     },
-    "Xamarin.Essentials/1.5.2": {
+    "System.ValueTuple/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-qHxkrkx5jIC0X/qWhxCPZ3MuuOJm8bfCzAoUtlpOBSE4oV0JhrkTezK0A+IV+k/MeJ3zKc8FexaIXah9rlCTIw==",
-      "path": "xamarin.essentials/1.5.2",
-      "hashPath": "xamarin.essentials.1.5.2.nupkg.sha512"
+      "sha512": "sha512-BahUww/+mdP4ARCAh2RQhQTg13wYLVrBb9SYVgW8ZlrwjraGCXHGjo0oIiUfZ34LUZkMMR+RAzR7dEY4S1HeQQ==",
+      "path": "system.valuetuple/4.4.0",
+      "hashPath": "system.valuetuple.4.4.0.nupkg.sha512"
+    },
+    "Xamarin.Essentials/1.5.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6sE3kGMhES7dsR8ll+ar+roEIFobjPfDskKNMsU4FF6cV27ZsdArGZHxe1QqPPJcMT6PzJsGvA3l5PNMZgw5ng==",
+      "path": "xamarin.essentials/1.5.3.1",
+      "hashPath": "xamarin.essentials.1.5.3.1.nupkg.sha512"
     },
     "Xamarin.FFImageLoading/2.4.11.982": {
       "type": "package",
@@ -455,12 +716,12 @@
       "path": "xamarin.ffimageloading.forms/2.4.11.982",
       "hashPath": "xamarin.ffimageloading.forms.2.4.11.982.nupkg.sha512"
     },
-    "Xamarin.Forms/4.5.0.617": {
+    "Xamarin.Forms/4.6.0.726": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tB/h7bHEylOgNT+521SRnbmO+LCe5R3lPboD/icCMpa+FdjmxhZQ7+fIIPFDbhY2dqYetGRnAeJWXVx4NLbmAw==",
-      "path": "xamarin.forms/4.5.0.617",
-      "hashPath": "xamarin.forms.4.5.0.617.nupkg.sha512"
+      "sha512": "sha512-NI7iL5NnrQN/gCyoHLlexcDndNin67hFV7ObG8QQU2zbEi15B1SRaAsuiNeXVYAHfXg3/amqryqzGd+3R6lyZQ==",
+      "path": "xamarin.forms/4.6.0.726",
+      "hashPath": "xamarin.forms.4.6.0.726.nupkg.sha512"
     },
     "Xamarin.Forms.PancakeView/1.3.7": {
       "type": "package",

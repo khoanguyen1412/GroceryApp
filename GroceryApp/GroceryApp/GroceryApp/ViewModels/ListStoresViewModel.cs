@@ -48,7 +48,7 @@ namespace GroceryApp.ViewModels
         public void LoadData()
         {
             
-            _productTypes= new ObservableCollection<ProductType>(DataProvider.ListProductTypes);
+            _productTypes= new ObservableCollection<ProductType>(DataProvider.ListProductTypesYel);
             _stores = new ObservableCollection<Store>(DataProvider.ListStores);
         }
     }

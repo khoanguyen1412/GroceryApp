@@ -5,16 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
             
-            BarBackgroundColor="#fc6353"
-            SelectedTabColor="White"
-            UnselectedTabColor="#666666"
+            BarBackgroundColor="#FAFAFA"
+            SelectedTabColor="{StaticResource RedTheme}"
+            UnselectedTabColor="#A6AAA9"
              xmlns:local="clr-namespace:GroceryApp.Views.Screens"
              x:Class="GroceryApp.Views.TabBars.TabbarStoreManager"
             
             x:Name="TabManager"
             NavigationPage.HasNavigationBar="False">
-    <local:HomePageView Title="Home" IconImageSource="home"/>
-    <local:ListStoresView Title="Stores" IconImageSource="storetab"/>
-    <local:CartView Title="Your Cart" IconImageSource="greencart"/>
-    <local:ListOrdersView Title="Your Orders" IconImageSource="list"/>
+    <local:StoreDashBoardView Title="Dashboard" IconImageSource="dashboard"/>
+    <local:ProductManagerView Title="Product" IconImageSource="box"/>
+    <local:OrderManagerView Title="Orders" IconImageSource="list"/>
+    <local:ReviewManagerView Title="Feedbacks" IconImageSource="feedback"/>
+    <local:StoreSettingView Title="Settings" IconImageSource="blacksetting"/>
 </TabbedPage>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             BindingContext="{Binding StoreDashBoard, Source={StaticResource Locator}}"
+             x:Class="GroceryApp.Views.Sliders.ChartSliderView">
+    <ContentView.Content>
+        <pancake:PancakeView  Margin="20" BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="0">
+            <microcharts:ChartView x:Name="chartView" ScaleX="1.2"  Chart="{Binding StoreDashBoard.Chart, Source={StaticResource Locator}}" HorizontalOptions="FillAndExpand" Margin="0,0,0,5" />
+        </pancake:PancakeView>
+    </ContentView.Content>
+</ContentView>

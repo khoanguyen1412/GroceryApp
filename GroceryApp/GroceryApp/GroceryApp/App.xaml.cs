@@ -17,9 +17,9 @@ namespace GroceryApp
             ///MainPage = new SharedTransitionNavigationPage(new FinalBillView());
             //MainPage = new NavigationPage(new DetailProductView());
             //MainPage = new SharedTransitionNavigationPage(new TabBarCustomer());
-
-            //MainPage = new AppDrawer();
-            MainPage = new ReviewManagerView();
+            ///MainPage = new SharedTransitionNavigationPage(new TabbarStoreManager());
+            MainPage = AppDrawer.GetInstance();
+            //MainPage = new NavigationPage(new StoreSettingView());
         }
 
         protected override void OnStart()

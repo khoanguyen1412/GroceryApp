@@ -7,7 +7,7 @@
              BackgroundColor="White"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BindingContext="{Binding OrderManager,Source={StaticResource Locator}}"
-             x:Name="ListOrdersPage"
+             x:Name="OrderManager"
              x:Class="GroceryApp.Views.Screens.OrderManagerView">
     <ContentPage.Content>
         <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never">
@@ -45,7 +45,7 @@
                                         <SwipeView.Content>
                                             <ContentView VerticalOptions="Fill" HorizontalOptions="Fill" >
                                                 <ContentView.GestureRecognizers>
-                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" CommandParameter="{Binding .}"/>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=OrderManager}}" CommandParameter="{Binding .}"/>
                                                 </ContentView.GestureRecognizers>
                                                 <Grid BackgroundColor="White" Margin="0,0,5,0">
                                                     <Grid.ColumnDefinitions>
@@ -107,7 +107,7 @@
                                 <ViewCell>
                                     <ContentView VerticalOptions="Fill" HorizontalOptions="Fill" >
                                         <ContentView.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" />
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=OrderManager}}" />
                                         </ContentView.GestureRecognizers>
                                         <Grid BackgroundColor="White" Margin="0,0,5,0">
                                             <Grid.ColumnDefinitions>
@@ -165,73 +165,49 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <SwipeView>
-                                        <SwipeView.RightItems>
-                                            <SwipeItems Mode="Reveal">
-                                                <SwipeItemView>
-
-                                                    <Grid WidthRequest="60" BackgroundColor="LightGray">
-                                                        <pancake:PancakeView Margin="10,15" CornerRadius="10" Padding="5" BackgroundColor="#62B1F6">
-                                                            <Image Margin="0,5,0,0"
-                                                            Source="reply"
-                                                            HorizontalOptions="Center" VerticalOptions="Center"
-                                                            Aspect="AspectFit"/>
-                                                        </pancake:PancakeView>
-
-                                                    </Grid>
-                                                </SwipeItemView>
-                                            </SwipeItems>
-                                        </SwipeView.RightItems>
-                                        <SwipeView.Content>
-                                            <ContentView HorizontalOptions="Fill" VerticalOptions="Fill">
-                                                <ContentView.GestureRecognizers>
-                                                    <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" />
-                                                </ContentView.GestureRecognizers>
-                                                <Grid BackgroundColor="White" Margin="0,0,5,0">
+                                    <ContentView HorizontalOptions="Fill" VerticalOptions="Fill">
+                                        <ContentView.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=OrderManager}}" />
+                                        </ContentView.GestureRecognizers>
+                                        <Grid BackgroundColor="White" Margin="0,0,5,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="100"/>
+                                            </Grid.RowDefinitions>
+                                            <Button Grid.Column="0" Text="{Binding OrderNumber}" FontSize="15" Padding="0" Margin="12,32" TextColor="#f7436a" BackgroundColor="Transparent" BorderWidth="1" BorderColor="DarkGray"/>
+                                            <Grid Grid.Column="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <!--Dòng: tên + giá-->
+                                                <Grid Grid.Row="0" Margin="0,15,0,0">
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="50"/>
                                                         <ColumnDefinition/>
+                                                        <ColumnDefinition Width="auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="100"/>
-                                                    </Grid.RowDefinitions>
-                                                    <Button Grid.Column="0" Text="{Binding OrderNumber}" FontSize="15" Padding="0" Margin="12,32" TextColor="#f7436a" BackgroundColor="Transparent" BorderWidth="1" BorderColor="DarkGray"/>
-                                                    <Grid Grid.Column="1">
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition />
-                                                            <RowDefinition />
-                                                        </Grid.RowDefinitions>
-                                                        <!--Dòng: tên + giá-->
-                                                        <Grid Grid.Row="0" Margin="0,15,0,0">
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <Label Text="{Binding OrderedProducts, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
-                                                            <StackLayout  Grid.Column="1" Orientation="Horizontal">
-                                                                <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
-                                                                <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>
-                                                            </StackLayout>
+                                                    <Label Text="{Binding OrderedProducts, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
+                                                    <StackLayout  Grid.Column="1" Orientation="Horizontal">
+                                                        <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
+                                                        <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>
+                                                    </StackLayout>
 
-                                                        </Grid>
-                                                        <!--Dòng: mô tả + date-->
-                                                        <Grid Grid.Row="1">
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition/>
-                                                                <ColumnDefinition Width="auto"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <Label Text="{Binding CustomerAddress, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="DarkGray"/>
-                                                            <Label Grid.Column="1" Text="{Binding Date, Converter={StaticResource DateTimeConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="Black"/>
-                                                        </Grid>
-                                                    </Grid>
                                                 </Grid>
-                                            </ContentView>
-                                        </SwipeView.Content>
-                                    </SwipeView>
-
-
-                                    
-
+                                                <!--Dòng: mô tả + date-->
+                                                <Grid Grid.Row="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition Width="auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding CustomerAddress, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="DarkGray"/>
+                                                    <Label Grid.Column="1" Text="{Binding Date, Converter={StaticResource DateTimeConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="Black"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </ContentView>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

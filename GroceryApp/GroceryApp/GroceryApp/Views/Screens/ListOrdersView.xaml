@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              BackgroundColor="White"
              BindingContext="{Binding ListOrders,Source={StaticResource Locator}}"
@@ -28,13 +28,14 @@
                                         <SwipeView.RightItems>
                                             <SwipeItems Mode="Reveal">
                                                 <SwipeItemView>
-                                                    
-                                                    <Grid WidthRequest="60" BackgroundColor="#fc6353">
-                                                        <Image
+                                                    <Grid WidthRequest="60" BackgroundColor="#e6e6e6">
+                                                        <pancake:PancakeView Margin="10,15" CornerRadius="10" Padding="5" BackgroundColor="#fc6353">
+                                                            <Image
                                                             Source="bin"
                                                             HorizontalOptions="Center" VerticalOptions="Center"
-                                                            HeightRequest="80" WidthRequest="80"
-                                                            Margin="15" Aspect="AspectFit"/>
+                                                            Aspect="AspectFit"/>
+                                                        </pancake:PancakeView>
+
                                                     </Grid>
                                                 </SwipeItemView>
                                             </SwipeItems>
@@ -109,13 +110,16 @@
                                                     <SwipeItemView.GestureRecognizers>
                                                         <TapGestureRecognizer Command="{Binding ListOrders.ShowReviewPopupCommand, Source={StaticResource Locator}}"/>
                                                     </SwipeItemView.GestureRecognizers>
-                                                    <Grid WidthRequest="60" BackgroundColor="#00cc44">
-                                                        <Image
+                                                    <Grid WidthRequest="60" BackgroundColor="#e6e6e6">
+                                                        <pancake:PancakeView Margin="10,15" CornerRadius="10" Padding="5" BackgroundColor="#00cc7a">
+                                                            <Image
                                                             Source="receive"
                                                             HorizontalOptions="Center" VerticalOptions="Center"
-                                                            HeightRequest="80" WidthRequest="80"
-                                                            Margin="10" Aspect="AspectFit"/>
+                                                            Aspect="AspectFit"/>
+                                                        </pancake:PancakeView>
+
                                                     </Grid>
+                                                    
                                                 </SwipeItemView>
                                             </SwipeItems>
                                         </SwipeView.RightItems>

@@ -42,6 +42,14 @@
       "frameworks": {
         "monoandroid90": {
           "dependencies": {
+            "Microcharts": {
+              "target": "Package",
+              "version": "[0.7.1, )"
+            },
+            "Microcharts.Forms": {
+              "target": "Package",
+              "version": "[0.7.1, )"
+            },
             "Prism.DryIoc.Forms": {
               "target": "Package",
               "version": "[7.2.0.1422, )"
@@ -50,9 +58,13 @@
               "target": "Package",
               "version": "[2.0.0.2, )"
             },
+            "SkiaSharp": {
+              "target": "Package",
+              "version": "[1.68.1.1, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.5.2, )"
+              "version": "[1.5.3.1, )"
             },
             "Xamarin.FFImageLoading": {
               "target": "Package",
@@ -64,7 +76,7 @@
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.5.0.617, )"
+              "version": "[4.6.0.726, )"
             },
             "Xamarin.Forms.PancakeView": {
               "target": "Package",
@@ -119,7 +131,15 @@
           "dependencies": {
             "Autofac": {
               "target": "Package",
-              "version": "[5.1.2, )"
+              "version": "[5.1.4, )"
+            },
+            "Microcharts": {
+              "target": "Package",
+              "version": "[0.7.1, )"
+            },
+            "Microcharts.Forms": {
+              "target": "Package",
+              "version": "[0.7.1, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",
@@ -135,9 +155,13 @@
               "target": "Package",
               "version": "[2.0.0.2, )"
             },
+            "SkiaSharp": {
+              "target": "Package",
+              "version": "[1.68.1.1, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.5.2, )"
+              "version": "[1.5.3.1, )"
             },
             "Xamarin.FFImageLoading": {
               "target": "Package",
@@ -149,7 +173,7 @@
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.5.0.617, )"
+              "version": "[4.6.0.726, )"
             },
             "Xamarin.Forms.PancakeView": {
               "target": "Package",

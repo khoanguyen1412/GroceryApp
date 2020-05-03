@@ -7,14 +7,19 @@
              BackgroundColor="{StaticResource BgColor}"
              BindingContext="{Binding HomePage,Source={StaticResource Locator}}"
              xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
-             x:Class="GroceryApp.Views.Screens.HomePageView">
+             x:Class="GroceryApp.Views.Screens.HomePageView"
+             x:Name="homepage">
     <ContentPage.Content>
         <ScrollView Orientation="Vertical"  HorizontalScrollBarVisibility="Never">
             <StackLayout >
                 <AbsoluteLayout HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand">
                     <Label FontSize="25" TextColor="ForestGreen" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource LabelTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Grocery World"/>
                     <Image Source="greencart" AbsoluteLayout.LayoutBounds="1,0.5,35,35" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
-                    <Image Source="draw" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+                    <Image Source="draw" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowDrawerCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </AbsoluteLayout>
                 <StackLayout Margin="20,0,20,0">
                     <Label Text="Hi Khoa!" Style="{StaticResource LabelWellcomeStyle}"/>

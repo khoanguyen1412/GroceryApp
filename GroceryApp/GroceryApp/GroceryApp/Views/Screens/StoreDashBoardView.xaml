@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="#F6F7FB"
+             BindingContext="{Binding StoreDashBoard, Source={StaticResource Locator}}"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="GroceryApp.Views.Screens.StoreDashBoardView">
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical"  HorizontalScrollBarVisibility="Never">
+            <StackLayout >
+                <AbsoluteLayout HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand">
+                    <Label FontSize="25" TextColor="ForestGreen" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource LabelTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Your store"/>
+                    <Image Source="draw" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowDrawerCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </AbsoluteLayout>
+                <StackLayout Margin="20,0,20,0">
+                    <Label Text="Be a great manager of your own store!" FontSize="20" Style="{StaticResource LabelWellcomeStyle}"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <CarouselView BackgroundColor="Transparent"  HeightRequest="250" x:Name="Carousel" ItemTemplate="{StaticResource DataTemplateSliderSelector}" 
+                          IndicatorView="indicatorView" ItemsSource="{Binding Sliders}" >
+
+                    </CarouselView>
+                    <IndicatorView x:Name="indicatorView"
+                        IndicatorColor="LightGray"
+                        SelectedIndicatorColor="#0589e1"
+                        HorizontalOptions="Center"
+                        
+                    >
+                    </IndicatorView>
+                    
+                </StackLayout>
+                <Label Margin="20,20,20,10" Style="{StaticResource LabelWellcomeStyle}" Text="Take a look" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="Start" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
+                <CollectionView x:Name="Categories" ItemsSource="{Binding Categories}" HeightRequest="150" Margin="20,0,20,0" >
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout  Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <pancake:PancakeView HasShadow="True" CornerRadius="10"  Elevation="1" Margin="10,0,10,5" HorizontalOptions="Center"  BackgroundColor="White">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Image}" Margin="15,0,10,0" WidthRequest="80" HeightRequest="80" Aspect="AspectFit"/>
+                                        <StackLayout Margin="0,10,5,0" Grid.Column="1" Orientation="Vertical">
+                                            <Label Text="{Binding Title}" FontSize="17" FontFamily="{StaticResource RubikMedium}"/>
+                                            <Label Text="{Binding Description}" FontSize="20" TextColor="#FAA437" FontFamily="{StaticResource RubikMedium}"/>
+                                            <Button Text="{Binding Action}" Margin="0,10,0,0" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="5" BackgroundColor="#0589e1" FontSize="16" TextColor="White" FontFamily="{StaticResource RubikMedium}" HeightRequest="50"/>
+                                        </StackLayout>
+                                    </Grid>
+                                    
+                                </pancake:PancakeView>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <AbsoluteLayout HeightRequest="50" Margin="20,20,20,0" HorizontalOptions="FillAndExpand">
+                    <Label Margin="0" Style="{StaticResource LabelWellcomeStyle}" Text="Lastest Feedbacks" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="Start" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
+                    <Label Margin="0" Style="{StaticResource LabelWellcomeStyle}" FontSize="18" Text="View all >>" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="End" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
+
+                </AbsoluteLayout>
+                <ListView VerticalScrollBarVisibility="Never" Margin="20,10,20,0" ItemsSource="{Binding Reviews}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#F8F8F8" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                                    <pancake:PancakeView Padding="0" HeightRequest="100" HasShadow="True" Elevation="2"  CornerRadius="5" BackgroundColor="White" Margin="0,0,0,20">
+                                        <Grid Padding="0" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Margin="10,10,0,10" >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Label Text="{Binding CustomerName}" TextColor="Black" FontSize="18" FontFamily="{StaticResource RubikMedium}"/>
+                                                <Label Grid.Row="1" Text="{Binding Content,Converter={StaticResource ShortStringReviewConverter}}" TextColor="Black" FontSize="16" Style="{StaticResource LabelDefaultStyle}"/>
+                                                <StackLayout Grid.Row="2" Orientation="Horizontal">
+                                                    <Image  Source="fullstar" HeightRequest="23" WidthRequest="23"/>
+                                                    <Image  Source="fullstar" HeightRequest="23" WidthRequest="23"/>
+                                                    <Image  Source="fullstar" HeightRequest="23" WidthRequest="23"/>
+                                                    <Image  Source="emptystar" HeightRequest="23" WidthRequest="23"/>
+                                                    <Image  Source="emptystar" HeightRequest="23" WidthRequest="23"/>
+                                                </StackLayout>
+
+                                            </Grid>
+                                            <pancake:PancakeView Grid.Column="1" Margin="10" CornerRadius="10" WidthRequest="80" HeightRequest="100" >
+                                                <Image   Aspect="AspectFill"   Source="{Binding CustomerImage}"/>
+                                            </pancake:PancakeView>
+                                            
+                                        </Grid>
+                                    </pancake:PancakeView>
+
+                                </Frame>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

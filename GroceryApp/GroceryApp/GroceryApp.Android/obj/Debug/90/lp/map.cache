@@ -1,9 +1,13 @@
 FFImageLoading.Forms.Platform
 FFImageLoading.Platform
 FormsViewGroup
+Microcharts.Droid
 Plugin.SharedTransitions
 Prism.Forms
 Rg.Plugins.Popup
+SkiaSharp
+SkiaSharp.Views.Android
+SkiaSharp.Views.Forms
 Xamarin.Android.Arch.Core.Common
 Xamarin.Android.Arch.Core.Runtime
 Xamarin.Android.Arch.Lifecycle.Common

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             BindingContext="{Binding StoreDashBoard, Source={StaticResource Locator}}"
+             x:Class="GroceryApp.Views.Sliders.StatisticSliderView">
+
+    <ContentView.Content>
+        <pancake:PancakeView  Margin="20" BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="0">
+            <Grid ColumnSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="number" HorizontalOptions="Center" IsVisible="False" VerticalOptions="Center" FontSize="30"/>
+
+                <Grid Grid.Row="0" Grid.Column="0" ColumnSpacing="0" RowSpacing="0" BackgroundColor="Transparent" Margin="10,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image  x:Name="order" Source="colororder2" WidthRequest="70" HeightRequest="70"/>
+                    <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center">
+                        <Label  Text="Orders" HorizontalOptions="Center" FontFamily="{StaticResource RubikMedium}" FontSize="20" Padding="0"/>
+                        <Label Grid.Column="1" Grid.Row="1" TextColor="Accent" Text="200" FontFamily="{StaticResource RubikMedium}" FontSize="35" Padding="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1" ColumnSpacing="0" RowSpacing="0" BackgroundColor="Transparent" Margin="0,10,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image  x:Name="product" Source="colorproduct2" WidthRequest="70" HeightRequest="70"/>
+                    <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center" >
+                        <Label  Text="Products" HorizontalOptions="Center" FontFamily="{StaticResource RubikMedium}" FontSize="20" Padding="0"/>
+                        <Label Grid.Column="1" Grid.Row="1" TextColor="Accent" Text="52" FontFamily="{StaticResource RubikMedium}" FontSize="35" Padding="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" ColumnSpacing="0" RowSpacing="0" BackgroundColor="Transparent" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="revenue" Margin="0,0,15,0" Source="colormoney" WidthRequest="85" HeightRequest="85"/>
+                    <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center" >
+                        <Label  Text="Revenue" HorizontalOptions="Center" FontFamily="{StaticResource RubikMedium}" FontSize="25" Padding="0" />
+                        <Label Grid.Column="1" Grid.Row="1" TextColor="Accent" Text="1000000" FontFamily="{StaticResource RubikMedium}" FontSize="35" Padding="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </Grid>
+
+            </Grid>
+        </pancake:PancakeView>
+    </ContentView.Content>
+</ContentView>

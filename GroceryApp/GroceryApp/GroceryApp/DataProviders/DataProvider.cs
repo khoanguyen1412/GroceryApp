@@ -432,6 +432,16 @@ namespace GroceryApp.DataProviders
                     ImageURL="https://1.bp.blogspot.com/-vY6UkkmK2jM/WSf37UTmlLI/AAAAAAAAAFg/VTg7gdXjc5MVx0ubUYfE5v3RGfDdaBEPACLcB/s1600/Gac1.png",
                     },
             };
+
+        public static Store Store = new Store
+        {
+            ID = 0,
+            StoreName = "Groceriers",
+            ImageURL = "https://www.iowapublicradio.org/sites/ipr/files/201904/grocery-store-2119702_1920.jpg",
+            StoreAddress = "",
+            StoreDescription = "A lot of fresh vegetables"
+        };
+
         public DataProvider()
         {
 

@@ -15,48 +15,90 @@ namespace GroceryApp.Views.Drawer
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppDrawer : SharedTransitionShell
     {
-        FlyoutItem flyout = new FlyoutItem
+        FlyoutItem flyoutShopping = new FlyoutItem
         {
             Title = "Shopping",
             Icon = "heartcart",
             FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems
         };
-        Tab tab = new Tab
+        Tab tabShopping = new Tab
         {
             Title = "Shopping",
             Icon = "heartcart",
             FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems
         };
+        FlyoutItem flyoutStore = new FlyoutItem
+        {
+            Title = "Your Store",
+            Icon = "store",
+            FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems
+        };
+        Tab tabStore = new Tab
+        {
+            Title = "Your Store",
+            Icon = "store",
+            FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems
+        };
 
 
-        public AppDrawer()
+        private static AppDrawer _instance;
+
+        public static AppDrawer GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new AppDrawer();
+            }
+            return _instance;
+        }
+        private AppDrawer()
         {
             InitializeComponent();
             Shell.SetTabBarIsVisible(this, false);
             Shell.SetNavBarIsVisible(this, false);
-            var shoppingTabs = new ShellContent() { 
+            //Item CUSTOMER
+            var shoppingTabs = new ShellContent()
+            {
                 Content = TabBarCustomer.GetInstance(),
-                Title= "Shopping",
-                Icon="heartcart"
+                Title = "Shopping",
+                Icon = "heartcart"
             };
-            tab.Items.Add(shoppingTabs);
-            flyout.Items.Add(tab);
-            //group1.Items.Add(shoppingTabs);
-            //MainFlyout.Items.Add(shell_section);
-            appShell.Items.Add(flyout);
+            tabShopping.Items.Add(shoppingTabs);
+            flyoutShopping.Items.Add(tabShopping);
+            appShell.Items.Add(flyoutShopping);
 
+            //Item STORE
+            
+            var storeTabs = new ShellContent()
+            {
+                Content = TabbarStoreManager.GetInstance(),
+                Title = "Your store",
+                Icon = "store"
+            };
+            tabStore.Items.Add(storeTabs);
+            flyoutStore.Items.Add(tabStore);
+            appShell.Items.Add(flyoutStore);
+            
         }
 
+        protected override void OnTabIndexPropertyChanged(int oldValue, int newValue)
+        {
+            base.OnTabIndexPropertyChanged(oldValue, newValue);
+        }
         protected override bool OnBackButtonPressed()
         {
             
-            //App.Current.MainPage.Navigation.PushAsync(new ShowStoreView(), true);
             int x = App.Current.MainPage.Navigation.NavigationStack.Count;
-            if(x==1)
+            if (x == 1)
             {
-                if(appShell.CurrentItem == flyout)
+                if (appShell.CurrentItem == flyoutShopping)
                 {
                     var tabbar = TabBarCustomer.GetInstance();
+                    tabbar.GoHome();
+                }
+                else
+                {
+                    var tabbar = TabbarStoreManager.GetInstance();
                     tabbar.GoHome();
                 }
             }
@@ -64,7 +106,7 @@ namespace GroceryApp.Views.Drawer
             {
                 base.OnBackButtonPressed();
             }
-            
+
             return true;
         }
     }

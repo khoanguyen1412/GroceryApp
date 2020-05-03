@@ -19,6 +19,7 @@ namespace GroceryApp.Views.TabBars
         {
             InitializeComponent();
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+            this.On<Xamarin.Forms.PlatformConfiguration.Android>().SetIsSwipePagingEnabled(false);
         }
         private static TabbarStoreManager _instance;
 

@@ -26,7 +26,18 @@ namespace GroceryApp.ViewModels
             builder.RegisterType<EditProductPopupViewModel>().As<IEditProductPopupViewModel>().SingleInstance();
             builder.RegisterType<OrderManagerViewModel>().As<IOrderManagerViewModel>().SingleInstance();
             builder.RegisterType<ReviewManagerViewModel>().As<IReviewManagerViewModel>().SingleInstance();
+            builder.RegisterType<StoreDashBoardViewModel>().As<IStoreDashBoardViewModel>().SingleInstance();
+            builder.RegisterType<StoreSetttingViewModel>().As<IStoreSetttingViewModel>().SingleInstance();
             _container = builder.Build();
+        }
+
+        public IStoreSetttingViewModel StoreSetting
+        {
+            get { return _container.Resolve<IStoreSetttingViewModel>(); }
+        }
+        public IStoreDashBoardViewModel StoreDashBoard
+        {
+            get { return _container.Resolve<IStoreDashBoardViewModel>(); }
         }
         public IReviewManagerViewModel ReviewManager
         {
