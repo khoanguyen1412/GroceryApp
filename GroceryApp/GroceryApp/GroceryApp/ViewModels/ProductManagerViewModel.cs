@@ -1,4 +1,4 @@
-﻿using GroceryApp.DataProviders;
+﻿using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Popups;
 using Rg.Plugins.Popup.Services;
@@ -44,9 +44,9 @@ namespace GroceryApp.ViewModels
 
         public ObservableCollection<ProductType> ProductTypes
         {
-            get { 
-
-                return new ObservableCollection<ProductType>(DataProvider.ListProductTypesYel); 
+            get {
+                return null;
+                //return new ObservableCollection<ProductType>(DataProvider.ListProductTypesYel); 
             }
         }
         public ICommand AddProductCommand { get; set; }
@@ -72,7 +72,7 @@ namespace GroceryApp.ViewModels
 
         public void LoadData()
         {
-            _products = new ObservableCollection<Product>(DataProvider.ListProductManager);
+            //_products = new ObservableCollection<Product>(DataProvider.ListProductManager);
         }
     }
 }

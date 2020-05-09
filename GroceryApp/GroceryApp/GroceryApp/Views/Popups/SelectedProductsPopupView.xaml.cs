@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroceryApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,8 +39,12 @@ namespace GroceryApp.Views.Popups
         }
         private void ExpandTapped(object sender, EventArgs e)
         {
+            
             GoToState("Expanded");
             OnExpandTapped?.Invoke();
+            var viewmodel = this.BindingContext as ShowStoreViewModel;
+            viewmodel.updateSelectedProduct();
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using GroceryApp.DataProviders;
+﻿using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Popups;
 using Rg.Plugins.Popup.Services;
@@ -100,7 +100,7 @@ namespace GroceryApp.ViewModels
 
         public void LoadData()
         {
-            _orders = new ObservableCollection<OrderBill>(DataProvider.ListOrders);
+            //_orders = new ObservableCollection<OrderBill>(DataProvider.ListOrders);
         }
     }
 }

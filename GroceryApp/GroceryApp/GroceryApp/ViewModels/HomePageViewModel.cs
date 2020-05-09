@@ -1,4 +1,4 @@
-﻿using GroceryApp.DataProviders;
+﻿using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Drawer;
 using System;
@@ -38,8 +38,8 @@ namespace GroceryApp.ViewModels
 
         public void LoadData()
         {
-         
-            _stores = new ObservableCollection<Store>(DataProvider.ListStores);
+            var dataProvider = DataProvider.GetInstance();
+            _stores = new ObservableCollection<Store>(dataProvider.GetListStores());
         }
     }
 }

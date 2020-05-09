@@ -1,4 +1,6 @@
-﻿using GroceryApp.Views.Drawer;
+﻿using GroceryApp.Data;
+using GroceryApp.ViewModels;
+using GroceryApp.Views.Drawer;
 using GroceryApp.Views.Screens;
 using GroceryApp.Views.TabBars;
 using Plugin.SharedTransitions;
@@ -18,8 +20,13 @@ namespace GroceryApp
             //MainPage = new NavigationPage(new DetailProductView());
             //MainPage = new SharedTransitionNavigationPage(new TabBarCustomer());
             ///MainPage = new SharedTransitionNavigationPage(new TabbarStoreManager());
-            MainPage = AppDrawer.GetInstance();
+            //MainPage = AppDrawer.GetInstance();
+
             //MainPage = new NavigationPage(new StoreSettingView());
+            Infor.IDUser = "1";
+            Infor.IDStore = "1";
+            Infor.IDCart = "1";
+            MainPage = new SharedTransitionNavigationPage(new ListStoresView());
         }
 
         protected override void OnStart()

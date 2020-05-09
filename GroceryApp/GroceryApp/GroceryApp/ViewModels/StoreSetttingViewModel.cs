@@ -1,4 +1,4 @@
-﻿using GroceryApp.DataProviders;
+﻿using GroceryApp.Data;
 using GroceryApp.Views.Screens;
 using System;
 using System.Collections.Generic;
@@ -42,12 +42,13 @@ namespace GroceryApp.ViewModels
         {
    
             var inforPage = new StoreInformationView();
-
+            /*
             inforPage.BindingContext = new StoreInfor 
                                         { 
                                             StoreName= DataProvider.Store.StoreName,
                                             StoreDescription= DataProvider.Store.StoreDescription
                                         };
+                                        */
             await App.Current.MainPage.Navigation.PushAsync(inforPage, true);
         }
 
@@ -66,7 +67,7 @@ namespace GroceryApp.ViewModels
 
         public void loadData()
         {
-            _storeImage = DataProvider.Store.ImageURL;
+            //_storeImage = DataProvider.Store.ImageURL;
 
         }
     }

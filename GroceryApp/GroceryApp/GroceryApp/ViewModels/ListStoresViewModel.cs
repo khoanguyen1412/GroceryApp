@@ -1,4 +1,4 @@
-﻿using GroceryApp.DataProviders;
+﻿using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Screens;
 using Plugin.SharedTransitions;
@@ -37,19 +37,21 @@ namespace GroceryApp.ViewModels
         public ListStoresViewModel()
         {
             LoadData();
-            ShowStoreCommand = new Command(ShowStore);
+            ShowStoreCommand = new Command<string>(ShowStore);
         }
 
-        public async void ShowStore()
+        public async void ShowStore(string IDStore)
         {
-            await App.Current.MainPage.Navigation.PushAsync(new ShowStoreView(), true);
+            var showStoreView = new ShowStoreView();
+            showStoreView.BindingContext = new ShowStoreViewModel(IDStore);
+            await App.Current.MainPage.Navigation.PushAsync(showStoreView, true);
         }
 
         public void LoadData()
         {
-            
-            _productTypes= new ObservableCollection<ProductType>(DataProvider.ListProductTypesYel);
-            _stores = new ObservableCollection<Store>(DataProvider.ListStores);
+            var dataProvider = DataProvider.GetInstance();
+            _productTypes = new ObservableCollection<ProductType>(dataProvider.GetProductTypes());
+            _stores = new ObservableCollection<Store>(dataProvider.GetListStores());
         }
     }
 }

@@ -20,6 +20,13 @@
             <converter:OrderDetailButtonVisibleConverter x:Key="OrderDetailButtonVisibleConverter"/>
             <converter:ShortStringHiddenProductConverter x:Key="ShortStringHiddenProductConverter"/>
             <converter:ShortStringReviewConverter x:Key="ShortStringReviewConverter"/>
+            <converter:CartChoosingStoreBackGroundConverter x:Key="CartChoosingStoreBackGroundConverter"/>
+            <converter:CartChoosingStoreTextColorConverter x:Key="CartChoosingStoreTextColorConverter"/>
+            <converter:CartChoosingStoreBorderConverter x:Key="CartChoosingStoreBorderConverter"/>
+            <converter:StoreChoosingTypeBackGroundConverter x:Key="StoreChoosingTypeBackGroundConverter"/>
+            <converter:SinglePriceSelectedProductConverter x:Key="SinglePriceSelectedProductConverter"/>
+            <converter:TotalPriceSelectedProductsConverter x:Key="TotalPriceSelectedProductsConverter"/>
+            <converter:ProductVisibleConverter x:Key="ProductVisibleConverter"/>
             <selector:DataTemplateSliderSelector x:Key="DataTemplateSliderSelector"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"

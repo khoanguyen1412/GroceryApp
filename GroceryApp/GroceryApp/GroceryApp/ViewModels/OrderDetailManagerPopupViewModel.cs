@@ -1,4 +1,4 @@
-﻿using GroceryApp.DataProviders;
+﻿using GroceryApp.Data;
 using GroceryApp.Models;
 using System;
 using System.Collections.Generic;
@@ -69,9 +69,9 @@ namespace GroceryApp.ViewModels
             List<Product> products = new List<Product>
             {
                 new Product{
-                    ID=0,
-                    IDType=0,
-                    IDStore=0,
+                    IDProduct="0",
+                    IDType="0",
+                    IDStore="0",
                     ProductName="Carrot",
                     ProductDescription="Fresh and Big Carrots from US Farms",
                     Unit="one",
@@ -81,9 +81,9 @@ namespace GroceryApp.ViewModels
                     ImageURL="https://www.jessicagavin.com/wp-content/uploads/2019/02/carrots-7-1200.jpg",
                     },
                 new Product{
-                    ID=1,
-                    IDType=0,
-                    IDStore=0,
+                    IDProduct="1",
+                    IDType="0",
+                    IDStore="0",
                     ProductName="Potato",
                     ProductDescription="Juicy potatos from West US",
                     Unit="one",
@@ -93,9 +93,9 @@ namespace GroceryApp.ViewModels
                     ImageURL="https://www.asianscientist.com/wp-content/uploads/bfi_thumb/20180719-potatoes-vegetables-pexels-36ls0syth5iutrozsmneo0.jpeg",
                     },
                 new Product{
-                    ID=2,
-                    IDType=1,
-                    IDStore=1,
+                    IDProduct="2",
+                    IDType="1",
+                    IDStore="1",
                     ProductName="Orange",
                     ProductDescription="Small juicy Oranges with no seed",
                     Unit="one",
@@ -105,9 +105,9 @@ namespace GroceryApp.ViewModels
                     ImageURL="https://www.irishtimes.com/polopoly_fs/1.3923226.1560339148!/image/image.jpg_gen/derivatives/ratio_1x1_w1200/image.jpg",
                     },
                 new Product{
-                    ID=3,
-                    IDType=2,
-                    IDStore=2,
+                    IDProduct="3",
+                    IDType="2",
+                    IDStore="2",
                     ProductName="Lolly Pop",
                     ProductDescription="No harmful toxic and 100% from milk",
                     Unit="one",
@@ -117,9 +117,9 @@ namespace GroceryApp.ViewModels
                     ImageURL="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnSWbkRZa817h-8I2OfbmyS3AeStVjy2dhf_j5F9xae5tdan9-&usqp=CAU",
                     },
                 new Product{
-                    ID=4,
-                    IDType=3,
-                    IDStore=3,
+                    IDProduct="4",
+                    IDType="3",
+                    IDStore="3",
                     ProductName="Lime water",
                     ProductDescription="Natural lemons and no fat sugar",
                     Unit="one",
@@ -129,9 +129,9 @@ namespace GroceryApp.ViewModels
                     ImageURL="https://www.7sky.life/sys/wp-content/uploads/lemon-water.jpg",
                     },
                 new Product{
-                    ID=5,
-                    IDType=4,
-                    IDStore=4,
+                    IDProduct="5",
+                    IDType="4",
+                    IDStore="4",
                     ProductName="Cup cake",
                     ProductDescription="White scream, suit for dieting",
                     Unit="one",
@@ -144,9 +144,9 @@ namespace GroceryApp.ViewModels
 
             OrderBill order = new OrderBill
             {
-                ID = 0,
-                IDUser = 1,
-                IDStore = 1,
+                IDOrderBill = "0",
+                IDUser = "1",
+                IDStore = "1",
                 Date = new DateTime(2020, 4, 3),
                 SubTotalPrice = 120000,
                 DeliveryPrice = 10000,
@@ -160,7 +160,7 @@ namespace GroceryApp.ViewModels
                 OrderedProducts = products
             };
 
-            _order = DataProvider.ListOrders[0];
+            //_order = DataProvider.ListOrders[0];
         }
     }
 }

@@ -28,9 +28,9 @@ namespace GroceryApp.ViewModels
             //DATA KHÔNG CÒN SỬ DỤNG, DO PRODUCT ĐÃ ĐƯỢC GỬI TỪ BINDING CONTEXT Ở SCREEN TRƯỚC
             Product product = new Product
             {
-                ID = 0,
-                IDType = 0,
-                IDStore = 0,
+                IDProduct = "0",
+                IDType = "0",
+                IDStore = "0",
                 ProductName = "Carrot",
                 ProductDescription = "Fresh and Big Carrots from US Farms",
                 Unit = "one",

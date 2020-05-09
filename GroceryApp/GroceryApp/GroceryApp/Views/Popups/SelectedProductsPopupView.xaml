@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-              BindingContext="{Binding ShowStore,Source={StaticResource Locator}}"
+              
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="GroceryApp.Views.Popups.SelectedProductsPopupView">
     <ContentView.Content>
@@ -125,7 +125,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <ListView Grid.Row="0"  Margin="20,20,20,0" ItemsSource="{Binding Products}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
+                <ListView Grid.Row="0"  Margin="10,20,10,0" ItemsSource="{Binding SelectedProducts}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -138,11 +138,12 @@
                                         <Frame CornerRadius="40" HeightRequest="50" WidthRequest="50" Padding="0">
                                             <Image Source="{Binding ImageURL}" Aspect="AspectFill" WidthRequest="70" HeightRequest="70"/>
                                         </Frame>
-                                        <Label TextColor="White" VerticalOptions="Center" Margin="10,0,0,0" Text="x1" Style="{StaticResource LabelTitleStyle}"/>
+                                        <Label TextColor="White" VerticalOptions="Center" Margin="0,0,0,0" Text="x" Style="{StaticResource LabelTitleStyle}"/>
+                                        <Label TextColor="White" VerticalOptions="Center" Margin="-5,0,0,0" Text="{Binding QuantityOrder}" Style="{StaticResource LabelTitleStyle}"/>
                                         <Label TextColor="White" FontSize="20" VerticalOptions="Center" Margin="10,0,0,0" Text="{Binding ProductName}" Style="{StaticResource BoldTitleStyle}"/>
 
                                     </StackLayout>
-                                    <Label TextColor="White" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,10,0"  Text="{Binding Price}" Style="{StaticResource LabelTitleStyle}"/>
+                                        <Label TextColor="White" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,10,0"  Text="{Binding .,Converter={StaticResource SinglePriceSelectedProductConverter}}" Style="{StaticResource LabelTitleStyle}"/>
 
                                 </Grid>
                                 
@@ -157,7 +158,9 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                         <Label TextColor="White" Margin="145,0,0,0" Text="Total:" FontSize="25" Style="{StaticResource BoldTitleStyle}"/>
-                        <Label VerticalTextAlignment="Center" HorizontalOptions="End" Margin="0,0,30,0" Grid.Column="1" TextColor="White" Text="20000" Style="{StaticResource LabelTitleStyle}"/>
+                        <Label VerticalTextAlignment="Center" HorizontalOptions="End" Margin="0,0,30,0" Grid.Column="1" TextColor="White" 
+                               Text="{Binding SelectedProducts, Converter={StaticResource TotalPriceSelectedProductsConverter}}" 
+                               Style="{StaticResource LabelTitleStyle}"/>
                     </Grid>
                 <pancake:PancakeView
                     Grid.Row="2"

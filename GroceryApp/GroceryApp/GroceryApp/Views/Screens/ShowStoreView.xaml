@@ -4,24 +4,21 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
              xmlns:popup="clr-namespace:GroceryApp.Views.Popups"
              Padding="0"
-             BindingContext="{Binding ShowStore, Source={StaticResource Locator}}"
              BackgroundColor="{StaticResource BgColor }"
              x:Class="GroceryApp.Views.Screens.ShowStoreView"
              NavigationPage.HasNavigationBar="False"
+             x:Name="DetailStore"
+            
              
-             sharedTransitions:SharedTransitionNavigationPage.TransitionSelectedGroup="{Binding SelectedProductId }"
-             sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Fade"
-             sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="300">
+             >
 
     <ContentPage.Content>
-
-        <Grid  >
+        <Grid >
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="225" />
@@ -70,7 +67,7 @@
                                     </Grid.RowDefinitions>
                                     <Label Text="Menu" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}"/>
                                     <!--LIST TYPES-->
-                                    <CollectionView HeightRequest="90" Grid.Row="1" Margin="20,0" ItemsSource="{Binding ProductTypes}">
+                                    <CollectionView HeightRequest="90" Grid.Row="1" Margin="20,0" ItemsSource="{Binding TypeItems,Mode=TwoWay}">
                                         <CollectionView.ItemsLayout>
                                             <GridItemsLayout 
                                             Orientation="Horizontal"/>
@@ -85,7 +82,11 @@
                                                         <RowDefinition Height="60"/>
                                                         <RowDefinition Height="30"/>
                                                     </Grid.RowDefinitions>
-                                                    <pancake:PancakeView BackgroundColor="White" CornerRadius="40" WidthRequest="60" HasShadow="False" >
+                                                    <pancake:PancakeView BackgroundColor="{Binding isChosen,Converter={StaticResource StoreChoosingTypeBackGroundConverter}}" CornerRadius="40" WidthRequest="60" HasShadow="False" >
+                                                        <pancake:PancakeView.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding BindingContext.ChooseCommand,Source={x:Reference Name=DetailStore}}"
+                                                                                  CommandParameter="{Binding .}"/>
+                                                        </pancake:PancakeView.GestureRecognizers>
                                                         <Grid HorizontalOptions="Center" VerticalOptions="Center">
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="40"/>
@@ -93,10 +94,10 @@
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition Height="40"/>
                                                             </Grid.RowDefinitions>
-                                                            <Image Source="{Binding ImageURL}" HeightRequest="50" WidthRequest="50" Aspect="AspectFit"/>
+                                                            <Image Source="{Binding productType.ImageURL}" HeightRequest="50" WidthRequest="50" Aspect="AspectFit"/>
                                                         </Grid>
                                                     </pancake:PancakeView>
-                                                    <Label HorizontalOptions="Center" Grid.Row="1" Text="{Binding TypeName}" Margin="0,-5,0,0" Style="{StaticResource LabelDefaultStyle}"/>
+                                                    <Label HorizontalOptions="Center" Grid.Row="1" Text="{Binding productType.TypeName}" Margin="0,-5,0,0" Style="{StaticResource LabelDefaultStyle}"/>
                                                 </Grid>
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
@@ -104,7 +105,7 @@
                                     <!--LIST PRODUCTS-->
                                     <CollectionView Margin="20,0"
                                         Grid.Row="2"
-                                        ItemsSource="{Binding Products}"
+                                        ItemsSource="{Binding Products,Mode=TwoWay}"
                                         >
                                         <CollectionView.ItemsLayout>
                                             <GridItemsLayout 
@@ -113,23 +114,21 @@
                                         </CollectionView.ItemsLayout>
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate >
-                                                <Grid  Margin="0">
+                                                <Grid  Margin="0" >
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition />
+                                                        <ColumnDefinition Width="{Binding isHidden,Converter={StaticResource ProductVisibleConverter}}"/>
                                                     </Grid.ColumnDefinitions>
                                                     <Grid.RowDefinitions>
-                                                        <RowDefinition Height="auto"/>
+                                                        <RowDefinition Height="{Binding isHidden,Converter={StaticResource ProductVisibleConverter}}"/>
                                                     </Grid.RowDefinitions>
                                                     <pancake:PancakeView HorizontalOptions="Center" BackgroundColor="#93CCAB"  Grid.Column="0" CornerRadius="0,0,25,25" HasShadow="False"  WidthRequest="250" Padding="0" Margin="5">
                                                         <pancake:PancakeView.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding ShowStore.ShowDetailProductCommand, Source={StaticResource Locator}}"
+                                                            <TapGestureRecognizer Command="{Binding BindingContext.ShowDetailProductCommand,Source={x:Reference Name=DetailStore}}"
                                                                 CommandParameter="{Binding .}"/>
                                                         </pancake:PancakeView.GestureRecognizers>
                                                         <StackLayout Orientation="Vertical" Margin="0" HorizontalOptions="FillAndExpand">
                                                             <pancake:PancakeView Margin="0" Padding="0" HasShadow="False" CornerRadius="0,0,10,10" IsClippedToBounds="True">
-                                                                <Image Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="150"
-                                                                       sharedTransitions:Transition.Name="ProductImage" 
-                                                                        sharedTransitions:Transition.Group="{Binding ID}"/>
+                                                                <ffimageloading:CachedImage Source="{Binding Product.ImageURL}" Aspect="AspectFill" HeightRequest="150"/>
                                                             </pancake:PancakeView>
                                                             <StackLayout Margin="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                                                 <Grid >
@@ -137,8 +136,8 @@
                                                                         <ColumnDefinition Width="2*"/>
                                                                         <ColumnDefinition Width="1*"/>
                                                                     </Grid.ColumnDefinitions>
-                                                                    <Label Grid.Column="0" Margin="10,0" Text="{Binding ProductName}" Style="{StaticResource LabelTitleStyle}"/>
-                                                                    <Label Grid.Column="1" Margin="0" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding Price}" Style="{StaticResource LabelTitleStyle}" FontSize="15"/>
+                                                                    <Label Grid.Column="0" Margin="10,0" Text="{Binding Product.ProductName}" Style="{StaticResource LabelTitleStyle}"/>
+                                                                    <Label Grid.Column="1" Margin="0" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding Product.Price}" Style="{StaticResource LabelTitleStyle}" FontSize="15"/>
 
                                                                 </Grid>
                                                             </StackLayout>
@@ -156,27 +155,37 @@
                                                                         <ColumnDefinition Width="1*" />
                                                                     </Grid.ColumnDefinitions>
                                                                     <Label 
-                                                            x:Name="MinusButton"
-                                                            Grid.Column="0"
-                                                            Text="-"
-                                                            Margin="20, 0, 0, 0"
-                                                            FontSize="20">
+                                                                        x:Name="MinusButton"
+                                                                        Grid.Column="0"
+                                                                        Text="-"
+                                                                        Margin="20, 0, 0, 0"
+                                                                        FontSize="20">
+                                                                        <Label.GestureRecognizers>
+                                                                            <TapGestureRecognizer
+                                                                                Command="{Binding Product.DecreaseCommand}"
+                                                                                CommandParameter="{Binding Product.QuantityOrder}"/>
+                                                                        </Label.GestureRecognizers>
                                                                     </Label>
                                                                     <Label 
-                                                            x:Name="ValueText"
-                                                            Grid.Column="1" 
-                                                            HorizontalTextAlignment="Center"
-                                                            HorizontalOptions="Center"
-                                                            VerticalOptions="Center"
-                                                            VerticalTextAlignment="Center"
-                                                            Text="0"/>
+                                                                        x:Name="ValueText"
+                                                                        Grid.Column="1" 
+                                                                        HorizontalTextAlignment="Center"
+                                                                        HorizontalOptions="Center"
+                                                                        VerticalOptions="Center"
+                                                                        VerticalTextAlignment="Center"
+                                                                        Text="{Binding Product.QuantityOrder}"/>
                                                                     <Label 
-                                                               x:Name="PlusButton"
-                                                               Grid.Column="2"
-                                                               Text="+"
-                                                                FontSize="20"
-                                                               Margin="0, 0, 15, 0">
-
+                                                                        x:Name="PlusButton"
+                                                                        Grid.Column="2"
+                                                                        Text="+"
+                                                                        FontSize="20"
+                                                                        Margin="0, 0, 15, 0">
+                                                                        <Label.GestureRecognizers>
+                                                                            <TapGestureRecognizer
+                                                                                Command="{Binding Product.IncreaseCommand}"
+                                                                                CommandParameter="{Binding Product.QuantityOrder}"
+                                                                                />
+                                                                        </Label.GestureRecognizers>
                                                                     </Label>
                                                                 </Grid>
                                                             </pancake:PancakeView>
@@ -236,7 +245,7 @@
 
                 </controls:ParallaxControl>
             </Grid>
-            
+
             <BoxView
                 x:Name="CartPopupFade"
                 Grid.Row="0"
@@ -246,8 +255,11 @@
                 Opacity="0">
             </BoxView>
             <popup:SelectedProductsPopupView
-                x:Name="CartPopup" />
+                x:Name="CartPopup" BindingContext="{Binding .}">
+                
+            </popup:SelectedProductsPopupView>
         </Grid>
+
 
     </ContentPage.Content>
 </ContentPage>
