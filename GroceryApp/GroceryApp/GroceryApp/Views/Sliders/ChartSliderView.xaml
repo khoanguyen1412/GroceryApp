@@ -10,7 +10,7 @@
              x:Class="GroceryApp.Views.Sliders.ChartSliderView">
     <ContentView.Content>
         <pancake:PancakeView  Margin="20" BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="0">
-            <microcharts:ChartView x:Name="chartView" ScaleX="1.2"  Chart="{Binding StoreDashBoard.Chart, Source={StaticResource Locator}}" HorizontalOptions="FillAndExpand" Margin="0,0,0,5" />
+            <microcharts:ChartView x:Name="chartView" ScaleX="1"  Chart="{Binding StoreDashBoard.Chart, Source={StaticResource Locator}}" HorizontalOptions="FillAndExpand" Margin="0,0,0,5" />
         </pancake:PancakeView>
     </ContentView.Content>
 </ContentView>

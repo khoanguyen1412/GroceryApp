@@ -47,23 +47,7 @@ namespace GroceryApp.Views.Popups
         }
 
     
-        private void address_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateInfor(e.NewTextValue, note.Text);
-        }
 
-
-        private void note_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateInfor(address.Text, e.NewTextValue);
-        }
-
-        public void UpdateInfor(string address, string note)
-        {
-            (this.BindingContext as OrderBill).CustomerAddress = address;
-            (this.BindingContext as OrderBill).Note = note;
-
-        }
 
     }
 }

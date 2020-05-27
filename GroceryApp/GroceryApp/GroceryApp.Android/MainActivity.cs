@@ -8,10 +8,13 @@ using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
+using Xamarin.Forms.Platform.Android;
 
 namespace GroceryApp.Droid
 {
-    [Activity(Label = "GroceryApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "GroceryApp", Icon = "@mipmap/icon", 
+        Theme = "@style/MainTheme", 
+        MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -19,8 +22,15 @@ namespace GroceryApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+            Window.SetStatusBarColor(Android.Graphics.Color.Transparent);
+            var currentWindow = Window;
+            currentWindow.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+
+
+
             base.OnCreate(savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+
 
             Forms.SetFlags(new string[] { "IndicatorView_Experimental", "SwipeView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

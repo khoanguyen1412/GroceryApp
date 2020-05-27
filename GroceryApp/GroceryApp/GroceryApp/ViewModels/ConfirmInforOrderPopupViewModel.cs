@@ -1,4 +1,5 @@
-﻿using GroceryApp.Models;
+﻿using GroceryApp.Data;
+using GroceryApp.Models;
 using GroceryApp.Views.Screens;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -16,27 +17,164 @@ namespace GroceryApp.ViewModels
     public class ConfirmInforOrderPopupViewModel:BaseViewModel, IConfirmInforOrderPopupViewModel
     {
         OrderBill Order = null;
+        bool emptyAddress=false;
+
+        public Color _nextColor;
+        public Color NextColor {
+            get { return _nextColor; }
+            set
+            {
+                _nextColor = value;
+                OnPropertyChanged(nameof(NextColor));
+            }
+        }
+        private bool _canNext;
+        public bool CanNext
+        {
+            get {
+                return _canNext;
+                
+            }
+            set { 
+                _canNext = value;
+                if (_canNext) NextColor = Color.FromHex("#00cc00");
+                else NextColor = Color.LightGray;
+                OnPropertyChanged(nameof(CanNext)); 
+            }
+        }
+        public string UserAddress {
+            get {
+                if(emptyAddress) return "(Chưa có dữ liệu)";
+
+                DataProvider dataProvider = DataProvider.GetInstance();
+                return dataProvider.GetUserAddress();
+
+            }
+        }
+
+        private string _newAddress;
+        public string NewAddress
+        {
+            get { return _newAddress; }
+            set { 
+                _newAddress = value;
+                if (OtherAddress)
+                {
+                    if (_newAddress == null || _newAddress == "") CanNext = false;
+                    else CanNext = true;
+                }
+                OnPropertyChanged(nameof(NewAddress)); 
+            }
+        }
+
+        private string _note;
+        public string Note
+        {
+            get {
+                if (_note == null) return "";
+                return _note; 
+            }
+            set { _note = value; OnPropertyChanged(nameof(Note)); }
+        }
+
+        private bool _defaultAddress;
+        public bool DefaultAddress
+        {
+            get { return _defaultAddress; }
+            set { _defaultAddress = value; OnPropertyChanged(nameof(DefaultAddress)); }
+        }
+
+        private bool _otherAddress;
+        public bool OtherAddress
+        {
+            get { return _otherAddress; }
+            set { _otherAddress = value; OnPropertyChanged(nameof(OtherAddress)); }
+        }
+
         public ICommand ShowBillCommand { get; set; }
-        public ConfirmInforOrderPopupViewModel()
+        public ICommand DefaultCheckCommand { get; set; }
+        public ICommand OtherCheckCommand { get; set; }
+        public ConfirmInforOrderPopupViewModel(OrderBill order)
         {
-            
-            ShowBillCommand = new Command<object>(ShowBill);
-        }
+            DefaultAddress = true;
+            OtherAddress = false;
+            CanNext = true;
+            NewAddress = "";
+            Note = "";
+            emptyAddress = checkEmptyAddress();
+            if(emptyAddress)
+            {
+                CanNext = false;
+                DefaultAddress = false;
+                OtherAddress = true;
+            }
 
-        public ConfirmInforOrderPopupViewModel(object order)
-        {
+            DefaultCheckCommand = new Command(DefaultCheck);
+            OtherCheckCommand = new Command(OtherCheck);
+
             this.Order = order as OrderBill;
-            ShowBillCommand = new Command<object>(ShowBill);
+            ShowBillCommand = new Command(ShowBill);
         }
 
-        public async void ShowBill(object bindingContext)
+        public bool checkEmptyAddress()
         {
+            DataProvider dataProvider = DataProvider.GetInstance();
+            string address = dataProvider.GetUserAddress();
+            string[] items = address.Split('#');
+            bool isEmpty = true;
+            foreach (string item in items)
+                if (item != "")
+                {
+                    isEmpty = false;
+                    break;
+                }
+            return isEmpty;
+        }
 
+        public void DefaultCheck()
+        {
+            if (emptyAddress)
+            {
+                return;
+            }
+            DefaultAddress = true;
+            OtherAddress = false;
+            CanNext = true;
+        }
+
+        public void OtherCheck()
+        {
+            DefaultAddress = false;
+            OtherAddress = true;
+            if (NewAddress == null || NewAddress == "") CanNext = false;
+            else CanNext = true;
+        }
+
+
+        public async void ShowBill()
+        {
+            if (!CanNext) return;
             var BillView = new FinalBillView();
-            OrderBill order = bindingContext as OrderBill;
-            BillView.BindingContext = order;
+            //set address
+            if (DefaultAddress)
+            {
+                this.Order.CustomerAddress = UserAddress;
+            }
+            else { this.Order.CustomerAddress = NewAddress; }
+            //set note
+            this.Order.Note = Note;
+            
+            BillView.BindingContext = new FinalBillViewModel(this.Order);
             await PopupNavigation.Instance.PopAsync();
             await App.Current.MainPage.Navigation.PushAsync(BillView, true);
+        }
+
+
+
+        public ConfirmInforOrderPopupViewModel()
+        {
+
+            //ShowBillCommand = new Command(ShowBill);
         }
     }
 }

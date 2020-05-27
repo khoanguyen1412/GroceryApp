@@ -52,9 +52,35 @@ namespace GroceryApp.Models
                 return new Command(val =>
                 {
                     QuantityOrder = (Int16.Parse(val.ToString()) + 1);
+                    if (QuantityOrder > QuantityInventory) QuantityOrder = QuantityInventory;
                     OnPropertyChanged("QuantityOrder");
 
 
+                });
+            }
+        }
+
+        public Command DecreaseInventoryCommand
+        {
+            get
+            {
+                return new Command(val =>
+                {
+                    QuantityInventory = (Int16.Parse(val.ToString()) - 1);
+                    if (QuantityInventory < 0) QuantityInventory = 0;
+                    OnPropertyChanged("QuantityInventory");
+                });
+            }
+        }
+
+        public Command IncreaseInventoryCommand
+        {
+            get
+            {
+                return new Command(val =>
+                {
+                    QuantityInventory = (Int16.Parse(val.ToString()) + 1);
+                    OnPropertyChanged("QuantityInventory");
                 });
             }
         }

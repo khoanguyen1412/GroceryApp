@@ -122,71 +122,92 @@
                                                         <RowDefinition Height="{Binding isHidden,Converter={StaticResource ProductVisibleConverter}}"/>
                                                     </Grid.RowDefinitions>
                                                     <pancake:PancakeView HorizontalOptions="Center" BackgroundColor="#93CCAB"  Grid.Column="0" CornerRadius="0,0,25,25" HasShadow="False"  WidthRequest="250" Padding="0" Margin="5">
-                                                        <pancake:PancakeView.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding BindingContext.ShowDetailProductCommand,Source={x:Reference Name=DetailStore}}"
-                                                                CommandParameter="{Binding .}"/>
-                                                        </pancake:PancakeView.GestureRecognizers>
+                                                        
                                                         <StackLayout Orientation="Vertical" Margin="0" HorizontalOptions="FillAndExpand">
                                                             <pancake:PancakeView Margin="0" Padding="0" HasShadow="False" CornerRadius="0,0,10,10" IsClippedToBounds="True">
-                                                                <ffimageloading:CachedImage Source="{Binding Product.ImageURL}" Aspect="AspectFill" HeightRequest="150"/>
+                                                                <Grid HeightRequest="150">
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="4*"/>
+                                                                        <RowDefinition Height="1*"/>
+                                                                    </Grid.RowDefinitions>
+                                                                    <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="2" Source="{Binding Product.ImageURL}" Aspect="AspectFill" HeightRequest="150">
+                                                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                                                            <TapGestureRecognizer Command="{Binding BindingContext.ShowDetailProductCommand,Source={x:Reference Name=DetailStore}}"
+                                                                            CommandParameter="{Binding .}"/>
+                                                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                                                    </ffimageloading:CachedImage>
+                                                                    <StackLayout Grid.Row="1" BackgroundColor="Black" Opacity="0.3">
+                                                                        
+                                                                    </StackLayout>
+                                                                    <Label Grid.Row="1" HorizontalOptions="Center" VerticalOptions="End"
+                                                                        Text="{Binding  Product.ProductName}" TextColor="White" FontSize="18"  Style="{StaticResource LabelTitleStyle}"/>
+                                                                </Grid>
+                                                                
                                                             </pancake:PancakeView>
-                                                            <StackLayout Margin="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                                                <Grid >
+                                                            <StackLayout Margin="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                                                <Grid HorizontalOptions="FillAndExpand">
                                                                     <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="2*"/>
-                                                                        <ColumnDefinition Width="1*"/>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                        <ColumnDefinition Width="auto"/>
                                                                     </Grid.ColumnDefinitions>
-                                                                    <Label Grid.Column="0" Margin="10,0" Text="{Binding Product.ProductName}" Style="{StaticResource LabelTitleStyle}"/>
-                                                                    <Label Grid.Column="1" Margin="0" VerticalOptions="Center" HorizontalOptions="End" Text="{Binding Product.Price}" Style="{StaticResource LabelTitleStyle}" FontSize="15"/>
+                                                                    <Label 
+                                                                           Grid.Column="0" 
+                                                                           Margin="5,0,0,0" 
+                                                                           VerticalOptions="Center" 
+                                                                           HorizontalOptions="Start" 
+                                                                           Text="{Binding Product.Price}" 
+                                                                           Style="{StaticResource BoldTitleStyle}" 
+                                                                           FontSize="17"/>
+                                                                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Margin="0,0,5,0">
+                                                                        <Label 
+                                                                           Text="Stock:" 
+                                                                           Style="{StaticResource LabelTitleStyle}" 
+                                                                           FontSize="15"/>
+                                                                        <Label 
+                                                                           Text="{Binding Product.QuantityInventory}" 
+                                                                           Style="{StaticResource LabelTitleStyle}" 
+                                                                           FontSize="15"/>
+                                                                    </StackLayout>
 
                                                                 </Grid>
                                                             </StackLayout>
                                                             <pancake:PancakeView
-                                                                HeightRequest="30"
+                                                                HeightRequest="40"
                                                                 CornerRadius="30"
                                                                 BorderThickness="1"
                                                                 BackgroundColor="White"
                                                                 BorderColor="Gray" 
-                                                                Margin="30,0,30,10">
+                                                                Margin="15,0,15,10">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
                                                                         <ColumnDefinition Width="1*" />
-                                                                        <ColumnDefinition Width="*" />
+                                                                        <ColumnDefinition Width="1*" />
                                                                         <ColumnDefinition Width="1*" />
                                                                     </Grid.ColumnDefinitions>
-                                                                    <Label 
-                                                                        x:Name="MinusButton"
-                                                                        Grid.Column="0"
-                                                                        Text="-"
-                                                                        Margin="20, 0, 0, 0"
-                                                                        FontSize="20">
-                                                                        <Label.GestureRecognizers>
+                                                                    <Image Source="newminus" Margin="5,5,-15,5">
+                                                                        <Image.GestureRecognizers>
                                                                             <TapGestureRecognizer
                                                                                 Command="{Binding Product.DecreaseCommand}"
                                                                                 CommandParameter="{Binding Product.QuantityOrder}"/>
-                                                                        </Label.GestureRecognizers>
-                                                                    </Label>
+                                                                        </Image.GestureRecognizers>
+                                                                    </Image>
                                                                     <Label 
                                                                         x:Name="ValueText"
                                                                         Grid.Column="1" 
                                                                         HorizontalTextAlignment="Center"
                                                                         HorizontalOptions="Center"
                                                                         VerticalOptions="Center"
+                                                                        FontSize="20"
                                                                         VerticalTextAlignment="Center"
                                                                         Text="{Binding Product.QuantityOrder}"/>
-                                                                    <Label 
-                                                                        x:Name="PlusButton"
-                                                                        Grid.Column="2"
-                                                                        Text="+"
-                                                                        FontSize="20"
-                                                                        Margin="0, 0, 15, 0">
-                                                                        <Label.GestureRecognizers>
+                                                                    <Image Grid.Column="2" Source="newplus" Margin="-15,5,5,5">
+                                                                        <Image.GestureRecognizers>
                                                                             <TapGestureRecognizer
                                                                                 Command="{Binding Product.IncreaseCommand}"
                                                                                 CommandParameter="{Binding Product.QuantityOrder}"
                                                                                 />
-                                                                        </Label.GestureRecognizers>
-                                                                    </Label>
+                                                                        </Image.GestureRecognizers>
+                                                                    </Image>
                                                                 </Grid>
                                                             </pancake:PancakeView>
                                                         </StackLayout>
@@ -196,13 +217,13 @@
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>
                                 </Grid>
-
+                                <!--================================================================-->
                                 <!--List REVIEW-->
                                 <Label Grid.Row="3" Text="Review" Margin="20,20,20,0" Style="{StaticResource LabelWellcomeStyle}"/>
                                 <StackLayout Grid.Row="4" Orientation="Vertical" Margin="20,0,20,100" BackgroundColor="LightGray">
                                     <CollectionView
-                            ItemsSource="{Binding FeedBacks}" 
-                            Margin="0">
+                                        ItemsSource="{Binding FeedBacks}" 
+                                        Margin="0">
                                         <CollectionView.ItemsLayout>
                                             <LinearItemsLayout
                                 Orientation="Horizontal"/>
@@ -254,7 +275,8 @@
                 IsVisible="false"
                 Opacity="0">
             </BoxView>
-            <popup:SelectedProductsPopupView
+            
+            <popup:SelectedProductsPopupView 
                 x:Name="CartPopup" BindingContext="{Binding .}">
                 
             </popup:SelectedProductsPopupView>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroceryApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,12 @@ namespace GroceryApp.Views.Screens
         {
             GoHome();
             return true;
+        }
+
+        private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            var viewmodel = this.BindingContext as CartViewModel;
+            viewmodel.UpdatePayment();
         }
     }
 }

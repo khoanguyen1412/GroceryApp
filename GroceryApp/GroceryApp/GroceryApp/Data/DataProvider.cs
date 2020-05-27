@@ -110,7 +110,7 @@ namespace GroceryApp.Data
             List<Product> products = new List<Product>();
 
             foreach (Product product in Database.Products)
-                if (product.IDStore == IDStore)
+                if (product.IDStore == IDStore && product.StateInStore!="HIDDEN")
                     products.Add(product);
 
             return products;
@@ -132,6 +132,201 @@ namespace GroceryApp.Data
             foreach (Store store in Database.Stores)
                 if (store.IDStore == IDStore)
                     return store;
+
+            return null;
+        }
+        //==========================================================
+
+        //LIST STORE VIEW==========================================================
+        public bool isTypeInStore(string IDType, string IDStore)
+        {
+            bool result = false;
+            List<Product> products = GetProductByIDStore(IDStore);
+            foreach(Product product in products)
+                if(product.IDType==IDType)
+                {
+                    result = true;
+                    break;
+                }
+
+            return result;
+        }
+
+        //==========================================================
+
+        //CART VIEW==========================================================
+        public string GetUserAddress()
+        {
+            foreach(User user in Database.Users)
+                if(user.IDUser==Infor.IDUser)
+                {
+                    return user.Address;
+                }
+            return "";
+        }
+
+        //==========================================================
+
+        //DASH BOARD VIEW==========================================================
+        public List<ItemChart> GetDataForChart()
+        {
+            List<OrderBill> orders = this.GetOrderBillByIDStore(Infor.IDStore);
+
+            List<ItemChart> itemCharts = new List<ItemChart>();
+
+            int currentMonth = DateTime.Today.Month;
+            int LastSixMonth = currentMonth - 5;
+            for(int i = LastSixMonth; i <= currentMonth; i++)
+            {
+                int month = i;
+                int year = DateTime.Today.Year;
+                if (month == 0)
+                {
+                    month = 12;
+                    year -= 1;
+                }
+                if (month < 0)
+                {
+                    month = 12 + i;
+                    year -= 1;
+                }
+
+                int countOrder = 0;
+                foreach(OrderBill order in orders)
+                {
+                    DateTime orderDate = order.Date;
+                    if (orderDate.Year == year && orderDate.Month == month)
+                        countOrder++;
+                }
+
+                ItemChart itemChart = new ItemChart
+                {
+                    Month = month,
+                    NumberOrder = countOrder,
+                };
+
+                itemCharts.Add(itemChart);
+            }
+
+            return itemCharts;
+        }
+
+        public int GetNumberProductOutOfStock()
+        {
+            List<Product> products = this.GetProductByIDStore(Infor.IDStore);
+            int count = 0;
+            foreach (Product product in products)
+                if (product.QuantityInventory == 0)
+                    count++;
+
+            return count;
+        }
+
+        public int GetNumberNewOrder()
+        {
+            List<OrderBill> orders = this.GetOrderBillByIDStore(Infor.IDStore);
+            int count = 0;
+            foreach (OrderBill order in orders)
+                if (order.State == "WAITING")
+                    count++;
+
+            return count;
+        }
+
+        public int GetNumberNewFeedback()
+        {
+            List<OrderBill> orders = this.GetOrderBillByIDStore(Infor.IDStore);
+            int count = 0;
+            foreach (OrderBill order in orders)
+                if (order.State == "RECEIVED" && order.Review != null && order.Review != "" &&
+                    (order.StoreAnswer == null) || order.StoreAnswer == "")
+                    count++;
+
+            return count;
+        }
+
+        public List<OrderBill> GetReceivedOrderByIDStore(string IDStore)
+        {
+            List<OrderBill> orders = this.GetOrderBillByIDStore(IDStore);
+            List<OrderBill> receivedOrders = new List<OrderBill>();
+
+            foreach (OrderBill order in orders)
+                if (order.State=="RECEIVED" && order.Review != null && order.Review != "")
+                    receivedOrders.Add(order);
+
+            return receivedOrders;
+        }
+
+        public User GetUserByIDUser(string IDUser)
+        {
+            foreach (User user in Database.Users)
+                if (user.IDUser == IDUser)
+                    return user;
+            return null;
+        }
+
+        //==========================================================
+
+        //PRODUCT MANAGER VIEW==========================================================
+        public List<Product> GetProductOfMyStore()
+        {
+            List<Product> products = new List<Product>();
+
+            foreach (Product product in Database.Products)
+                if (product.IDStore == Infor.IDStore)
+                    products.Add(product);
+
+            return products;
+        }
+
+        //==========================================================
+        //PRODUCT MANAGER VIEW==========================================================
+        public List<OrderBill> GetOrderBillsOfCustomer()
+        {
+            List<OrderBill> orderBills = new List<OrderBill>();
+
+            foreach (OrderBill order in Database.OrderBills)
+                if (order.IDStore == Infor.IDStore)
+                    orderBills.Add(order);
+
+            return orderBills;
+        }
+
+        //==========================================================
+        //REVIEW MANAGER VIEW==========================================================
+        public List<ReviewItem> GetReviewOfMyStore()
+        {
+            List<ReviewItem> result = new List<ReviewItem>();
+            foreach(OrderBill order in Database.OrderBills)
+                if(order.State=="RECEIVED"&& order.IDStore==Infor.IDStore && 
+                    order.Review!=null && order.Review!="")
+                {
+                    ReviewItem review = new ReviewItem
+                    {
+                        IDOrderBill=order.IDOrderBill,
+                        CustomerImage = this.GetUserByIDUser(order.IDUser).ImageURL,
+                        CustomerName = this.GetUserByIDUser(order.IDUser).UserName,
+                        Date = order.Date,
+                        Content = order.Review,
+                        StoreAnswer = order.StoreAnswer,
+                        Rating = order.Rating
+                    };
+
+                    review.SetStar();
+                    result.Add(review);
+                }
+
+            return result;
+        }
+
+        public OrderBill GetOrderBillByIDOrderBill(string IDOrderBill)
+        {
+            foreach (OrderBill order in Database.OrderBills)
+                if (order.IDOrderBill == IDOrderBill)
+                {
+                    order.Init();
+                    return order;
+                }
 
             return null;
         }

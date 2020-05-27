@@ -20,13 +20,14 @@ namespace GroceryApp
             //MainPage = new NavigationPage(new DetailProductView());
             //MainPage = new SharedTransitionNavigationPage(new TabBarCustomer());
             ///MainPage = new SharedTransitionNavigationPage(new TabbarStoreManager());
-            //MainPage = AppDrawer.GetInstance();
+            
 
             //MainPage = new NavigationPage(new StoreSettingView());
             Infor.IDUser = "1";
             Infor.IDStore = "1";
             Infor.IDCart = "1";
-            MainPage = new SharedTransitionNavigationPage(new ListStoresView());
+            MainPage = new NavigationPage(new StoreSettingView());
+            //MainPage = AppDrawer.GetInstance();
         }
 
         protected override void OnStart()

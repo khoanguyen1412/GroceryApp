@@ -99,6 +99,7 @@
 
                     <Button IsVisible="{Binding State,Converter={StaticResource OrderDetailButtonVisibleConverter}}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" BackgroundColor="{Binding State, Converter={StaticResource OrderDetailButtonColorConverter}}" Text="{Binding State, Converter={StaticResource OrderDetailButtonTextConverter}}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"
                             Command="{Binding OrderDetail.ShowReviewPopupCommand, Source={StaticResource Locator}}"
+                            CommandParameter="{Binding .}"
                             />
                 </Grid>
             </Frame>

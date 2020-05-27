@@ -8,7 +8,7 @@
              xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
-             BindingContext="{Binding AddProduct, Source={StaticResource Locator}}"
+             
              x:Class="GroceryApp.Views.Popups.ReplyPopupView">
     <popup:PopupPage.Animation>
 
@@ -75,11 +75,11 @@
                 </Frame>
                 <StackLayout Grid.Row="1" Orientation="Vertical" Margin="0,0,0,20">
                     <Label Text="Your Answer:" FontSize="25" Margin="10,10,0,0" Style="{StaticResource LabelDefaultStyle}"/>
-                    <controls:CustomEntry Margin="10,0,10,0" />
+                    <controls:CustomEntry x:Name="AnswerEntry" TextChanged="CustomEntry_TextChanged" Margin="10,0,10,0" Text="{Binding StoreAnswer}"/>
                 </StackLayout>
                 <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,0" HorizontalOptions="End" HeightRequest="50" VerticalOptions="End">
-                    <Button Clicked="Button_Clicked" Text="Cancel" Margin="0,0,-15,0" TextColor="Accent" BackgroundColor="White"/>
-                    <Button Command="{Binding AddCommand}"  Text="Send" TextColor="Accent" BackgroundColor="White"/>
+                    <Button Clicked="CancelClick" Text="Cancel" Margin="0,0,-15,0" TextColor="Accent" BackgroundColor="White"/>
+                    <Button Clicked="SendClick"  Text="Send" TextColor="Accent" BackgroundColor="White"/>
                 </StackLayout>
             </Grid>
         </Grid>

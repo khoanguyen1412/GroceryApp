@@ -20,7 +20,6 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="number" HorizontalOptions="Center" IsVisible="False" VerticalOptions="Center" FontSize="30"/>
 
                 <Grid Grid.Row="0" Grid.Column="0" ColumnSpacing="0" RowSpacing="0" BackgroundColor="Transparent" Margin="10,10,0,0">
                     <Grid.ColumnDefinitions>
@@ -30,7 +29,7 @@
                     <Image  x:Name="order" Source="colororder2" WidthRequest="70" HeightRequest="70"/>
                     <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center">
                         <Label  Text="Orders" HorizontalOptions="Center" FontFamily="{StaticResource RubikMedium}" FontSize="20" Padding="0"/>
-                        <Label Grid.Column="1" Grid.Row="1" TextColor="Accent" Text="200" FontFamily="{StaticResource RubikMedium}" FontSize="35" Padding="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" TextColor="Accent" Text="{Binding StoreDashBoard.NumberOfOrder, Source={StaticResource Locator}}" FontFamily="{StaticResource RubikMedium}" FontSize="35" Padding="0" HorizontalOptions="Center" VerticalOptions="Center"/>
                     </StackLayout>
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="1" ColumnSpacing="0" RowSpacing="0" BackgroundColor="Transparent" Margin="0,10,10,0">
@@ -41,7 +40,7 @@
                     <Image  x:Name="product" Source="colorproduct2" WidthRequest="70" HeightRequest="70"/>
                     <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center" >
                         <Label  Text="Products" HorizontalOptions="Center" FontFamily="{StaticResource RubikMedium}" FontSize="20" Padding="0"/>
-                        <Label Grid.Column="1" Grid.Row="1" TextColor="Accent" Text="52" FontFamily="{StaticResource RubikMedium}" FontSize="35" Padding="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" TextColor="Accent" Text="{Binding StoreDashBoard.NumberOfProduct, Source={StaticResource Locator}}" FontFamily="{StaticResource RubikMedium}" FontSize="35" Padding="0" HorizontalOptions="Center" VerticalOptions="Center"/>
                     </StackLayout>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" ColumnSpacing="0" RowSpacing="0" BackgroundColor="Transparent" Margin="0,0,0,10">
@@ -52,7 +51,7 @@
                     <Image x:Name="revenue" Margin="0,0,15,0" Source="colormoney" WidthRequest="85" HeightRequest="85"/>
                     <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center" >
                         <Label  Text="Revenue" HorizontalOptions="Center" FontFamily="{StaticResource RubikMedium}" FontSize="25" Padding="0" />
-                        <Label Grid.Column="1" Grid.Row="1" TextColor="Accent" Text="1000000" FontFamily="{StaticResource RubikMedium}" FontSize="35" Padding="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" TextColor="Accent" Text="{Binding StoreDashBoard.Renenue, Source={StaticResource Locator}}" FontFamily="{StaticResource RubikMedium}" FontSize="35" Padding="0" HorizontalOptions="Center" VerticalOptions="Center"/>
                     </StackLayout>
                 </Grid>
 

@@ -49,22 +49,30 @@
 
                         <Label Grid.Row="0" TextColor="Black" Margin="0,20,0,20" Style="{StaticResource LabelWellcomeStyle}" Text="Deliver to:"/>
                         <StackLayout Grid.Row="1" Orientation="Horizontal" >
-                            <CheckBox   />
-                            <Label Text="125 Trần Hưng Dụ, Hà Nội" VerticalOptions="Center" FontSize="20"/>
+
+                            <Image Source="{Binding DefaultAddress,Converter={StaticResource RadioAddressConverter}}" HeightRequest="25" WidthRequest="25">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DefaultCheckCommand}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label TextColor="{Binding DefaultAddress, Converter={StaticResource TextColorEnableConverter}}" Text="{Binding UserAddress,Converter={StaticResource AddressFormatConverter}}" VerticalOptions="Center" FontSize="20" Margin="5,0,0,0"/>
                         </StackLayout>
-                        <StackLayout Grid.Row="2" Orientation="Horizontal" >
-                            <CheckBox/>
-                            <Label Text="Another Address:" VerticalOptions="Center" FontSize="20"/>
+                        <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="0,5,0,0">
+                            <Image Source="{Binding OtherAddress,Converter={StaticResource RadioAddressConverter}}" HeightRequest="25" WidthRequest="25">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OtherCheckCommand}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label Text="Another Address:" TextColor="{Binding OtherAddress, Converter={StaticResource TextColorEnableConverter}}" VerticalOptions="Center" FontSize="20" Margin="5,0,0,0"/>
                         </StackLayout>
-                        <controls:CustomEntry TextChanged="address_TextChanged" x:Name="address" Grid.Row="3" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
+                        <controls:CustomEntry IsEnabled="{Binding OtherAddress}"  Text="{Binding NewAddress}" Placeholder="new address.." Grid.Row="3" Margin="35,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
                         <Label Grid.Row="4" TextColor="Black" Margin="0,20,0,20" Style="{StaticResource LabelWellcomeStyle}" Text="Order Note:"/>
-                        <controls:CustomEntry TextChanged="note_TextChanged" x:Name="note" Grid.Row="5" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
+                        <controls:CustomEntry Text="{Binding Note}" Grid.Row="5" Margin="35,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
                     </Grid>
 
-                    <Frame x:Name="btnNext" CornerRadius="10" BackgroundColor="#00cc00" HeightRequest="45" Margin="17,0,17,10" Padding="0">
+                    <Frame x:Name="btnNext" CornerRadius="10" BackgroundColor="{Binding NextColor}" HeightRequest="45" Margin="17,0,17,10" Padding="0">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ConfirmOrder.ShowBillCommand, Source={StaticResource Locator}}"
-                                                                CommandParameter="{Binding .}"/>
+                            <TapGestureRecognizer Command="{Binding ShowBillCommand}"/>
                         </Frame.GestureRecognizers>
                         <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
                             <Label Margin="120,0,0,0" Text="NEXT" Style="{StaticResource LabelDefaultStyle}" FontSize="25" TextColor="White"/>

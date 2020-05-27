@@ -1,4 +1,5 @@
 ﻿using GroceryApp.Data;
+using GroceryApp.Models;
 using GroceryApp.Views.Screens;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,11 @@ namespace GroceryApp.ViewModels
 
     }
 
-    public class StoreInfor
-    {
-        public string StoreName { get; set; }
-        public string StoreDescription { get; set; }
-    }
+    
     class StoreSetttingViewModel: BaseViewModel, IStoreSetttingViewModel
     {
-
+        DataProvider dataProvider = DataProvider.GetInstance();
+        private Store myStore;
         private string _storeImage;
 
         public string StoreImage
@@ -42,13 +40,13 @@ namespace GroceryApp.ViewModels
         {
    
             var inforPage = new StoreInformationView();
-            /*
+            
             inforPage.BindingContext = new StoreInfor 
                                         { 
-                                            StoreName= DataProvider.Store.StoreName,
-                                            StoreDescription= DataProvider.Store.StoreDescription
+                                            StoreName= myStore.StoreName,
+                                            StoreDescription= myStore.StoreDescription
                                         };
-                                        */
+                                        
             await App.Current.MainPage.Navigation.PushAsync(inforPage, true);
         }
 
@@ -56,19 +54,33 @@ namespace GroceryApp.ViewModels
         {
 
             var addressPage = new StoreAddressView();
-            /*
-            inforPage.BindingContext = new StoreInfor
+
+            string[] items = myStore.StoreAddress.Split('#');
+            addressPage.BindingContext = new AddressItem
             {
-                StoreName = DataProvider.Store.StoreName,
-                StoreDescription = DataProvider.Store.StoreDescription
-            };*/
+                Country=items[0],
+                City=items[1],
+                HouseNumber=items[2]
+            };
             await App.Current.MainPage.Navigation.PushAsync(addressPage, true);
         }
 
         public void loadData()
         {
-            //_storeImage = DataProvider.Store.ImageURL;
+            myStore = dataProvider.GetStoreByIDStore(Infor.IDStore);
+            StoreImage = myStore.ImageURL;
+        }
 
+        public void ChangeInfor(StoreInfor newInfor)
+        {
+            myStore.StoreName = newInfor.StoreName;
+            myStore.StoreDescription = newInfor.StoreDescription;
+        }
+
+        public void ChangeAddress(AddressItem newAddress)
+        {
+            string address = newAddress.Country + "#" + newAddress.City + "#" + newAddress.HouseNumber;
+            myStore.StoreAddress = address;
         }
     }
 }

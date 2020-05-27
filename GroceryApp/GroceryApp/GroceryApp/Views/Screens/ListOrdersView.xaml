@@ -7,6 +7,8 @@
              BackgroundColor="White"
              BindingContext="{Binding ListOrders,Source={StaticResource Locator}}"
              x:Name="ListOrdersPage"
+             NavigationPage.HasNavigationBar="False"
+             
              x:Class="GroceryApp.Views.Screens.ListOrdersView">
     <ContentPage.Content>
         <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never">
@@ -16,7 +18,7 @@
                     <Image x:Name="backLabel" Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
                 </AbsoluteLayout>
                 <Label Margin="20,20,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Waiting Orders"/>
-                <Grid HeightRequest="200">
+                <Grid HeightRequest="{Binding WaitingOrders,Converter={StaticResource GridHeightOrderConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
@@ -95,7 +97,7 @@
                 </Grid>
 
                 <Label Margin="20,0,20,0"  Style="{StaticResource LabelWellcomeStyle}" Text="Delivering Orders"/>
-                <Grid HeightRequest="200">
+                <Grid HeightRequest="{Binding DeliveringOrders,Converter={StaticResource GridHeightOrderConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
@@ -178,7 +180,7 @@
                 </Grid>
 
                 <Label Margin="20,0,20,0"  Style="{StaticResource LabelWellcomeStyle}" Text="Received Orders"/>
-                <Grid HeightRequest="200">
+                <Grid HeightRequest="{Binding ReceivedOrders,Converter={StaticResource GridHeightOrderConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>

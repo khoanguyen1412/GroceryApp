@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using GroceryApp.Data;
+using ImTools;
 
 namespace GroceryApp.ViewModels
 {
@@ -15,6 +16,12 @@ namespace GroceryApp.ViewModels
     {
         public string IDStore { get; set; }
         public string Name { get; set; }
+        public bool isChosen { get; set; }
+    }
+
+    public class ProductItemCart
+    {
+        public Product Product { get; set; }
         public bool isChosen { get; set; }
     }
     public interface ICartViewModel
@@ -26,9 +33,34 @@ namespace GroceryApp.ViewModels
 
 
         private int currentStore;
-        private ObservableCollection<Product> _products;
 
-        public ObservableCollection<Product> Products
+        private bool _canOrder;
+        public bool CanOrder
+        {
+            get { return _canOrder; }
+            set { _canOrder = value; OnPropertyChanged(nameof(CanOrder)); }
+        }
+
+        private double _subtotal;
+        public double Subtotal {
+            get { return _subtotal; }
+            set { _subtotal = value; OnPropertyChanged(nameof(Subtotal)); }
+        }
+        private double _delivery;
+        public double Delivery {
+            get { return _delivery; }
+            set { _delivery = value; OnPropertyChanged(nameof(Delivery)); }
+        }
+        private double _total;
+
+        public double Total {
+            get { return _total; }
+            set { _total = value; OnPropertyChanged(nameof(Total)); }
+        }
+
+        private ObservableCollection<ProductItemCart> _products;
+
+        public ObservableCollection<ProductItemCart> Products
         {
             get { return _products; }
             set { _products = value; OnPropertyChanged(nameof(Products)); }
@@ -45,14 +77,43 @@ namespace GroceryApp.ViewModels
         public ICommand ShowConfirmInforCommand { get; set; }
         public ICommand ChooseStoreCommand { get; set; }
 
-
         public CartViewModel()
         {
             currentStore = 0;
+            Subtotal = 0;
+            Delivery = 0;
+            Total = 0;
+            
             LoadStoreItems();
             LoadProducts();
+            CanOrder = false;
             ShowConfirmInforCommand = new Command(ShowConfirmInfor);
             ChooseStoreCommand = new Command<string>(ChooseStore);
+            
+        }
+
+
+
+        public void UpdatePayment()
+        {
+            double subtotal = 0;
+            double total = 0;
+            double delivery = 0;
+            foreach(ProductItemCart item in _products)
+                if (item.isChosen)
+                {
+                    subtotal += item.Product.QuantityOrder * item.Product.Price;
+                }
+
+            if (subtotal == 0) delivery = 0;
+            else delivery = 10;
+            total = delivery + subtotal;
+
+            Total = total;
+            Subtotal = subtotal;
+            Delivery = delivery;
+            if (Total == 0) CanOrder = false;
+            else CanOrder = true;
         }
 
         public void ChooseStore(string storeName)
@@ -84,81 +145,22 @@ namespace GroceryApp.ViewModels
 
         public async void ShowConfirmInfor()
         {
-            List<Product> ListProducts = new List<Product>
-            {
-               
-                new Product{
-                    IDProduct="1",
-                    IDType="0",
-                    IDStore="0",
-                    ProductName="Potatoxxxxx",
-                    ProductDescription="Juicy potatos from West US",
-                    Unit="one",
-                    QuantityInventory=23,
-                    QuantityOrder=3,
-                    Price=7000,
-                    ImageURL="https://www.asianscientist.com/wp-content/uploads/bfi_thumb/20180719-potatoes-vegetables-pexels-36ls0syth5iutrozsmneo0.jpeg",
-                    },
-                new Product{
-                    IDProduct="2",
-                    IDType="1",
-                    IDStore="1",
-                    ProductName="Orange",
-                    ProductDescription="Small juicy Oranges with no seed",
-                    Unit="one",
-                    QuantityInventory=45,
-                    QuantityOrder=10,
-                    Price=5000,
-                    ImageURL="https://www.irishtimes.com/polopoly_fs/1.3923226.1560339148!/image/image.jpg_gen/derivatives/ratio_1x1_w1200/image.jpg",
-                    },
-                new Product{
-                    IDProduct="3",
-                    IDType="2",
-                    IDStore="2",
-                    ProductName="Lolly Pop",
-                    ProductDescription="No harmful toxic and 100% from milk",
-                    Unit="one",
-                    QuantityInventory=100,
-                    QuantityOrder=15,
-                    Price=500,
-                    ImageURL="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnSWbkRZa817h-8I2OfbmyS3AeStVjy2dhf_j5F9xae5tdan9-&usqp=CAU",
-                    },
-                new Product{
-                    IDProduct="4",
-                    IDType="3",
-                    IDStore="3",
-                    ProductName="Lime water",
-                    ProductDescription="Natural lemons and no fat sugar",
-                    Unit="one",
-                    QuantityInventory=50,
-                    QuantityOrder=6,
-                    Price=15000,
-                    ImageURL="https://www.7sky.life/sys/wp-content/uploads/lemon-water.jpg",
-                    },
-                new Product{
-                    IDProduct="5",
-                    IDType="4",
-                    IDStore="4",
-                    ProductName="Cup cake black for black people",
-                    ProductDescription="White scream, suit for dieting",
-                    Unit="one",
-                    QuantityInventory=15,
-                    QuantityOrder=7,
-                    Price=7000,
-                    ImageURL="https://media.cooky.vn/images/blog-2016/cach-phan-biet-2-loai-banh-cupcake-voi-muffin-2.jpg",
-                    },
-            };
+            List<Product> ListProducts = new List<Product>();
+            foreach (ProductItemCart item in _products)
+                if (item.isChosen)
+                    ListProducts.Add(item.Product);
+
             OrderBill order = new OrderBill()
             {
-                IDOrderBill = "0",
-                IDUser = "1",
-                IDStore = "1",
-                Date = new DateTime(2020, 4, 3),
-                SubTotalPrice = 120000,
-                DeliveryPrice = 10000,
-                TotalPrice = 130000,
-                CustomerAddress = "25 Trần Duy Hưng, Hà Nội",
-                Note = "Giao hàng từ 6->8h sáng",
+                IDOrderBill = "9999",
+                IDUser = Infor.IDUser,
+                IDStore = StoreItems[currentStore].IDStore,
+                Date = DateTime.Today,
+                SubTotalPrice = Subtotal,
+                DeliveryPrice = Delivery,
+                TotalPrice = Total,
+                CustomerAddress = "",
+                Note = "",
                 State = "WAITING",
                 Review = "",
                 StoreAnswer = "",
@@ -166,18 +168,27 @@ namespace GroceryApp.ViewModels
                 OrderedProducts = ListProducts
             };
             var addressPopup = new ConfirmInforOrderPopupView();
-            addressPopup.BindingContext = order;
-           // addressPopup.Setup();
+            var PopupVM = new ConfirmInforOrderPopupViewModel(order);
+            addressPopup.BindingContext = PopupVM;
             await PopupNavigation.Instance.PushAsync(addressPopup);
         }
 
         public void LoadProducts()
         {
             var dataProvider = DataProvider.GetInstance();
-            _products = new ObservableCollection<Product>(dataProvider.GetProductInCartByIDStore(StoreItems[currentStore].IDStore));
-
+            List<Product> products = dataProvider.GetProductInCartByIDStore(StoreItems[currentStore].IDStore);
+            List<ProductItemCart> items = new List<ProductItemCart>();
+            foreach(Product product in products)
+            {
+                ProductItemCart item = new ProductItemCart
+                {
+                    Product = product,
+                    isChosen = false
+                };
+                items.Add(item);
+            }
             
-            Products = new ObservableCollection<Product>(_products);
+            Products = new ObservableCollection<ProductItemCart>(items);
             
         }
 

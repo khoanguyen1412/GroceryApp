@@ -24,6 +24,7 @@ namespace GroceryApp.Views.Converters
                 isList = false;
                 leng = 22;
                 address = (String)value;
+                address = AddressFormatConverter(address);
             }
             
            
@@ -46,6 +47,43 @@ namespace GroceryApp.Views.Converters
             }
             return shortName;
 
+        }
+
+        public string AddressFormatConverter(string address)
+        {
+            
+            string[] items = address.Split('#');
+            string result = "";
+            if (checkEmpty(items)) return "";
+
+            bool first = true; //check xem phần tử đầu tiên khác rỗng, để tránh kí tự cách đầu chuỗi
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] != "")
+                {
+                    if (first)
+                    {
+                        first = false;
+                        result += items[i] + ",";
+                        continue;
+                    }
+                    result += " " + items[i] + ",";
+                }
+
+            }
+
+            return result.Substring(0, result.Length - 1);
+        }
+
+        public bool checkEmpty(string[] items)
+        {
+
+            foreach (string item in items)
+                if (item != "")
+                {
+                    return false;
+                }
+            return true;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

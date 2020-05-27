@@ -36,9 +36,10 @@
                             </Grid.RowDefinitions>
 
 
-                            <Frame Padding="10" BackgroundColor="Transparent" Margin="20,-80,20,0" Grid.Row="0" CornerRadius="15" IsClippedToBounds="True" HasShadow="True" >
+                            <Frame Padding="10" BackgroundColor="Transparent" Margin="20,-55,20,0" Grid.Row="0" CornerRadius="15" IsClippedToBounds="True" HasShadow="True" >
                                 <StackLayout >
-                                    <Grid BackgroundColor="Transparent" >
+                                    <Grid >
+                                        <pancake:PancakeView BackgroundColor="Black" CornerRadius="10,10,0,0" Opacity="0.3"/>
                                         <Label TextColor="White" FontSize="30" Text="{Binding ProductName}" HorizontalTextAlignment="Center" HorizontalOptions="Center" Style="{StaticResource BoldTitleStyle}"/>
                                     </Grid>
 
@@ -70,15 +71,20 @@
                                     <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
                                 <Frame HorizontalOptions="End" Padding="0" BackgroundColor="Transparent" Margin="0,0,10,0" Grid.Column="0" HeightRequest="50" WidthRequest="50"  VerticalOptions="Center">
-                                    <Button Text="-"  HeightRequest="60" WidthRequest="60" CornerRadius="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <Button   HeightRequest="60" WidthRequest="60" CornerRadius="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                            ImageSource="newminus"
+                                            Command="{Binding DecreaseCommand}"
+                                            CommandParameter="{Binding QuantityOrder}"/>
                                 </Frame>
-                                <Label Margin="0,7,0,0" FontSize="25" Grid.Column="1" Text="1" />
+                                <Label Margin="0,7,0,0" FontSize="25" Grid.Column="1" Text="{Binding QuantityOrder}" />
                                 <Frame HorizontalOptions="Start" Padding="0" BackgroundColor="Transparent" Margin="10,0,0,0" Grid.Column="2" HeightRequest="50" WidthRequest="50" VerticalOptions="Center">
-                                    <Button Text="+"  HeightRequest="60" WidthRequest="60" CornerRadius="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <Button ImageSource="newplus" Padding="50" HeightRequest="60" WidthRequest="60" CornerRadius="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                            Command="{Binding IncreaseCommand}"
+                                            CommandParameter="{Binding QuantityOrder}"/>
                                 </Frame>
                                 
                             </Grid>
-                            <Button BackgroundColor="#f7436a" Margin="40,170,40,0" TextColor="White" CornerRadius="10" VerticalOptions="End" Grid.Row="5" HeightRequest="60" WidthRequest="200"  Text="Add to order" Style="{StaticResource LabelWellcomeStyle}"/>
+                            <Button Clicked="AddToChosenProducts" BackgroundColor="#f7436a" Margin="40,170,40,0" TextColor="White" CornerRadius="10" VerticalOptions="End" Grid.Row="5" HeightRequest="60" WidthRequest="200"  Text="Add to order" Style="{StaticResource LabelWellcomeStyle}"/>
                         </Grid>
                         <Frame BackgroundColor="Transparent" HeightRequest="200"/>
                     </StackLayout>

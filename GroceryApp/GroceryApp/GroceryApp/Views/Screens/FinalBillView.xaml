@@ -55,11 +55,11 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <AbsoluteLayout HeightRequest="50" Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
-                        <Label  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"  Style="{StaticResource Bold}" Text="KING DOM GROCERY"  HorizontalOptions="Center"/>
+                        <Label  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"  Style="{StaticResource Bold}" Text="{Binding StoreName}"  HorizontalOptions="Center"/>
                         <Image Source="backarrow" Margin="0,-30,0,0" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
                         
                     </AbsoluteLayout>
-                    <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Center" Grid.Row="1" Text="Khu phố Khánh Chữ 2, Thị Trấn Khánh Hải, Huyện Ninh Hải, Tỉnh Ninh Thuận, Việt Nam"/>
+                    <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Center" Grid.Row="1" Text="{Binding StoreAddress,Converter={StaticResource AddressFormatConverter}}"/>
                     <BoxView Grid.Row="2" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
                     <Label Grid.Row="3" Style="{StaticResource Bold}" HorizontalTextAlignment="Center"  Text="PAYMENT SLIP"/>
                     <Grid Grid.Row="4">
@@ -73,8 +73,8 @@
                         </Grid.ColumnDefinitions>
                         <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="0" Text="Bill Code:"/>
                         <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="1" Text="Date:"/>
-                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="1" Text="{Binding ID}" Margin="20,0,0,0"/>
-                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="1" Grid.Column="1" Text="14/02/2020" Margin="20,0,0,0"/>
+                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="1" Text="{Binding Order.IDOrderBill}" Margin="20,0,0,0"/>
+                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="1" Grid.Column="1" Text="{Binding Order.Date,Converter={StaticResource DateTimeConverter}}" Margin="20,0,0,0"/>
 
                     </Grid>
                     <BoxView Grid.Row="5" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
@@ -109,7 +109,7 @@
                                         <Label Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding ProductName}" Style="{StaticResource Medium}"/>
                                         <Label Grid.Column="0" Grid.Row="1"  Text="{Binding QuantityOrder}" Style="{StaticResource Normal}" HorizontalTextAlignment="Center"/>
                                         <Label Grid.Column="1" Grid.Row="1" Text="{Binding Price}" Style="{StaticResource Normal}" HorizontalTextAlignment="Center"/>
-                                        <Label Grid.Column="2" Grid.Row="1"  Text="{Binding Price}" Style="{StaticResource Normal}" HorizontalTextAlignment="End"/>
+                                        <Label Grid.Column="2" Grid.Row="1"  Text="{Binding .,Converter={StaticResource SinglePriceSelectedProductConverter}}" Style="{StaticResource Normal}" HorizontalTextAlignment="End"/>
 
                                     </Grid>
 
@@ -123,24 +123,33 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label Text="Total:" Style="{StaticResource Normal}" HorizontalOptions="Start"/>
-                        <Label Grid.Column="1" Text="{Binding SubTotalPrice}" Style="{StaticResource Normal}" HorizontalOptions="End"/>
+                        <Label Text="Delivery:" Style="{StaticResource Normal}" HorizontalOptions="Start"/>
+                        <Label Grid.Column="1" Text="{Binding Order.DeliveryPrice}" Style="{StaticResource Normal}" HorizontalOptions="End"/>
 
                     </Grid>
                     <Grid Grid.Row="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Total:" Style="{StaticResource Normal}" HorizontalOptions="Start"/>
+                        <Label Grid.Column="1" Text="{Binding Order.TotalPrice}" Style="{StaticResource Normal}" HorizontalOptions="End"/>
+
+                    </Grid>
+                    <Grid Grid.Row="11">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Text="Payment (rounded):" Style="{StaticResource Bold}" HorizontalOptions="Start" FontSize="18"/>
-                        <Label Grid.Column="1" Text="200000" Style="{StaticResource Bold}" HorizontalOptions="End" FontSize="18"/>
+                        <Label Grid.Column="1" Text="{Binding Order.TotalPrice}" Style="{StaticResource Bold}" HorizontalOptions="End" FontSize="18"/>
                     </Grid>
-                    <BoxView Grid.Row="11" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
-                    <Label Grid.Row="12" FontSize="15" Text="(Above prices included VAT)" HorizontalOptions="Center" FontAttributes="Italic"  />
+                    <BoxView Grid.Row="12" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
+                    <Label Grid.Row="13" FontSize="15" Text="(Above prices included VAT)" HorizontalOptions="Center" FontAttributes="Italic"  />
                 </Grid>
             </ScrollView>
             <Button Grid.Row="1" Margin="0,5" Text="Finish Order" HorizontalOptions="Center" WidthRequest="300" FontSize="20" CornerRadius="10"
-                    Command="{Binding FinalBill.SendOrderCommand,Source={StaticResource Locator}}"
+                    Command="{Binding SendOrderCommand}"
                     CommandParameter="{Binding .}"/>
         </Grid>
     </ContentPage.Content>

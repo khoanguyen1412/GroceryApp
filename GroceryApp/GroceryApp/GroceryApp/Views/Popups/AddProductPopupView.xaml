@@ -8,7 +8,7 @@
              xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
-             BindingContext="{Binding AddProduct, Source={StaticResource Locator}}"
+             
              x:Class="GroceryApp.Views.Popups.AddProductPopupView">
     <popup:PopupPage.Animation>
 
@@ -48,7 +48,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
+                    <Image Grid.Row="0" Grid.RowSpan="2" Source="{Binding ImageURL}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
                     <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black" Opacity="0.4">
                     </Frame>
                     <Image Grid.Row="1" Margin="13" Source="addphoto" HorizontalOptions="Center" Opacity="1" VerticalOptions="Center" Aspect="AspectFit"/>
@@ -57,38 +57,36 @@
             </pancake:PancakeView>
             <Label Grid.Row="1" Grid.Column="0" Text="Name:"  Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
 
-            <controls:CustomEntry  Grid.Row="1" Grid.Column="1"  HorizontalOptions="FillAndExpand"/>
+            <controls:CustomEntry  Grid.Row="1" Grid.Column="1" Text="{Binding ProductName}"  HorizontalOptions="FillAndExpand"/>
 
             <Label Grid.Row="2" Grid.Column="0" Text="Type:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
             <pancake:PancakeView Margin="0,0,0,10" HasShadow="True" Grid.Row="2" Elevation="2" Grid.Column="1" CornerRadius="10" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
-                <Picker  Margin="7,0,0,0">
-                    <Picker.Items>
-                        <x:String>Vegetable</x:String>
-                        <x:String>Fruit</x:String>
-                        <x:String>Drink</x:String>
-                        <x:String>Candy</x:String>
-                        <x:String>Cake</x:String>
-                    </Picker.Items>
+                <Picker  Margin="7,0,0,0" ItemsSource="{Binding typeNames}" SelectedItem="{Binding CurrentType}">
+
                 </Picker>
             </pancake:PancakeView>
 
             <Label Grid.Row="3" Grid.Column="0" Text="Unit:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
             <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center">
-                <CheckBox/>
+                <Image Source="{Binding RadioDefault,Converter={StaticResource RadioAddressConverter}}" HeightRequest="25" WidthRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChooseDefaultCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 <pancake:PancakeView BorderColor="Black" HasShadow="True" Grid.Row="2" Elevation="2" Grid.Column="1" CornerRadius="10" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
-                    <Picker  Margin="7,0,0,0">
-                        <Picker.Items>
-                            <x:String>Kg</x:String>
-                            <x:String>Gram</x:String>
-                            <x:String>Cup</x:String>
-                        </Picker.Items>
+                    <Picker IsEnabled="{Binding RadioDefault}" Margin="7,0,0,0" ItemsSource="{Binding UnitNames}" SelectedItem="{Binding CurrentUnit}">
+
                     </Picker>
                 </pancake:PancakeView>
 
             </StackLayout>
             <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center" Margin="0,0,0,10">
-                <CheckBox/>
-                <controls:CustomEntry  Placeholder="Other.."  HorizontalOptions="FillAndExpand"/>
+                <Image Source="{Binding RadioOther,Converter={StaticResource RadioAddressConverter}}" HeightRequest="25" WidthRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChooseOtherCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <controls:CustomEntry Text="{Binding OtherUnit}" IsEnabled="{Binding RadioOther}" Placeholder="Other.."  HorizontalOptions="FillAndExpand"/>
 
             </StackLayout>
 
@@ -96,10 +94,16 @@
             <Label Grid.Row="6" Margin="0,-5,0,0" Grid.Column="0" Text="1 Product:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Start" />
             <StackLayout Grid.Row="5" Margin="0,0,0,20" Grid.Column="1" Grid.RowSpan="2" BackgroundColor="Transparent"  VerticalOptions="Center" Orientation="Horizontal">
                 <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DecUnitAmountCommand}"/>
+                    </pancake:PancakeView.GestureRecognizers>
                     <Image Source="subtract" Margin="3"/>
                 </pancake:PancakeView>
-                <controls:CustomEntry Keyboard="Numeric" Placeholder="0"  HorizontalOptions="Center" WidthRequest="50"/>
+                <controls:CustomEntry Keyboard="Numeric" Placeholder="0" Text="{Binding UnitAmount}"  HorizontalOptions="Center" WidthRequest="70"/>
                 <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IncUnitAmountCommand}"/>
+                    </pancake:PancakeView.GestureRecognizers>
                     <Image Source="plus" Margin="3"/>
                 </pancake:PancakeView>
             </StackLayout>
@@ -108,23 +112,29 @@
             <Label Grid.Row="8" Margin="0,-5,0,0" Grid.Column="0" Text="in stock:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Start" />
             <StackLayout Grid.Row="7" Margin="0,0,0,20"  Grid.Column="1" Grid.RowSpan="2" BackgroundColor="Transparent" VerticalOptions="Center" Orientation="Horizontal">
                 <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DecInventoryCommand}"/>
+                    </pancake:PancakeView.GestureRecognizers>
                     <Image Source="subtract" Margin="3"/>
                 </pancake:PancakeView>
-                <controls:CustomEntry Keyboard="Numeric" Placeholder="0"  HorizontalOptions="Center" WidthRequest="50"/>
+                <controls:CustomEntry Keyboard="Numeric" Placeholder="0"  Text="{Binding QuantityInventory}"  HorizontalOptions="Center" WidthRequest="70"/>
                 <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IncInventoryCommand}"/>
+                    </pancake:PancakeView.GestureRecognizers>
                     <Image Source="plus" Margin="3"/>
                 </pancake:PancakeView>
             </StackLayout>
 
             <Label Grid.Row="9" Grid.Column="0" Text="Price:"  Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
-            <controls:CustomEntry Keyboard="Numeric" Grid.Row="9" Grid.Column="1"  HorizontalOptions="FillAndExpand"/>
+            <controls:CustomEntry Keyboard="Numeric" Grid.Row="9" Text="{Binding Price}" Grid.Column="1"  HorizontalOptions="FillAndExpand"/>
 
             <Label Grid.Row="10" Grid.Column="0" Text="Description:"  Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
-            <controls:CustomEntry  Grid.Row="10" Grid.Column="1"  HorizontalOptions="FillAndExpand"/>
+            <controls:CustomEntry  Grid.Row="10" Grid.Column="1" Text="{Binding Description}" HorizontalOptions="FillAndExpand"/>
 
             <StackLayout Orientation="Horizontal" Margin="0,20,0,0" Grid.Row="11" Grid.ColumnSpan="2" HorizontalOptions="End" HeightRequest="50" VerticalOptions="End">
                 <Button Command="{Binding ExitCommand}" Text="Cancel" Margin="0,0,-15,0" TextColor="Accent" BackgroundColor="White"/>
-                <Button Command="{Binding AddCommand}"  Text="Save" TextColor="Accent" BackgroundColor="White"/>
+                <Button Clicked="Add_Clicked"  Text="Save" TextColor="Accent" BackgroundColor="White"/>
             </StackLayout>
         </Grid>
     </ScrollView>

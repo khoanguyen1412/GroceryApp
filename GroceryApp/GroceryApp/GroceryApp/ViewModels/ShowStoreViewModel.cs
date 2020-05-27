@@ -27,17 +27,9 @@ namespace GroceryApp.ViewModels
         public string StoreAnswer { get; set; }
     }
 
-    public class TypeItem
-    {
-        public ProductType productType { get; set; }
-        public bool isChosen { get; set; }
-    }
+    
 
-    public class ProductItem
-    {
-        public Product Product { get; set; }
-        public bool isHidden { get; set; }
-    }
+    
 
     public class ShowStoreViewModel : BaseViewModel, IShowStoreViewModel
     {
@@ -83,12 +75,13 @@ namespace GroceryApp.ViewModels
             {
                 ObservableCollection<FeedBack> feedBack = new ObservableCollection<FeedBack>();
                 foreach (OrderBill order in _orderedBills)
-                {
-                    FeedBack newFeedBack = new FeedBack();
-                    newFeedBack.CustomerReview = order.Review;
-                    newFeedBack.StoreAnswer = order.StoreAnswer;
-                    feedBack.Add(newFeedBack);
-                }
+                    if(order.State== "RECEIVED")
+                    {
+                        FeedBack newFeedBack = new FeedBack();
+                        newFeedBack.CustomerReview = order.Review;
+                        newFeedBack.StoreAnswer = order.StoreAnswer;
+                        feedBack.Add(newFeedBack);
+                    }
                 return feedBack;
             }
         }
@@ -159,7 +152,7 @@ namespace GroceryApp.ViewModels
         {
             this.IDStore = IDStore;
             LoadData();
-            ShowDetailProductCommand = new Command<Product>(ShowDetailProduct);
+            ShowDetailProductCommand = new Command<ProductItem>(ShowDetailProduct);
             ChooseCommand = new Command<TypeItem>(Choose);
         }
 
@@ -195,11 +188,11 @@ namespace GroceryApp.ViewModels
 
         }
 
-        public async void ShowDetailProduct(Product product)
+        public async void ShowDetailProduct(ProductItem item)
         {
-            SelectedProductId = product.IDProduct;
+            SelectedProductId = item.Product.IDProduct;
             var detailPage = new DetailProductView();
-            detailPage.BindingContext = product;
+            detailPage.BindingContext = item.Product;
             await App.Current.MainPage.Navigation.PushAsync(detailPage, true);
         }
 

@@ -100,7 +100,10 @@ namespace GroceryApp.ViewModels
 
         public void LoadData()
         {
-            //_orders = new ObservableCollection<OrderBill>(DataProvider.ListOrders);
+            var dataProvider = DataProvider.GetInstance();
+            _orders = new ObservableCollection<OrderBill>(dataProvider.GetOrderBillsOfCustomer());
+            foreach (OrderBill order in _orders)
+                order.Init();
         }
     }
 }

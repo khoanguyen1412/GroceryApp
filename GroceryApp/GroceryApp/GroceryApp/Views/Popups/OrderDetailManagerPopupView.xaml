@@ -28,13 +28,14 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Margin="20,0,20,0" Style="{StaticResource BoldTitleStyle}" Text="Customer:" FontSize="20"/>
             <Label Grid.Row="1" Grid.Column="0" Margin="20,0,20,0" Style="{StaticResource BoldTitleStyle}" Text="Phone:" FontSize="20"/>
             <Label Grid.Row="2" Grid.Column="0" Margin="20,0,20,0" Style="{StaticResource BoldTitleStyle}" Text="Address:" FontSize="20"/>
-            <Label Grid.Row="0" Grid.Column="1" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Nguyen Hong Khoa" FontSize="20"/>
-            <Label Grid.Row="1" Grid.Column="1" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="0377337952" FontSize="20"/>
+            <Label Grid.Row="0" Grid.Column="1" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding UserName}" FontSize="20"/>
+            <Label Grid.Row="1" Grid.Column="1" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding CustomerPhone}" FontSize="20"/>
             <Label Grid.Row="2" Grid.Column="1" Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding CustomerAddress}" FontSize="20"/>
 
         </Grid>
@@ -115,7 +116,7 @@
                     </StackLayout>
 
                     <Button IsVisible="{Binding State,Converter={StaticResource OrderDetailButtonVisibleConverter}}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" BackgroundColor="{Binding State, Converter={StaticResource OrderDetailButtonColorConverter}}" Text="{Binding State, Converter={StaticResource OrderDetailButtonTextConverter}}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"
-                            Command="{Binding OrderDetail.ShowReviewPopupCommand, Source={StaticResource Locator}}"
+                            Command="{Binding OrderDetailManager.ActionCommand, Source={StaticResource Locator}}"
                             />
                 </Grid>
             </Frame>

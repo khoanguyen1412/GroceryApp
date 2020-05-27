@@ -7,6 +7,7 @@
              BackgroundColor="#F6F7FB"
              BindingContext="{Binding StoreDashBoard, Source={StaticResource Locator}}"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             NavigationPage.HasNavigationBar="False"
              x:Class="GroceryApp.Views.Screens.StoreDashBoardView">
     <ContentPage.Content>
         <ScrollView Orientation="Vertical"  HorizontalScrollBarVisibility="Never">
@@ -73,7 +74,7 @@
                     <Label Margin="0" Style="{StaticResource LabelWellcomeStyle}" FontSize="18" Text="View all >>" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="End" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
 
                 </AbsoluteLayout>
-                <ListView VerticalScrollBarVisibility="Never" Margin="20,10,20,0" ItemsSource="{Binding Reviews}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="None">
+                <ListView HeightRequest="{Binding Reviews,Converter={StaticResource GridHeightOrderConverter}}" VerticalScrollBarVisibility="Never" Margin="20,10,20,20" ItemsSource="{Binding Reviews}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -94,11 +95,11 @@
                                                 <Label Text="{Binding CustomerName}" TextColor="Black" FontSize="18" FontFamily="{StaticResource RubikMedium}"/>
                                                 <Label Grid.Row="1" Text="{Binding Content,Converter={StaticResource ShortStringReviewConverter}}" TextColor="Black" FontSize="16" Style="{StaticResource LabelDefaultStyle}"/>
                                                 <StackLayout Grid.Row="2" Orientation="Horizontal">
-                                                    <Image  Source="fullstar" HeightRequest="23" WidthRequest="23"/>
-                                                    <Image  Source="fullstar" HeightRequest="23" WidthRequest="23"/>
-                                                    <Image  Source="fullstar" HeightRequest="23" WidthRequest="23"/>
-                                                    <Image  Source="emptystar" HeightRequest="23" WidthRequest="23"/>
-                                                    <Image  Source="emptystar" HeightRequest="23" WidthRequest="23"/>
+                                                    <Image  Source="{Binding star1}" HeightRequest="23" WidthRequest="23"/>
+                                                    <Image  Source="{Binding star2}" HeightRequest="23" WidthRequest="23"/>
+                                                    <Image  Source="{Binding star3}" HeightRequest="23" WidthRequest="23"/>
+                                                    <Image  Source="{Binding star4}" HeightRequest="23" WidthRequest="23"/>
+                                                    <Image  Source="{Binding star5}" HeightRequest="23" WidthRequest="23"/>
                                                 </StackLayout>
 
                                             </Grid>

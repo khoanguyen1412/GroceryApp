@@ -1,5 +1,7 @@
-﻿using GroceryApp.Models;
+﻿using GroceryApp.Data;
+using GroceryApp.Models;
 using GroceryApp.Views.Drawer;
+using ImTools;
 using Microcharts;
 using SkiaSharp;
 using System;
@@ -18,12 +20,57 @@ namespace GroceryApp.ViewModels
         public string Action { get; set; }
         public string Image { get; set; }
     }
+
+    public class SimpleFeedBackItem
+    {
+        public string UserName { get; set; }
+        public string Content { get; set; }
+        public int Rating { get; set; }
+        public string UserImage { get; set; }
+    }
+
     public interface IStoreDashBoardViewModel
     {
 
     }
     public class StoreDashBoardViewModel : BaseViewModel, IStoreDashBoardViewModel
     {
+        public int NumberOfOrder
+        {
+            get
+            {
+                
+                DataProvider dataProvider = DataProvider.GetInstance();
+                return dataProvider.GetOrderBillByIDStore(Infor.IDStore).Count;
+
+            }
+        }
+
+        public int NumberOfProduct
+        {
+            get
+            {
+                DataProvider dataProvider = DataProvider.GetInstance();
+                return dataProvider.GetProductByIDStore(Infor.IDStore).Count;
+
+            }
+        }
+
+        public string Renenue
+        {
+            get
+            {
+                DataProvider dataProvider = DataProvider.GetInstance();
+                List<OrderBill> orders= dataProvider.GetOrderBillByIDStore(Infor.IDStore);
+                double total = 0;
+                foreach (OrderBill order in orders)
+                    if(order.State=="RECEIVED")
+                    total += order.GetTotal();
+
+
+                return total.ToString();
+            }
+        }
 
         public List<int> Sliders
         {
@@ -36,44 +83,26 @@ namespace GroceryApp.ViewModels
         {
             get
             {
-                ObservableCollection<ReviewItem> result = new ObservableCollection<ReviewItem>
+                ObservableCollection<ReviewItem> result = new ObservableCollection<ReviewItem>();
+                DataProvider dataProvider = DataProvider.GetInstance();
+                List<OrderBill> orders = dataProvider.GetReceivedOrderByIDStore(Infor.IDStore);
+                orders = SortByDate(orders);
+
+                for(int i = 0; i < orders.Count; i++)
                 {
-                    new ReviewItem
+                    if (i == 5) break;
+                    User user = dataProvider.GetUserByIDUser(orders[i].IDUser);
+                    ReviewItem item = new ReviewItem
                     {
-                        CustomerImage="https://znews-photo.zadn.vn/w660/Uploaded/oqivovbt/2019_01_05/jisoo_3_1.jpg",
-                        CustomerName="Kim jisoo BlackPink",
-                        Date="12/02/2020",
-                        Content="The food is really fresh and healthy, we will order this store again, for sure!"
-                    },
-                    new ReviewItem
-                    {
-                        CustomerImage="https://i.pinimg.com/originals/7e/55/84/7e558432c10a4c64fac6b09deda5a981.jpg",
-                        CustomerName="Deadpool",
-                        Date="24/01/2020",
-                        Content="Amazing! I can't help enjoying your kindness of serving your customers"
-                    },
-                    new ReviewItem
-                    {
-                        CustomerImage="https://gizmostory.com/wp-content/uploads/2020/01/money-heist-e1578302641839-696x391.jpg",
-                        CustomerName="Good heists",
-                        Date="12/12/2019",
-                        Content="This store was very helpfull when we were in jail, pray for you!"
-                    },
-                    new ReviewItem
-                    {
-                        CustomerImage="https://image.nghenhinvietnam.vn/Uploaded/trunghieu/2020_01_25/photo1557109384216_1557109384435_crop_1557109391251576728816_MNWX.jpg",
-                        CustomerName="Cap",
-                        Date="12/02/2000",
-                        Content="Between a lot of bad fast food store, I've finally found myself a good choice, thank you, hope you will get better and better everyday!"
-                    },
-                    new ReviewItem
-                    {
-                        CustomerImage="https://cdn.fado.vn/images/I/51%2BVBd0YqNL._SR600,600_.jpg",
-                        CustomerName="I am Iron Man",
-                        Date="12/12/2019",
-                        Content="Please, save my world!"
-                    },
-                };
+                        CustomerImage = user.ImageURL,
+                        CustomerName = user.UserName,
+                        Content = orders[i].Review,
+                        Date = orders[i].Date,
+                        Rating = orders[i].Rating
+                    };
+                    item = CreateStar(item);
+                    result.Add(item);
+                }
 
                 return result;
             }
@@ -82,26 +111,32 @@ namespace GroceryApp.ViewModels
         {
             get
             {
+                DataProvider dataProvider = DataProvider.GetInstance();
+
+                string label1 = dataProvider.GetNumberProductOutOfStock().ToString();
+                string label2 = dataProvider.GetNumberNewOrder().ToString();
+                string label3 = dataProvider.GetNumberNewFeedback().ToString();
+                
                 List<CategoryItem> categories = new List<CategoryItem>
                 {
                     new CategoryItem
                     {
                         Title="Manage Products",
-                        Description="22 out-of-stocks",
+                        Description=label1+" out-of-stocks",
                         Action="View products",
                         Image="colorproduct",
                     },
                     new CategoryItem
                     {
                         Title="Handle Orders",
-                        Description="10 new orders",
+                        Description=label2+" new orders",
                         Action="View orders",
                         Image="colororder",
                     },
                     new CategoryItem
                     {
                         Title="Feedback",
-                        Description="12 new feedbacks",
+                        Description=label3+" new feedbacks",
                         Action="View feedback",
                         Image="colorfeedback",
                     },
@@ -142,6 +177,39 @@ namespace GroceryApp.ViewModels
 
         public void CreateChartData()
         {
+
+            List<SkiaSharp.SKColor> colors = new List<SKColor>
+            {
+                SKColor.Parse("#ff3333"),
+                SKColor.Parse("#009933"),
+                SKColor.Parse("#0000ff"),
+                SKColor.Parse("#ff66cc"),
+                SKColor.Parse("#ffff1a"),
+                SKColor.Parse("#00ffff"),
+            };
+            List<string> MonthName = new List<string>
+            {
+                "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
+            };
+
+            DataProvider dataProvider = DataProvider.GetInstance();
+            List<ItemChart> itemCharts = dataProvider.GetDataForChart();
+
+            var entries = new List<Microcharts.Entry>();
+            for(int i=0;i<itemCharts.Count;i++)
+            {
+                ItemChart item = itemCharts[i];
+
+                Microcharts.Entry entry = new Microcharts.Entry(item.NumberOrder)
+                {
+                    Label = MonthName[item.Month-1],
+                    ValueLabel = item.NumberOrder.ToString(),
+                    Color = colors[i]
+                };
+                entries.Add(entry);
+            }
+
+            /*
             var entries = new[]
             {
                 new Microcharts.Entry(2)
@@ -164,7 +232,7 @@ namespace GroceryApp.ViewModels
                     Color = SKColor.Parse("#0000ff")
                 }
             };
-
+            */
             _chart = new LineChart() { 
                 Entries = entries,
                 LabelTextSize=40,
@@ -176,6 +244,73 @@ namespace GroceryApp.ViewModels
                 PointAreaAlpha=5
             };
 
+        }
+
+        public List<OrderBill> SortByDate(List<OrderBill> orders)
+        {
+            for(int i=0;i<orders.Count-1;i++)
+                for(int j=i+1;j<orders.Count;j++)
+                    if(orders[i].Date<orders[j].Date)
+                    {
+                        OrderBill temp = orders[i];
+                        orders[i] = orders[j];
+                        orders[j] = temp;
+                    }
+
+            return orders;
+        }
+
+        public ReviewItem CreateStar(ReviewItem item)
+        {
+            if (item.Rating == 0)
+            {
+                item.star1 = "emptystar";
+                item.star2 = "emptystar";
+                item.star3 = "emptystar";
+                item.star4 = "emptystar";
+                item.star5 = "emptystar";
+            }
+            if (item.Rating == 1)
+            {
+                item.star1 = "fullstar";
+                item.star2 = "emptystar";
+                item.star3 = "emptystar";
+                item.star4 = "emptystar";
+                item.star5 = "emptystar";
+            }
+            if (item.Rating == 2)
+            {
+                item.star1 = "fullstar";
+                item.star2 = "fullstar";
+                item.star3 = "emptystar";
+                item.star4 = "emptystar";
+                item.star5 = "emptystar";
+            }
+            if (item.Rating == 3)
+            {
+                item.star1 = "fullstar";
+                item.star2 = "fullstar";
+                item.star3 = "fullstar";
+                item.star4 = "emptystar";
+                item.star5 = "emptystar";
+            }
+            if (item.Rating == 4)
+            {
+                item.star1 = "fullstar";
+                item.star2 = "fullstar";
+                item.star3 = "fullstar";
+                item.star4 = "fullstar";
+                item.star5 = "emptystar";
+            }
+            if (item.Rating == 5)
+            {
+                item.star1 = "fullstar";
+                item.star2 = "fullstar";
+                item.star3 = "fullstar";
+                item.star4 = "fullstar";
+                item.star5 = "fullstar";
+            }
+            return item;
         }
     }
 }

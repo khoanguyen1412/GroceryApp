@@ -65,11 +65,15 @@ namespace GroceryApp.ViewModels
         public OrderDetailPopupViewModel()
         {
             LoadData();
-            ShowReviewPopupCommand = new Command(ShowReviewPopup);
+            ShowReviewPopupCommand = new Command<OrderBill>(ShowReviewPopup);
         }
-        public async void ShowReviewPopup()
+        public async void ShowReviewPopup(OrderBill order)
         {
-            
+            if (order.State == "WAITING")
+            {
+                await PopupNavigation.Instance.PopAsync();
+                return;
+            }
             var ReviewPopup = new ReviewStorePopupView();
             await PopupNavigation.Instance.PushAsync(ReviewPopup);
         }

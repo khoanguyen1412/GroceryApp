@@ -11,7 +11,7 @@ namespace GroceryApp.Views.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string InputString = "";
-            int leng = 5;
+            int leng = 12;
 
             try
             {

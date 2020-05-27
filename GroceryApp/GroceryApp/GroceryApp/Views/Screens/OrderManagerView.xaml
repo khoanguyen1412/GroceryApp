@@ -8,6 +8,7 @@
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BindingContext="{Binding OrderManager,Source={StaticResource Locator}}"
              x:Name="OrderManager"
+             NavigationPage.HasNavigationBar="False"
              x:Class="GroceryApp.Views.Screens.OrderManagerView">
     <ContentPage.Content>
         <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never">

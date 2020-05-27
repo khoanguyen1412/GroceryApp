@@ -16,5 +16,10 @@ namespace GroceryApp.Views.Screens
         {
             InitializeComponent();
         }
+
+        private void AddToChosenProducts(object sender, EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PopAsync();
+        }
     }
 }

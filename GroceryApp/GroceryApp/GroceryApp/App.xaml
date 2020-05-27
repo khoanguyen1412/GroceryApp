@@ -27,6 +27,11 @@
             <converter:SinglePriceSelectedProductConverter x:Key="SinglePriceSelectedProductConverter"/>
             <converter:TotalPriceSelectedProductsConverter x:Key="TotalPriceSelectedProductsConverter"/>
             <converter:ProductVisibleConverter x:Key="ProductVisibleConverter"/>
+            <converter:RadioAddressConverter x:Key="RadioAddressConverter"/>
+            <converter:TextColorEnableConverter x:Key="TextColorEnableConverter"/>
+            <converter:AddressFormatConverter x:Key="AddressFormatConverter"/>
+            <converter:GridHeightOrderConverter x:Key="GridHeightOrderConverter"/>
+            <converter:ReviewStateColorConverter x:Key="ReviewStateColorConverter"/>
             <selector:DataTemplateSliderSelector x:Key="DataTemplateSliderSelector"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"

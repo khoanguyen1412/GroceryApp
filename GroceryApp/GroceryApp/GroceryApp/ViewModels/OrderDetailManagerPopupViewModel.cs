@@ -1,5 +1,6 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -50,17 +51,17 @@ namespace GroceryApp.ViewModels
             get { return _order.CustomerAddress; }
         }
 
-        public ICommand ShowReviewPopupCommand { get; set; }
+        public ICommand ActionCommand { get; set; }
         public OrderDetailManagerPopupViewModel()
         {
             LoadData();
-            ShowReviewPopupCommand = new Command(ShowReviewPopup);
+            ActionCommand = new Command<object>(ProcessAction);
         }
-        public async void ShowReviewPopup()
+        public async void ProcessAction(object bindingContext)
         {
 
-            //var ReviewPopup = new ReviewStorePopupView();
-            //await PopupNavigation.Instance.PushAsync(ReviewPopup);
+            var order = bindingContext as OrderBill;
+            await PopupNavigation.Instance.PopAsync();
         }
 
 

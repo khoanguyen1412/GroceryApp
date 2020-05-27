@@ -1,4 +1,7 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using GroceryApp.Models;
+using GroceryApp.ViewModels;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +20,14 @@ namespace GroceryApp.Views.Popups
         {
             InitializeComponent();
             
+        }
+
+        private async void Add_Clicked(object sender, EventArgs e)
+        {
+            Product NewProduct = (this.BindingContext as AddProductPopupViewModel).GetNewProduct();
+            if (NewProduct == null) return;
+            (App.Current.MainPage.Navigation.NavigationStack.ElementAt(0).BindingContext as ProductManagerViewModel).AddProduct(NewProduct);
+            await PopupNavigation.Instance.PopAsync();
         }
     }
 }

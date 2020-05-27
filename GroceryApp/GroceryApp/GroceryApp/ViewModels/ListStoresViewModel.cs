@@ -15,8 +15,10 @@ namespace GroceryApp.ViewModels
     {
 
     }
+
     public class ListStoresViewModel : BaseViewModel, IListStoresViewModel
     {
+        public int currentType = -1;
         private ObservableCollection<Store> _stores;
 
         public ObservableCollection<Store> Stores
@@ -25,19 +27,73 @@ namespace GroceryApp.ViewModels
             set { _stores = value; OnPropertyChanged(nameof(Stores)); }
         }
 
-        private ObservableCollection<ProductType> _productTypes;
+        private ObservableCollection<TypeItem> _typeItems;
 
-        public ObservableCollection<ProductType> ProductTypes
+        public ObservableCollection<TypeItem> TypeItems
         {
-            get { return _productTypes; }
-            set { _productTypes = value; OnPropertyChanged(nameof(ProductTypes)); }
+            get { return _typeItems; }
+            set { _typeItems = value; OnPropertyChanged(nameof(TypeItems)); }
         }
 
         public ICommand ShowStoreCommand { get; set; }
+        public ICommand ChooseTypeCommand { get; set; }
         public ListStoresViewModel()
         {
+            LoadProductTypes();
             LoadData();
             ShowStoreCommand = new Command<string>(ShowStore);
+            ChooseTypeCommand = new Command<TypeItem>(ChooseType);
+        }
+
+        public void ChooseType(TypeItem typeItem)
+        {
+            int choosingIndex = -1;
+            for (int i = 0; i < _typeItems.Count; i++)
+            {
+                if (_typeItems[i].productType.IDProductType == typeItem.productType.IDProductType)
+                {
+                    choosingIndex = i;
+                    _typeItems[i].isChosen = !_typeItems[i].isChosen;
+                }
+                else
+                {
+                    _typeItems[i].isChosen = false;
+                }
+
+            }
+            if (choosingIndex != currentType)
+            {
+                currentType = choosingIndex;
+                LoadStores();
+            }
+            if (_typeItems[choosingIndex].isChosen == false)
+            {
+                currentType = -1;
+                LoadStores();
+            }
+
+            TypeItems = new ObservableCollection<TypeItem>(_typeItems);
+
+        }
+
+        public void LoadStores()
+        {
+            var dataProvider = DataProvider.GetInstance();
+            List<Store> stores = dataProvider.GetListStores();
+            if (currentType == -1)
+            {
+                Stores = new ObservableCollection<Store>(stores);
+                return;
+            }
+
+            List<Store> filterStores = new List<Store>();
+            foreach(Store store in stores)
+                if(dataProvider.isTypeInStore((currentType+1).ToString(),store.IDStore))
+                {
+                    filterStores.Add(store);
+                }
+
+            Stores = new ObservableCollection<Store>(filterStores);
         }
 
         public async void ShowStore(string IDStore)
@@ -50,8 +106,24 @@ namespace GroceryApp.ViewModels
         public void LoadData()
         {
             var dataProvider = DataProvider.GetInstance();
-            _productTypes = new ObservableCollection<ProductType>(dataProvider.GetProductTypes());
+            
             _stores = new ObservableCollection<Store>(dataProvider.GetListStores());
+        }
+
+        public void LoadProductTypes()
+        {
+            var dataProvider = DataProvider.GetInstance();
+            List<ProductType> types = dataProvider.GetProductTypes();
+            List<TypeItem> typeItems = new List<TypeItem>();
+            foreach (ProductType type in types)
+            {
+                TypeItem typeItem = new TypeItem();
+                typeItem.productType = type;
+                typeItem.isChosen = false;
+
+                typeItems.Add(typeItem);
+            }
+            _typeItems = new ObservableCollection<TypeItem>(typeItems);
         }
     }
 }

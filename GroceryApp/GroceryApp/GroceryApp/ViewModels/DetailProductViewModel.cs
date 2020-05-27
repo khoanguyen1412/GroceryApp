@@ -15,32 +15,25 @@ namespace GroceryApp.ViewModels
         public Product Product
         {
             get { return _product; }
+            set { _product = value; OnPropertyChanged(nameof(Product)); }
         }
 
-        public DetailProductViewModel()
+        private int _quantityInventory;
+        public int QuantityInventory
         {
+            get { return Product.QuantityInventory; }
+            set { _quantityInventory = value; OnPropertyChanged(nameof(QuantityInventory)); }
+        }
+
+        public DetailProductViewModel(Product product)
+        {
+            Product = product;
             LoadData();
         }
 
         void LoadData()
         {
 
-            //DATA KHÔNG CÒN SỬ DỤNG, DO PRODUCT ĐÃ ĐƯỢC GỬI TỪ BINDING CONTEXT Ở SCREEN TRƯỚC
-            Product product = new Product
-            {
-                IDProduct = "0",
-                IDType = "0",
-                IDStore = "0",
-                ProductName = "Carrot",
-                ProductDescription = "Fresh and Big Carrots from US Farms",
-                Unit = "one",
-                QuantityInventory = 15,
-                QuantityOrder = 4,
-                Price = 2000,
-                ImageURL = "https://www.jessicagavin.com/wp-content/uploads/2019/02/carrots-7-1200.jpg",
-            };
-            
-            //this._product = product;
 
         }
     }

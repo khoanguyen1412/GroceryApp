@@ -14,9 +14,12 @@ namespace GroceryApp.Views.Popups
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReplyPopupView : PopupPage
     {
+        int countChange = 0;
+        string sourceText;
         public ReplyPopupView()
         {
             InitializeComponent();
+            countChange = 0;
             initStuff();
         }
 
@@ -43,7 +46,24 @@ namespace GroceryApp.Views.Popups
             await PopupNavigation.Instance.PopAsync();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void CancelClick(object sender, EventArgs e)
+        {
+            if(countChange>1) 
+                AnswerEntry.Text = sourceText;
+            await PopupNavigation.Instance.PopAsync();
+        }
+
+        private void CustomEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            countChange++;
+            if (countChange==2)
+            {
+                sourceText = e.OldTextValue;
+            }
+
+        }
+
+        private async void SendClick(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PopAsync();
         }

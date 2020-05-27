@@ -26,12 +26,6 @@ namespace GroceryApp.Views.Popups {
         private global::Xamarin.Forms.StackLayout card;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::GroceryApp.Views.CustomedControls.CustomEntry address;
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::GroceryApp.Views.CustomedControls.CustomEntry note;
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Frame btnNext;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
@@ -40,8 +34,6 @@ namespace GroceryApp.Views.Popups {
             ConfirmOrder = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Rg.Plugins.Popup.Pages.PopupPage>(this, "ConfirmOrder");
             background = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "background");
             card = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "card");
-            address = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::GroceryApp.Views.CustomedControls.CustomEntry>(this, "address");
-            note = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::GroceryApp.Views.CustomedControls.CustomEntry>(this, "note");
             btnNext = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Frame>(this, "btnNext");
         }
     }

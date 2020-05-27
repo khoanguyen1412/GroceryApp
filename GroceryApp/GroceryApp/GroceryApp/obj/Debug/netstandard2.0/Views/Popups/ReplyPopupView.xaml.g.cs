@@ -23,10 +23,14 @@ namespace GroceryApp.Views.Popups {
         private global::Xamarin.Forms.Grid card;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::GroceryApp.Views.CustomedControls.CustomEntry AnswerEntry;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(ReplyPopupView));
             background = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "background");
             card = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "card");
+            AnswerEntry = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::GroceryApp.Views.CustomedControls.CustomEntry>(this, "AnswerEntry");
         }
     }
 }
