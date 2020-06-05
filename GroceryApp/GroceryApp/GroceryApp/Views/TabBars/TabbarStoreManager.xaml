@@ -13,6 +13,7 @@
             
             x:Name="TabManager"
             NavigationPage.HasNavigationBar="False">
+    
     <local:StoreDashBoardView Title="Dashboard" IconImageSource="dashboard"/>
     <local:ProductManagerView Title="Product" IconImageSource="box"/>
     <local:OrderManagerView Title="Orders" IconImageSource="list"/>

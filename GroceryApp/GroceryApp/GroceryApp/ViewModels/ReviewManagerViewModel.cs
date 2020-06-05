@@ -46,7 +46,12 @@ namespace GroceryApp.ViewModels
         public async void ShowDetailOrder(ReviewItem reviewItem)
         {
             var DetalPage = new OrderDetailPopupView();
-            DetalPage.BindingContext = dataProvider.GetOrderBillByIDOrderBill(reviewItem.IDOrderBill);
+            OrderBillItem orderBillItem = new OrderBillItem
+            {
+                Order = dataProvider.GetOrderBillByIDOrderBill(reviewItem.IDOrderBill),
+                AddedProducts = dataProvider.GetProductsInBillByIDBill(reviewItem.IDOrderBill)
+            };
+            DetalPage.BindingContext = orderBillItem;
             await PopupNavigation.Instance.PushAsync(DetalPage);
         }
 

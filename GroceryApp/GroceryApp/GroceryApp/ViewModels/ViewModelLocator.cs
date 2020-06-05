@@ -29,7 +29,18 @@ namespace GroceryApp.ViewModels
             builder.RegisterType<StoreDashBoardViewModel>().As<IStoreDashBoardViewModel>().SingleInstance();
             builder.RegisterType<StoreSetttingViewModel>().As<IStoreSetttingViewModel>().SingleInstance();
             builder.RegisterType<OrderDetailManagerPopupViewModel>().As<IOrderDetailManagerPopupViewModel>().SingleInstance();
+            builder.RegisterType<UserSettingViewModel>().As<IUserSettingViewModel>().SingleInstance();
+            builder.RegisterType<ChangePasswordViewModel>().As<IChangePasswordViewModel>().SingleInstance();
             _container = builder.Build();
+        }
+
+        public IChangePasswordViewModel ChangePassword
+        {
+            get { return _container.Resolve<IChangePasswordViewModel>(); }
+        }
+        public IUserSettingViewModel UserSetting
+        {
+            get { return _container.Resolve<IUserSettingViewModel>(); }
         }
 
         public IOrderDetailManagerPopupViewModel OrderDetailManager

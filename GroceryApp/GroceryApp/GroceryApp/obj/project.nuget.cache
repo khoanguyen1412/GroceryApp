@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "obSBXd//GECzzHQSgIk0bQxeEqh9CcGjVPo+lSYEFbSENbhC2Jop1lOSUnJd/GoFizA22Nqzaee2habydiPF8g==",
+  "dgSpecHash": "5/er3C+rqPoozasFnVwZKTxn8cDVhTOs0/mQN5Ynesq8OHtXfNvEh0csot4HxalsVlagS+iTO0qCXtnc0+g9AA==",
   "success": true,
   "projectFilePath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\acr.userdialogs\\7.1.0.442\\acr.userdialogs.7.1.0.442.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\autofac\\5.2.0\\autofac.5.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\dryioc.dll\\4.0.7\\dryioc.dll.4.0.7.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microcharts\\0.7.1\\microcharts.0.7.1.nupkg.sha512",

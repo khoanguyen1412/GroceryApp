@@ -17,6 +17,7 @@ namespace GroceryApp.ViewModels
     }
     public class ListOrdersViewModel: BaseViewModel,IListOrdersViewModel
     {
+        DataProvider dataProvider = DataProvider.GetInstance();
         private ObservableCollection<OrderBill> _orders;
 
         public ObservableCollection<OrderBill> Orders
@@ -31,7 +32,7 @@ namespace GroceryApp.ViewModels
                 ObservableCollection<OrderBill> AllOrders=_orders;
                 ObservableCollection<OrderBill> waitingOrders= new ObservableCollection<OrderBill>();
                 foreach (OrderBill order in AllOrders)
-                    if (order.State == "WAITING")
+                    if (order.State == OrderState.Waiting)
                     {
                         order.OrderNumber = waitingOrders.Count + 1;
                         waitingOrders.Add(order);
@@ -48,7 +49,7 @@ namespace GroceryApp.ViewModels
                 ObservableCollection<OrderBill> AllOrders = _orders;
                 ObservableCollection<OrderBill> deliveringOrders = new ObservableCollection<OrderBill>();
                 foreach (OrderBill order in AllOrders)
-                    if (order.State == "DELIVERING")
+                    if (order.State == OrderState.Delivering)
                     {
                         order.OrderNumber = deliveringOrders.Count + 1;
                         deliveringOrders.Add(order);
@@ -64,7 +65,7 @@ namespace GroceryApp.ViewModels
                 ObservableCollection<OrderBill> AllOrders = _orders;
                 ObservableCollection<OrderBill> receivedOrders = new ObservableCollection<OrderBill>();
                 foreach (OrderBill order in AllOrders)
-                    if (order.State == "RECEIVED")
+                    if (order.State == OrderState.Received)
                     {
                         order.OrderNumber = receivedOrders.Count + 1;
                         receivedOrders.Add(order);
@@ -93,14 +94,22 @@ namespace GroceryApp.ViewModels
         public async void ShowDetailOrder(OrderBill order)
         {
             var DetalPage = new OrderDetailPopupView();
-            DetalPage.BindingContext = order;
+            order.Init();
+            OrderBillItem orderItem = new OrderBillItem
+            {
+                Order = order,
+                AddedProducts = dataProvider.GetProductsInBillByIDBill(order.IDOrderBill)
+            };
+            DetalPage.BindingContext = orderItem;
             await PopupNavigation.Instance.PushAsync(DetalPage);
         }
 
         public void LoadData()
         {
             var dataProvider = DataProvider.GetInstance();
-            _orders = new ObservableCollection<OrderBill>(dataProvider.GetOrderBills());
+            _orders = new ObservableCollection<OrderBill>(dataProvider.GetMyOrderBills());
+            foreach (OrderBill order in _orders)
+                order.Init();
         }
     }
 }

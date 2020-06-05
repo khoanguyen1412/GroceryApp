@@ -1,5 +1,6 @@
 ﻿using GroceryApp.Models;
 using GroceryApp.ViewModels;
+using GroceryApp.Views.TabBars;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,10 @@ namespace GroceryApp.Views.Screens
                 StoreName = NameEntry.Text,
                 StoreDescription = DescEntry.Text
             };
-            (App.Current.MainPage.Navigation.NavigationStack.ElementAt(0).BindingContext as StoreSetttingViewModel).ChangeInfor(newInfor);
-             App.Current.MainPage.Navigation.PopAsync();
+            //(App.Current.MainPage.Navigation.NavigationStack.ElementAt(0).BindingContext as StoreSetttingViewModel).ChangeInfor(newInfor);
+            (TabbarStoreManager.GetInstance().Children.ElementAt(4).BindingContext as StoreSetttingViewModel).ChangeInfor(newInfor);
+
+            App.Current.MainPage.Navigation.PopAsync();
         }
     }
 }

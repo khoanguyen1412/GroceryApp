@@ -20,13 +20,13 @@
 
     </popup:PopupPage.Animation>
     <StackLayout Margin="20,50" BackgroundColor="White" Orientation="Vertical" >
-
+        <DatePicker/>
         <Label  Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Products"/>
         <Grid VerticalOptions="FillAndExpand" Margin="0" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ListView x:Name="List" Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding OrderedProducts}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
+            <ListView x:Name="List" Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding AddedProducts}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -86,18 +86,20 @@
                     <Label Grid.Row="2" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Total" FontSize="20" TextColor="Black"/>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                         <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
-                        <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding SubTotalPrice}" FontSize="20" TextColor="Black"/>
+                        <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.SubTotalPrice}" FontSize="20" TextColor="Black"/>
                     </StackLayout>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
                         <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
-                        <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding DeliveryPrice}" FontSize="20" TextColor="Black"/>
+                        <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.DeliveryPrice}" FontSize="20" TextColor="Black"/>
                     </StackLayout>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
                         <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
-                        <Label  Margin="-5,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="{Binding TotalPrice}" FontSize="20" TextColor="Black"/>
+                        <Label  Margin="-5,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="{Binding Order.TotalPrice}" FontSize="20" TextColor="Black"/>
                     </StackLayout>
 
-                    <Button IsVisible="{Binding State,Converter={StaticResource OrderDetailButtonVisibleConverter}}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" BackgroundColor="{Binding State, Converter={StaticResource OrderDetailButtonColorConverter}}" Text="{Binding State, Converter={StaticResource OrderDetailButtonTextConverter}}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"
+                    <Button IsVisible="{Binding Order.State,Converter={StaticResource OrderDetailButtonVisibleConverter}}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" 
+                            BackgroundColor="{Binding Order.State, Converter={StaticResource OrderDetailButtonColorConverter}}" 
+                            Text="{Binding Order.State, Converter={StaticResource OrderDetailButtonTextConverter}}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"
                             Command="{Binding OrderDetail.ShowReviewPopupCommand, Source={StaticResource Locator}}"
                             CommandParameter="{Binding .}"
                             />

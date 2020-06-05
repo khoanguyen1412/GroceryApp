@@ -17,7 +17,8 @@ namespace GroceryApp.ViewModels
     }
     public class FinalBillViewModel:BaseViewModel,IFinalBillViewModel
     {
-        public OrderBill Order { get; set; }
+        public OrderBillItem OrderItem { get; set; }
+        //public OrderBill Order { get; set; }
         public ICommand SendOrderCommand { get; set; }
         
         public string StoreName
@@ -25,7 +26,7 @@ namespace GroceryApp.ViewModels
             get
             {
                 DataProvider dataProvider = DataProvider.GetInstance();
-                return dataProvider.GetStoreByIDStore(Order.IDStore).StoreName;
+                return dataProvider.GetStoreByIDStore(OrderItem.Order.IDStore).StoreName;
             }
         }
 
@@ -34,7 +35,7 @@ namespace GroceryApp.ViewModels
             get
             {
                 DataProvider dataProvider = DataProvider.GetInstance();
-                return dataProvider.GetStoreByIDStore(Order.IDStore).StoreAddress;
+                return dataProvider.GetStoreByIDStore(this.OrderItem.Order.IDStore).StoreAddress;
             }
         }
 
@@ -42,13 +43,15 @@ namespace GroceryApp.ViewModels
         {
             get
             {
-                return new ObservableCollection<Product>(this.Order.OrderedProducts);
+                //DataProvider dataProvider = DataProvider.GetInstance();
+                return new ObservableCollection<Product>(this.OrderItem.AddedProducts);
             }
         }
 
-        public FinalBillViewModel(OrderBill order)
+        public FinalBillViewModel(OrderBillItem orderItem)
         {
-            this.Order = order;
+            this.OrderItem = orderItem;
+            //this.Order = orderItem.Order;
             SendOrderCommand = new Command<object>(SendOrder);
         }
         public async void SendOrder(object bindingContext)

@@ -1,4 +1,5 @@
-﻿using GroceryApp.Models;
+﻿using GroceryApp.Data;
+using GroceryApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,13 +12,16 @@ namespace GroceryApp.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null) return null;
             bool isList = true;
             int leng = 20;
             List<Product> products=null;
             String address = "";
             try
             {
-                products = (List<Product>)value;
+                OrderBill order = (OrderBill)value;
+                DataProvider dataProvider = DataProvider.GetInstance();
+                products = dataProvider.GetProductsInBillByIDBill(order.IDOrderBill);
             }
             catch (Exception e)
             {
@@ -32,8 +36,14 @@ namespace GroceryApp.Views.Converters
             String fullName = "";
             if (isList)
             {
-                foreach (Product product in products)
-                    fullName += product.ProductName + " + ";
+                //foreach (Product product in products)
+                    //fullName += product.ProductName + " + ";
+                for(int i = 0; i < products.Count - 1; i++)
+                {
+                    fullName += products[i].ProductName + " + ";
+                }
+                fullName += products[products.Count - 1].ProductName;
+                //fullName.Substring(0, fullName.Length - 2);
             }
             else fullName = address;
             

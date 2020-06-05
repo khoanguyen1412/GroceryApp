@@ -9,12 +9,13 @@
              xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
              x:Class="GroceryApp.Views.Screens.HomePageView"
              x:Name="homepage">
+    
     <ContentPage.Content>
         <ScrollView Orientation="Vertical"  HorizontalScrollBarVisibility="Never">
             <StackLayout >
                 <AbsoluteLayout HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand">
                     <Label FontSize="25" TextColor="ForestGreen" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource LabelTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Grocery World"/>
-                    <Image Source="greencart" AbsoluteLayout.LayoutBounds="1,0.5,35,35" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+                    <Image x:Name="CartLabel" Source="greencart" AbsoluteLayout.LayoutBounds="1,0.5,35,35" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
                     <Image Source="draw" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ShowDrawerCommand}"/>
@@ -49,7 +50,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Frame Grid.Column="0" Grid.Row="0" HeightRequest="50" CornerRadius="25" HasShadow="True" IsClippedToBounds="True" Padding="0">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout x:Name="OrderField" Orientation="Horizontal">
                             <Frame HeightRequest="50" WidthRequest="50" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="{StaticResource AccentColor}">
                                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                                     <Image Source="iconorder" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
@@ -59,7 +60,7 @@
                         </StackLayout>
                     </Frame>
                     <Frame Grid.Column="1" Grid.Row="0" HeightRequest="50" CornerRadius="25" HasShadow="True" IsClippedToBounds="True" Padding="0">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout x:Name="CartField" Orientation="Horizontal">
                             <Frame HeightRequest="50" WidthRequest="50" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="{StaticResource AccentColor}">
                                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                                     <Image Source="iconcart" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
@@ -121,7 +122,7 @@
                 </Grid>
                 <AbsoluteLayout HeightRequest="50" Margin="20,20,20,0" HorizontalOptions="FillAndExpand">
                     <Label Margin="0" Style="{StaticResource LabelWellcomeStyle}" Text="Recommend" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="Start" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
-                    <Label Margin="0" Style="{StaticResource LabelWellcomeStyle}" FontSize="18" Text="Show all >>" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="End" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
+                    <Label x:Name="ShowAllStoreLabel" Margin="0" Style="{StaticResource LabelWellcomeStyle}" FontSize="18" Text="Show all >>" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="End" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
 
                 </AbsoluteLayout>
 

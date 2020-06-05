@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BindingContext="{Binding UserSetting, Source={StaticResource Locator}}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="GroceryApp.Views.Screens.UserSettingView">
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="Normal">
+            <Setter Property="FontFamily" Value="{StaticResource Cata}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style TargetType="Label" x:Key="Medium">
+            <Setter Property="FontFamily" Value="{StaticResource CataMedium}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style TargetType="Label" x:Key="Bold">
+            <Setter Property="FontFamily" Value="{StaticResource CataBold}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Margin="20,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Text="Your Information" VerticalOptions="End" VerticalTextAlignment="End" FontSize="35" Style="{StaticResource Bold}" />
+                <Image Source="squareinfor" Grid.Column="1" Margin="0,0,0,5" VerticalOptions="End" HorizontalOptions="End" WidthRequest="35" HeightRequest="35"/>
+            </Grid>
+            <Label Grid.Row="1" Text="Setting up your information and account recurity." VerticalOptions="End" VerticalTextAlignment="End" FontSize="17" TextColor="Gray" Style="{StaticResource Medium}" />
+            <ScrollView Grid.Row="2" Orientation="Vertical">
+                <StackLayout Orientation="Vertical" Margin="0,10,0,0">
+                    
+                    <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+                    <Grid >
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="fullname" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                            <Label Text="Full name"   FontSize="18"   Style="{StaticResource Bold}" />
+                            <Label Text="{Binding CurrentUser.UserName}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                        </StackLayout>
+                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+                    </Grid>
+                    <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+                    <Grid >
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddressSettingCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="password" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                            <Label Text="Password" Margin="0,0,0,5"  FontSize="18"   Style="{StaticResource Bold}" />
+                            <Label Text="{Binding CurrentUser.Password}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" />
+                        </StackLayout>
+                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+                    </Grid>
+                    <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+                    <Grid >
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="phone" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                            <Label Text="Phone number" Margin="0,0,0,5"  FontSize="18"   Style="{StaticResource Bold}" />
+                            <Label Text="{Binding CurrentUser.PhoneNumber}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15"  />
+                        </StackLayout>
+                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+                    </Grid>
+                    <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+                    <Grid >
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="location" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                            <Label Text="Address"   FontSize="18"   Style="{StaticResource Bold}" />
+                            <Label Text="{Binding CurrentUser.Address,Converter={StaticResource AddressFormatConverter}}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                        </StackLayout>
+                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+                    </Grid>
+                    <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+                    <Grid >
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="email" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                            <Label Text="Email"   FontSize="18"   Style="{StaticResource Bold}" />
+                            <Label Text="{Binding CurrentUser.Email}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                        </StackLayout>
+                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+                    </Grid>
+                    <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+
+                    <Grid x:Name="dateCard">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="calendar" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                            <Label Text="Birth date"   FontSize="18"   Style="{StaticResource Bold}" />
+                            <Label Text="{Binding BirthDate,Converter={StaticResource DateTimeConverter}}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                        </StackLayout>
+                        <DatePicker x:Name="datePicker" Date="{Binding BirthDate}" IsVisible="False" Grid.Column="2"  HeightRequest="20"/>
+                    </Grid>
+                    <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+                    <AbsoluteLayout  HeightRequest="200" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" >
+                        <pancake:PancakeView  CornerRadius="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1"   AbsoluteLayout.LayoutFlags="All" >
+                            <Image Source="{Binding CurrentUser.ImageURL}" Aspect="AspectFill"/>
+                        </pancake:PancakeView>
+                        <pancake:PancakeView HeightRequest="35" WidthRequest="120" Margin="10" CornerRadius="10"  BackgroundColor="Black" Opacity="0.7" AbsoluteLayout.LayoutBounds="1,0" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="whitedelete" Margin="12,12,0,12" RotationX="0.5" RotationY="0.5" Rotation="45"/>
+                                <Label Text="Change" TextColor="White" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="20" Margin="0,-5,0,0" Style="{StaticResource Medium}" />
+                            </StackLayout>
+                        </pancake:PancakeView>
+
+                    </AbsoluteLayout>
+                </StackLayout>
+            </ScrollView>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

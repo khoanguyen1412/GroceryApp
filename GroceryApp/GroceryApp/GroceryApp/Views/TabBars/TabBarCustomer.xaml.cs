@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +15,16 @@ namespace GroceryApp.Views.TabBars
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabBarCustomer : Xamarin.Forms.TabbedPage
     {
+        protected override void OnAppearing()
+        {
+        
+            base.OnAppearing();
+        }
         public TabBarCustomer()
         {
             InitializeComponent();
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+            this.On<Xamarin.Forms.PlatformConfiguration.Android>().SetIsSwipePagingEnabled(false);
         }
         private static TabBarCustomer _instance;
 

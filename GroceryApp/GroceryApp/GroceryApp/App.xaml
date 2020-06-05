@@ -32,6 +32,10 @@
             <converter:AddressFormatConverter x:Key="AddressFormatConverter"/>
             <converter:GridHeightOrderConverter x:Key="GridHeightOrderConverter"/>
             <converter:ReviewStateColorConverter x:Key="ReviewStateColorConverter"/>
+            <converter:UnitConverter x:Key="UnitConverter"/>
+            <converter:OrderDetailManagerButtonVisibleConverter x:Key="OrderDetailManagerButtonVisibleConverter"/>
+            <converter:OrderDetailManagerButtonTextConverter x:Key="OrderDetailManagerButtonTextConverter"/>
+            <converter:ShowPasswordConverter x:Key="ShowPasswordConverter"/>
             <selector:DataTemplateSliderSelector x:Key="DataTemplateSliderSelector"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"

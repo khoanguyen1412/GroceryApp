@@ -68,7 +68,7 @@
                                                                 <ColumnDefinition/>
                                                                 <ColumnDefinition Width="auto"/>
                                                             </Grid.ColumnDefinitions>
-                                                            <Label Text="{Binding OrderedProducts, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
+                                                            <Label Text="{Binding ., Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
                                                             <StackLayout  Grid.Column="1" Orientation="Horizontal">
                                                                 <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
                                                                 <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>
@@ -130,7 +130,7 @@
                                                         <ColumnDefinition/>
                                                         <ColumnDefinition Width="auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding OrderedProducts, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
+                                                    <Label Text="{Binding ., Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
                                                     <StackLayout  Grid.Column="1" Orientation="Horizontal">
                                                         <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
                                                         <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>
@@ -190,7 +190,7 @@
                                                         <ColumnDefinition/>
                                                         <ColumnDefinition Width="auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding OrderedProducts, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
+                                                    <Label Text="{Binding ., Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
                                                     <StackLayout  Grid.Column="1" Orientation="Horizontal">
                                                         <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
                                                         <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>

@@ -9,6 +9,7 @@ using Android.OS;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms.Platform.Android;
+using Acr.UserDialogs;
 
 namespace GroceryApp.Droid
 {
@@ -22,10 +23,11 @@ namespace GroceryApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            Window.SetStatusBarColor(Android.Graphics.Color.Transparent);
+
+            //Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#FFFFFF"));
+            Window.SetStatusBarColor(Android.Graphics.Color.White);
             var currentWindow = Window;
             currentWindow.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
-
 
 
             base.OnCreate(savedInstanceState);
@@ -39,7 +41,11 @@ namespace GroceryApp.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Window.SetSoftInputMode(Android.Views.SoftInput.AdjustPan);
 
+            UserDialogs.Init(this);
+
             LoadApplication(new App());
+            
+            
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

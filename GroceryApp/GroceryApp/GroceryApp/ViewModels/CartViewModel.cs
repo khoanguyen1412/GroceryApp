@@ -161,14 +161,21 @@ namespace GroceryApp.ViewModels
                 TotalPrice = Total,
                 CustomerAddress = "",
                 Note = "",
-                State = "WAITING",
+                State = OrderState.Waiting,
                 Review = "",
                 StoreAnswer = "",
                 Rating = -1,
-                OrderedProducts = ListProducts
+                //OrderedProducts = ListProducts
             };
+
+            OrderBillItem orderBillItem = new OrderBillItem
+            {
+                Order = order,
+                AddedProducts = ListProducts
+            };
+
             var addressPopup = new ConfirmInforOrderPopupView();
-            var PopupVM = new ConfirmInforOrderPopupViewModel(order);
+            var PopupVM = new ConfirmInforOrderPopupViewModel(orderBillItem);
             addressPopup.BindingContext = PopupVM;
             await PopupNavigation.Instance.PushAsync(addressPopup);
         }

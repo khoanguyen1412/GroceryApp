@@ -16,7 +16,7 @@ namespace GroceryApp.ViewModels
     }
     public class ConfirmInforOrderPopupViewModel:BaseViewModel, IConfirmInforOrderPopupViewModel
     {
-        OrderBill Order = null;
+        OrderBillItem OrderItem = null;
         bool emptyAddress=false;
 
         public Color _nextColor;
@@ -94,7 +94,7 @@ namespace GroceryApp.ViewModels
         public ICommand ShowBillCommand { get; set; }
         public ICommand DefaultCheckCommand { get; set; }
         public ICommand OtherCheckCommand { get; set; }
-        public ConfirmInforOrderPopupViewModel(OrderBill order)
+        public ConfirmInforOrderPopupViewModel(OrderBillItem orderItem)
         {
             DefaultAddress = true;
             OtherAddress = false;
@@ -112,7 +112,7 @@ namespace GroceryApp.ViewModels
             DefaultCheckCommand = new Command(DefaultCheck);
             OtherCheckCommand = new Command(OtherCheck);
 
-            this.Order = order as OrderBill;
+            this.OrderItem = orderItem as OrderBillItem;
             ShowBillCommand = new Command(ShowBill);
         }
 
@@ -158,13 +158,13 @@ namespace GroceryApp.ViewModels
             //set address
             if (DefaultAddress)
             {
-                this.Order.CustomerAddress = UserAddress;
+                this.OrderItem.Order.CustomerAddress = UserAddress;
             }
-            else { this.Order.CustomerAddress = NewAddress; }
+            else { this.OrderItem.Order.CustomerAddress = NewAddress; }
             //set note
-            this.Order.Note = Note;
+            this.OrderItem.Order.Note = Note;
             
-            BillView.BindingContext = new FinalBillViewModel(this.Order);
+            BillView.BindingContext = new FinalBillViewModel(this.OrderItem);
             await PopupNavigation.Instance.PopAsync();
             await App.Current.MainPage.Navigation.PushAsync(BillView, true);
         }

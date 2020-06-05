@@ -75,7 +75,7 @@ namespace GroceryApp.ViewModels
             {
                 ObservableCollection<FeedBack> feedBack = new ObservableCollection<FeedBack>();
                 foreach (OrderBill order in _orderedBills)
-                    if(order.State== "RECEIVED")
+                    if(order.State== OrderState.Received)
                     {
                         FeedBack newFeedBack = new FeedBack();
                         newFeedBack.CustomerReview = order.Review;

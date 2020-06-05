@@ -73,8 +73,8 @@
                         </Grid.ColumnDefinitions>
                         <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="0" Text="Bill Code:"/>
                         <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="1" Text="Date:"/>
-                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="1" Text="{Binding Order.IDOrderBill}" Margin="20,0,0,0"/>
-                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="1" Grid.Column="1" Text="{Binding Order.Date,Converter={StaticResource DateTimeConverter}}" Margin="20,0,0,0"/>
+                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="1" Text="{Binding OrderItem.Order.IDOrderBill}" Margin="20,0,0,0"/>
+                        <Label Style="{StaticResource Normal}" HorizontalTextAlignment="Start" Grid.Row="1" Grid.Column="1" Text="{Binding OrderItem.Order.Date,Converter={StaticResource DateTimeConverter}}" Margin="20,0,0,0"/>
 
                     </Grid>
                     <BoxView Grid.Row="5" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
@@ -124,7 +124,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Text="Delivery:" Style="{StaticResource Normal}" HorizontalOptions="Start"/>
-                        <Label Grid.Column="1" Text="{Binding Order.DeliveryPrice}" Style="{StaticResource Normal}" HorizontalOptions="End"/>
+                        <Label Grid.Column="1" Text="{Binding OrderItem.Order.DeliveryPrice}" Style="{StaticResource Normal}" HorizontalOptions="End"/>
 
                     </Grid>
                     <Grid Grid.Row="10">
@@ -133,7 +133,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Text="Total:" Style="{StaticResource Normal}" HorizontalOptions="Start"/>
-                        <Label Grid.Column="1" Text="{Binding Order.TotalPrice}" Style="{StaticResource Normal}" HorizontalOptions="End"/>
+                        <Label Grid.Column="1" Text="{Binding OrderItem.Order.TotalPrice}" Style="{StaticResource Normal}" HorizontalOptions="End"/>
 
                     </Grid>
                     <Grid Grid.Row="11">
@@ -142,7 +142,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Text="Payment (rounded):" Style="{StaticResource Bold}" HorizontalOptions="Start" FontSize="18"/>
-                        <Label Grid.Column="1" Text="{Binding Order.TotalPrice}" Style="{StaticResource Bold}" HorizontalOptions="End" FontSize="18"/>
+                        <Label Grid.Column="1" Text="{Binding OrderItem.Order.TotalPrice}" Style="{StaticResource Bold}" HorizontalOptions="End" FontSize="18"/>
                     </Grid>
                     <BoxView Grid.Row="12" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
                     <Label Grid.Row="13" FontSize="15" Text="(Above prices included VAT)" HorizontalOptions="Center" FontAttributes="Italic"  />

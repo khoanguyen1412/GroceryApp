@@ -64,8 +64,12 @@ namespace GroceryApp.ViewModels
                 List<OrderBill> orders= dataProvider.GetOrderBillByIDStore(Infor.IDStore);
                 double total = 0;
                 foreach (OrderBill order in orders)
-                    if(order.State=="RECEIVED")
-                    total += order.GetTotal();
+                    if(order.State==OrderState.Received)
+                    {
+                        List<Product> orderedProducts = dataProvider.GetProductsInBillByIDBill(order.IDOrderBill);
+                        total += order.GetTotal();
+                    }
+                    
 
 
                 return total.ToString();
@@ -85,7 +89,7 @@ namespace GroceryApp.ViewModels
             {
                 ObservableCollection<ReviewItem> result = new ObservableCollection<ReviewItem>();
                 DataProvider dataProvider = DataProvider.GetInstance();
-                List<OrderBill> orders = dataProvider.GetReceivedOrderByIDStore(Infor.IDStore);
+                List<OrderBill> orders = dataProvider.GetMyReviewedOrder();
                 orders = SortByDate(orders);
 
                 for(int i = 0; i < orders.Count; i++)

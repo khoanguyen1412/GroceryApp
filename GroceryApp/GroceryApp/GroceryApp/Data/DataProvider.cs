@@ -40,7 +40,7 @@ namespace GroceryApp.Data
             return listTypes;
         }
 
-        public List<OrderBill> GetOrderBills()
+        public List<OrderBill> GetMyOrderBills()
         {
             List<OrderBill> orderBills = new List<OrderBill>();
 
@@ -51,22 +51,22 @@ namespace GroceryApp.Data
             return orderBills;
         }
 
-        public Cart GetCart()
+        public List<Product> GetProductsInCart()
         {
-            foreach (var cart in Database.Carts)
-                if (cart.IDCart == Infor.IDCart)
-                    return cart;
-
-            return null;
+            List<Product> addedProducts = new List<Product>();
+            foreach (Product product in Database.Products)
+                if (product.State == ProductState.InCart && product.IDCart == Infor.IDUser)
+                    addedProducts.Add(product);
+            return addedProducts;
         }
 
         //CART==========================================================
         public List<string> GetIDStoreFromAddedProduct()
         {
             List<string> stores = new List<string>();
-            Cart myCart = this.GetCart();
+            List<Product> AddedProducts = this.GetProductsInCart();
 
-            foreach(Product product in myCart.AddedProducts)
+            foreach (Product product in AddedProducts)
             {
                 string idStore = product.IDStore;
                 Boolean isExist = false;
@@ -93,7 +93,7 @@ namespace GroceryApp.Data
 
         public List<Product> GetProductInCartByIDStore(string IDStore)
         {
-            List<Product> AddedProducts = this.GetCart().AddedProducts;
+            List<Product> AddedProducts = this.GetProductsInCart();
             List<Product> products = new List<Product>();
             foreach (Product product in AddedProducts)
                 if (product.IDStore == IDStore)
@@ -110,7 +110,7 @@ namespace GroceryApp.Data
             List<Product> products = new List<Product>();
 
             foreach (Product product in Database.Products)
-                if (product.IDStore == IDStore && product.StateInStore!="HIDDEN")
+                if (product.State==ProductState.InStore && product.IDStore == IDStore && product.StateInStore!=ProductStateInStore.Hidden)
                     products.Add(product);
 
             return products;
@@ -227,7 +227,7 @@ namespace GroceryApp.Data
             List<OrderBill> orders = this.GetOrderBillByIDStore(Infor.IDStore);
             int count = 0;
             foreach (OrderBill order in orders)
-                if (order.State == "WAITING")
+                if (order.State == OrderState.Waiting)
                     count++;
 
             return count;
@@ -238,23 +238,23 @@ namespace GroceryApp.Data
             List<OrderBill> orders = this.GetOrderBillByIDStore(Infor.IDStore);
             int count = 0;
             foreach (OrderBill order in orders)
-                if (order.State == "RECEIVED" && order.Review != null && order.Review != "" &&
-                    (order.StoreAnswer == null) || order.StoreAnswer == "")
+                if (order.State == OrderState.Received && order.Review != null && order.Review != "" &&
+                    (order.StoreAnswer == null || order.StoreAnswer == ""))
                     count++;
 
             return count;
         }
 
-        public List<OrderBill> GetReceivedOrderByIDStore(string IDStore)
+        public List<OrderBill> GetMyReviewedOrder()
         {
-            List<OrderBill> orders = this.GetOrderBillByIDStore(IDStore);
-            List<OrderBill> receivedOrders = new List<OrderBill>();
+            List<OrderBill> orders = this.GetOrderBillByIDStore(Infor.IDStore);
+            List<OrderBill> reviewedOrders = new List<OrderBill>();
 
             foreach (OrderBill order in orders)
-                if (order.State=="RECEIVED" && order.Review != null && order.Review != "")
-                    receivedOrders.Add(order);
+                if (order.State==OrderState.Received && order.Review != null && order.Review != "")
+                    reviewedOrders.Add(order);
 
-            return receivedOrders;
+            return reviewedOrders;
         }
 
         public User GetUserByIDUser(string IDUser)
@@ -273,14 +273,14 @@ namespace GroceryApp.Data
             List<Product> products = new List<Product>();
 
             foreach (Product product in Database.Products)
-                if (product.IDStore == Infor.IDStore)
+                if (product.State==ProductState.InStore && product.IDStore == Infor.IDStore)
                     products.Add(product);
 
             return products;
         }
 
         //==========================================================
-        //PRODUCT MANAGER VIEW==========================================================
+        //ORDER MANAGER VIEW==========================================================
         public List<OrderBill> GetOrderBillsOfCustomer()
         {
             List<OrderBill> orderBills = new List<OrderBill>();
@@ -298,7 +298,7 @@ namespace GroceryApp.Data
         {
             List<ReviewItem> result = new List<ReviewItem>();
             foreach(OrderBill order in Database.OrderBills)
-                if(order.State=="RECEIVED"&& order.IDStore==Infor.IDStore && 
+                if(order.State==OrderState.Received && order.IDStore==Infor.IDStore && 
                     order.Review!=null && order.Review!="")
                 {
                     ReviewItem review = new ReviewItem
@@ -317,6 +317,16 @@ namespace GroceryApp.Data
                 }
 
             return result;
+        }
+
+        public List<Product> GetProductsInBillByIDBill(string IDOrderBill)
+        {
+            List<Product> productsInBill = new List<Product>();
+            foreach (Product product in Database.Products)
+                if (product.State == ProductState.InBill && product.IDOrderBill == IDOrderBill)
+                    productsInBill.Add(product);
+
+            return productsInBill;
         }
 
         public OrderBill GetOrderBillByIDOrderBill(string IDOrderBill)

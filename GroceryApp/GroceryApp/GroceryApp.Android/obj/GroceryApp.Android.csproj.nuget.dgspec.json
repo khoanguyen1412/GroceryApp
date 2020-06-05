@@ -42,6 +42,10 @@
       "frameworks": {
         "monoandroid90": {
           "dependencies": {
+            "Acr.UserDialogs": {
+              "target": "Package",
+              "version": "[7.1.0.442, )"
+            },
             "Microcharts": {
               "target": "Package",
               "version": "[0.7.1, )"
@@ -129,6 +133,10 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "Acr.UserDialogs": {
+              "target": "Package",
+              "version": "[7.1.0.442, )"
+            },
             "Autofac": {
               "target": "Package",
               "version": "[5.2.0, )"

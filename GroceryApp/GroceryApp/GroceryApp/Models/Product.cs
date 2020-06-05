@@ -18,7 +18,12 @@ namespace GroceryApp.Models
         public int QuantityOrder { get; set; }
         public double Price { get; set; }
         public string ImageURL { get; set; }
-        public string StateInStore { get; set; }
+        public ProductStateInStore StateInStore { get; set; }
+        public string IDOrderBill { get; set; }
+        public string IDCart { get; set; } //ID User who added this product to their cart
+        public string IDSourceProduct{get;set;}
+        public ProductState State { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

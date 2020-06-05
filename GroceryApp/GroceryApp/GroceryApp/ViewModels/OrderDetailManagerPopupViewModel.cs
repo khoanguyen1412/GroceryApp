@@ -15,7 +15,7 @@ namespace GroceryApp.ViewModels
     }
     public class OrderDetailManagerPopupViewModel : BaseViewModel, IOrderDetailManagerPopupViewModel
     {
-
+        DataProvider dataProvider = DataProvider.GetInstance();
         private OrderBill _order;
 
         public OrderBill Order
@@ -26,7 +26,7 @@ namespace GroceryApp.ViewModels
 
         public List<Product> Products
         {
-            get { return _order.OrderedProducts; }
+            get { return dataProvider.GetProductsInBillByIDBill(_order.IDOrderBill); }
         }
 
         public double SubTotalPrice
@@ -41,7 +41,7 @@ namespace GroceryApp.ViewModels
         {
             get { return _order.TotalPrice; }
         }
-        public string State
+        public OrderState State
         {
             get { return _order.State; }
         }
@@ -154,11 +154,10 @@ namespace GroceryApp.ViewModels
                 TotalPrice = 130000,
                 CustomerAddress = "25 Trần Duy Hưng, Hà Nội",
                 Note = "Giao hàng từ 6->8h sáng",
-                State = "WAITING",
+                State = OrderState.Waiting,
                 Review = "",
                 StoreAnswer = "",
                 Rating = -1,
-                OrderedProducts = products
             };
 
             //_order = DataProvider.ListOrders[0];

@@ -10,14 +10,14 @@ namespace GroceryApp.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string orderState = (string)value;
+            OrderState orderState = (OrderState)value;
             string text = "";
             switch (orderState)
             {
-                case "WAITING":
+                case OrderState.Waiting:
                     text = "CANCEL ORDER";
                     break;
-                case "DELIVERING":
+                case OrderState.Delivering:
                     text = "RECEIVE ORDER";
                     break;
                 default:

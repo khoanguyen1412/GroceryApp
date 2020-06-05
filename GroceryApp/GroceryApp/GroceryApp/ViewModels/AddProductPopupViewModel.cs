@@ -232,7 +232,7 @@ namespace GroceryApp.ViewModels
         {
             if (!CheckValidData()) return null;
             SourceProduct.IDProduct = "000000000";
-            SourceProduct.StateInStore = "SOLD";
+            SourceProduct.StateInStore = ProductStateInStore.Selling;
             SourceProduct.IDStore = Infor.IDStore;
             SourceProduct.ImageURL = ImageURL;
             SourceProduct.ProductName = ProductName;

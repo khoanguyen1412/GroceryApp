@@ -10,9 +10,9 @@ namespace GroceryApp.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string orderState = (string)value;
+            OrderState orderState = (OrderState)value;
             bool isVisible = true;
-            if (orderState == "RECEIVED")
+            if (orderState == OrderState.Received)
                 isVisible = false;
 
             return isVisible; 

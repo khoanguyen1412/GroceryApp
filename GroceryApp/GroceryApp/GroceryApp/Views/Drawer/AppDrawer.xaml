@@ -11,6 +11,7 @@
              x:Class="GroceryApp.Views.Drawer.AppDrawer"
              Shell.NavBarIsVisible="False"
              x:Name="appShell"
+             WidthRequest="50"
              >
     <!--
     <FlyoutItem   Title="Your store" Icon="store" FlyoutDisplayOptions="AsMultipleItems">
@@ -27,6 +28,7 @@
         </Tab>
     </FlyoutItem>
 -->
+    
     <Shell.ItemTemplate>
         <DataTemplate>
             <ContentView NavigationPage.HasNavigationBar="False">
@@ -63,7 +65,7 @@
                                 <pancake:PancakeView BackgroundColor="White"  CornerRadius="90" Margin="0" Padding="0">
                                     <Grid BackgroundColor="Transparent" Margin="4">
                                         <pancake:PancakeView BackgroundColor="MediumPurple"  CornerRadius="90" Margin="0" Padding="0">
-                                            <Image Source="https://bom.to/RzHFe9" Aspect="AspectFit"/>
+                                            <Image Source="https://bom.to/dxvYsd" Aspect="AspectFit"/>
                                         </pancake:PancakeView>
                                     </Grid>
                                 </pancake:PancakeView>

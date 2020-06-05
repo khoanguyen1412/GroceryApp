@@ -71,7 +71,7 @@ namespace GroceryApp.ViewModels
             foreach (ProductItem item in _saveProducts)
                 if (item.Product.IDProduct == productItem.Product.IDProduct)
                 {
-                    item.Product.StateInStore = "SOLD";
+                    item.Product.StateInStore = ProductStateInStore.Selling;
                     break;
                 }
             LoadProducts();
@@ -82,7 +82,7 @@ namespace GroceryApp.ViewModels
             foreach(ProductItem item in _saveProducts)
                 if (item.Product.IDProduct == productItem.Product.IDProduct)
                 {
-                    item.Product.StateInStore = "DELETED";
+                    item.Product.StateInStore = ProductStateInStore.Hidden;
                     break;
                 }
             LoadProducts();
@@ -164,7 +164,7 @@ namespace GroceryApp.ViewModels
                 List<ProductItem> soldItems = new List<ProductItem>();
                 List<ProductItem> deletedItems = new List<ProductItem>();
                 foreach (ProductItem item in _saveProducts)
-                    if (item.Product.StateInStore == "SOLD")
+                    if (item.Product.StateInStore == ProductStateInStore.Selling)
                     {
                         if (!item.isHidden)
                             soldItems.Add(item);
@@ -204,7 +204,7 @@ namespace GroceryApp.ViewModels
 
                
                 foreach (ProductItem item in _saveProducts)
-                    if (item.Product.StateInStore == "SOLD")
+                    if (item.Product.StateInStore == ProductStateInStore.Selling)
                     {
                         if (!item.isHidden)
                             soldItems.Add(item);

@@ -10,14 +10,14 @@ namespace GroceryApp.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string orderState = (string)value;
+            OrderState orderState = (OrderState)value;
             Color color = Color.Black;
             switch (orderState)
             {
-                case "WAITING":
+                case OrderState.Waiting:
                     color = Color.Red;
                     break;
-                case "DELIVERING":
+                case OrderState.Delivering:
                     color = Color.FromHex("#00cc00");
                     break;
                 default:

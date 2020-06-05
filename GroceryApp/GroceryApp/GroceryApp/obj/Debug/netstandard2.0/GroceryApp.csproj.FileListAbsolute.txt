@@ -35,9 +35,11 @@ F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\StoreDashBoardView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Sliders\ChartSliderView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Sliders\StatisticSliderView.xaml.g.cs
-F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csproj.CoreCompileInputs.cache
-F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\XamlC.stamp
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\StoreSettingView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\StoreInformationView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\StoreAddressView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csprojAssemblyReference.cache
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csproj.CoreCompileInputs.cache
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\XamlC.stamp
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\UserSettingView.xaml.g.cs
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\ChangePasswordView.xaml.g.cs

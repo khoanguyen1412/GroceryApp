@@ -1,10 +1,13 @@
-﻿using GroceryApp.Views.Screens;
+﻿using Acr.UserDialogs;
+using GroceryApp.Views.Screens;
 using GroceryApp.Views.TabBars;
 using Plugin.SharedTransitions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -54,6 +57,7 @@ namespace GroceryApp.Views.Drawer
         private AppDrawer()
         {
             InitializeComponent();
+            
             Shell.SetTabBarIsVisible(this, false);
             Shell.SetNavBarIsVisible(this, false);
             //Item CUSTOMER
@@ -78,13 +82,20 @@ namespace GroceryApp.Views.Drawer
             tabStore.Items.Add(storeTabs);
             flyoutStore.Items.Add(tabStore);
             appShell.Items.Add(flyoutStore);
-            
+
+            appShell.CurrentItem.PropertyChanged += CurrentItem_PropertyChanged;
         }
 
-        protected override void OnTabIndexPropertyChanged(int oldValue, int newValue)
+        private async void CurrentItem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            base.OnTabIndexPropertyChanged(oldValue, newValue);
+            using (UserDialogs.Instance.Loading("wait.."))
+            {
+                await Task.Delay(1500);
+            }
         }
+
+        
+
         protected override bool OnBackButtonPressed()
         {
             

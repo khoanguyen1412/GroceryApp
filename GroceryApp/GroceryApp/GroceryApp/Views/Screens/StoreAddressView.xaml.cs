@@ -1,5 +1,6 @@
 ﻿using GroceryApp.Models;
 using GroceryApp.ViewModels;
+using GroceryApp.Views.TabBars;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace GroceryApp.Views.Screens
                 City = CityText.Text,
                 HouseNumber = HouseNumberText.Text
             };
-            (App.Current.MainPage.Navigation.NavigationStack.ElementAt(0).BindingContext as StoreSetttingViewModel).ChangeAddress(newAddress);
+            //(App.Current.MainPage.Navigation.NavigationStack.ElementAt(0).BindingContext as StoreSetttingViewModel).ChangeAddress(newAddress);
+            (TabbarStoreManager.GetInstance().Children.ElementAt(4).BindingContext as StoreSetttingViewModel).ChangeAddress(newAddress);
             App.Current.MainPage.Navigation.PopAsync();
         }
     }
