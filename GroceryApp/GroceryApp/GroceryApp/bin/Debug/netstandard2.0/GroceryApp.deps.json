@@ -15,12 +15,12 @@
           "Microcharts.Forms": "0.7.1",
           "NETStandard.Library": "2.0.3",
           "Prism.DryIoc.Forms": "7.2.0.1422",
-          "Rg.Plugins.Popup": "2.0.0.2",
+          "Rg.Plugins.Popup": "2.0.0.3",
           "SkiaSharp": "1.68.3",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.FFImageLoading": "2.4.11.982",
           "Xamarin.FFImageLoading.Forms": "2.4.11.982",
-          "Xamarin.Forms": "4.6.0.800",
+          "Xamarin.Forms": "4.6.0.847",
           "Xamarin.Forms.PancakeView": "1.4.2",
           "Xamarin.Plugin.SharedTransitions": "2.2.0"
         },
@@ -74,7 +74,7 @@
         "dependencies": {
           "SkiaSharp.Views.Forms": "1.59.1.1",
           "System.ValueTuple": "4.4.0",
-          "Xamarin.Forms": "4.6.0.800"
+          "Xamarin.Forms": "4.6.0.847"
         },
         "runtime": {
           "lib/netstandard1.4/Microcharts.Forms.dll": {
@@ -124,7 +124,7 @@
       "Prism.Forms/7.2.0.1422": {
         "dependencies": {
           "Prism.Core": "7.2.0.1422",
-          "Xamarin.Forms": "4.6.0.800"
+          "Xamarin.Forms": "4.6.0.847"
         },
         "runtime": {
           "lib/netstandard2.0/Prism.Forms.dll": {
@@ -133,14 +133,14 @@
           }
         }
       },
-      "Rg.Plugins.Popup/2.0.0.2": {
+      "Rg.Plugins.Popup/2.0.0.3": {
         "dependencies": {
-          "Xamarin.Forms": "4.6.0.800"
+          "Xamarin.Forms": "4.6.0.847"
         },
         "runtime": {
           "lib/netstandard2.0/Rg.Plugins.Popup.dll": {
-            "assemblyVersion": "2.0.0.2",
-            "fileVersion": "2.0.0.2"
+            "assemblyVersion": "2.0.0.3",
+            "fileVersion": "2.0.0.3"
           }
         }
       },
@@ -158,7 +158,7 @@
       "SkiaSharp.Views.Forms/1.59.1.1": {
         "dependencies": {
           "SkiaSharp": "1.68.3",
-          "Xamarin.Forms": "4.6.0.800"
+          "Xamarin.Forms": "4.6.0.847"
         },
         "runtime": {
           "lib/netstandard1.3/SkiaSharp.Views.Forms.dll": {
@@ -325,7 +325,7 @@
       "Xamarin.FFImageLoading.Forms/2.4.11.982": {
         "dependencies": {
           "Xamarin.FFImageLoading": "2.4.11.982",
-          "Xamarin.Forms": "4.6.0.800"
+          "Xamarin.Forms": "4.6.0.847"
         },
         "runtime": {
           "lib/netstandard1.0/FFImageLoading.Forms.dll": {
@@ -334,26 +334,26 @@
           }
         }
       },
-      "Xamarin.Forms/4.6.0.800": {
+      "Xamarin.Forms/4.6.0.847": {
         "runtime": {
           "lib/netstandard2.0/Xamarin.Forms.Core.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.6.0.474"
+            "fileVersion": "4.6.0.487"
           },
           "lib/netstandard2.0/Xamarin.Forms.Platform.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.6.0.474"
+            "fileVersion": "4.6.0.487"
           },
           "lib/netstandard2.0/Xamarin.Forms.Xaml.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.6.0.474"
+            "fileVersion": "4.6.0.487"
           }
         }
       },
       "Xamarin.Forms.PancakeView/1.4.2": {
         "dependencies": {
           "System.ComponentModel": "4.3.0",
-          "Xamarin.Forms": "4.6.0.800"
+          "Xamarin.Forms": "4.6.0.847"
         },
         "runtime": {
           "lib/netstandard2.0/Xamarin.Forms.PancakeView.dll": {
@@ -364,7 +364,7 @@
       },
       "Xamarin.Plugin.SharedTransitions/2.2.0": {
         "dependencies": {
-          "Xamarin.Forms": "4.6.0.800"
+          "Xamarin.Forms": "4.6.0.847"
         },
         "runtime": {
           "lib/netstandard2.0/Plugin.SharedTransitions.dll": {
@@ -465,12 +465,12 @@
       "path": "prism.forms/7.2.0.1422",
       "hashPath": "prism.forms.7.2.0.1422.nupkg.sha512"
     },
-    "Rg.Plugins.Popup/2.0.0.2": {
+    "Rg.Plugins.Popup/2.0.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UExzgLevcih/oDokftGPKRqaefS65ByAOeaFzfr1Qy2opeyv9+eR0hDWotGb0hPI5JFHD7NJv5aK6NbTM3WuLw==",
-      "path": "rg.plugins.popup/2.0.0.2",
-      "hashPath": "rg.plugins.popup.2.0.0.2.nupkg.sha512"
+      "sha512": "sha512-/lrKxxsdaF9T+YEnVDaUMj0angdRyvpngSmX8veY/QYhSjT4x3guJTsL8O8D4egDf7MI5McnmMAsst0tkN1LOA==",
+      "path": "rg.plugins.popup/2.0.0.3",
+      "hashPath": "rg.plugins.popup.2.0.0.3.nupkg.sha512"
     },
     "SkiaSharp/1.68.3": {
       "type": "package",
@@ -612,12 +612,12 @@
       "path": "xamarin.ffimageloading.forms/2.4.11.982",
       "hashPath": "xamarin.ffimageloading.forms.2.4.11.982.nupkg.sha512"
     },
-    "Xamarin.Forms/4.6.0.800": {
+    "Xamarin.Forms/4.6.0.847": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-9BkqdiqdaigD+QlHqmHHMm32NNo7mnuIG+fOgIbSbzzqT1MKN+KPVgem8OUkKOnFP4u6piq9D99xrVafKSztIg==",
-      "path": "xamarin.forms/4.6.0.800",
-      "hashPath": "xamarin.forms.4.6.0.800.nupkg.sha512"
+      "sha512": "sha512-xUUgs1/xDdS9I/oN2UkdRwd/YToqg0qhwIK8yvyJJ2Xbhsc1ssV4/DUICdjuwCttzeiAcrhILqD+0BQhifUfxw==",
+      "path": "xamarin.forms/4.6.0.847",
+      "hashPath": "xamarin.forms.4.6.0.847.nupkg.sha512"
     },
     "Xamarin.Forms.PancakeView/1.4.2": {
       "type": "package",

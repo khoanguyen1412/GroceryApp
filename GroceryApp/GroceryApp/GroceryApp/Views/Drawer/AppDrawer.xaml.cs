@@ -42,7 +42,30 @@ namespace GroceryApp.Views.Drawer
             Icon = "store",
             FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems
         };
-
+        FlyoutItem flyoutUserSetting = new FlyoutItem
+        {
+            Title = "Setting",
+            Icon = "setting",
+            FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems
+        };
+        Tab tabSetting = new Tab
+        {
+            Title = "Setting",
+            Icon = "setting",
+            FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems
+        };
+        FlyoutItem flyoutLogout = new FlyoutItem
+        {
+            Title = "Logout",
+            Icon = "colorlogout",
+            FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems
+        };
+        Tab tabLogout = new Tab
+        {
+            Title = "Logout",
+            Icon = "colorlogout",
+            FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems
+        };
 
         private static AppDrawer _instance;
 
@@ -57,7 +80,7 @@ namespace GroceryApp.Views.Drawer
         private AppDrawer()
         {
             InitializeComponent();
-            
+
             Shell.SetTabBarIsVisible(this, false);
             Shell.SetNavBarIsVisible(this, false);
             //Item CUSTOMER
@@ -65,40 +88,84 @@ namespace GroceryApp.Views.Drawer
             {
                 Content = TabBarCustomer.GetInstance(),
                 Title = "Shopping",
-                Icon = "heartcart"
+                Icon = "drawercart"
             };
             tabShopping.Items.Add(shoppingTabs);
             flyoutShopping.Items.Add(tabShopping);
             appShell.Items.Add(flyoutShopping);
 
             //Item STORE
-            
+
             var storeTabs = new ShellContent()
             {
                 Content = TabbarStoreManager.GetInstance(),
                 Title = "Your store",
-                Icon = "store"
+                Icon = "drawerstore"
             };
             tabStore.Items.Add(storeTabs);
             flyoutStore.Items.Add(tabStore);
             appShell.Items.Add(flyoutStore);
 
-            appShell.CurrentItem.PropertyChanged += CurrentItem_PropertyChanged;
+            //Item SETTING
+
+            var settingTab = new ShellContent()
+            {
+                Content = UserSettingView.GetInstance(),
+                Title = "Setting",
+                Icon = "drawersetting"
+            };
+            tabSetting.Items.Add(settingTab);
+            flyoutUserSetting.Items.Add(tabSetting);
+            appShell.Items.Add(flyoutUserSetting);
+
+            //Item LOGOUT
+
+            var logoutTab = new ShellContent()
+            {
+                //Content = UserSettingView.GetInstance(),
+                Title = "Logout",
+                Icon = "flatlogout"
+            };
+            tabLogout.Items.Add(logoutTab);
+            flyoutLogout.Items.Add(tabLogout);
+            appShell.Items.Add(flyoutLogout);
+
+            //appShell.CurrentItem.PropertyChanged += CurrentItem_PropertyChanged;
+            flyoutShopping.PropertyChanged += FlyoutShopping_PropertyChanged;
+            flyoutStore.PropertyChanged += FlyoutStore_PropertyChanged;
+            flyoutUserSetting.PropertyChanged += FlyoutUserSetting_PropertyChanged;
         }
 
-        private async void CurrentItem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private async void FlyoutUserSetting_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             using (UserDialogs.Instance.Loading("wait.."))
             {
-                await Task.Delay(1500);
+                await Task.Delay(500);
             }
         }
 
-        
+        private async void FlyoutStore_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            using (UserDialogs.Instance.Loading("wait.."))
+            {
+                await Task.Delay(500);
+            }
+        }
+
+        private async void FlyoutShopping_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            using (UserDialogs.Instance.Loading("wait.."))
+            {
+                await Task.Delay(500);
+            }
+        }
+
+
+
 
         protected override bool OnBackButtonPressed()
         {
-            
+
             int x = App.Current.MainPage.Navigation.NavigationStack.Count;
             if (x == 1)
             {

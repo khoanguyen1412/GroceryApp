@@ -60,7 +60,7 @@
             },
             "Rg.Plugins.Popup": {
               "target": "Package",
-              "version": "[2.0.0.2, )"
+              "version": "[2.0.0.3, )"
             },
             "SkiaSharp": {
               "target": "Package",
@@ -80,7 +80,7 @@
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.6.0.800, )"
+              "version": "[4.6.0.847, )"
             },
             "Xamarin.Forms.PancakeView": {
               "target": "Package",
@@ -161,7 +161,7 @@
             },
             "Rg.Plugins.Popup": {
               "target": "Package",
-              "version": "[2.0.0.2, )"
+              "version": "[2.0.0.3, )"
             },
             "SkiaSharp": {
               "target": "Package",
@@ -181,7 +181,7 @@
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.6.0.800, )"
+              "version": "[4.6.0.847, )"
             },
             "Xamarin.Forms.PancakeView": {
               "target": "Package",

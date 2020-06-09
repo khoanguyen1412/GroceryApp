@@ -58,9 +58,10 @@ namespace GroceryApp.ViewModels
             string[] items = myStore.StoreAddress.Split('#');
             addressPage.BindingContext = new AddressItem
             {
-                Country=items[0],
-                City=items[1],
-                HouseNumber=items[2]
+                HouseNumber = items[0],
+                District=items[1],
+                City = items[2],
+                Country = items[3]
             };
             await App.Current.MainPage.Navigation.PushAsync(addressPage, true);
         }
@@ -69,6 +70,7 @@ namespace GroceryApp.ViewModels
         {
             myStore = dataProvider.GetStoreByIDStore(Infor.IDStore);
             StoreImage = myStore.ImageURL;
+            
         }
 
         public void ChangeInfor(StoreInfor newInfor)
@@ -79,7 +81,7 @@ namespace GroceryApp.ViewModels
 
         public void ChangeAddress(AddressItem newAddress)
         {
-            string address = newAddress.Country + "#" + newAddress.City + "#" + newAddress.HouseNumber;
+            string address = newAddress.HouseNumber + "#" + newAddress.District + "#" + newAddress.City+"#"+newAddress.Country;
             myStore.StoreAddress = address;
         }
     }

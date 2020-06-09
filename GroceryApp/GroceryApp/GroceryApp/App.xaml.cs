@@ -26,8 +26,8 @@ namespace GroceryApp
             Infor.IDUser = "1";
             Infor.IDStore = "1";
             Infor.IDCart = "1";
-            MainPage = new NavigationPage(new ChangePasswordView());
-            //MainPage = AppDrawer.GetInstance();
+            //MainPage = new NavigationPage(new UserSettingView());
+            MainPage = AppDrawer.GetInstance();
         }
 
         protected override void OnStart()

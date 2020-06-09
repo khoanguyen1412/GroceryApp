@@ -12,7 +12,17 @@ namespace GroceryApp.Views.Screens
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserSettingView : ContentPage
     {
-        public UserSettingView()
+        private static UserSettingView _instance;
+
+        public static UserSettingView GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new UserSettingView();
+            }
+            return _instance;
+        }
+        private UserSettingView()
         {
             InitializeComponent();
             

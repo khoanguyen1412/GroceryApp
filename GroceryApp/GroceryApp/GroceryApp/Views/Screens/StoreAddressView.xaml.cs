@@ -15,6 +15,7 @@ namespace GroceryApp.Views.Screens
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StoreAddressView : ContentPage
     {
+        public string parentName="StoreSetting";
         public StoreAddressView()
         {
             InitializeComponent();
@@ -26,10 +27,15 @@ namespace GroceryApp.Views.Screens
             {
                 Country = CountryText.Text,
                 City = CityText.Text,
-                HouseNumber = HouseNumberText.Text
+                HouseNumber = HouseNumberText.Text,
+                District=DistrictText.Text
             };
+            
             //(App.Current.MainPage.Navigation.NavigationStack.ElementAt(0).BindingContext as StoreSetttingViewModel).ChangeAddress(newAddress);
-            (TabbarStoreManager.GetInstance().Children.ElementAt(4).BindingContext as StoreSetttingViewModel).ChangeAddress(newAddress);
+            if (parentName == "StoreSetting")
+                (TabbarStoreManager.GetInstance().Children.ElementAt(4).BindingContext as StoreSetttingViewModel).ChangeAddress(newAddress);
+            else
+                (UserSettingView.GetInstance().BindingContext as UserSettingViewModel).ChangeAddress(newAddress); 
             App.Current.MainPage.Navigation.PopAsync();
         }
     }

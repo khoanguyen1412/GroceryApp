@@ -18,7 +18,7 @@ namespace GroceryApp.Data
                 PhoneNumber="0377337978",
                 Address="Tri Thủy#Ninh Hải#Ninh Thuận#Việt Nam",
                 Email="khoanguyen1412@gmail.com",
-                ImageURL="https://bom.to/gMejA7",
+                ImageURL="https://bom.to/2DFoGr",
                 BirthDate=new DateTime(1999,6,18),
                 UserName="Khoa athony"
             },

@@ -28,39 +28,75 @@
         </Tab>
     </FlyoutItem>
 -->
-    
+    <Shell.Resources>
+        <Style x:Key="FloutItemStyle" TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#73D8D4"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="PancakeStyle" TargetType="pancake:PancakeView">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundGradientStartColor" Value="#73D8D4"/>
+                                <Setter Property="BackgroundGradientEndColor" Value="White"/>
+                                <Setter Property="BackgroundGradientAngle" Value="45"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </Shell.Resources>
     <Shell.ItemTemplate>
         <DataTemplate>
-            <ContentView NavigationPage.HasNavigationBar="False">
-                <Grid HeightRequest="60">
+            <pancake:PancakeView x:Name="cake" HeightRequest="50" HorizontalOptions="FillAndExpand" 
+                                 Style="{StaticResource PancakeStyle}"
+                                     >
+                <Grid x:Name="grid" HeightRequest="60" BackgroundColor="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*" />
                         <ColumnDefinition Width="0.8*" />
                         <ColumnDefinition Width="0.3*" />
                     </Grid.ColumnDefinitions>
                     <Image  Grid.Column="0" Source="{Binding Icon}" WidthRequest="10" HeightRequest="10"
-                       Margin="15"/>
+                       Margin="12"/>
                     <Label  Grid.Column="1"
                         FontSize="20"
                        Text="{Binding Title}" TextColor="Black"
                        VerticalTextAlignment="Center" />
-                    <Image  Grid.Column="2" Source="goarrow" WidthRequest="10" HeightRequest="10"
-                       Margin="18"/>
+                    <Image IsVisible="{Binding Source={x:Reference cake},Path=BackgroundGradientStartColor,Converter={StaticResource FlyoutBackgroundConverter}}" Grid.Column="2" 
+                           Source="{Binding Title,Converter={StaticResource FlyoutBackgroundConverter}}" WidthRequest="10" HeightRequest="10"
+                       Margin="15"/>
                 </Grid>
-            </ContentView>
+            </pancake:PancakeView>
+
+
         </DataTemplate>
     </Shell.ItemTemplate>
 
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
             <ContentView HeightRequest="180" BackgroundColor="#FFFFFF">
-                <pancake:PancakeView  CornerRadius="0,20,0,20" Margin="0,20,20,10" BackgroundColor="Accent">
+                <pancake:PancakeView  CornerRadius="0,20,0,20" Margin="0,20,20,10" BackgroundColor="#8998FF">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <pancake:PancakeView BackgroundColor="LightPink" CornerRadius="90" Margin="20,30,30,30">
+                        <pancake:PancakeView BackgroundColor="#4dffb8" CornerRadius="90" Margin="20,30,30,30">
                             <Grid BackgroundColor="Transparent" Margin="4">
                                 <pancake:PancakeView BackgroundColor="White"  CornerRadius="90" Margin="0" Padding="0">
                                     <Grid BackgroundColor="Transparent" Margin="4">
