@@ -32,13 +32,18 @@ namespace GroceryApp.Views.TabBars
             return _instance;
         }
 
+        public static void Destroy()
+        {
+            _instance = null;
+        }
+
         public void GoHome()
         {
             var tabbar = TabbarStoreManager.GetInstance();
             if (tabbar.CurrentPage == tabbar.Children[0])
             {
                 //System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
-                System.Environment.Exit(0);
+                //System.Environment.Exit(0);
             }
             tabbar.CurrentPage = tabbar.Children[0];
         }

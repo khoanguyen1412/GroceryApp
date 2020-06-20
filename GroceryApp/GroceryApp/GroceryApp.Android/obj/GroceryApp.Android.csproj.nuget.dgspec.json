@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[0.7.1, )"
             },
+            "Microsoft.AspNet.WebApi.Client": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
             "Prism.DryIoc.Forms": {
               "target": "Package",
               "version": "[7.2.0.1422, )"
@@ -148,6 +152,10 @@
             "Microcharts.Forms": {
               "target": "Package",
               "version": "[0.7.1, )"
+            },
+            "Microsoft.AspNet.WebApi.Client": {
+              "target": "Package",
+              "version": "[5.2.7, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",

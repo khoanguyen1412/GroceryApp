@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+              
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              x:Class="GroceryApp.Views.Popups.OrderDetailManagerPopupView">
@@ -44,7 +45,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ListView x:Name="List" Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding AddedProducts}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
+            <ListView x:Name="List" Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding Products}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -115,11 +116,26 @@
                         <Label  Margin="-5,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="{Binding Order.TotalPrice}" FontSize="20" TextColor="Black"/>
                     </StackLayout>
 
-                    <Button IsVisible="{Binding Order.State,Converter={StaticResource OrderDetailManagerButtonVisibleConverter}}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" 
-                            BackgroundColor="{Binding Order.State, Converter={StaticResource OrderDetailButtonColorConverter}}" 
-                            Text="{Binding Order.State, Converter={StaticResource OrderDetailManagerButtonTextConverter}}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"
-                            Command="{Binding OrderDetailManager.ActionCommand, Source={StaticResource Locator}}"
+                    <Grid Grid.Row="3" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button IsVisible="{Binding Order.State,Converter={StaticResource OrderDetailManagerButtonVisibleConverter}}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" 
+                            BackgroundColor="Red" 
+                            Text="Cancel"   HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"
+                            Command="{Binding CancelCommand}"
+                                CommandParameter="{Binding Order}"
                             />
+                        <Button IsVisible="{Binding Order.State,Converter={StaticResource OrderDetailManagerButtonVisibleConverter}}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" 
+                            BackgroundColor="#00cc00" 
+                            Text="Deliver"  Grid.Column="1"  HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"
+                            Command="{Binding DeliverCommand}"
+                                CommandParameter="{Binding Order}"
+                                
+                            />
+                    </Grid>
+                    
                 </Grid>
             </Frame>
         </Grid>

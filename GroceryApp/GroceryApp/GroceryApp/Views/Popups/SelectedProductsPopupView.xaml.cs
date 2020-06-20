@@ -17,6 +17,18 @@ namespace GroceryApp.Views.Popups
         public SelectedProductsPopupView()
         {
             InitializeComponent();
+            var AddToCartGestureRecognizer = new TapGestureRecognizer();
+            AddToCartGestureRecognizer.Tapped += AddToCart;
+            btnAdd.GestureRecognizers.Add(AddToCartGestureRecognizer);
+
+        }
+
+        public void AddToCart(object sender, EventArgs e)
+        {
+            var viewmodel = this.BindingContext as ShowStoreViewModel;
+            viewmodel.AddToCart();
+            viewmodel.updateSelectedProduct();
+
         }
 
         public int HeaderHeight { get; private set; } = 70;

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="GroceryApp.Views.Screens.LoginView">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid  BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Username:" FontSize="20" TextColor="Black"/>
+                <Label Grid.Row="1" Grid.Column="0" Text="Password:" FontSize="20" TextColor="Black"/>
+                <Entry Text="1" x:Name="username" Grid.Row="0" Grid.Column="1" WidthRequest="200" />
+                <Entry Text="1" x:Name="password" Grid.Row="1" Grid.Column="1" WidthRequest="200"/>
+
+                <Button Grid.Row="2" Grid.ColumnSpan="2" WidthRequest="100"  HeightRequest="150"  Text="Login" FontSize="50" Clicked="Button_Clicked"/>
+
+            </Grid>
+            <Picker IsVisible="False" x:Name="IDPicker" BackgroundColor="LightPink"
+                    HeightRequest="100" WidthRequest="100"
+                    FontSize="50" 
+                VerticalOptions="CenterAndExpand"
+                    SelectedItem="1"
+                HorizontalOptions="CenterAndExpand" >
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>1</x:String>
+                        <x:String>2</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

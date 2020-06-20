@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              mc:Ignorable="d"
              BackgroundColor="White"
-             BindingContext="{Binding ListOrders,Source={StaticResource Locator}}"
              x:Name="ListOrdersPage"
              NavigationPage.HasNavigationBar="False"
              
              x:Class="GroceryApp.Views.Screens.ListOrdersView">
+    <ContentPage.BindingContext>
+        <vm:ListOrdersViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never">
             <StackLayout Orientation="Vertical">
@@ -22,7 +24,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <ListView  Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding WaitingOrders}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
+                    <ListView x:Name="waitingList"  Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding WaitingOrders}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -30,6 +32,11 @@
                                         <SwipeView.RightItems>
                                             <SwipeItems Mode="Reveal">
                                                 <SwipeItemView>
+                                                    <SwipeItemView.GestureRecognizers>
+                                                        <TapGestureRecognizer   
+                                                                              Command="{Binding BindingContext.DeleteOrderCommand,Source={x:Reference waitingList}}"   
+                                                                              CommandParameter="{Binding .}"/>
+                                                    </SwipeItemView.GestureRecognizers>
                                                     <Grid WidthRequest="60" BackgroundColor="#e6e6e6">
                                                         <pancake:PancakeView Margin="10,15" CornerRadius="10" Padding="5" BackgroundColor="#fc6353">
                                                             <Image
@@ -110,7 +117,8 @@
                                             <SwipeItems Mode="Reveal">
                                                 <SwipeItemView>
                                                     <SwipeItemView.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding ListOrders.ShowReviewPopupCommand, Source={StaticResource Locator}}"/>
+                                                        <TapGestureRecognizer Command="{Binding ListOrders.ShowReviewPopupCommand, Source={StaticResource Locator}}"
+                                                                              CommandParameter="{Binding .}"/>
                                                     </SwipeItemView.GestureRecognizers>
                                                     <Grid WidthRequest="60" BackgroundColor="#e6e6e6">
                                                         <pancake:PancakeView Margin="10,15" CornerRadius="10" Padding="5" BackgroundColor="#00cc7a">

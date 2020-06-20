@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using GroceryApp.Data;
 using ImTools;
+using System.Net.Http;
 
 namespace GroceryApp.ViewModels
 {
@@ -30,7 +31,7 @@ namespace GroceryApp.ViewModels
     }
     public class CartViewModel : BaseViewModel, ICartViewModel
     {
-
+        DataProvider dataProvider = DataProvider.GetInstance();
 
         private int currentStore;
 
@@ -76,19 +77,48 @@ namespace GroceryApp.ViewModels
 
         public ICommand ShowConfirmInforCommand { get; set; }
         public ICommand ChooseStoreCommand { get; set; }
+        public ICommand ReturnProductCommand { get; set; }
 
         public CartViewModel()
+        {
+            InitCart();
+            
+            
+        }
+
+        public void InitCart()
         {
             currentStore = 0;
             Subtotal = 0;
             Delivery = 0;
             Total = 0;
-            
+
             LoadStoreItems();
             LoadProducts();
             CanOrder = false;
             ShowConfirmInforCommand = new Command(ShowConfirmInfor);
             ChooseStoreCommand = new Command<string>(ChooseStore);
+            ReturnProductCommand = new Command<ProductItemCart>(ReturnProduct);
+        }
+
+        public async void ReturnProduct(ProductItemCart productItem)
+        {
+            Product product = productItem.Product;
+            var httpClient = new HttpClient();
+            Product deletedProduct = dataProvider.GetProductInCartByIDSourceProduct(product.IDSourceProduct);
+            DataUpdater.ReturnProductToSourceProduct(deletedProduct);
+            
+
+            Product changedProduct = dataProvider.GetProductByID(product.IDSourceProduct);
+            //Update lại product cho server database
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", changedProduct);
+            //xóa product bị hủy trong cart 
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/deleteproductbyid/"+ deletedProduct.IDProduct,new { });
+
+
+            //load lại data product cho store được trả về VÀ TRONG CART
+            DataUpdater.DeletedProductInCart(deletedProduct);
+            InitCart();
             
         }
 
@@ -149,10 +179,10 @@ namespace GroceryApp.ViewModels
             foreach (ProductItemCart item in _products)
                 if (item.isChosen)
                     ListProducts.Add(item.Product);
-
+            string id="OrderBill_"+ DateTime.Now.ToString("HHmmss");
             OrderBill order = new OrderBill()
             {
-                IDOrderBill = "9999",
+                IDOrderBill = id,
                 IDUser = Infor.IDUser,
                 IDStore = StoreItems[currentStore].IDStore,
                 Date = DateTime.Today,
@@ -165,7 +195,6 @@ namespace GroceryApp.ViewModels
                 Review = "",
                 StoreAnswer = "",
                 Rating = -1,
-                //OrderedProducts = ListProducts
             };
 
             OrderBillItem orderBillItem = new OrderBillItem
@@ -182,19 +211,36 @@ namespace GroceryApp.ViewModels
 
         public void LoadProducts()
         {
+            if (StoreItems == null || StoreItems.Count == 0)
+            {
+                Products=new ObservableCollection<ProductItemCart>();
+                return;
+            }
             var dataProvider = DataProvider.GetInstance();
             List<Product> products = dataProvider.GetProductInCartByIDStore(StoreItems[currentStore].IDStore);
             List<ProductItemCart> items = new List<ProductItemCart>();
             foreach(Product product in products)
             {
-                ProductItemCart item = new ProductItemCart
+                bool isExisted = false;
+                foreach (ProductItemCart itemCart in items)
+                    if (product.IDSourceProduct == itemCart.Product.IDSourceProduct)
+                    {
+                        isExisted = true;
+                        itemCart.Product.QuantityOrder += product.QuantityOrder;
+                        break;
+                    }
+                if (isExisted == false)
                 {
-                    Product = product,
-                    isChosen = false
-                };
-                items.Add(item);
+                    ProductItemCart item = new ProductItemCart
+                    {
+                        Product = product,
+                        isChosen = false
+                    };
+                    items.Add(item);
+                }
+                
             }
-            
+
             Products = new ObservableCollection<ProductItemCart>(items);
             
         }
@@ -203,7 +249,13 @@ namespace GroceryApp.ViewModels
         {
             var dataProvider = DataProvider.GetInstance();
             List<string> ids = dataProvider.GetIDStoreFromAddedProduct();
+            if (ids.Count == 0)
+            {
+                StoreItems=new ObservableCollection<StoreItem>();
+                return;
+            }
             List<StoreItem> storeItems = new List<StoreItem>();
+            
 
             foreach (string id in ids)
             {
@@ -213,8 +265,8 @@ namespace GroceryApp.ViewModels
             }
             storeItems[0].isChosen = true;
 
-            ObservableCollection<StoreItem> result = new ObservableCollection<StoreItem>(storeItems);
-            _storeItems = result;
+            StoreItems = new ObservableCollection<StoreItem>(storeItems);
+            
             
         }
     }

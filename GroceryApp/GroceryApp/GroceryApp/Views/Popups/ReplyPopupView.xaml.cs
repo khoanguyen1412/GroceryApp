@@ -1,8 +1,11 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using GroceryApp.Data;
+using GroceryApp.Models;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,6 +44,16 @@ namespace GroceryApp.Views.Popups
             card.GestureRecognizers.Add(tapGestureRecognizer2);
         }
 
+        public void InitStars()
+        {
+            ReviewItem review = this.BindingContext as ReviewItem;
+            star1.Source = review.star1;
+            star2.Source = review.star2;
+            star3.Source = review.star3;
+            star4.Source = review.star4;
+            star5.Source = review.star5;
+        }
+
         public async void ClosePopup()
         {
             await PopupNavigation.Instance.PopAsync();
@@ -65,6 +78,17 @@ namespace GroceryApp.Views.Popups
 
         private async void SendClick(object sender, EventArgs e)
         {
+            //call api update orderbill
+            ReviewItem reviewItem = this.BindingContext as ReviewItem;
+            DataProvider dataProvider = DataProvider.GetInstance();
+            OrderBill order = dataProvider.GetOrderBillByIDOrderBill(reviewItem.IDOrderBill);
+            order.StoreAnswer = AnswerEntry.Text;
+
+            //update orderbill ở database local
+            DataUpdater.UpdateStoreAnswerOrderbill(order);
+            //update orderbill ở database server
+            var httpClient = new HttpClient();
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/update", order);
             await PopupNavigation.Instance.PopAsync();
         }
     }

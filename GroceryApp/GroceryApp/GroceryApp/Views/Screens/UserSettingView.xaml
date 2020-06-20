@@ -4,10 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BindingContext="{Binding UserSetting, Source={StaticResource Locator}}"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              NavigationPage.HasNavigationBar="False"
              x:Class="GroceryApp.Views.Screens.UserSettingView">
+    <ContentPage.BindingContext>
+        <vm:UserSettingViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="Normal">
             <Setter Property="FontFamily" Value="{StaticResource Cata}"/>
@@ -49,9 +51,28 @@
             <Label Grid.Row="1" Text="Setting up your information and account recurity." VerticalOptions="End" VerticalTextAlignment="End" FontSize="17" TextColor="Gray" Style="{StaticResource Medium}" />
             <ScrollView Grid.Row="2" Orientation="Vertical">
                 <StackLayout Orientation="Vertical" Margin="0,10,0,0">
-                    
+                    <!--Full name-->
                     <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
-                    <Grid >
+                    <Grid HeightRequest="50" IsVisible="{Binding FullNameEditMode,Converter={StaticResource ValueNegativeConverter}}">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="fullname" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                            <Label Text="Full name"   FontSize="18"   Style="{StaticResource Bold}" />
+                            <Label Text="{Binding FullName}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                        </StackLayout>
+                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding FullNameEditCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <!--Full name edit-->
+                    <Grid HeightRequest="50" IsVisible="{Binding FullNameEditMode}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
                         </Grid.GestureRecognizers>
@@ -61,12 +82,17 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="fullname" WidthRequest="30" HeightRequest="30"/>
-                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
-                            <Label Text="Full name"   FontSize="18"   Style="{StaticResource Bold}" />
-                            <Label Text="{Binding CurrentUser.UserName}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-10,0,-10" >
+                            <Label Text="Full name"  Margin="2,0,0,0" FontSize="13"   Style="{StaticResource Bold}" />
+                            <Entry Text="{Binding FullName}" BackgroundColor="Transparent" Margin="0,-5,0,0"/>
                         </StackLayout>
-                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+                        <Image Grid.Column="2" Source="save" WidthRequest="25" HeightRequest="25">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding FullNameEditCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </Grid>
+                    <!--Password-->
                     <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
                     <Grid >
                         <Grid.GestureRecognizers>
@@ -84,8 +110,9 @@
                         </StackLayout>
                         <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
                     </Grid>
+                    <!--Phonenumber-->
                     <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
-                    <Grid >
+                    <Grid HeightRequest="50" IsVisible="{Binding PhoneNumberEditMode,Converter={StaticResource ValueNegativeConverter}}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
                         </Grid.GestureRecognizers>
@@ -97,10 +124,36 @@
                         <Image Source="phone" WidthRequest="30" HeightRequest="30"/>
                         <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
                             <Label Text="Phone number" Margin="0,0,0,5"  FontSize="18"   Style="{StaticResource Bold}" />
-                            <Label Text="{Binding CurrentUser.PhoneNumber}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15"  />
+                            <Label Text="{Binding PhoneNumber}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15"  />
                         </StackLayout>
-                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PhoneNumberEditCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </Grid>
+                    <!--Phonenumber edit-->
+                    <Grid HeightRequest="50" IsVisible="{Binding PhoneNumberEditMode}">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="phone" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-10,0,-10" >
+                            <Label Text="Phone number"  Margin="2,0,0,0" FontSize="13"   Style="{StaticResource Bold}" />
+                            <Entry Text="{Binding PhoneNumber}" BackgroundColor="Transparent" Margin="0,-5,0,0"/>
+                        </StackLayout>
+                        <Image Grid.Column="2" Source="save" WidthRequest="25" HeightRequest="25">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PhoneNumberEditCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <!--Address-->
                     <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
                     <Grid >
                         <Grid.GestureRecognizers>
@@ -118,8 +171,9 @@
                         </StackLayout>
                         <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
                     </Grid>
+                    <!--Email-->
                     <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
-                    <Grid >
+                    <Grid HeightRequest="50" IsVisible="{Binding EmailEditMode,Converter={StaticResource ValueNegativeConverter}}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
                         </Grid.GestureRecognizers>
@@ -131,9 +185,34 @@
                         <Image Source="email" WidthRequest="30" HeightRequest="30"/>
                         <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
                             <Label Text="Email"   FontSize="18"   Style="{StaticResource Bold}" />
-                            <Label Text="{Binding CurrentUser.Email}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                            <Label Text="{Binding Email}"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
                         </StackLayout>
-                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding EmailEditCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <!--Email edit-->
+                    <Grid HeightRequest="50" IsVisible="{Binding EmailEditMode}">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="email" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-10,0,-10" >
+                            <Label Text="Email"  Margin="2,0,0,0" FontSize="13"   Style="{StaticResource Bold}" />
+                            <Entry Text="{Binding Email}" BackgroundColor="Transparent" Margin="0,-5,0,0"/>
+                        </StackLayout>
+                        <Image Grid.Column="2" Source="save" WidthRequest="25" HeightRequest="25">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding EmailEditCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </Grid>
                     <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
 
@@ -156,9 +235,10 @@
                     <BoxView   Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
                     <AbsoluteLayout  HeightRequest="200" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" >
                         <pancake:PancakeView  CornerRadius="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1"   AbsoluteLayout.LayoutFlags="All" >
-                            <Image Source="{Binding CurrentUser.ImageURL}" Aspect="AspectFill"/>
+                            <Image x:Name="userimage" Source="{Binding CurrentUser.ImageURL}" Aspect="AspectFill"/>
                         </pancake:PancakeView>
-                        <pancake:PancakeView HeightRequest="35" WidthRequest="120" Margin="10" CornerRadius="10"  BackgroundColor="Black" Opacity="0.7" AbsoluteLayout.LayoutBounds="1,0" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                        <pancake:PancakeView x:Name="changeBtn" HeightRequest="35" WidthRequest="120" Margin="10" CornerRadius="10"  BackgroundColor="Black" Opacity="0.7" AbsoluteLayout.LayoutBounds="1,0" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                            
                             <StackLayout Orientation="Horizontal">
                                 <Image Source="whitedelete" Margin="12,12,0,12" RotationX="0.5" RotationY="0.5" Rotation="45"/>
                                 <Label Text="Change" TextColor="White" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="20" Margin="0,-5,0,0" Style="{StaticResource Medium}" />

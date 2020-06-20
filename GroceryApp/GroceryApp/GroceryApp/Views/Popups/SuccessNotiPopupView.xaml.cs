@@ -23,11 +23,16 @@ namespace GroceryApp.Views.Popups
 
         public async void initLoader()
         {
-            load.Source = "load";
-            await Task.Delay(5000);
-            load.Source = "fail";
-            await Task.Delay(5000);
+            
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
             load.Source = "success";
+            await Task.Delay(1700);
+            await PopupNavigation.Instance.PopAsync();
+            await App.Current.MainPage.Navigation.PopAsync();
         }
 
         public void initStuff()

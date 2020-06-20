@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroceryApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace GroceryApp.Views.Screens
         public HomePageView()
         {
             InitializeComponent();
+            
             AddEvent();
             //Application.Current.MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.White);
             //Window.SetStatusBarColor(Android.Graphics.Color.White);

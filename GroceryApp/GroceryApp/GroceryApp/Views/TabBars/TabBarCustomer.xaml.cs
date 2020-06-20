@@ -1,4 +1,6 @@
 ﻿using Acr.UserDialogs;
+using GroceryApp.Data;
+using GroceryApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +34,15 @@ namespace GroceryApp.Views.TabBars
         {
             if (_instance == null)
             {
+                User user = DataProvider.GetInstance().GetUserByIDUser(Infor.IDUser);
                 _instance = new TabBarCustomer();
             }
             return _instance;
+        }
+
+        public static void Destroy()
+        {
+            _instance = null;
         }
 
         public void GoHome()
@@ -43,7 +51,7 @@ namespace GroceryApp.Views.TabBars
             if(tabbar.CurrentPage == tabbar.Children[0])
             {
                 //System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
-                System.Environment.Exit(0);
+                //System.Environment.Exit(0);
             }
             tabbar.CurrentPage = tabbar.Children[0];
         }

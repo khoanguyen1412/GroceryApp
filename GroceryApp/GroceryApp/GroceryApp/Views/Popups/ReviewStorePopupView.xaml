@@ -6,12 +6,13 @@
              mc:Ignorable="d"
              xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls" 
-                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" xmlns:vm="clr-namespace:GroceryApp.ViewModels"
                  x:Class="GroceryApp.Views.Popups.ReviewStorePopupView"
                  HeightRequest="400"
                  x:Name="ReviewPopup"
                  
                  >
+    
     <popup:PopupPage.Animation>
 
         <animations:MoveAnimation 
@@ -52,7 +53,7 @@
                                 <Label  TextColor="Black" Margin="0,20,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Review:"/>
                             </StackLayout>
 
-                            <controls:CustomEntry  x:Name="address" Grid.Row="1" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
+                            <controls:CustomEntry Text="{Binding Review}"  x:Name="address" Grid.Row="1" Margin="30,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
                             <StackLayout Grid.Row="2" Orientation="Horizontal">
                                 <Image Margin="0,20,0,0" Source="rate" WidthRequest="40" HeightRequest="40"/>
                                 <Label  TextColor="Black" Margin="0,20,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Rate us:"/>
@@ -61,7 +62,7 @@
                                 <controls:ToggleButton
                                         x:Name="star1"
                                         Grid.Column="0"
-                                        Checked="False"
+                                        Checked="{Binding Check1}"
                                         Animate="True"
                                         CheckedImage="fullstar"
                                         UnCheckedImage="emptystar"
@@ -75,7 +76,7 @@
                                 <controls:ToggleButton
                                         x:Name="star2"
                                         Grid.Column="0"
-                                        Checked="False"
+                                        Checked="{Binding Check2}"
                                         Animate="True"
                                         CheckedImage="fullstar"
                                         UnCheckedImage="emptystar"
@@ -89,7 +90,7 @@
                                 <controls:ToggleButton
                                         x:Name="star3"
                                         Grid.Column="0"
-                                        Checked="False"
+                                        Checked="{Binding Check3}"
                                         Animate="True"
                                         CheckedImage="fullstar"
                                         UnCheckedImage="emptystar"
@@ -103,7 +104,7 @@
                                 <controls:ToggleButton
                                         x:Name="star4"
                                         Grid.Column="0"
-                                        Checked="False"
+                                        Checked="{Binding Check4}"
                                         Animate="True"
                                         CheckedImage="fullstar"
                                         UnCheckedImage="emptystar"
@@ -117,7 +118,7 @@
                                 <controls:ToggleButton
                                         x:Name="star5"
                                         Grid.Column="0"
-                                        Checked="False"
+                                        Checked="{Binding Check5}"
                                         Animate="True"
                                         CheckedImage="fullstar"
                                         UnCheckedImage="emptystar"
@@ -132,8 +133,8 @@
                         </Grid>
 
 
-                        <Button Text="Send" WidthRequest="200" HeightRequest="50" Padding="0" BackgroundColor="#00cc00" CornerRadius="10" FontSize="25" TextColor="White" Margin="20,0,20,10"
-                            Command="{Binding ReviewStorePopup.SendReviewCommand, Source={StaticResource Locator}}"/>
+                        <Button Text="Send"  WidthRequest="200" HeightRequest="50" Padding="0" BackgroundColor="{Binding NextColor}" CornerRadius="10" FontSize="25" TextColor="White" Margin="20,0,20,10"
+                            Command="{Binding SendReviewCommand}" IsEnabled="{Binding CanNext}"/>
 
 
                     </StackLayout>

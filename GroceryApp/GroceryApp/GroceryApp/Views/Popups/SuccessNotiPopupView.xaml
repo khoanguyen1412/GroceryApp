@@ -27,7 +27,6 @@
     </popup:PopupPage.Animation>
     <Grid>
         <FFImage:CachedImage x:Name="load"  />
-        <FFImage:CachedImage x:Name="fail" Source="fail" IsVisible="False"/>
-        <FFImage:CachedImage x:Name="success" Source="success" IsVisible="False"/>
+        
     </Grid>
 </popup:PopupPage>

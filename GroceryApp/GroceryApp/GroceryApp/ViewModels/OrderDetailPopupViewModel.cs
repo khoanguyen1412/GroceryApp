@@ -1,10 +1,12 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Popups;
+using GroceryApp.Views.TabBars;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -68,16 +70,19 @@ namespace GroceryApp.ViewModels
         public OrderDetailPopupViewModel()
         {
             LoadData();
-            ShowReviewPopupCommand = new Command<OrderBill>(ShowReviewPopup);
+            ShowReviewPopupCommand = new Command<OrderBillItem>(ShowReviewPopup);
         }
-        public async void ShowReviewPopup(OrderBill order)
+        public async void ShowReviewPopup(OrderBillItem orderItem)
         {
-            if (order.State == OrderState.Waiting)
+            if (orderItem.Order.State == OrderState.Waiting)
             {
                 await PopupNavigation.Instance.PopAsync();
+                (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).DeleteOrder(orderItem.Order);
+
                 return;
             }
             var ReviewPopup = new ReviewStorePopupView();
+            ReviewPopup.BindingContext = new ReviewStorePopupViewModel(orderItem.Order);
             await PopupNavigation.Instance.PushAsync(ReviewPopup);
         }
 

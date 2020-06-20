@@ -1,4 +1,6 @@
 ﻿using Acr.UserDialogs;
+using GroceryApp.Data;
+using GroceryApp.Models;
 using GroceryApp.Views.Screens;
 using GroceryApp.Views.TabBars;
 using Plugin.SharedTransitions;
@@ -77,8 +79,15 @@ namespace GroceryApp.Views.Drawer
             }
             return _instance;
         }
+
+        public static void Destroy()
+        {
+            _instance = null;
+        }
+
         private AppDrawer()
         {
+            
             InitializeComponent();
 
             Shell.SetTabBarIsVisible(this, false);
@@ -122,19 +131,26 @@ namespace GroceryApp.Views.Drawer
 
             var logoutTab = new ShellContent()
             {
-                //Content = UserSettingView.GetInstance(),
+                Content = new LogoutView(),
                 Title = "Logout",
                 Icon = "flatlogout"
             };
             tabLogout.Items.Add(logoutTab);
             flyoutLogout.Items.Add(tabLogout);
+            
             appShell.Items.Add(flyoutLogout);
 
             //appShell.CurrentItem.PropertyChanged += CurrentItem_PropertyChanged;
             flyoutShopping.PropertyChanged += FlyoutShopping_PropertyChanged;
             flyoutStore.PropertyChanged += FlyoutStore_PropertyChanged;
             flyoutUserSetting.PropertyChanged += FlyoutUserSetting_PropertyChanged;
+
+            DataProvider dataProvider = DataProvider.GetInstance();
+            User user = dataProvider.GetUserByIDUser(Infor.IDUser);
+            this.BindingContext = user;
         }
+
+        
 
         private async void FlyoutUserSetting_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -165,7 +181,7 @@ namespace GroceryApp.Views.Drawer
 
         protected override bool OnBackButtonPressed()
         {
-
+            
             int x = App.Current.MainPage.Navigation.NavigationStack.Count;
             if (x == 1)
             {
@@ -175,10 +191,15 @@ namespace GroceryApp.Views.Drawer
                     tabbar.GoHome();
                 }
                 else
-                {
-                    var tabbar = TabbarStoreManager.GetInstance();
-                    tabbar.GoHome();
-                }
+                    if (appShell.CurrentItem == flyoutStore)
+                    {
+                        var tabbar = TabbarStoreManager.GetInstance();
+                        tabbar.GoHome();
+                    }
+                    else
+                    {
+                        return true;
+                    }
             }
             else
             {

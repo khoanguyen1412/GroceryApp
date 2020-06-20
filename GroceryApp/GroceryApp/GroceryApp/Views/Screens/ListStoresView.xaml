@@ -6,11 +6,13 @@
              mc:Ignorable="d"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{StaticResource BgColor}"
-             xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
-             BindingContext="{Binding ListStores,Source={StaticResource Locator}}"
+             xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls" xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              x:Name="ListStoresPage"
              NavigationPage.HasNavigationBar="False"
              x:Class="GroceryApp.Views.Screens.ListStoresView">
+    <ContentPage.BindingContext>
+        <vm:ListStoresViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView Orientation="Vertical"  HorizontalScrollBarVisibility="Never">
             <StackLayout >

@@ -5,6 +5,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -26,68 +27,111 @@ namespace GroceryApp.ViewModels
             set { _orders = value; OnPropertyChanged(nameof(Orders)); }
         }
 
+        private ObservableCollection<OrderBill> _waitingOrders;
         public ObservableCollection<OrderBill> WaitingOrders
         {
             get {
-                ObservableCollection<OrderBill> AllOrders=_orders;
-                ObservableCollection<OrderBill> waitingOrders= new ObservableCollection<OrderBill>();
-                foreach (OrderBill order in AllOrders)
-                    if (order.State == OrderState.Waiting)
-                    {
-                        order.OrderNumber = waitingOrders.Count + 1;
-                        waitingOrders.Add(order);
-                    }
-                        
-                return waitingOrders;
+                return _waitingOrders;
             }
-            set {  }
+            set { _waitingOrders = value; OnPropertyChanged(nameof(WaitingOrders)); }
         }
+
+        private ObservableCollection<OrderBill> _deliveringOrders;
         public ObservableCollection<OrderBill> DeliveringOrders
         {
             get
             {
-                ObservableCollection<OrderBill> AllOrders = _orders;
-                ObservableCollection<OrderBill> deliveringOrders = new ObservableCollection<OrderBill>();
-                foreach (OrderBill order in AllOrders)
-                    if (order.State == OrderState.Delivering)
-                    {
-                        order.OrderNumber = deliveringOrders.Count + 1;
-                        deliveringOrders.Add(order);
-                    }
-                return deliveringOrders;
+                return _deliveringOrders;
             }
-            set { }
+            set { _deliveringOrders = value; OnPropertyChanged(nameof(DeliveringOrders)); }
         }
+
+        private ObservableCollection<OrderBill> _receivedOrders;
         public ObservableCollection<OrderBill> ReceivedOrders
         {
             get
             {
-                ObservableCollection<OrderBill> AllOrders = _orders;
-                ObservableCollection<OrderBill> receivedOrders = new ObservableCollection<OrderBill>();
-                foreach (OrderBill order in AllOrders)
-                    if (order.State == OrderState.Received)
-                    {
-                        order.OrderNumber = receivedOrders.Count + 1;
-                        receivedOrders.Add(order);
-                    }
-                return receivedOrders;
+                return _receivedOrders;
             }
-            set { }
+            set { _receivedOrders = value; OnPropertyChanged(nameof(ReceivedOrders)); }
         }
 
+        public void LoadKindsOfOrders()
+        {
+            ObservableCollection<OrderBill> AllOrders = Orders;
+            ObservableCollection<OrderBill> waitingOrders = new ObservableCollection<OrderBill>();
+            foreach (OrderBill order in AllOrders)
+                if (order.State == OrderState.Waiting)
+                {
+                    order.OrderNumber = waitingOrders.Count + 1;
+                    waitingOrders.Add(order);
+                }
+            WaitingOrders = new ObservableCollection<OrderBill>(waitingOrders);
+
+            ObservableCollection<OrderBill> deliveringOrders = new ObservableCollection<OrderBill>();
+            foreach (OrderBill order in AllOrders)
+                if (order.State == OrderState.Delivering)
+                {
+                    order.OrderNumber = deliveringOrders.Count + 1;
+                    deliveringOrders.Add(order);
+                }
+            DeliveringOrders = new ObservableCollection<OrderBill>(deliveringOrders);
+
+            ObservableCollection<OrderBill> receivedOrders = new ObservableCollection<OrderBill>();
+            foreach (OrderBill order in AllOrders)
+                if (order.State == OrderState.Received)
+                {
+                    order.OrderNumber = receivedOrders.Count + 1;
+                    receivedOrders.Add(order);
+                }
+            ReceivedOrders = new ObservableCollection<OrderBill>(receivedOrders);
+        }
 
         public ICommand ShowDetailOrderCommand { get; set; }
         public ICommand ShowReviewPopupCommand { get; set; }
+        public ICommand DeleteOrderCommand { get; set; }
+
         public ListOrdersViewModel()
         {
             LoadData();
             ShowDetailOrderCommand = new Command<OrderBill>(ShowDetailOrder);
-            ShowReviewPopupCommand = new Command(ShowReviewPopup);
+            ShowReviewPopupCommand = new Command<OrderBill>(ShowReviewPopup);
+            DeleteOrderCommand = new Command<OrderBill>(DeleteOrder);
+
         }
 
-        public async void ShowReviewPopup()
+        public async void DeleteOrder(OrderBill orderBill)
+        {
+            var httpClient = new HttpClient();
+            List<Product> productInOrder = dataProvider.GetProductsInBillByIDBill(orderBill.IDOrderBill);
+            //update quantityinventory ở local
+            List<Product> sourceProducts= DataUpdater.ReturnListProductToSource(productInOrder);
+            //api update quantityinventory ở server
+            foreach(Product product in sourceProducts)
+            {
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", product);
+            }
+
+            //api delete products trong order bị xóa (ở server)
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/deletebyidorderbill/"+ orderBill.IDOrderBill, new { });
+
+            //delete product ở local
+            DataUpdater.DeleteProducts(productInOrder);
+
+            //delete orderbill server
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/deleteorderbillbyid/" + orderBill.IDOrderBill,new { });
+            //delete orderbill local
+            DataUpdater.DeleteOrderBillByID(orderBill.IDOrderBill);
+
+
+            //reload ListOrdersView
+            LoadData();
+        }
+
+        public async void ShowReviewPopup(OrderBill order)
         {
             var ReviewPopup = new ReviewStorePopupView();
+            ReviewPopup.BindingContext = new ReviewStorePopupViewModel(order);
             await PopupNavigation.Instance.PushAsync(ReviewPopup);
         }
 
@@ -107,9 +151,10 @@ namespace GroceryApp.ViewModels
         public void LoadData()
         {
             var dataProvider = DataProvider.GetInstance();
-            _orders = new ObservableCollection<OrderBill>(dataProvider.GetMyOrderBills());
-            foreach (OrderBill order in _orders)
+            Orders = new ObservableCollection<OrderBill>(dataProvider.GetMyOrderBills());
+            foreach (OrderBill order in Orders)
                 order.Init();
+            LoadKindsOfOrders();
         }
     }
 }

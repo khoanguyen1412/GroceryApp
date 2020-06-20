@@ -10,6 +10,9 @@ using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms.Platform.Android;
 using Acr.UserDialogs;
+using System.Threading.Tasks;
+using System.IO;
+using Android.Content;
 
 namespace GroceryApp.Droid
 {
@@ -18,6 +21,8 @@ namespace GroceryApp.Droid
         MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        internal static MainActivity Instance { get; private set; }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -32,8 +37,9 @@ namespace GroceryApp.Droid
 
             base.OnCreate(savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
-
-
+            //====================
+            Instance = this;
+            //====================
             Forms.SetFlags(new string[] { "IndicatorView_Experimental", "SwipeView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
@@ -44,7 +50,7 @@ namespace GroceryApp.Droid
             UserDialogs.Init(this);
 
             LoadApplication(new App());
-            
+
             
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -64,6 +70,33 @@ namespace GroceryApp.Droid
             else
             {
                 // Do something if there are not any pages in the `PopupStack`
+            }
+        }
+
+        //=====================================================
+        // Field, property, and method for Picture Picker
+        public static readonly int PickImageId = 1000;
+
+        public TaskCompletionSource<Stream> PickImageTaskCompletionSource { set; get; }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent intent)
+        {
+            base.OnActivityResult(requestCode, resultCode, intent);
+
+            if (requestCode == PickImageId)
+            {
+                if ((resultCode == Result.Ok) && (intent != null))
+                {
+                    Android.Net.Uri uri = intent.Data;
+                    Stream stream = ContentResolver.OpenInputStream(uri);
+
+                    // Set the Stream as the completion of the Task
+                    PickImageTaskCompletionSource.SetResult(stream);
+                }
+                else
+                {
+                    PickImageTaskCompletionSource.SetResult(null);
+                }
             }
         }
     }

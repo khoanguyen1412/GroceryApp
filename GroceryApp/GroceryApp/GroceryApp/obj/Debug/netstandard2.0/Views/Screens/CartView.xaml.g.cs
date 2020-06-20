@@ -23,7 +23,7 @@ namespace GroceryApp.Views.Screens {
         private global::Xamarin.Forms.Image backLabel;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.ListView List;
+        private global::Xamarin.Forms.ListView ListProductCart;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Frame ConfirmCard;
@@ -33,7 +33,7 @@ namespace GroceryApp.Views.Screens {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(CartView));
             cartView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ContentPage>(this, "cartView");
             backLabel = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "backLabel");
-            List = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "List");
+            ListProductCart = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "ListProductCart");
             ConfirmCard = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Frame>(this, "ConfirmCard");
         }
     }

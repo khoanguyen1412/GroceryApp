@@ -5,11 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              BackgroundColor="White"
-             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BindingContext="{Binding OrderManager,Source={StaticResource Locator}}"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              x:Name="OrderManager"
              NavigationPage.HasNavigationBar="False"
              x:Class="GroceryApp.Views.Screens.OrderManagerView">
+    <ContentPage.BindingContext>
+        <vm:OrderManagerViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never">
             <StackLayout Orientation="Vertical">
@@ -18,11 +21,11 @@
                     <Image x:Name="backLabel" Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
                 </AbsoluteLayout>
                 <Label Margin="20,20,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Waiting Orders"/>
-                <Grid HeightRequest="200">
+                <Grid HeightRequest="{Binding WaitingOrders,Converter={StaticResource GridHeightOrderConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <ListView  Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding WaitingOrders}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
+                    <ListView x:Name="waitingList" Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding WaitingOrders}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -31,15 +34,36 @@
                                             <SwipeItems Mode="Reveal">
                                                 <SwipeItemView>
 
-                                                    <Grid WidthRequest="60" BackgroundColor="LightGray">
-                                                        <pancake:PancakeView Margin="10,15" CornerRadius="10" Padding="5" BackgroundColor="#00cc00">
-                                                            <Image
-                                                            Source="delivery"
-                                                            HorizontalOptions="Center" VerticalOptions="Center"
-                                                            Aspect="AspectFit"/>
-                                                        </pancake:PancakeView>
-                                                        
-                                                    </Grid>
+                                                    <StackLayout Orientation="Horizontal" Spacing="0" BackgroundColor="#e6e6e6">
+                                                        <Grid WidthRequest="60" Margin="0" >
+                                                            <pancake:PancakeView Margin="10,15,5,15" CornerRadius="10" Padding="5" BackgroundColor="#00cc00">
+                                                                <pancake:PancakeView.GestureRecognizers>
+                                                                    <TapGestureRecognizer   
+                                                                              Command="{Binding BindingContext.DeliverCommand,Source={x:Reference waitingList}}"   
+                                                                              CommandParameter="{Binding .}"/>
+                                                                </pancake:PancakeView.GestureRecognizers>
+                                                                <Image
+                                                                Source="delivery"
+                                                                HorizontalOptions="Center" VerticalOptions="Center"
+                                                                Aspect="AspectFit"/>
+                                                            </pancake:PancakeView>
+
+                                                        </Grid>
+                                                        <Grid WidthRequest="60" Margin="0">
+                                                            <pancake:PancakeView Margin="5,15,10,15" CornerRadius="10" Padding="5" BackgroundColor="#fc6353">
+                                                                <pancake:PancakeView.GestureRecognizers>
+                                                                    <TapGestureRecognizer   
+                                                                              Command="{Binding BindingContext.CancelCommand,Source={x:Reference waitingList}}"   
+                                                                              CommandParameter="{Binding .}"/>
+                                                                </pancake:PancakeView.GestureRecognizers>
+                                                                <Image
+                                                                Source="bin"
+                                                                HorizontalOptions="Center" VerticalOptions="Center"
+                                                                Aspect="AspectFit"/>
+                                                            </pancake:PancakeView>
+
+                                                        </Grid>
+                                                    </StackLayout>
                                                 </SwipeItemView>
                                             </SwipeItems>
                                         </SwipeView.RightItems>
@@ -98,7 +122,7 @@
                 </Grid>
 
                 <Label Margin="20,0,20,0"  Style="{StaticResource LabelWellcomeStyle}" Text="Delivering Orders"/>
-                <Grid HeightRequest="200">
+                <Grid HeightRequest="{Binding DeliveringOrders,Converter={StaticResource GridHeightOrderConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
@@ -158,11 +182,11 @@
                 </Grid>
 
                 <Label Margin="20,0,20,0"  Style="{StaticResource LabelWellcomeStyle}" Text="Completed Orders"/>
-                <Grid HeightRequest="200">
+                <Grid HeightRequest="{Binding ReceivedOrders,Converter={StaticResource GridHeightOrderConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <ListView  Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding CompletedOrders}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
+                    <ListView  Grid.Row="0"  Margin="20,0,20,0" ItemsSource="{Binding ReceivedOrders}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="Default">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

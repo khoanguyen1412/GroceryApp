@@ -24,15 +24,17 @@ namespace GroceryApp.ViewModels
         public ReviewManagerViewModel()
         {
             LoadData();
-            ReplyCommand = new Command<ReviewItem>(ShowConfirmInfor);
+            ReplyCommand = new Command<ReviewItem>(ShowReviewInfor);
             ShowDetailOrderCommand = new Command<ReviewItem>(ShowDetailOrder);
         }
 
-        public async void ShowConfirmInfor(ReviewItem reviewItem)
+        public async void ShowReviewInfor(ReviewItem reviewItem)
         {
             
             var replyPopup = new ReplyPopupView();
+            reviewItem.SetStar();
             replyPopup.BindingContext = reviewItem;
+            replyPopup.InitStars();
             await PopupNavigation.Instance.PushAsync(replyPopup);
         }
 

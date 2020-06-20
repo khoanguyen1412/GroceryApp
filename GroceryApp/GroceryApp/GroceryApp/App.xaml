@@ -37,6 +37,7 @@
             <converter:OrderDetailManagerButtonTextConverter x:Key="OrderDetailManagerButtonTextConverter"/>
             <converter:ShowPasswordConverter x:Key="ShowPasswordConverter"/>
             <converter:FlyoutBackgroundConverter x:Key="FlyoutBackgroundConverter"/>
+            <converter:ValueNegativeConverter x:Key="ValueNegativeConverter"/>
             <selector:DataTemplateSliderSelector x:Key="DataTemplateSliderSelector"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"

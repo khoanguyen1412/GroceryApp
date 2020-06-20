@@ -16,7 +16,14 @@ namespace GroceryApp.Views.Screens
         {
             InitializeComponent();
             
-            
+            Device.StartTimer(TimeSpan.FromSeconds(2), (Func<bool>)(() =>
+            {
+                Carousel.Position = (Carousel.Position + 1) % 2;
+
+                return true;
+            }));
         }
+
+        
     }
 }

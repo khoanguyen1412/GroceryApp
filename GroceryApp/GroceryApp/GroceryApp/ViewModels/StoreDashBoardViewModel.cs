@@ -80,7 +80,7 @@ namespace GroceryApp.ViewModels
         {
             get
             {
-                return new List<int>() { 0, 1 };
+                return new List<int>() { 0, 1};
             }
         }
         public ObservableCollection<ReviewItem> Reviews

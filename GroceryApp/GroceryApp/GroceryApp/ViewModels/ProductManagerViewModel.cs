@@ -5,6 +5,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -17,6 +18,7 @@ namespace GroceryApp.ViewModels
     }
     public class ProductManagerViewModel: BaseViewModel, IProductManagerViewModel
     {
+        HttpClient httpClient = new HttpClient();
         public int currentType = -1;
         DataProvider dataProvider = DataProvider.GetInstance();
         private ObservableCollection<Product> _products;
@@ -66,25 +68,23 @@ namespace GroceryApp.ViewModels
             RestoreProductCommand = new Command<ProductItem>(RestoreProduct);
         }
 
-        public void RestoreProduct(ProductItem productItem)
+        public async void RestoreProduct(ProductItem productItem)
         {
-            foreach (ProductItem item in _saveProducts)
-                if (item.Product.IDProduct == productItem.Product.IDProduct)
-                {
-                    item.Product.StateInStore = ProductStateInStore.Selling;
-                    break;
-                }
+            Product restoredProduct = DataUpdater.RestoreProductInStore(productItem.Product);
+            //update product ở database server
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", restoredProduct);
+
             LoadProducts();
         }
 
-        public void DeleteProduct(ProductItem productItem)
+        public async void DeleteProduct(ProductItem productItem)
         {
-            foreach(ProductItem item in _saveProducts)
-                if (item.Product.IDProduct == productItem.Product.IDProduct)
-                {
-                    item.Product.StateInStore = ProductStateInStore.Hidden;
-                    break;
-                }
+
+            //update product ở database local
+            Product deletedProduct= DataUpdater.DeleteProductInStore(productItem.Product);
+            //update product ở database server
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", deletedProduct);
+
             LoadProducts();
         }
 
@@ -93,7 +93,7 @@ namespace GroceryApp.ViewModels
             int choosingIndex = -1;
             for (int i = 0; i < _typeItems.Count; i++)
             {
-                if (_typeItems[i].productType.IDProductType == typeItem.productType.IDProductType)
+                if (_typeItems[i].productType.IDType == typeItem.productType.IDType)
                 {
                     choosingIndex = i;
                     _typeItems[i].isChosen = !_typeItems[i].isChosen;
@@ -236,7 +236,7 @@ namespace GroceryApp.ViewModels
             _typeItems = new ObservableCollection<TypeItem>(typeItems);
         }
 
-        public void UpdateProduct(Product updatedProduct)
+        public async void UpdateProduct(Product updatedProduct)
         {
             foreach(ProductItem item in _saveProducts)
                 if (item.Product.IDProduct == updatedProduct.IDProduct)
@@ -245,11 +245,16 @@ namespace GroceryApp.ViewModels
                     break;
                 }
 
+            //Update database local
+            DataUpdater.UpdateProduct(updatedProduct);
+            //Update database server
+            
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", updatedProduct);
             LoadProducts();
 
         }
 
-        public void AddProduct(Product newProduct)
+        public async void AddProduct(Product newProduct)
         {
             ProductItem newItem = new ProductItem
             {
@@ -257,6 +262,12 @@ namespace GroceryApp.ViewModels
                 isHidden = false
             };
             _saveProducts.Add(newItem);
+
+            //Thêm product ở database local
+            DataUpdater.AddProduct(newProduct);
+            //Thêm product ở database server
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/insert", newProduct);
+
             LoadProducts();
         }
     }

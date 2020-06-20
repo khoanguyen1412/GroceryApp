@@ -35,21 +35,84 @@ namespace GroceryApp.ViewModels
         }
 
         private string _address;
-
         public string Address
         {
             get { return _address; }
             set { _address = value; OnPropertyChanged(nameof(Address)); }
         }
 
+        private string _fullName;
+        public string FullName
+        {
+            get { return _fullName; }
+            set { _fullName = value; OnPropertyChanged(nameof(FullName)); }
+        }
+
+        private string _phoneNumber;
+        public string PhoneNumber
+        {
+            get { return _phoneNumber; }
+            set { _phoneNumber = value; OnPropertyChanged(nameof(PhoneNumber)); }
+        }
+
+        private string _email;
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; OnPropertyChanged(nameof(Email)); }
+        }
+
+        #region edit mode
+        private bool _fullNameEditMode;
+        public bool FullNameEditMode
+        {
+            get { return _fullNameEditMode; }
+            set { _fullNameEditMode = value; OnPropertyChanged(nameof(FullNameEditMode)); }
+        }
+
+        private bool _phoneNumberEditMode;
+        public bool PhoneNumberEditMode
+        {
+            get { return _phoneNumberEditMode; }
+            set { _phoneNumberEditMode = value; OnPropertyChanged(nameof(PhoneNumberEditMode)); }
+        }
+
+        private bool _emailEditMode;
+        public bool EmailEditMode
+        {
+            get { return _emailEditMode; }
+            set { _emailEditMode = value; OnPropertyChanged(nameof(EmailEditMode)); }
+        }
+
+        #endregion
+
         public ICommand ChangePasswordCommand { get; set; }
         public ICommand ChangeAddressCommand { get; set; }
+        public ICommand FullNameEditCommand { get; set; }
+        public ICommand PhoneNumberEditCommand { get; set; }
+        public ICommand EmailEditCommand { get; set; }
 
         public UserSettingViewModel()
         {
             LoadData();
             ChangePasswordCommand = new Command(ChangePassword);
             ChangeAddressCommand = new Command(ChangeAddress);
+            FullNameEditCommand = new Command(ChangeFullNameEdit);
+            PhoneNumberEditCommand = new Command(ChangePhoneNumberEdit);
+            EmailEditCommand = new Command(ChangeEmailEdit);
+        }
+
+        public void ChangeFullNameEdit()
+        {
+            FullNameEditMode = !FullNameEditMode;
+        }
+        public void ChangePhoneNumberEdit()
+        {
+            PhoneNumberEditMode = !PhoneNumberEditMode;
+        }
+        public void ChangeEmailEdit()
+        {
+            EmailEditMode = !EmailEditMode;
         }
 
         public async void ChangeAddress()
@@ -78,9 +141,28 @@ namespace GroceryApp.ViewModels
 
         public void LoadData()
         {
-            CurrentUser = dataProvider.GetUserByIDUser(Infor.IDUser);
+            //CurrentUser = dataProvider.GetUserByIDUser(Infor.IDUser);
+            CurrentUser = new User
+            {
+                IDUser = "1",
+                Password = "1234568",
+                IDStore = "1",
+                PhoneNumber = "0377337978",
+                Address = "Tri Thủy#Ninh Hải#Ninh Thuận#Việt Nam",
+                Email = "khoanguyen1412@gmail.com",
+                ImageURL = "https://bom.to/2DFoGr",
+                BirthDate = new DateTime(1999, 6, 18),
+                UserName = "Khoa athony"
+            };
             BirthDate = CurrentUser.BirthDate;
             Address = CurrentUser.Address;
+            FullName = CurrentUser.UserName;
+            PhoneNumber = CurrentUser.PhoneNumber;
+            Email = CurrentUser.Email;
+
+            FullNameEditMode = false;
+            PhoneNumberEditMode = false;
+            EmailEditMode = false;
         }
 
         public void ChangeAddress(AddressItem newAddress)

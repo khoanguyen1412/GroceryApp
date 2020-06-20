@@ -50,7 +50,7 @@ namespace GroceryApp.ViewModels
             int choosingIndex = -1;
             for (int i = 0; i < _typeItems.Count; i++)
             {
-                if (_typeItems[i].productType.IDProductType == typeItem.productType.IDProductType)
+                if (_typeItems[i].productType.IDType == typeItem.productType.IDType)
                 {
                     choosingIndex = i;
                     _typeItems[i].isChosen = !_typeItems[i].isChosen;

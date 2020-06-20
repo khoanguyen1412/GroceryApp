@@ -162,7 +162,7 @@
                                Text="{Binding SelectedProducts, Converter={StaticResource TotalPriceSelectedProductsConverter}}" 
                                Style="{StaticResource LabelTitleStyle}"/>
                     </Grid>
-                <pancake:PancakeView
+                <pancake:PancakeView x:Name="btnAdd"
                     Grid.Row="2"
                     HeightRequest="48"
                     CornerRadius="24, 0, 24, 0"

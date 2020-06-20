@@ -5,11 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              BackgroundColor="#F8F8F8"
-             BindingContext="{Binding ReviewManager, Source={StaticResource Locator}}"
-             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              x:Name="ReviewManager"
              NavigationPage.HasNavigationBar="False"
              x:Class="GroceryApp.Views.Screens.ReviewManagerView">
+    <ContentPage.BindingContext>
+        <vm:ReviewManagerViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <AbsoluteLayout  HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand">

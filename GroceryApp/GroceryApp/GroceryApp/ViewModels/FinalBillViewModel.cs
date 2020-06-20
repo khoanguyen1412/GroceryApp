@@ -1,11 +1,16 @@
-﻿using GroceryApp.Data;
+﻿using Acr.UserDialogs;
+using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Popups;
+using GroceryApp.Views.TabBars;
+using Newtonsoft.Json.Linq;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -52,13 +57,48 @@ namespace GroceryApp.ViewModels
         {
             this.OrderItem = orderItem;
             //this.Order = orderItem.Order;
-            SendOrderCommand = new Command<object>(SendOrder);
+            SendOrderCommand = new Command(SendOrder);
         }
-        public async void SendOrder(object bindingContext)
+        public async void SendOrder()
         {
-            
             var successPopup = new SuccessNotiPopupView();
-            successPopup.BindingContext = bindingContext;
+            
+            
+            using (UserDialogs.Instance.Loading("wait.."))
+            {
+                var httpClient = new HttpClient();
+                var result= await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/insert", OrderItem.Order);
+                var a = await result.Content.ReadAsStringAsync();
+                JObject rss = JObject.Parse(a);
+
+                var resultAPI = rss["result"];
+                if (resultAPI.ToString() == "fail")
+                {
+                    return;
+                }
+                
+
+                foreach (Product product in OrderItem.AddedProducts)
+                {
+                    product.State = ProductState.InBill;
+                    product.IDOrderBill = OrderItem.Order.IDOrderBill;
+                    await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", product);
+                }
+                    
+            }
+
+            //update orderbill trong data local
+            DataUpdater.InsertOrderBill(OrderItem.Order);
+            //update products trong bill ở data local
+            DataUpdater.UpdateProduct(OrderItem.AddedProducts);
+
+            //update UI CART
+            var cartVM = TabBarCustomer.GetInstance().Children[2].BindingContext as CartViewModel;
+            cartVM.InitCart();
+            //update UI Orders
+            var ordersVM = TabBarCustomer.GetInstance().Children[3].BindingContext as ListOrdersViewModel;
+            ordersVM.LoadData();
+
             await PopupNavigation.Instance.PushAsync(successPopup);
         }
 

@@ -20,7 +20,6 @@
 
     </popup:PopupPage.Animation>
     <StackLayout Margin="20,50" BackgroundColor="White" Orientation="Vertical" >
-        <DatePicker/>
         <Label  Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Products"/>
         <Grid VerticalOptions="FillAndExpand" Margin="0" >
             <Grid.RowDefinitions>

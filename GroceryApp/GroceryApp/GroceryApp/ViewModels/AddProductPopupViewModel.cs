@@ -231,7 +231,7 @@ namespace GroceryApp.ViewModels
         public Product GetNewProduct()
         {
             if (!CheckValidData()) return null;
-            SourceProduct.IDProduct = "000000000";
+            SourceProduct.IDProduct = "Product_"+ DateTime.Now.ToString("HHmmss");
             SourceProduct.StateInStore = ProductStateInStore.Selling;
             SourceProduct.IDStore = Infor.IDStore;
             SourceProduct.ImageURL = ImageURL;
@@ -241,7 +241,7 @@ namespace GroceryApp.ViewModels
             SourceProduct.QuantityInventory = QuantityInventory;
             SourceProduct.Price = Double.Parse(Price);
             SourceProduct.ProductDescription = Description;
-
+            SourceProduct.State = ProductState.InStore;
             return SourceProduct;
         }
         public bool CheckValidData()

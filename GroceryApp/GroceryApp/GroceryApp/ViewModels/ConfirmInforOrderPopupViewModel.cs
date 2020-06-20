@@ -163,7 +163,10 @@ namespace GroceryApp.ViewModels
             else { this.OrderItem.Order.CustomerAddress = NewAddress; }
             //set note
             this.OrderItem.Order.Note = Note;
-            
+            if (this.OrderItem.Order.Note == null) this.OrderItem.Order.Note = "";
+
+
+            this.OrderItem.Order.State = OrderState.Waiting;
             BillView.BindingContext = new FinalBillViewModel(this.OrderItem);
             await PopupNavigation.Instance.PopAsync();
             await App.Current.MainPage.Navigation.PushAsync(BillView, true);

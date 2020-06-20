@@ -27,7 +27,7 @@ namespace GroceryApp.Data
             List<Store> listStores = new List<Store>();
 
             foreach (Store store in Database.Stores)
-                if (store.IDStore != Infor.IDStore)
+                if (store.IDStore != Infor.IDStore && store.IsActive==1)
                     listStores.Add(store);
 
             return listStores;
@@ -43,11 +43,9 @@ namespace GroceryApp.Data
         public List<OrderBill> GetMyOrderBills()
         {
             List<OrderBill> orderBills = new List<OrderBill>();
-
             foreach (OrderBill order in Database.OrderBills)
                 if (order.IDUser == Infor.IDUser)
                     orderBills.Add(order);
-
             return orderBills;
         }
 
@@ -57,10 +55,18 @@ namespace GroceryApp.Data
             foreach (Product product in Database.Products)
                 if (product.State == ProductState.InCart && product.IDCart == Infor.IDUser)
                     addedProducts.Add(product);
+
             return addedProducts;
         }
 
         //CART==========================================================
+
+        public Product GetProductByID(string ID)
+        {
+            foreach (Product product in Database.Products)
+                if (product.IDProduct == ID) return product;
+            return null;
+        }
         public List<string> GetIDStoreFromAddedProduct()
         {
             List<string> stores = new List<string>();
@@ -79,6 +85,7 @@ namespace GroceryApp.Data
                 if (!isExist) stores.Add(idStore);
             }
 
+            
             return stores;
         }
 
@@ -87,6 +94,7 @@ namespace GroceryApp.Data
             foreach (Store store in Database.Stores)
                 if (store.IDStore == IDStore)
                     return store.StoreName;
+
             return "";
         }
 
@@ -96,10 +104,45 @@ namespace GroceryApp.Data
             List<Product> AddedProducts = this.GetProductsInCart();
             List<Product> products = new List<Product>();
             foreach (Product product in AddedProducts)
-                if (product.IDStore == IDStore)
+                if (product.IDStore == IDStore )
                     products.Add(product);
 
             return products;
+        }
+
+        public Product GetProductInCartByIDSourceProduct(string idSource)
+        {
+            List<Product> productIncart= this.GetProductsInCart();
+            foreach (Product product in productIncart)
+                if (product.IDSourceProduct == idSource)
+                    return product;
+            return null;
+        }
+
+        public bool CheckExistInMyCart(Product checkedProduct)
+        {
+            foreach (Product product in Database.Products)
+                if (product.State == ProductState.InCart && product.IDCart == Infor.IDUser && product.IDSourceProduct == checkedProduct.IDSourceProduct)
+                    return true;
+
+            return false;
+        }
+
+        public List<Product> GetExistProducInCarttByListProduct(List<Product> inputProducts)
+        {
+            List<Product> result = new List<Product>();
+            foreach(Product product in Database.Products)
+                if(product.State==ProductState.InCart && product.IDCart==Infor.IDUser)
+                {
+                    foreach(Product inputProduct in inputProducts)
+                        if(product.IDSourceProduct==inputProduct.IDSourceProduct)
+                        {
+                            result.Add(product);
+                            break;
+                        }
+                }
+
+            return result;
         }
 
         //==========================================================
@@ -112,7 +155,6 @@ namespace GroceryApp.Data
             foreach (Product product in Database.Products)
                 if (product.State==ProductState.InStore && product.IDStore == IDStore && product.StateInStore!=ProductStateInStore.Hidden)
                     products.Add(product);
-
             return products;
         }
 
@@ -123,7 +165,6 @@ namespace GroceryApp.Data
             foreach (OrderBill order in Database.OrderBills)
                 if (order.IDStore == IDStore)
                     orders.Add(order);
-
             return orders;
         }
 
@@ -132,7 +173,6 @@ namespace GroceryApp.Data
             foreach (Store store in Database.Stores)
                 if (store.IDStore == IDStore)
                     return store;
-
             return null;
         }
         //==========================================================
@@ -148,7 +188,6 @@ namespace GroceryApp.Data
                     result = true;
                     break;
                 }
-
             return result;
         }
 
@@ -157,11 +196,12 @@ namespace GroceryApp.Data
         //CART VIEW==========================================================
         public string GetUserAddress()
         {
-            foreach(User user in Database.Users)
+            foreach (User user in Database.Users)
                 if(user.IDUser==Infor.IDUser)
                 {
                     return user.Address;
                 }
+
             return "";
         }
 
@@ -207,7 +247,6 @@ namespace GroceryApp.Data
 
                 itemCharts.Add(itemChart);
             }
-
             return itemCharts;
         }
 
@@ -218,7 +257,6 @@ namespace GroceryApp.Data
             foreach (Product product in products)
                 if (product.QuantityInventory == 0)
                     count++;
-
             return count;
         }
 
@@ -341,5 +379,21 @@ namespace GroceryApp.Data
             return null;
         }
         //==========================================================
+        //LOGIN VIEW==========================================================
+        public bool CheckUserExist(string IDUser)
+        {
+            foreach (User user in Database.Users)
+                if (user.IDUser == IDUser) return true;
+            return false;
+        }
+
+        public string GetIDStoreByIDUser(string IDUser)
+        {
+            foreach (User user in Database.Users)
+                if (user.IDUser == IDUser) return user.IDStore;
+            return null;
+        }
+        //==========================================================
+
     }
 }

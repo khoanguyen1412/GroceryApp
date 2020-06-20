@@ -150,7 +150,7 @@
             </ScrollView>
             <Button Grid.Row="1" Margin="0,5" Text="Finish Order" HorizontalOptions="Center" WidthRequest="300" FontSize="20" CornerRadius="10"
                     Command="{Binding SendOrderCommand}"
-                    CommandParameter="{Binding .}"/>
+                    />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
