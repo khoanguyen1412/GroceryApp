@@ -18,6 +18,7 @@ public class MonoPackageManager_Resources {
 		"Microcharts.Forms.dll",
 		"Newtonsoft.Json.Bson.dll",
 		"Newtonsoft.Json.dll",
+		"Plugin.FilePicker.dll",
 		"Plugin.SharedTransitions.dll",
 		"Prism.dll",
 		"Prism.DryIoc.Forms.dll",

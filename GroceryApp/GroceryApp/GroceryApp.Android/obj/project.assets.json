@@ -1625,7 +1625,7 @@
           "lib/MonoAndroid10/FFImageLoading.Forms.dll": {}
         }
       },
-      "Xamarin.Forms/4.6.0.847": {
+      "Xamarin.Forms/4.7.0.968": {
         "type": "package",
         "dependencies": {
           "Xamarin.Android.Support.CustomTabs": "28.0.0.3",
@@ -1669,6 +1669,18 @@
           "lib/monoandroid90/Xamarin.Forms.PancakeView.dll": {}
         }
       },
+      "Xamarin.Plugin.FilePicker/2.1.41": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Java.Interop"
+        ],
+        "compile": {
+          "lib/monoandroid90/Plugin.FilePicker.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Plugin.FilePicker.dll": {}
+        }
+      },
       "Xamarin.Plugin.SharedTransitions/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -1699,8 +1711,9 @@
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.FFImageLoading": "2.4.11.982",
           "Xamarin.FFImageLoading.Forms": "2.4.11.982",
-          "Xamarin.Forms": "4.6.0.847",
+          "Xamarin.Forms": "4.7.0.968",
           "Xamarin.Forms.PancakeView": "1.4.2",
+          "Xamarin.Plugin.FilePicker": "2.1.41",
           "Xamarin.Plugin.SharedTransitions": "2.2.0"
         },
         "compile": {
@@ -6131,13 +6144,14 @@
         "xamarin.ffimageloading.forms.nuspec"
       ]
     },
-    "Xamarin.Forms/4.6.0.847": {
-      "sha512": "xUUgs1/xDdS9I/oN2UkdRwd/YToqg0qhwIK8yvyJJ2Xbhsc1ssV4/DUICdjuwCttzeiAcrhILqD+0BQhifUfxw==",
+    "Xamarin.Forms/4.7.0.968": {
+      "sha512": "VvHI/VXyDZcCLYXywh9A8gVtldD8XCLR8hujZVdlKGh87HIXAUW0b+uLFsvyMB8COwNce0w56ycgD/tXtLgFRA==",
       "type": "package",
-      "path": "xamarin.forms/4.6.0.847",
+      "path": "xamarin.forms/4.7.0.968",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "Assets/xamarin_128x128.png",
         "build/MonoAndroid10/proguard.cfg",
         "build/XCODE10/Xamarin.Forms.Platform.iOS.dll",
         "build/XCODE10/Xamarin.Forms.Platform.iOS.pdb",
@@ -6440,7 +6454,7 @@
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.pdb",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.4.6.0.847.nupkg.sha512",
+        "xamarin.forms.4.7.0.968.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -6461,6 +6475,48 @@
         "lib/xamarinios10/Xamarin.Forms.PancakeView.dll",
         "xamarin.forms.pancakeview.1.4.2.nupkg.sha512",
         "xamarin.forms.pancakeview.nuspec"
+      ]
+    },
+    "Xamarin.Plugin.FilePicker/2.1.41": {
+      "sha512": "SFJp7AEq6YFZ72mw+CxGMQcMzBYhA0b5NkhSyE5b+prCiNli7bKI5pWOT+mbyFng0En8LfeY0dEbedpkecQFQw==",
+      "type": "package",
+      "path": "xamarin.plugin.filepicker/2.1.41",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/monoandroid10.0/Plugin.FilePicker.dll",
+        "lib/monoandroid10.0/Plugin.FilePicker.pdb",
+        "lib/monoandroid10.0/Plugin.FilePicker.xml",
+        "lib/monoandroid80/Plugin.FilePicker.dll",
+        "lib/monoandroid80/Plugin.FilePicker.pdb",
+        "lib/monoandroid80/Plugin.FilePicker.xml",
+        "lib/monoandroid81/Plugin.FilePicker.dll",
+        "lib/monoandroid81/Plugin.FilePicker.pdb",
+        "lib/monoandroid81/Plugin.FilePicker.xml",
+        "lib/monoandroid90/Plugin.FilePicker.dll",
+        "lib/monoandroid90/Plugin.FilePicker.pdb",
+        "lib/monoandroid90/Plugin.FilePicker.xml",
+        "lib/net45/Plugin.FilePicker.dll",
+        "lib/net45/Plugin.FilePicker.pdb",
+        "lib/net45/Plugin.FilePicker.xml",
+        "lib/netstandard1.0/Plugin.FilePicker.dll",
+        "lib/netstandard1.0/Plugin.FilePicker.pdb",
+        "lib/netstandard1.0/Plugin.FilePicker.xml",
+        "lib/netstandard2.0/Plugin.FilePicker.dll",
+        "lib/netstandard2.0/Plugin.FilePicker.pdb",
+        "lib/netstandard2.0/Plugin.FilePicker.xml",
+        "lib/uap10.0.16299/Plugin.FilePicker.dll",
+        "lib/uap10.0.16299/Plugin.FilePicker.pdb",
+        "lib/uap10.0.16299/Plugin.FilePicker.pri",
+        "lib/uap10.0.16299/Plugin.FilePicker.xml",
+        "lib/xamarinios10/Plugin.FilePicker.dll",
+        "lib/xamarinios10/Plugin.FilePicker.pdb",
+        "lib/xamarinios10/Plugin.FilePicker.xml",
+        "lib/xamarinmac20/Plugin.FilePicker.dll",
+        "lib/xamarinmac20/Plugin.FilePicker.pdb",
+        "lib/xamarinmac20/Plugin.FilePicker.xml",
+        "xamarin.plugin.filepicker.2.1.41.nupkg.sha512",
+        "xamarin.plugin.filepicker.nuspec"
       ]
     },
     "Xamarin.Plugin.SharedTransitions/2.2.0": {
@@ -6501,8 +6557,9 @@
       "Xamarin.Essentials >= 1.5.3.2",
       "Xamarin.FFImageLoading >= 2.4.11.982",
       "Xamarin.FFImageLoading.Forms >= 2.4.11.982",
-      "Xamarin.Forms >= 4.6.0.847",
+      "Xamarin.Forms >= 4.7.0.968",
       "Xamarin.Forms.PancakeView >= 1.4.2",
+      "Xamarin.Plugin.FilePicker >= 2.1.41",
       "Xamarin.Plugin.SharedTransitions >= 2.2.0"
     ]
   },
@@ -6590,11 +6647,15 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[4.6.0.847, )"
+            "version": "[4.7.0.968, )"
           },
           "Xamarin.Forms.PancakeView": {
             "target": "Package",
             "version": "[1.4.2, )"
+          },
+          "Xamarin.Plugin.FilePicker": {
+            "target": "Package",
+            "version": "[2.1.41, )"
           },
           "Xamarin.Plugin.SharedTransitions": {
             "target": "Package",

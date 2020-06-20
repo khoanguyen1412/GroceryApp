@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3xRcjkMYccbh/r3TMvsCyC0Wc7iOSqCaiht/ofNizOpFahpCxbxzbYuY//oAni5Z6dRt+md4E9C9AydM22Zp7w==",
+  "dgSpecHash": "xuUr4+T5up9YgwG8QdOCM5nZ0d2nJ1cP3htpCFf97Sizn4bqmclNEr/atcpDTJ1l8hOrcc6hSeVdmNlbEQEhSA==",
   "success": true,
   "projectFilePath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj",
   "expectedPackageFiles": [
@@ -49,7 +49,7 @@
     "C:\\Users\\User\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.reflection.typeextensions\\4.3.0\\system.reflection.typeextensions.4.3.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\system.reflection.typeextensions\\4.3.0\\system.reflection.typeextensions.4.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.resources.resourcemanager\\4.3.0\\system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
@@ -72,8 +72,9 @@
     "C:\\Users\\User\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.ffimageloading\\2.4.11.982\\xamarin.ffimageloading.2.4.11.982.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.ffimageloading.forms\\2.4.11.982\\xamarin.ffimageloading.forms.2.4.11.982.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\xamarin.forms\\4.6.0.847\\xamarin.forms.4.6.0.847.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\xamarin.forms\\4.7.0.968\\xamarin.forms.4.7.0.968.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.forms.pancakeview\\1.4.2\\xamarin.forms.pancakeview.1.4.2.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\xamarin.plugin.filepicker\\2.1.41\\xamarin.plugin.filepicker.2.1.41.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.plugin.sharedtransitions\\2.2.0\\xamarin.plugin.sharedtransitions.2.2.0.nupkg.sha512"
   ],
   "logs": []

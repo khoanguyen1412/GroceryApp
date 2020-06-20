@@ -41,8 +41,8 @@ F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csprojAssemblyReference.cache
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\UserSettingView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\ChangePasswordView.xaml.g.cs
-F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csproj.CoreCompileInputs.cache
-F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\XamlC.stamp
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\LoginView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\MiddleView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\LogoutView.xaml.g.cs
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csproj.CoreCompileInputs.cache
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\XamlC.stamp

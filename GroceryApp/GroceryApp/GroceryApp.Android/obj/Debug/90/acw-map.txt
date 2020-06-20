@@ -73,6 +73,9 @@ ffimageloading.cache.LRUCache;crc64b75d9ddab39d6c30.LRUCache
 Microcharts.Droid.ChartView, Microcharts.Droid;crc64e9f97cf19b8286a9.ChartView
 Microcharts.Droid.ChartView;crc64e9f97cf19b8286a9.ChartView
 microcharts.droid.ChartView;crc64e9f97cf19b8286a9.ChartView
+Plugin.FilePicker.FilePickerActivity, Plugin.FilePicker;crc64424a8adc5a1fbe28.FilePickerActivity
+Plugin.FilePicker.FilePickerActivity;crc64424a8adc5a1fbe28.FilePickerActivity
+plugin.filepicker.FilePickerActivity;crc64424a8adc5a1fbe28.FilePickerActivity
 Plugin.SharedTransitions.Platforms.Android.SharedTransitionNavigationPageRenderer, Plugin.SharedTransitions;crc6479820c45fd9c6153.SharedTransitionNavigationPageRenderer
 Plugin.SharedTransitions.Platforms.Android.SharedTransitionNavigationPageRenderer;crc6479820c45fd9c6153.SharedTransitionNavigationPageRenderer
 plugin.sharedtransitions.platforms.android.SharedTransitionNavigationPageRenderer;crc6479820c45fd9c6153.SharedTransitionNavigationPageRenderer
@@ -835,6 +838,48 @@ xamarin.forms.platform.android.WebViewRenderer;crc643f46942d9dd1fff9.WebViewRend
 Xamarin.Forms.Platform.Android.WebViewRenderer+JavascriptResult, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.WebViewRenderer_JavascriptResult
 Xamarin.Forms.Platform.Android.WebViewRenderer.JavascriptResult;crc643f46942d9dd1fff9.WebViewRenderer_JavascriptResult
 xamarin.forms.platform.android.WebViewRenderer_JavascriptResult;crc643f46942d9dd1fff9.WebViewRenderer_JavascriptResult
+Xamarin.Forms.Platform.Android.EllipseRenderer, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.EllipseRenderer
+Xamarin.Forms.Platform.Android.EllipseRenderer;crc643f46942d9dd1fff9.EllipseRenderer
+xamarin.forms.platform.android.EllipseRenderer;crc643f46942d9dd1fff9.EllipseRenderer
+Xamarin.Forms.Platform.Android.EllipseView, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.EllipseView
+Xamarin.Forms.Platform.Android.EllipseView;crc643f46942d9dd1fff9.EllipseView
+xamarin.forms.platform.android.EllipseView;crc643f46942d9dd1fff9.EllipseView
+Xamarin.Forms.Platform.Android.LineRenderer, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.LineRenderer
+Xamarin.Forms.Platform.Android.LineRenderer;crc643f46942d9dd1fff9.LineRenderer
+xamarin.forms.platform.android.LineRenderer;crc643f46942d9dd1fff9.LineRenderer
+Xamarin.Forms.Platform.Android.LineView, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.LineView
+Xamarin.Forms.Platform.Android.LineView;crc643f46942d9dd1fff9.LineView
+xamarin.forms.platform.android.LineView;crc643f46942d9dd1fff9.LineView
+Xamarin.Forms.Platform.Android.PathRenderer, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.PathRenderer
+Xamarin.Forms.Platform.Android.PathRenderer;crc643f46942d9dd1fff9.PathRenderer
+xamarin.forms.platform.android.PathRenderer;crc643f46942d9dd1fff9.PathRenderer
+Xamarin.Forms.Platform.Android.PathView, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.PathView
+Xamarin.Forms.Platform.Android.PathView;crc643f46942d9dd1fff9.PathView
+xamarin.forms.platform.android.PathView;crc643f46942d9dd1fff9.PathView
+Xamarin.Forms.Platform.Android.PolygonRenderer, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.PolygonRenderer
+Xamarin.Forms.Platform.Android.PolygonRenderer;crc643f46942d9dd1fff9.PolygonRenderer
+xamarin.forms.platform.android.PolygonRenderer;crc643f46942d9dd1fff9.PolygonRenderer
+Xamarin.Forms.Platform.Android.PolygonView, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.PolygonView
+Xamarin.Forms.Platform.Android.PolygonView;crc643f46942d9dd1fff9.PolygonView
+xamarin.forms.platform.android.PolygonView;crc643f46942d9dd1fff9.PolygonView
+Xamarin.Forms.Platform.Android.PolylineRenderer, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.PolylineRenderer
+Xamarin.Forms.Platform.Android.PolylineRenderer;crc643f46942d9dd1fff9.PolylineRenderer
+xamarin.forms.platform.android.PolylineRenderer;crc643f46942d9dd1fff9.PolylineRenderer
+Xamarin.Forms.Platform.Android.PolylineView, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.PolylineView
+Xamarin.Forms.Platform.Android.PolylineView;crc643f46942d9dd1fff9.PolylineView
+xamarin.forms.platform.android.PolylineView;crc643f46942d9dd1fff9.PolylineView
+Xamarin.Forms.Platform.Android.RectangleRenderer, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.RectangleRenderer
+Xamarin.Forms.Platform.Android.RectangleRenderer;crc643f46942d9dd1fff9.RectangleRenderer
+xamarin.forms.platform.android.RectangleRenderer;crc643f46942d9dd1fff9.RectangleRenderer
+Xamarin.Forms.Platform.Android.RectView, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.RectView
+Xamarin.Forms.Platform.Android.RectView;crc643f46942d9dd1fff9.RectView
+xamarin.forms.platform.android.RectView;crc643f46942d9dd1fff9.RectView
+Xamarin.Forms.Platform.Android.ShapeRenderer`2, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.ShapeRenderer_2
+Xamarin.Forms.Platform.Android.ShapeRenderer`2;crc643f46942d9dd1fff9.ShapeRenderer_2
+xamarin.forms.platform.android.ShapeRenderer_2;crc643f46942d9dd1fff9.ShapeRenderer_2
+Xamarin.Forms.Platform.Android.ShapeView, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.ShapeView
+Xamarin.Forms.Platform.Android.ShapeView;crc643f46942d9dd1fff9.ShapeView
+xamarin.forms.platform.android.ShapeView;crc643f46942d9dd1fff9.ShapeView
 Xamarin.Forms.Platform.Android.StepperRendererManager+StepperListener, Xamarin.Forms.Platform.Android;crc643f46942d9dd1fff9.StepperRendererManager_StepperListener
 Xamarin.Forms.Platform.Android.StepperRendererManager.StepperListener;crc643f46942d9dd1fff9.StepperRendererManager_StepperListener
 xamarin.forms.platform.android.StepperRendererManager_StepperListener;crc643f46942d9dd1fff9.StepperRendererManager_StepperListener

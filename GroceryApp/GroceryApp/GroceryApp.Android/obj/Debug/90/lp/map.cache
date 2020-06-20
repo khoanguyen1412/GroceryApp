@@ -4,6 +4,7 @@ FFImageLoading.Forms.Platform
 FFImageLoading.Platform
 FormsViewGroup
 Microcharts.Droid
+Plugin.FilePicker
 Plugin.SharedTransitions
 Prism.Forms
 Rg.Plugins.Popup

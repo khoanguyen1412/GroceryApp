@@ -1,8 +1,10 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.Screens;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -19,9 +21,9 @@ namespace GroceryApp.ViewModels
     {
         DataProvider dataProvider = DataProvider.GetInstance();
         private Store myStore;
-        private string _storeImage;
+        private ImageSource _storeImage;
 
-        public string StoreImage
+        public ImageSource StoreImage
         {
             get { return _storeImage; }
             set { _storeImage = value; OnPropertyChanged(nameof(StoreImage)); }
@@ -29,11 +31,31 @@ namespace GroceryApp.ViewModels
 
         public ICommand InforSettingCommand { get; set; }
         public ICommand AddressSettingCommand { get; set; }
+        public ICommand SaveChangeCommand { get; set; }
+        public ICommand ChangeImageCommand { get; set; }
         public StoreSetttingViewModel()
         {
             loadData();
             InforSettingCommand = new Command(ShowInforSetting);
             AddressSettingCommand = new Command(ShowAddressSetting);
+            SaveChangeCommand = new Command(SaveChange);
+            ChangeImageCommand = new Command(ChangeImage);
+        }
+
+        public async void SaveChange()
+        {
+            Store store = this.myStore;
+            
+        }
+             
+        public async void ChangeImage()
+        {
+            Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
+            if (stream != null)
+            {
+                StoreImage = ImageSource.FromStream(() => stream);
+
+            };
         }
 
         public async void ShowInforSetting()

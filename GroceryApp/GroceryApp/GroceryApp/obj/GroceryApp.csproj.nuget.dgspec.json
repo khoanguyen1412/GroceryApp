@@ -95,11 +95,15 @@
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.6.0.847, )"
+              "version": "[4.7.0.968, )"
             },
             "Xamarin.Forms.PancakeView": {
               "target": "Package",
               "version": "[1.4.2, )"
+            },
+            "Xamarin.Plugin.FilePicker": {
+              "target": "Package",
+              "version": "[2.1.41, )"
             },
             "Xamarin.Plugin.SharedTransitions": {
               "target": "Package",

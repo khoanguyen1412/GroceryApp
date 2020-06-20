@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ohJ3eR/o61QLLLkxk2UgjNtnCJFyg2T8YRTY40K+E4oaH4z0oodILQX3pYCIYTjwpMHWzNkOzGCnoQwoM6iU6g==",
+  "dgSpecHash": "ytoJVGYl5i9jECbuX6OBVyUdGzjvqmuPSFbpfmJTgDBpPEABAzmmcKSm8rW5E0LxfunxRforXphhXAakF+2QDQ==",
   "success": true,
   "projectFilePath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
   "expectedPackageFiles": [
@@ -114,8 +114,9 @@
     "C:\\Users\\User\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.ffimageloading\\2.4.11.982\\xamarin.ffimageloading.2.4.11.982.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.ffimageloading.forms\\2.4.11.982\\xamarin.ffimageloading.forms.2.4.11.982.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\xamarin.forms\\4.6.0.847\\xamarin.forms.4.6.0.847.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\xamarin.forms\\4.7.0.968\\xamarin.forms.4.7.0.968.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.forms.pancakeview\\1.4.2\\xamarin.forms.pancakeview.1.4.2.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\xamarin.plugin.filepicker\\2.1.41\\xamarin.plugin.filepicker.2.1.41.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.plugin.sharedtransitions\\2.2.0\\xamarin.plugin.sharedtransitions.2.2.0.nupkg.sha512"
   ],
   "logs": []

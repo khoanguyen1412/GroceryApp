@@ -1,10 +1,12 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Popups;
+using GroceryApp.Views.TabBars;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
@@ -117,9 +119,34 @@ namespace GroceryApp.ViewModels
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/update", order);
         }
 
-        public async void CancelOrder(OrderBill order)
+        public async void CancelOrder(OrderBill orderBill)
         {
-            int x = 0;
+            var httpClient = new HttpClient();
+            List<Product> productInOrder = dataProvider.GetProductsInBillByIDBill(orderBill.IDOrderBill);
+            //update quantityinventory ở local
+            List<Product> sourceProducts = DataUpdater.ReturnListProductToSource(productInOrder);
+            //api update quantityinventory ở server
+            foreach (Product product in sourceProducts)
+            {
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", product);
+            }
+
+            //api delete products trong order bị xóa (ở server)
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/deletebyidorderbill/" + orderBill.IDOrderBill, new { });
+
+            //delete product ở local
+            DataUpdater.DeleteProducts(productInOrder);
+
+            //delete orderbill server
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/deleteorderbillbyid/" + orderBill.IDOrderBill, new { });
+            //delete orderbill local
+            DataUpdater.DeleteOrderBillByID(orderBill.IDOrderBill);
+
+            //Reload data OrderManager
+            LoadData();
+            //Reload data ProductManager
+            (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData();
+
         }
 
         public async void ShowDetailOrder(OrderBill order)
