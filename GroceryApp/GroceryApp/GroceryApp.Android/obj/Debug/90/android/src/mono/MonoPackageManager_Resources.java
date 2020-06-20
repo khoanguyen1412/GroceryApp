@@ -6,6 +6,7 @@ public class MonoPackageManager_Resources {
 		"Acr.UserDialogs.dll",
 		"AndHUD.dll",
 		"Autofac.dll",
+		"Cloudinary.Core.dll",
 		"DryIoc.dll",
 		"FFImageLoading.dll",
 		"FFImageLoading.Forms.dll",

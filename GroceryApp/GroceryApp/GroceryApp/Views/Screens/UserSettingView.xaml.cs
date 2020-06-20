@@ -1,4 +1,6 @@
-﻿using GroceryApp.Data;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using GroceryApp.Data;
 using GroceryApp.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -69,6 +71,32 @@ namespace GroceryApp.Views.Screens
 
                 System.Console.WriteLine("File name chosen: " + fileName);
                 System.Console.WriteLine("File data: " + contents);
+
+
+
+
+                Account account = new Account(
+                "ungdung-grocery-xamarin-by-dk",
+                "378791526477571",
+                "scsyCxQS_C74MbAGdOutpwrzlnU");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(path)
+                };
+                try
+                {
+                    var uploadResult =await cloudinary.UploadAsync(uploadParams);
+                    string url = uploadResult.SecureUri.ToString();
+                    
+                }
+                catch (Exception ex)
+                {
+                    
+                }
+
+
             }
             catch (Exception ex)
             {

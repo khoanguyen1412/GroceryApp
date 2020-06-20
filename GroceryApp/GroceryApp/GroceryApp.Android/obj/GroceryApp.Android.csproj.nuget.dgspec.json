@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj": {}
+    "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj": {}
   },
   "projects": {
-    "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj": {
+    "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
+        "projectUniqueName": "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
         "projectName": "GroceryApp.Android",
-        "projectPath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\obj\\",
+        "projectPath": "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
+        "packagesPath": "C:\\Users\\DungHK\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DungHK\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -27,13 +27,13 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "monoandroid90": {
             "projectReferences": {
-              "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj": {
-                "projectPath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj"
+              "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj": {
+                "projectPath": "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj"
               }
             }
           }
@@ -102,21 +102,21 @@
         }
       }
     },
-    "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj": {
+    "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj",
+        "projectUniqueName": "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj",
         "projectName": "GroceryApp",
-        "projectPath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\obj\\",
+        "projectPath": "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj",
+        "packagesPath": "C:\\Users\\DungHK\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DungHK\\Desktop\\gitappgrocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DungHK\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -125,7 +125,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "netstandard2.0": {
@@ -148,6 +148,10 @@
             "Autofac": {
               "target": "Package",
               "version": "[5.2.0, )"
+            },
+            "Cloudinary.Core": {
+              "target": "Package",
+              "version": "[1.31.0, )"
             },
             "Microcharts": {
               "target": "Package",
@@ -218,7 +222,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
