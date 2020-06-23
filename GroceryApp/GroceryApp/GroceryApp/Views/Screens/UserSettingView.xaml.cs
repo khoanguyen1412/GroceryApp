@@ -89,7 +89,7 @@ namespace GroceryApp.Views.Screens
                 {
                     var uploadResult =await cloudinary.UploadAsync(uploadParams);
                     string url = uploadResult.SecureUri.ToString();
-                    
+                    int a = 1;
                 }
                 catch (Exception ex)
                 {

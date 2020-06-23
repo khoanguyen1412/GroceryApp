@@ -1,0 +1,14 @@
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\bin\Debug\netstandard2.0\SaveState.deps.json
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\bin\Debug\netstandard2.0\SaveState.dll
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\bin\Debug\netstandard2.0\ref\SaveState.dll
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\bin\Debug\netstandard2.0\SaveState.pdb
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\obj\Debug\netstandard2.0\SaveState.csprojAssemblyReference.cache
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\obj\Debug\netstandard2.0\SaveState.csproj.CoreCompileInputs.cache
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\obj\Debug\netstandard2.0\SaveState.AssemblyInfoInputs.cache
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\obj\Debug\netstandard2.0\SaveState.AssemblyInfo.cs
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\obj\Debug\netstandard2.0\SaveState.dll
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\obj\Debug\netstandard2.0\ref\SaveState.dll
+C:\Users\DungHK\Desktop\Xamarin\SaveState\SaveState\SaveState\obj\Debug\netstandard2.0\SaveState.pdb

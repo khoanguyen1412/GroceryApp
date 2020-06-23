@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SaveState.MainPage">
+
+    <StackLayout>
+        <Label Text="Username"/>
+        <Entry x:Name="EntUserName" Placeholder="tên user"/>
+        <Label Text="Password"/>
+        <Entry x:Name="EntPassword" Placeholder="***********" IsPassword="True"/>
+
+        <Label Text="Mã xác thực"/>
+        <Entry x:Name="EntVerify"/>
+        <Label Text="Email"/>
+        <Entry x:Name="EntEmail"/>
+        <StackLayout Orientation="Horizontal">
+            <Button x:Name="button" Clicked="button_Clicked" Text="Click" Margin="60"/>
+            <Button x:Name="buttonForgot" Clicked="buttonForgot_Clicked" Text="Forgot" Margin="60"/>
+        </StackLayout>
+        <Button Text="Confirm code" Clicked="Button_Clicked_1" Margin="80"/>
+
+    </StackLayout>
+
+</ContentPage>
