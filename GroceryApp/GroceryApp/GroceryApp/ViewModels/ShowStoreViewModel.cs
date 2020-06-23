@@ -1,6 +1,7 @@
 ﻿using FFImageLoading.Forms.Args;
 using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.Screens;
 using GroceryApp.Views.TabBars;
 using Plugin.SharedTransitions;
@@ -217,6 +218,8 @@ namespace GroceryApp.ViewModels
                 await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", product);
             }
 
+
+
             //call api insert server database
             foreach (Product product in NewProducts)
             {
@@ -226,7 +229,11 @@ namespace GroceryApp.ViewModels
 
             //update UI CART
             var cartVM = TabBarCustomer.GetInstance().Children[2].BindingContext as CartViewModel;
-            cartVM.InitCart();
+            cartVM.LoadData();
+
+            //PUSH NOTI
+            string datas= PushNotificationService.ConvertDataAddToCart(changedProducts);
+            PushNotificationService.Push(NotiNumber.AddToCart, datas,true);
         }
 
         

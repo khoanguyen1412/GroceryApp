@@ -11,7 +11,7 @@ namespace GroceryApp.Data
 {
     public class ServerDatabase
     {
-        public static string localhost = "http://192.168.1.52:3000/";
+        public static string localhost = "http://192.168.137.1:3000/";
 
         public static List<User> Users = new List<User>();
         public static List<Store> Stores = new List<Store>();
@@ -117,6 +117,33 @@ namespace GroceryApp.Data
                 //Đã đọc hết data
             }            
 
+        }
+
+        public static async Task FetchProductData()
+        {
+            var httpClient = new HttpClient();
+            JsonSerializer serializer = new JsonSerializer();
+            List<Product> newProducts = new List<Product>();
+
+            var ProductResponse = await httpClient.GetStringAsync(ServerDatabase.localhost + "product/getallproduct");
+            JObject ProductResponseObj = JObject.Parse(ProductResponse);
+            try
+            {
+                int count = 0;
+                while (true)
+                {
+                    Product newProduct = (Product)serializer.Deserialize(new JTokenReader(ProductResponseObj["result"][count]), typeof(Product));
+                    newProducts.Add(newProduct);
+                    count++;
+                }
+            }
+            catch (Exception e)
+            {
+                //Đã đọc hết data
+            }
+
+            Products = newProducts;
+            Database.Products = newProducts;
         }
     }
 }

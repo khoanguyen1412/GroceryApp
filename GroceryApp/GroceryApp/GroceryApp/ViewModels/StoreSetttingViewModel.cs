@@ -1,10 +1,18 @@
-﻿using GroceryApp.Data;
+﻿using Acr.UserDialogs;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Services;
 using GroceryApp.Views.Screens;
+using GroceryApp.Views.TabBars;
+using Plugin.FilePicker;
+using Plugin.FilePicker.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -21,6 +29,8 @@ namespace GroceryApp.ViewModels
     {
         DataProvider dataProvider = DataProvider.GetInstance();
         private Store myStore;
+        string ImagePath;
+        
         private ImageSource _storeImage;
 
         public ImageSource StoreImage
@@ -44,18 +54,63 @@ namespace GroceryApp.ViewModels
 
         public async void SaveChange()
         {
-            Store store = this.myStore;
+
+            if (ImagePath != "")
+            {
+                Account account = new Account(
+                    "ungdung-grocery-xamarin-by-dk",
+                    "378791526477571",
+                    "scsyCxQS_C74MbAGdOutpwrzlnU"
+                    );
+
+                Cloudinary cloudinary = new Cloudinary(account);
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(ImagePath)
+                };
+                try
+                {
+                    using (UserDialogs.Instance.Loading("Saving.."))
+                    {
+                        var uploadResult = await cloudinary.UploadAsync(uploadParams);
+                        string url = uploadResult.SecureUri.ToString();
+                        myStore.ImageURL = url;
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    var page = TabbarStoreManager.GetInstance().Children.ElementAt(4) as StoreSettingView;
+                    await page.DisplayAlert("Error", "Error upload image to server, try again!", "Ok");
+                }
+            }
             
+            //update store ở database server
+            var httpClient = new HttpClient();
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "store/update", myStore);
+            //update store ở database local
+            DataUpdater.UpdateStore(myStore);
         }
-             
+
         public async void ChangeImage()
         {
-            Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
-            if (stream != null)
+            
+            try
             {
-                StoreImage = ImageSource.FromStream(() => stream);
+                FileData fileData = await CrossFilePicker.Current.PickFile();
+                if (fileData == null)
+                    return; // user canceled file picking
+                string path = fileData.FilePath;
 
-            };
+                StoreImage = (ImageSource)path;
+                ImagePath = path;
+            }
+            catch (Exception ex)
+            {
+                var page =TabbarStoreManager.GetInstance().Children.ElementAt(4) as StoreSettingView;
+                await page.DisplayAlert("Error", "Error picking file from divice, try again!", "Ok");
+            }
         }
 
         public async void ShowInforSetting()
@@ -92,7 +147,7 @@ namespace GroceryApp.ViewModels
         {
             myStore = dataProvider.GetStoreByIDStore(Infor.IDStore);
             StoreImage = myStore.ImageURL;
-            
+            ImagePath = "";
         }
 
         public void ChangeInfor(StoreInfor newInfor)

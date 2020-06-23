@@ -1,8 +1,14 @@
-﻿using GroceryApp.Data;
+﻿using Acr.UserDialogs;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Screens;
+using Plugin.FilePicker;
+using Plugin.FilePicker.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -17,6 +23,17 @@ namespace GroceryApp.ViewModels
     {
         
         DataProvider dataProvider = DataProvider.GetInstance();
+
+        string ImagePath;
+        bool isNewImage = false;
+
+        private ImageSource _userImage;
+
+        public ImageSource UserImage
+        {
+            get { return _userImage; }
+            set { _userImage = value; OnPropertyChanged(nameof(UserImage)); }
+        }
 
         private User _currentUser;
 
@@ -39,6 +56,12 @@ namespace GroceryApp.ViewModels
         {
             get { return _address; }
             set { _address = value; OnPropertyChanged(nameof(Address)); }
+        }
+        private string _password;
+        public string Password
+        {
+            get { return _password; }
+            set { _password = value; OnPropertyChanged(nameof(Password)); }
         }
 
         private string _fullName;
@@ -91,7 +114,8 @@ namespace GroceryApp.ViewModels
         public ICommand FullNameEditCommand { get; set; }
         public ICommand PhoneNumberEditCommand { get; set; }
         public ICommand EmailEditCommand { get; set; }
-
+        public ICommand SaveChangeCommand { get; set; }
+        public ICommand ChangeImageCommand { get; set; }
         public UserSettingViewModel()
         {
             LoadData();
@@ -100,6 +124,80 @@ namespace GroceryApp.ViewModels
             FullNameEditCommand = new Command(ChangeFullNameEdit);
             PhoneNumberEditCommand = new Command(ChangePhoneNumberEdit);
             EmailEditCommand = new Command(ChangeEmailEdit);
+            SaveChangeCommand = new Command(SaveChange);
+            ChangeImageCommand = new Command(ChangeImage);
+        }
+
+        public async void SaveChange()
+        {
+
+            if (ImagePath != "" && isNewImage)
+            {
+                Account account = new Account(
+                    "ungdung-grocery-xamarin-by-dk",
+                    "378791526477571",
+                    "scsyCxQS_C74MbAGdOutpwrzlnU"
+                    );
+
+                Cloudinary cloudinary = new Cloudinary(account);
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(ImagePath)
+                };
+                try
+                {
+                    using (UserDialogs.Instance.Loading("Saving.."))
+                    {
+                        var uploadResult = await cloudinary.UploadAsync(uploadParams);
+                        string url = uploadResult.SecureUri.ToString();
+                        CurrentUser.ImageURL = url;
+                        isNewImage = false;
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    var page = UserSettingView.GetInstance();
+                    await page.DisplayAlert("Error", "Error upload image to server, try again!", "Ok");
+                }
+            }
+
+            CurrentUser.BirthDate = BirthDate;
+            CurrentUser.UserName = FullName;
+            CurrentUser.PhoneNumber = PhoneNumber;
+            CurrentUser.Email= Email;
+
+            using (UserDialogs.Instance.Loading("Updating.."))
+            {
+                //update user ở database server
+                var httpClient = new HttpClient();
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", CurrentUser);
+                //update user ở database local
+                DataUpdater.UpdateUser(CurrentUser);
+            }
+                
+        }
+
+        public async void ChangeImage()
+        {
+
+            try
+            {
+                FileData fileData = await CrossFilePicker.Current.PickFile();
+                if (fileData == null)
+                    return; // user canceled file picking
+                string path = fileData.FilePath;
+
+                UserImage = (ImageSource)path;
+                ImagePath = path;
+                isNewImage = true;
+            }
+            catch (Exception ex)
+            {
+                var page = UserSettingView.GetInstance();
+                await page.DisplayAlert("Error", "Error picking file from divice, try again!", "Ok");
+            }
         }
 
         public void ChangeFullNameEdit()
@@ -141,24 +239,14 @@ namespace GroceryApp.ViewModels
 
         public void LoadData()
         {
-            //CurrentUser = dataProvider.GetUserByIDUser(Infor.IDUser);
-            CurrentUser = new User
-            {
-                IDUser = "1",
-                Password = "1234568",
-                IDStore = "1",
-                PhoneNumber = "0377337978",
-                Address = "Tri Thủy#Ninh Hải#Ninh Thuận#Việt Nam",
-                Email = "khoanguyen1412@gmail.com",
-                ImageURL = "https://bom.to/2DFoGr",
-                BirthDate = new DateTime(1999, 6, 18),
-                UserName = "Khoa athony"
-            };
+            CurrentUser = dataProvider.GetUserByIDUser(Infor.IDUser);
             BirthDate = CurrentUser.BirthDate;
             Address = CurrentUser.Address;
             FullName = CurrentUser.UserName;
             PhoneNumber = CurrentUser.PhoneNumber;
             Email = CurrentUser.Email;
+            UserImage = CurrentUser.ImageURL;
+            Password = ConvertPassword(CurrentUser.Password);
 
             FullNameEditMode = false;
             PhoneNumberEditMode = false;
@@ -172,5 +260,22 @@ namespace GroceryApp.ViewModels
             CurrentUser.Address = address;
         }
 
+        public void ChangePassword(string newPassword)
+        {
+            Password = ConvertPassword(newPassword);
+            CurrentUser.Password = newPassword;
+        }
+
+
+        public string ConvertPassword(string originPassword)
+        {
+            string hiddenPassword = "";
+            for (int i = 0; i < originPassword.Length; i++)
+            {
+                hiddenPassword += "*";
+            }
+
+            return hiddenPassword;
+        }
     }
 }

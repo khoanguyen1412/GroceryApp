@@ -28,6 +28,18 @@ namespace GroceryApp.Models
         public int OrderNumber { get; set; }
         public string UserName { get; set; }
 
+        public void Update(OrderBill updatedOrder)
+        {
+            this.CustomerAddress = updatedOrder.CustomerAddress;
+            this.CustomerPhone = updatedOrder.CustomerPhone;
+            this.Note = updatedOrder.Note;
+            this.State = updatedOrder.State;
+            this.Review = updatedOrder.Review;
+            this.StoreAnswer = updatedOrder.StoreAnswer;
+            this.Rating = updatedOrder.Rating;
+            this.StoreAnswer = updatedOrder.StoreAnswer;
+        }
+
         DataProvider dataProvider = DataProvider.GetInstance();
 
         public void Init()

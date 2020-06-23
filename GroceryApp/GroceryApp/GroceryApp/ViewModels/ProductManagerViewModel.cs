@@ -1,5 +1,6 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.Popups;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -75,6 +76,10 @@ namespace GroceryApp.ViewModels
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", restoredProduct);
 
             LoadProducts();
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataUpdateProduct(restoredProduct);
+            PushNotificationService.Push(NotiNumber.UpdateProduct, datas, true);
         }
 
         public async void DeleteProduct(ProductItem productItem)
@@ -86,6 +91,10 @@ namespace GroceryApp.ViewModels
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", deletedProduct);
 
             LoadProducts();
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataUpdateProduct(deletedProduct);
+            PushNotificationService.Push(NotiNumber.UpdateProduct, datas, true);
         }
 
         public void ChooseType(TypeItem typeItem)
@@ -248,10 +257,12 @@ namespace GroceryApp.ViewModels
             //Update database local
             DataUpdater.UpdateProduct(updatedProduct);
             //Update database server
-            
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", updatedProduct);
             LoadProducts();
 
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataUpdateProduct(updatedProduct);
+            PushNotificationService.Push(NotiNumber.UpdateProduct, datas, true);
         }
 
         public async void AddProduct(Product newProduct)
@@ -269,6 +280,10 @@ namespace GroceryApp.ViewModels
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/insert", newProduct);
 
             LoadProducts();
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataAddProduct(newProduct);
+            PushNotificationService.Push(NotiNumber.AddProduct, datas, true);
         }
     }
 }

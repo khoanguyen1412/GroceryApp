@@ -1,5 +1,6 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.Popups;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -126,6 +127,13 @@ namespace GroceryApp.ViewModels
 
             //reload ListOrdersView
             LoadData();
+
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataCancelOrder(orderBill);
+            PushNotificationService.Push(NotiNumber.CancelOrder,"1"+ datas, true); //Gửi cho các user khác update quantity inventory
+            PushNotificationService.Push(NotiNumber.CancelOrder,"2"+ datas, false); //Gửi cho store để thông báo order bị hủy
+        
         }
 
         public async void ShowReviewPopup(OrderBill order)

@@ -1,9 +1,4 @@
-﻿using Acr.UserDialogs;
-using GroceryApp.Data;
-using GroceryApp.Views.Drawer;
-using GroceryApp.Views.TabBars;
-using ImTools;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,32 +15,6 @@ namespace GroceryApp.Views.Screens
         public LoginView()
         {
             InitializeComponent();
-            //List<string> ids = new List<string> { "1", "2" };
-            //IDPicker.ItemsSource = ids;
-            //IDPicker.SelectedItem = IDPicker.ItemsSource[0];
-        }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            //handle login
-            
-
-            using (UserDialogs.Instance.Loading("Loging.."))
-            {
-                await LoadServerDataAsync();
-                await App.Current.MainPage.Navigation.PushAsync(new MiddleView(username.Text,password.Text), true);
-            }
-            
-            
-        }
-
-        public async Task LoadServerDataAsync()
-        {
-            
-             
-            await ServerDatabase.LoadDataFromServer();
-            Database.LoadDataToLocal();
-
         }
     }
 }

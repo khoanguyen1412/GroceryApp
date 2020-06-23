@@ -1,8 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.groceryapp" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
-	<application android:label="GroceryApp.Android" ></application>
+	<application android:label="Grocery Store" >
+    <receiver android:name="com.onesignal.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+        <intent-filter>
+          <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+          <category android:name="com.companyname.groceryapp" />
+        </intent-filter>
+      </receiver>
+  </application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-
+  <permission android:name="com.companyname.groceryapp.permission.C2D_MESSAGE"
+              android:protectionLevel="signature" />
+  <uses-permission android:name="com.companyname.groceryapp.permission.C2D_MESSAGE" />
 </manifest>

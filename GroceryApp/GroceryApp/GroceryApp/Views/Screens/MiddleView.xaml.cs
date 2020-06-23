@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Com.OneSignal;
 using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Drawer;
@@ -44,6 +45,9 @@ namespace GroceryApp.Views.Screens
             };
             User user = dataProvider.GetUserByIDUser(this.Username);
             user.IsLogined = 1;
+
+            OneSignal.Current.SetExternalUserId(user.IDUser);
+            OneSignal.Current.SendTag("IsLogined", "1");
             var httpClient = new HttpClient();
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);
 

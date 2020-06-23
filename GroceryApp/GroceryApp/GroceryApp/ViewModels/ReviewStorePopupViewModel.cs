@@ -1,5 +1,6 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.TabBars;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -120,6 +121,11 @@ namespace GroceryApp.ViewModels
             (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).LoadData();
 
             await PopupNavigation.Instance.PopAllAsync();
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataReceiveOrder(order);
+            PushNotificationService.Push(NotiNumber.ReceiveOrder,datas, false); 
+
         }
 
         public int GetRating()

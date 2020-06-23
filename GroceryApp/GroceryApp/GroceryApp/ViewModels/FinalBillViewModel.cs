@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.Popups;
 using GroceryApp.Views.TabBars;
 using Newtonsoft.Json.Linq;
@@ -94,12 +95,16 @@ namespace GroceryApp.ViewModels
 
             //update UI CART
             var cartVM = TabBarCustomer.GetInstance().Children[2].BindingContext as CartViewModel;
-            cartVM.InitCart();
+            cartVM.LoadData();
             //update UI Orders
             var ordersVM = TabBarCustomer.GetInstance().Children[3].BindingContext as ListOrdersViewModel;
             ordersVM.LoadData();
 
             await PopupNavigation.Instance.PushAsync(successPopup);
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataInsertOrderBill(OrderItem.Order);
+            PushNotificationService.Push(NotiNumber.MakeBill, datas,false);
         }
 
         public FinalBillViewModel()

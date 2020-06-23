@@ -98,7 +98,7 @@ namespace GroceryApp.ViewModels
 
         public async void ShowStore(string IDStore)
         {
-            var showStoreView = new ShowStoreView();
+            var showStoreView =  ShowStoreView.GetInstance();
             showStoreView.BindingContext = new ShowStoreViewModel(IDStore);
             await App.Current.MainPage.Navigation.PushAsync(showStoreView, true);
         }

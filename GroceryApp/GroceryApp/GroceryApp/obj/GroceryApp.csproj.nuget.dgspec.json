@@ -51,6 +51,14 @@
               "target": "Package",
               "version": "[5.2.0, )"
             },
+            "Cloudinary.Core": {
+              "target": "Package",
+              "version": "[1.31.0, )"
+            },
+            "Com.OneSignal": {
+              "target": "Package",
+              "version": "[3.9.0, )"
+            },
             "Microcharts": {
               "target": "Package",
               "version": "[0.7.1, )"
@@ -68,6 +76,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "Nancy": {
+              "target": "Package",
+              "version": "[2.0.0, )"
             },
             "Prism.DryIoc.Forms": {
               "target": "Package",

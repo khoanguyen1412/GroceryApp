@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using GroceryApp.Data;
 using ImTools;
 using System.Net.Http;
+using GroceryApp.Services;
 
 namespace GroceryApp.ViewModels
 {
@@ -81,12 +82,12 @@ namespace GroceryApp.ViewModels
 
         public CartViewModel()
         {
-            InitCart();
+            LoadData();
             
             
         }
 
-        public void InitCart()
+        public void LoadData()
         {
             currentStore = 0;
             Subtotal = 0;
@@ -118,8 +119,15 @@ namespace GroceryApp.ViewModels
 
             //load lại data product cho store được trả về VÀ TRONG CART
             DataUpdater.DeletedProductInCart(deletedProduct);
-            InitCart();
-            
+            LoadData();
+
+
+            //PUSH NOTI
+            List<Product> productForPushNoti = new List<Product>();
+            productForPushNoti.Add(changedProduct);
+            productForPushNoti.Add(deletedProduct);
+            string datas = PushNotificationService.ConvertDataReturnProductCart(productForPushNoti);
+            PushNotificationService.Push(NotiNumber.ReturnProductCart, datas, true);
         }
 
 

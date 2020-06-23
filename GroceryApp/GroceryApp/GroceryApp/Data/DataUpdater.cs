@@ -29,12 +29,30 @@ namespace GroceryApp.Data
         public static void InsertProduct(List<Product> newProducts)
         {
             foreach (Product newItem in newProducts)
-                Database.Products.Add(newItem);
+                if(!CheckExistProduct(newItem, Database.Products))
+                    Database.Products.Add(newItem);
+        }
+
+        public static bool CheckExistProduct(Product productCheck,List<Product> sourceProducts)
+        {
+            foreach (Product product in sourceProducts)
+                if (product.IDProduct == productCheck.IDProduct)
+                    return true;
+            return false;
         }
 
         public static void InsertOrderBill(OrderBill orderBill)
         {
+            if (CheckExistOrderBill(orderBill, Database.OrderBills)) return;
             Database.OrderBills.Add(orderBill);
+        }
+
+        public static bool CheckExistOrderBill(OrderBill orderCheck, List<OrderBill> sourceOrders)
+        {
+            foreach (OrderBill order in sourceOrders)
+                if (order.IDOrderBill == orderCheck.IDOrderBill)
+                    return true;
+            return false;
         }
 
         public static void ReturnProductToSourceProduct(Product returnProduct)
@@ -115,6 +133,16 @@ namespace GroceryApp.Data
                 }
         }
 
+        public static void UpdateOrderBill(OrderBill updatedOrder)
+        {
+            foreach(OrderBill order in Database.OrderBills)
+                if (order.IDOrderBill == updatedOrder.IDOrderBill)
+                {
+                    order.Update(updatedOrder);
+                    return;
+                }
+        }
+
         //PRODUCT MANAGER
         public static void UpdateProduct(Product updatedProduct)
         {
@@ -128,6 +156,7 @@ namespace GroceryApp.Data
 
         public static void AddProduct(Product newProduct)
         {
+            if (CheckExistProduct(newProduct, Database.Products)) return;
             Database.Products.Add(newProduct);
         }
 
@@ -170,6 +199,36 @@ namespace GroceryApp.Data
                 if (order.IDOrderBill == updatedOrder.IDOrderBill)
                 {
                     order.State = updatedOrder.State;
+                    return;
+                }
+        }
+
+        //STORE SETTING
+        public static void UpdateStore(Store updatedStore)
+        {
+            foreach(Store store in Database.Stores)
+                if (store.IDStore== updatedStore.IDStore)
+                {
+                    store.StoreName = updatedStore.StoreName;
+                    store.StoreDescription = updatedStore.StoreDescription;
+                    store.StoreAddress = updatedStore.StoreAddress;
+                    store.ImageURL = updatedStore.ImageURL;
+                    return;
+                }
+        }
+
+        public static void UpdateUser(User updatedUser)
+        {
+            foreach (User user in Database.Users)
+                if (user.IDUser == updatedUser.IDUser)
+                {
+                    user.UserName = updatedUser.UserName;
+                    user.Password = updatedUser.Password;
+                    user.PhoneNumber = updatedUser.PhoneNumber;
+                    user.Address = updatedUser.Address;
+                    user.Email = updatedUser.Email;
+                    user.BirthDate = updatedUser.BirthDate;
+                    user.ImageURL = updatedUser.ImageURL;
                     return;
                 }
         }

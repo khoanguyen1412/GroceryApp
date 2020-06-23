@@ -15,7 +15,18 @@ namespace GroceryApp.Views.Screens
         const uint ExpandAnimationSpeed = 350;
         const uint CollapseAnimationSpeed = 250;
         double pageHeight = 0;
-        public ShowStoreView()
+
+        private static ShowStoreView _instance;
+
+        public static ShowStoreView GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new ShowStoreView();
+            }
+            return _instance;
+        }
+        private ShowStoreView()
         {
             InitializeComponent();
             

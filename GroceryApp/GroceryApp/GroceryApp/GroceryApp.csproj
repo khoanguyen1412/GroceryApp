@@ -17,9 +17,12 @@
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.442" />
     <PackageReference Include="Autofac" Version="5.2.0" />
+    <PackageReference Include="Cloudinary.Core" Version="1.31.0" />
+    <PackageReference Include="Com.OneSignal" Version="3.9.0" />
     <PackageReference Include="Microcharts" Version="0.7.1" />
     <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
     <PackageReference Include="SkiaSharp" Version="1.68.3" />
@@ -35,6 +38,9 @@
   <ItemGroup>
     <Compile Update="Views\Popups\ReplyPopupView.xaml.cs">
       <DependentUpon>ReplyPopupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Screens\LoginTempView.xaml.cs">
+      <DependentUpon>LoginTempView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Screens\StoreDashBoardView.xaml.cs">
       <DependentUpon>StoreDashBoardView.xaml</DependentUpon>
@@ -96,6 +102,9 @@
     <EmbeddedResource Update="Views\Screens\ListStoresView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Screens\LoginTempView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Screens\LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -109,6 +118,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Screens\ProductManagerView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Screens\RegisterView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Screens\ReviewManagerView.xaml">

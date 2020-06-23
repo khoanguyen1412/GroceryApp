@@ -1,4 +1,5 @@
-﻿using GroceryApp.Models;
+﻿using CloudinaryDotNet.Actions;
+using GroceryApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -394,6 +395,13 @@ namespace GroceryApp.Data
             return null;
         }
         //==========================================================
-
+        public List<string> GetAllOtherUserIDs()
+        {
+            List<string> result = new List<string>();
+            foreach (User user in Database.Users)
+                if (user.IDUser != Infor.IDUser)
+                    result.Add(user.IDUser);
+            return result;
+        } 
     }
 }

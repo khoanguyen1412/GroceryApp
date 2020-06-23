@@ -1,5 +1,9 @@
-﻿using GroceryApp.Data;
+﻿using Acr.UserDialogs;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using GroceryApp.Data;
 using GroceryApp.Services;
+using GroceryApp.ViewModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plugin.FilePicker;
@@ -47,41 +51,7 @@ namespace GroceryApp.Views.Screens
             tapGestureRecognizer.NumberOfTapsRequired = 1;
             dateCard.GestureRecognizers.Add(tapGestureRecognizer);
 
-            var changeImageTapGestureRecognizer = new TapGestureRecognizer();
-            changeImageTapGestureRecognizer.Tapped += ChangeImage_Clicked;
-            changeImageTapGestureRecognizer.NumberOfTapsRequired = 1;
-            changeBtn.GestureRecognizers.Add(changeImageTapGestureRecognizer);
-        }
 
-        private async void ChangeImage_Clicked(object sender, EventArgs e)
-        {
-            (sender as PancakeView).IsEnabled = false;
-
-
-            try
-            {
-                FileData fileData = await CrossFilePicker.Current.PickFile();
-                if (fileData == null)
-                    return; // user canceled file picking
-                string path = fileData.FilePath;
-                string fileName = fileData.FileName;
-                string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray);
-
-                System.Console.WriteLine("File name chosen: " + fileName);
-                System.Console.WriteLine("File data: " + contents);
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("Exception choosing file: " + ex.ToString());
-            }
-
-            //Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
-            //if (stream != null)
-            //{
-            //    userimage.Source = ImageSource.FromStream(() => stream);
-            //};
-
-            (sender as PancakeView).IsEnabled = true;
         }
 
        
