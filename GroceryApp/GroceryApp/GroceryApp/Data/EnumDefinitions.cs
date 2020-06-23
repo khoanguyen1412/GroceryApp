@@ -27,6 +27,8 @@ public enum NotiNumber
     ReceiveOrder,
     UpdateProduct,
     AddProduct,
+    AnswerFeedback,
+    DeliverOrder,
 }
 
 public class NotiContent
@@ -43,6 +45,9 @@ public class NotiContent
                 break;
             case NotiNumber.ReceiveOrder:
                 return "Cửa hàng của bạn có một order đã được nhận!";
+                break;
+            case NotiNumber.DeliverOrder:
+                return "Đơn hàng của bạn đã bắt đầu được giao!";
                 break;
         }
         return "";

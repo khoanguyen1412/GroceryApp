@@ -1,5 +1,6 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.Popups;
 using GroceryApp.Views.TabBars;
 using Rg.Plugins.Popup.Services;
@@ -117,6 +118,10 @@ namespace GroceryApp.ViewModels
             //api update database server
             var httpClient = new HttpClient();
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/update", order);
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataDeliverOrder(order);
+            PushNotificationService.Push(NotiNumber.DeliverOrder, datas, false);
         }
 
         public async void CancelOrder(OrderBill orderBill)
@@ -147,6 +152,10 @@ namespace GroceryApp.ViewModels
             //Reload data ProductManager
             (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData();
 
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataCancelOrder(orderBill);
+            PushNotificationService.Push(NotiNumber.CancelOrder, datas, true);
         }
 
         public async void ShowDetailOrder(OrderBill order)

@@ -131,8 +131,8 @@ namespace GroceryApp.ViewModels
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataCancelOrder(orderBill);
-            PushNotificationService.Push(NotiNumber.CancelOrder,"1"+ datas, true); //Gửi cho các user khác update quantity inventory
-            PushNotificationService.Push(NotiNumber.CancelOrder,"2"+ datas, false); //Gửi cho store để thông báo order bị hủy
+            PushNotificationService.Push(NotiNumber.CancelOrder,datas, true); //Gửi cho các user khác update quantity inventory
+            //PushNotificationService.Push(NotiNumber.CancelOrder,datas, false); //Gửi cho store để thông báo order bị hủy
         
         }
 

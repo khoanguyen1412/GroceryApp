@@ -56,6 +56,12 @@ namespace GroceryApp.Services
                 case "7":
                     AddProductAction(datas[0]);
                     break;
+                case "8":
+                    AnswerFeedbackAction(datas[0]);
+                    break;
+                case "9":
+                    DeliverOrderAction(datas[0]);
+                    break;
             }
             
 
@@ -91,13 +97,8 @@ namespace GroceryApp.Services
 
         public async static void CancelOrderAction(string data)
         {
-            string id = data.Substring(0,1);
-            string realData = data.Substring(1);
-            OrderBill canceledOder= JsonConvert.DeserializeObject<OrderBill>(realData);
-            if ((id == "1" && Infor.IDStore==canceledOder.IDStore) || (id == "2" && Infor.IDStore != canceledOder.IDStore)) //truyền cho các user khác
-            {
-                return;
-            }
+            OrderBill canceledOder= JsonConvert.DeserializeObject<OrderBill>(data);
+
             //fetch data products in server
             await ServerDatabase.FetchProductData();
 
@@ -105,6 +106,13 @@ namespace GroceryApp.Services
             DataUpdater.DeleteOrderBillByID(canceledOder.IDOrderBill);
             if (Infor.IDStore == canceledOder.IDStore)
                 (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData();
+            if(Infor.IDUser==canceledOder.IDUser)
+            {
+                var ShowStoreVM = ShowStoreView.GetInstance().BindingContext as ShowStoreViewModel;
+                if (ShowStoreVM.IDStore == canceledOder.IDStore) ShowStoreVM.LoadData();
+                (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).LoadData();
+
+            }
         }
 
         public static void ReceiveOrderAction(string data)
@@ -131,56 +139,26 @@ namespace GroceryApp.Services
             if (ShowStoreVM.IDStore == product.IDStore) ShowStoreVM.LoadData();
         }
 
+        public static void AnswerFeedbackAction(string data)
+        {
+            OrderBill order = JsonConvert.DeserializeObject<OrderBill>(data);
+            DataUpdater.UpdateOrderBill(order);
+            var ShowStoreVM = ShowStoreView.GetInstance().BindingContext as ShowStoreViewModel;
+            if (ShowStoreVM.IDStore == order.IDStore) ShowStoreVM.LoadData();
+        }
+
+        public static void DeliverOrderAction(string data)
+        {
+            OrderBill order = JsonConvert.DeserializeObject<OrderBill>(data);
+            DataUpdater.UpdateOrderBill(order);
+            (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).LoadData();
+
+        }
+
         #endregion
 
 
-        public async static void Push(NotiNumber notiNumber,string datas,bool isSilent)
-        {
 
-            var request = WebRequest.Create("https://onesignal.com/api/v1/notifications") as HttpWebRequest;
-
-            request.KeepAlive = true;
-            request.Method = "POST";
-            request.ContentType = "application/json; charset=utf-8";
-            request.Headers.Add("authorization", "Basic MzUyOWU3MDItMmJlMS00ZWRkLTlkYzEtMDhlZGMyZmEzYjQx");
-
-            Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            dictionary.Add("content", datas);
-            //GET EXTERNALIDS DỰA VÀO NOTINUMBER Ở ĐÂY
-            string[] externalIDs = { "1", "2" };
-
-            object obj = null;
-            if (isSilent)
-                obj = SilentNoti(externalIDs, dictionary);
-            else obj = ShownNoti(externalIDs, dictionary, notiNumber);
-
-            var serializer = new JavaScriptSerializer();
-            var param = serializer.Serialize(obj);
-            byte[] byteArray = Encoding.UTF8.GetBytes(param);
-
-            string responseContent = null;
-
-            try
-            {
-                using (var writer = request.GetRequestStream())
-                {
-                    writer.Write(byteArray, 0, byteArray.Length);
-                }
-
-                using (var response = request.GetResponse() as HttpWebResponse)
-                {
-                    using (var reader = new StreamReader(response.GetResponseStream()))
-                    {
-                        responseContent = reader.ReadToEnd();
-                    }
-                }
-            }
-            catch (WebException ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                System.Diagnostics.Debug.WriteLine(new StreamReader(ex.Response.GetResponseStream()).ReadToEnd());
-            }
-        }
         #region create json data
         public static string ConvertDataAddToCart(List<Product> changedProducts)
         {
@@ -229,9 +207,68 @@ namespace GroceryApp.Services
             json += "~7";
             return json;
         }
+        public static string ConvertDataAnswerFeedback(OrderBill order)
+        {
+            var json = JsonConvert.SerializeObject(order);
+            json += "~8";
+            return json;
+        }
+
+        public static string ConvertDataDeliverOrder(OrderBill order)
+        {
+            var json = JsonConvert.SerializeObject(order);
+            json += "~9";
+            return json;
+        }
         #endregion
 
+        public async static void Push(NotiNumber notiNumber, string datas, bool isSilent)
+        {
 
+            var request = WebRequest.Create("https://onesignal.com/api/v1/notifications") as HttpWebRequest;
+
+            request.KeepAlive = true;
+            request.Method = "POST";
+            request.ContentType = "application/json; charset=utf-8";
+            request.Headers.Add("authorization", "Basic MzUyOWU3MDItMmJlMS00ZWRkLTlkYzEtMDhlZGMyZmEzYjQx");
+
+            Dictionary<string, object> dictionary = new Dictionary<string, object>();
+            dictionary.Add("content", datas);
+            //GET EXTERNALIDS DỰA VÀO NOTINUMBER Ở ĐÂY
+            string[] externalIDs = { "1", "2" };
+
+            object obj = null;
+            if (isSilent)
+                obj = SilentNoti(externalIDs, dictionary);
+            else obj = ShownNoti(externalIDs, dictionary, notiNumber);
+
+            var serializer = new JavaScriptSerializer();
+            var param = serializer.Serialize(obj);
+            byte[] byteArray = Encoding.UTF8.GetBytes(param);
+
+            string responseContent = null;
+
+            try
+            {
+                using (var writer = request.GetRequestStream())
+                {
+                    writer.Write(byteArray, 0, byteArray.Length);
+                }
+
+                using (var response = request.GetResponse() as HttpWebResponse)
+                {
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        responseContent = reader.ReadToEnd();
+                    }
+                }
+            }
+            catch (WebException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                System.Diagnostics.Debug.WriteLine(new StreamReader(ex.Response.GetResponseStream()).ReadToEnd());
+            }
+        }
         public static object SilentNoti(string[] externalIDs, Dictionary<string, object> datas)
         {
             var silentObj = new

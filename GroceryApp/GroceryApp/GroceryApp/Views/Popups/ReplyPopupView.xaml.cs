@@ -1,5 +1,6 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -90,6 +91,10 @@ namespace GroceryApp.Views.Popups
             var httpClient = new HttpClient();
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/update", order);
             await PopupNavigation.Instance.PopAsync();
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataAnswerFeedback(order);
+            PushNotificationService.Push(NotiNumber.AnswerFeedback, datas, true);
         }
     }
 }
