@@ -1,5 +1,8 @@
-﻿using System;
+﻿using GroceryApp.Data;
+using GroceryApp.Models;
+using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,7 +13,7 @@ namespace GroceryApp.ViewModels
     {
 
     }
-    public class RegisterViewModel : BaseViewModel, IChangePasswordViewModel
+    public class RegisterViewModel : BaseViewModel, IRegisterViewModel
     {
         private string _username;
         public string Username
@@ -80,12 +83,50 @@ namespace GroceryApp.ViewModels
         {
             if (!CheckValidNewPassword())
             {
-
                 return;
             }
+            if (CheckExistNewPassword())
+            {
+                return;
+            }
+
             ShowError = false;
-            //(UserSettingView.GetInstance().BindingContext as UserSettingViewModel).ChangePassword(NewPassword);
-            
+
+            //TẠO STORE
+            string idStore = "Store_" + DateTime.Now.ToString("HHmmss");
+            Store newStore = new Store
+            {
+                IDStore = idStore,
+                StoreName="",
+                ImageURL="",
+                StoreDescription="",
+                StoreAddress="###",
+                RatingStore=0,
+                IsActive=0
+            };
+            //TẠO USER TƯƠNG ỨNG
+            User newUser = new User
+            {
+                IDUser= Username,
+                Password=NewPassword,
+                IDStore=idStore,
+                PhoneNumber="",
+                Address="###",
+                Email="",
+                ImageURL="",
+                BirthDate=DateTime.Today,
+                UserName="",
+                IsLogined=0
+            };
+
+            //insert STORE và USER lên database local
+            DataUpdater.AddStore(newStore);
+            DataUpdater.AddUser(newUser);
+            //insert STORE và USER lên database online
+            var httpClient = new HttpClient();
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "store/insert", newStore);
+            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/insert", newUser);
+
             await App.Current.MainPage.Navigation.PopAsync();
         }
 
@@ -113,6 +154,19 @@ namespace GroceryApp.ViewModels
             }
 
             return valid;
+        }
+
+        public bool CheckExistNewPassword()
+        {
+            foreach(User user in Database.Users)
+                if (user.IDUser == Username)
+                {
+                    ShowError = true;
+                    ErrorStr = "This username is already in use";
+                    return true;
+                }
+
+            return false;
         }
 
         public void SetUpData()

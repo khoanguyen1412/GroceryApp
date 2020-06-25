@@ -61,7 +61,7 @@ namespace GroceryApp.ViewModels
         public ICommand ChooseTypeCommand { get; set; }
         public ProductManagerViewModel()
         {
-            LoadData();
+            LoadData(false);
             AddProductCommand = new Command(AddProduct);
             EditProductCommand = new Command<ProductItem>(EditProduct);
             ChooseTypeCommand = new Command<TypeItem>(ChooseType);
@@ -75,7 +75,7 @@ namespace GroceryApp.ViewModels
             //update product ở database server
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", restoredProduct);
 
-            LoadProducts();
+            LoadProducts(false);
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataUpdateProduct(restoredProduct);
@@ -90,7 +90,7 @@ namespace GroceryApp.ViewModels
             //update product ở database server
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", deletedProduct);
 
-            LoadProducts();
+            LoadProducts(false);
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataUpdateProduct(deletedProduct);
@@ -116,12 +116,12 @@ namespace GroceryApp.ViewModels
             if (choosingIndex != currentType)
             {
                 currentType = choosingIndex;
-                LoadProducts();
+                LoadProducts(false);
             }
             if (_typeItems[choosingIndex].isChosen == false)
             {
                 currentType = -1;
-                LoadProducts();
+                LoadProducts(false);
             }
 
             TypeItems = new ObservableCollection<TypeItem>(_typeItems);
@@ -142,18 +142,18 @@ namespace GroceryApp.ViewModels
             await PopupNavigation.Instance.PushAsync(EditPage);
         }
 
-        public void LoadData()
+        public void LoadData(bool isReload)
         {
             LoadProductTypes();
-            LoadProducts();
-            _products = new ObservableCollection<Product>(dataProvider.GetProductOfMyStore());
+            LoadProducts(isReload);
+            //_products = new ObservableCollection<Product>(dataProvider.GetProductOfMyStore());
         }
 
 
 
-        public void LoadProducts()
+        public void LoadProducts(bool isReload)
         {
-            if (_saveProducts == null)
+            if (_saveProducts == null || isReload==true)
             {
                 List<ProductItem> productItems = new List<ProductItem>();
                 
@@ -258,7 +258,7 @@ namespace GroceryApp.ViewModels
             DataUpdater.UpdateProduct(updatedProduct);
             //Update database server
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", updatedProduct);
-            LoadProducts();
+            LoadProducts(false);
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataUpdateProduct(updatedProduct);
@@ -279,7 +279,7 @@ namespace GroceryApp.ViewModels
             //Thêm product ở database server
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/insert", newProduct);
 
-            LoadProducts();
+            LoadProducts(false);
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataAddProduct(newProduct);

@@ -31,31 +31,34 @@ namespace GroceryApp.Views.Screens
             InitializeComponent();
             this.Username = Username;
             this.Password = Password;
-
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            if (!dataProvider.CheckUserExist(this.Username))
+            using (UserDialogs.Instance.Loading("Loging.."))
             {
-                await DisplayAlert("Account not exist", "Wrong username or password, please try again", "OK");
-                await App.Current.MainPage.Navigation.PopAsync();
-                return;
-            };
-            User user = dataProvider.GetUserByIDUser(this.Username);
-            user.IsLogined = 1;
+                if (!dataProvider.CheckAccountExist(this.Username,this.Password))
+                {
+                    await DisplayAlert("Account not exist", "Wrong username or password, please try again", "OK");
+                    await App.Current.MainPage.Navigation.PopAsync();
+                    return;
+                };
+                User user = dataProvider.GetUserByIDUser(this.Username);
+                user.IsLogined = 1;
 
-            OneSignal.Current.SetExternalUserId(user.IDUser);
-            OneSignal.Current.SendTag("IsLogined", "1");
-            var httpClient = new HttpClient();
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);
+                OneSignal.Current.SetExternalUserId(user.IDUser);
+                OneSignal.Current.SendTag("IsLogined", "1");
+                var httpClient = new HttpClient();
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);
 
-            Infor.IDUser = this.Username;
-            Infor.IDStore = dataProvider.GetIDStoreByIDUser(this.Username);
+                Infor.IDUser = this.Username;
+                Infor.IDStore = dataProvider.GetIDStoreByIDUser(this.Username);
+
+                Infor.IDCart = this.Username;
+                App.Current.MainPage = AppDrawer.GetInstance();
+            }
             
-            Infor.IDCart = this.Username;
-            App.Current.MainPage = AppDrawer.GetInstance();
 
             
         }

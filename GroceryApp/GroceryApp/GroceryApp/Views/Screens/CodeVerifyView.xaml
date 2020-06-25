@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:GroceryApp.ViewModels"
+             mc:Ignorable="d"
+             BackgroundColor="White"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="GroceryApp.Views.Screens.CodeVerifyView"
+             >
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="Normal">
+            <Setter Property="FontFamily" Value="{StaticResource Cata}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style TargetType="Label" x:Key="Medium">
+            <Setter Property="FontFamily" Value="{StaticResource CataMedium}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style TargetType="Label" x:Key="Bold">
+            <Setter Property="FontFamily" Value="{StaticResource CataBold}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style TargetType="Label" x:Key="ItalicMedium">
+
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontAttributes" Value="Italic"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical">
+            <StackLayout Margin="20,20,20,0">
+                <AbsoluteLayout  HeightRequest="50" Margin="0,0,20,0" HorizontalOptions="FillAndExpand">
+                    <Label  FontSize="25"  AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource Bold}" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Code Verification">
+
+                    </Label>
+                    <Image x:Name="backLabel" Source="back" AbsoluteLayout.LayoutBounds="0,0.7,27,27" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+                </AbsoluteLayout>
+
+                <pancake:PancakeView Margin="0,20,0,10" Padding="-10" BackgroundColor="Transparent" CornerRadius="200" Elevation="8" WidthRequest="170" HeightRequest="170" HasShadow="True" HorizontalOptions="Center">
+                    <Image Source="key" HeightRequest="170" WidthRequest="170" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                </pancake:PancakeView>
+                <Label TextColor="Gray" Text="We have just send a code to your email." Margin="10,-5,10,0" FontSize="18" Style="{StaticResource Medium}"/>
+                <Label TextColor="Gray" Text="Enter it to reset your password." Margin="10,-5,10,0" FontSize="18" Style="{StaticResource Medium}"/>
+
+                <!--Verified code-->
+                <StackLayout  Margin="10,60,10,0" Spacing="0" >
+                    <Label FontSize="19" Style="{StaticResource Medium}" Margin="5,0,0,-5" TextColor="Gray" FontAttributes="Bold" Text="Verified code:"/>
+                    <Entry x:Name="CodeEntry"  HeightRequest="50" HorizontalOptions="FillAndExpand" FontSize="20" FontFamily="{StaticResource CataMedium}"/>
+                </StackLayout>
+
+                <Button x:Name="ConfirmBtn" Clicked="ConfirmBtn_Clicked" Command="{Binding SaveChangeCommand}"  Margin="10,40,10,0" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Confirm" TextColor="White" BackgroundColor="#1BBC9B"/>
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

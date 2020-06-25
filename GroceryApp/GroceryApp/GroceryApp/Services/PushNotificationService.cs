@@ -62,6 +62,12 @@ namespace GroceryApp.Services
                 case "9":
                     DeliverOrderAction(datas[0]);
                     break;
+                case "10":
+                    UpdateStoreAction(datas[0]);
+                    break;
+                case "11":
+                    UpdateUserAction(datas[0]);
+                    break;
             }
             
 
@@ -73,14 +79,17 @@ namespace GroceryApp.Services
             List<Product> receivedProducts = JsonConvert.DeserializeObject<List<Product>>(data);
             DataUpdater.UpdateProduct(receivedProducts);
             if(receivedProducts[0].IDStore==Infor.IDStore)
-                (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData();
+                (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData(false);
         }
 
-        public static void InsertOrderBillAction(string data)
+        public async static void InsertOrderBillAction(string data)
         {
+            //fetch data products in server
+            await ServerDatabase.FetchProductData();
             OrderBill newOrder = JsonConvert.DeserializeObject<OrderBill>(data);
             DataUpdater.InsertOrderBill(newOrder);
-            (TabbarStoreManager.GetInstance().Children.ElementAt(4).BindingContext as OrderManagerViewModel).LoadData();
+            if(Infor.IDStore==newOrder.IDStore)
+                (TabbarStoreManager.GetInstance().Children.ElementAt(2).BindingContext as OrderManagerViewModel).LoadData();
 
         }
 
@@ -90,8 +99,12 @@ namespace GroceryApp.Services
             DataUpdater.UpdateProduct(products[0]);
             products.RemoveAt(0);
             DataUpdater.DeleteProducts(products);
+            //Load lại data cho các user đang ở trong cửa hàng đó
+            var ShowStoreVM = ShowStoreView.GetInstance().BindingContext as ShowStoreViewModel;
+            if (ShowStoreVM != null && ShowStoreVM.IDStore == products[0].IDStore) ShowStoreVM.LoadData(true);
+            //Load lại list product cho cửa hàng đó
             if(products[0].IDStore==Infor.IDStore)
-                (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData();
+                (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData(true);
 
         }
 
@@ -102,56 +115,101 @@ namespace GroceryApp.Services
             //fetch data products in server
             await ServerDatabase.FetchProductData();
 
+            Product x = DataProvider.GetInstance().GetProductByID("2002");
+
             //xóa orderbill
             DataUpdater.DeleteOrderBillByID(canceledOder.IDOrderBill);
+
+            //update list order+số lượng product cho cửa hàng bị hủy order
             if (Infor.IDStore == canceledOder.IDStore)
-                (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData();
-            if(Infor.IDUser==canceledOder.IDUser)
             {
-                var ShowStoreVM = ShowStoreView.GetInstance().BindingContext as ShowStoreViewModel;
-                if (ShowStoreVM.IDStore == canceledOder.IDStore) ShowStoreVM.LoadData();
-                (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).LoadData();
+                (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData(true);
+                (TabbarStoreManager.GetInstance().Children.ElementAt(2).BindingContext as OrderManagerViewModel).LoadData();
 
             }
+
+            if (Infor.IDUser == canceledOder.IDUser)
+            {
+                (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).LoadData();
+
+
+            }
+
+            //update số lượng product cho các user khác (gồm cả user là store bị hủy)
+            var ShowStoreVM = ShowStoreView.GetInstance().BindingContext as ShowStoreViewModel;
+            if (ShowStoreVM != null && ShowStoreVM.IDStore == canceledOder.IDStore) ShowStoreVM.LoadData(true);
+
         }
 
         public static void ReceiveOrderAction(string data)
         {
             OrderBill order = JsonConvert.DeserializeObject<OrderBill>(data);
             DataUpdater.UpdateOrderBill(order);
-            (TabbarStoreManager.GetInstance().Children.ElementAt(4).BindingContext as OrderManagerViewModel).LoadData();
-
+            //nếu user không phải là store của order thì thoát
+            if (order.IDStore != Infor.IDStore) return;
+            //update màn hình list order
+            (TabbarStoreManager.GetInstance().Children.ElementAt(2).BindingContext as OrderManagerViewModel).LoadData();
+            (TabbarStoreManager.GetInstance().Children.ElementAt(3).BindingContext as ReviewManagerViewModel).LoadData();
         }
 
         public static void UpdateProductAction(string data)
         {
             Product product = JsonConvert.DeserializeObject<Product>(data);
             DataUpdater.UpdateProduct(product);
+            //update hết tất cả những user đang ở trong màn hình xem cửa hàng (của cửa hàng update product)
             var ShowStoreVM = ShowStoreView.GetInstance().BindingContext as ShowStoreViewModel;
-            if (ShowStoreVM.IDStore == product.IDStore) ShowStoreVM.LoadData();
+            if (ShowStoreVM != null && ShowStoreVM.IDStore == product.IDStore) ShowStoreVM.LoadData(true);
+
         }
 
         public static void AddProductAction(string data)
         {
             Product product = JsonConvert.DeserializeObject<Product>(data);
             DataUpdater.AddProduct(product);
+            //update hết tất cả những user đang ở trong màn hình xem cửa hàng (của cửa hàng update product)
             var ShowStoreVM = ShowStoreView.GetInstance().BindingContext as ShowStoreViewModel;
-            if (ShowStoreVM.IDStore == product.IDStore) ShowStoreVM.LoadData();
+            if (ShowStoreVM != null && ShowStoreVM.IDStore == product.IDStore) ShowStoreVM.LoadData(true);
         }
 
         public static void AnswerFeedbackAction(string data)
         {
             OrderBill order = JsonConvert.DeserializeObject<OrderBill>(data);
             DataUpdater.UpdateOrderBill(order);
+
+            //Update lại cho tất cả user: list feedback của cửa hàng đó nếu họ đang xem
             var ShowStoreVM = ShowStoreView.GetInstance().BindingContext as ShowStoreViewModel;
-            if (ShowStoreVM.IDStore == order.IDStore) ShowStoreVM.LoadData();
+            if (ShowStoreVM != null && ShowStoreVM.IDStore == order.IDStore) ShowStoreVM.LoadData(true);
+            //update lại list orders cho user là người mua của order được trả lời feedback
+            (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).LoadData();
+
         }
 
         public static void DeliverOrderAction(string data)
         {
             OrderBill order = JsonConvert.DeserializeObject<OrderBill>(data);
             DataUpdater.UpdateOrderBill(order);
+            //Chỉ load lại màn hình list order cho user là người đặt order
+            if (order.IDUser != Infor.IDUser) return;
             (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).LoadData();
+
+        }
+
+        public static void UpdateStoreAction(string data)
+        {
+            Store store = JsonConvert.DeserializeObject<Store>(data);
+            DataUpdater.UpdateStore(store);
+            //load lại list store view cho tất cả user
+            (TabBarCustomer.GetInstance().Children.ElementAt(1).BindingContext as ListStoresViewModel).LoadData();
+            (TabbarStoreManager.GetInstance().Children.ElementAt(0).BindingContext as StoreDashBoardViewModel).LoadData();
+
+        }
+
+        public static void UpdateUserAction(string data)
+        {
+            User user = JsonConvert.DeserializeObject<User>(data);
+            DataUpdater.UpdateUser(user);
+            //load lại list review cho tất cả user
+            (TabbarStoreManager.GetInstance().Children.ElementAt(3).BindingContext as ReviewManagerViewModel).LoadData();
 
         }
 
@@ -220,6 +278,20 @@ namespace GroceryApp.Services
             json += "~9";
             return json;
         }
+
+        public static string ConvertDataUpdateStore(Store store)
+        {
+            var json = JsonConvert.SerializeObject(store);
+            json += "~10";
+            return json;
+        }
+
+        public static string ConvertDataUpdateUser(User user)
+        {
+            var json = JsonConvert.SerializeObject(user);
+            json += "~11";
+            return json;
+        }
         #endregion
 
         public async static void Push(NotiNumber notiNumber, string datas, bool isSilent)
@@ -235,7 +307,9 @@ namespace GroceryApp.Services
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             dictionary.Add("content", datas);
             //GET EXTERNALIDS DỰA VÀO NOTINUMBER Ở ĐÂY
-            string[] externalIDs = { "1", "2" };
+            DataProvider dataProvider = DataProvider.GetInstance();
+            string[] externalIDs = dataProvider.GetAllOtherUserIDs().ToArray();
+            //string[] externalIDs = { "1", "2" };
 
             object obj = null;
             if (isSilent)
@@ -292,7 +366,7 @@ namespace GroceryApp.Services
                 contents = new { en = NotiContent.Get(notiNumber) },
                 content_available = true,
                 include_external_user_ids = externalIDs,
-                filters = new object[] { new { field = "tag", key = "IsLogined", value = "1" } },
+                
                 data = datas
             };
             return shownObj;

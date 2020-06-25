@@ -1,8 +1,15 @@
-﻿using GroceryApp.Models;
+﻿using Acr.UserDialogs;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using GroceryApp.Models;
+using GroceryApp.Views.TabBars;
 using ImTools;
+using Plugin.FilePicker;
+using Plugin.FilePicker.Abstractions;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -100,11 +107,15 @@ namespace GroceryApp.ViewModels
         #region Product proterties binding
 
 
-        private string _imageURL;
-        public string ImageURL
+        string ImagePath;
+        bool isNewImage = false;
+
+        private ImageSource _productImage;
+
+        public ImageSource ProductImage
         {
-            get { return _imageURL; }
-            set { _imageURL = value; OnPropertyChanged(nameof(ImageURL)); }
+            get { return _productImage; }
+            set { _productImage = value; OnPropertyChanged(nameof(ProductImage)); }
         }
 
         private string _productName;
@@ -167,6 +178,28 @@ namespace GroceryApp.ViewModels
         public ICommand IncInventoryCommand { get; set; }
         public ICommand DecUnitAmountCommand { get; set; }
         public ICommand IncUnitAmountCommand { get; set; }
+        public ICommand ChangeImageCommand { get; set; }
+
+        public async void ChangeImage()
+        {
+
+            try
+            {
+                FileData fileData = await CrossFilePicker.Current.PickFile();
+                if (fileData == null)
+                    return; // user canceled file picking
+                string path = fileData.FilePath;
+
+                ProductImage = (ImageSource)path;
+                ImagePath = path;
+                isNewImage = true;
+            }
+            catch (Exception ex)
+            {
+                var page = TabbarStoreManager.GetInstance();
+                await page.DisplayAlert("Error", "Error picking file from divice, try again!", "Ok");
+            }
+        }
 
         public void ChooseDefault()
         {
@@ -208,7 +241,7 @@ namespace GroceryApp.ViewModels
         {
             if (!CheckValidData()) return null;
  
-            SourceProduct.ImageURL = ImageURL;
+            //SourceProduct.ImageURL = ImageURL;
             SourceProduct.ProductName = ProductName;
             SourceProduct.IDType = GetIDCurrentType();
             SourceProduct.Unit = GetUnit();
@@ -237,9 +270,46 @@ namespace GroceryApp.ViewModels
             return result;
         }
 
-        public void Save()
+        public async void Save()
         {
-            
+            Product UpdatedProduct = GetUpdatedProduct();
+            if (UpdatedProduct == null) return;
+
+            if (ImagePath != "" && isNewImage)
+            {
+                Account account = new Account(
+                    "ungdung-grocery-xamarin-by-dk",
+                    "378791526477571",
+                    "scsyCxQS_C74MbAGdOutpwrzlnU"
+                    );
+
+                Cloudinary cloudinary = new Cloudinary(account);
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(ImagePath)
+                };
+                try
+                {
+                    using (UserDialogs.Instance.Loading("Saving.."))
+                    {
+                        var uploadResult = await cloudinary.UploadAsync(uploadParams);
+                        string url = uploadResult.SecureUri.ToString();
+                        UpdatedProduct.ImageURL = url;
+                        isNewImage = false;
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    var page = TabbarStoreManager.GetInstance();
+                    await page.DisplayAlert("Error", "Error upload image to server, try again!", "Ok");
+                }
+            }
+
+            (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).UpdateProduct(UpdatedProduct);
+
+            await PopupNavigation.Instance.PopAsync();
         }
 
         public string GetUnit()
@@ -278,6 +348,7 @@ namespace GroceryApp.ViewModels
             IncUnitAmountCommand = new Command(IncUnitAmount);
             ChooseDefaultCommand = new Command(ChooseDefault);
             ChooseOtherCommand = new Command(ChooseOther);
+            ChangeImageCommand = new Command(ChangeImage);
 
             SetValueProperties(product);
 
@@ -292,8 +363,8 @@ namespace GroceryApp.ViewModels
         {
             OtherUnit = "";
 
-            if (SourceProduct.ImageURL == null) ImageURL = "";
-            else ImageURL = SourceProduct.ImageURL;
+            if (SourceProduct.ImageURL == null || SourceProduct.ImageURL=="") ProductImage = "";
+            else ProductImage = SourceProduct.ImageURL;
 
             if (SourceProduct.ProductName == null) ProductName = "";
             else ProductName = SourceProduct.ProductName;

@@ -7,14 +7,14 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="com.companyname.groceryapp.permission.C2D_MESSAGE" />
   <permission android:name="com.companyname.groceryapp.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-  <application android:label="Grocery Store" android:usesCleartextTraffic="true" android:name="android.app.Application" android:allowBackup="true" android:icon="@mipmap/icon" android:debuggable="true">
+  <application android:label="Grocery Store" android:usesCleartextTraffic="true" android:name="android.app.Application" android:allowBackup="true" android:icon="@mipmap/iconapp" android:debuggable="true">
     <receiver android:name="com.onesignal.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
       <intent-filter>
         <action android:name="com.google.android.c2dm.intent.RECEIVE" />
         <category android:name="com.companyname.groceryapp" />
       </intent-filter>
     </receiver>
-    <activity android:configChanges="orientation|screenSize" android:icon="@mipmap/icon" android:label="GroceryApp" android:theme="@style/MainTheme" android:name="crc64e48e889a7c8e008b.MainActivity">
+    <activity android:configChanges="orientation|screenSize" android:icon="@mipmap/iconapp" android:label="GroceryApp" android:theme="@style/MainTheme" android:name="crc64e48e889a7c8e008b.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

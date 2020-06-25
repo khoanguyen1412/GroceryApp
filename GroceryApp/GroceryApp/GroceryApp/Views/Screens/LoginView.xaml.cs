@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using GroceryApp.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,21 @@ namespace GroceryApp.Views.Screens
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginView : ContentPage
     {
-        public LoginView()
+        private static LoginView _instance;
+
+        public static LoginView GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new LoginView();
+            }
+            return _instance;
+        }
+        private LoginView()
         {
             InitializeComponent();
         }
+
+       
     }
 }

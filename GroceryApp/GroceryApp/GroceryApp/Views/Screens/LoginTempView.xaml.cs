@@ -25,27 +25,8 @@ namespace GroceryApp.Views.Screens
             //IDPicker.SelectedItem = IDPicker.ItemsSource[0];
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            //handle login
-            
 
-            using (UserDialogs.Instance.Loading("Loging.."))
-            {
-                await LoadServerDataAsync();
-                await App.Current.MainPage.Navigation.PushAsync(new MiddleView(username.Text,password.Text), true);
-            }
-            
-            
-        }
 
-        public async Task LoadServerDataAsync()
-        {
-            
-             
-            await ServerDatabase.LoadDataFromServer();
-            Database.LoadDataToLocal();
 
-        }
     }
 }

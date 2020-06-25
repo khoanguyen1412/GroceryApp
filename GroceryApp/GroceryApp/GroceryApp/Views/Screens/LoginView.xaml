@@ -2,11 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              mc:Ignorable="d"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="False"
              x:Class="GroceryApp.Views.Screens.LoginView">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="Normal">
             <Setter Property="FontFamily" Value="{StaticResource Cata}"/>
@@ -38,28 +41,43 @@
                 <Image Margin="0,10,0,0" Source="loginicon" WidthRequest="150" HeightRequest="150" HorizontalOptions="Center"/>
                 <StackLayout  Margin="10,10,10,0" Spacing="0" >
                     <Label FontSize="19" Style="{StaticResource Medium}" Margin="5,0,0,-5" TextColor="Gray" FontAttributes="Bold" Text="Username"/>
-                    <Entry Text="" HeightRequest="50" HorizontalOptions="FillAndExpand" FontSize="20" FontFamily="{StaticResource CataMedium}"/>
+                    <Entry x:Name="username" Text="{Binding Username}" HeightRequest="50" HorizontalOptions="FillAndExpand" FontSize="20" FontFamily="{StaticResource CataMedium}"/>
                 </StackLayout>
                 <StackLayout  Margin="10,5,10,0" Spacing="0">
                     <Label FontSize="19" Style="{StaticResource Medium}" Margin="5,0,0,-5" TextColor="Gray" FontAttributes="Bold" Text="Password"/>
                     <StackLayout Orientation="Horizontal">
-                        <Entry Text="" HeightRequest="50" HorizontalOptions="FillAndExpand" FontSize="20" FontFamily="{StaticResource CataMedium}"/>
-                        <Image Source="nosee" WidthRequest="30" HeightRequest="30">
-
+                        <Entry x:Name="password" IsPassword="{Binding Hide}" Text="{Binding Password}"  HeightRequest="50" HorizontalOptions="FillAndExpand" FontSize="20" FontFamily="{StaticResource CataMedium}"/>
+                        <Image Source="{Binding Hide,Converter={StaticResource ShowPasswordConverter}}" WidthRequest="30" HeightRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding HideCommand}"/>
+                            </Image.GestureRecognizers>
                         </Image>
                     </StackLayout>
                 </StackLayout>
-                <Button Command="{Binding SaveChangeCommand}"  Margin="10,20,10,0" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Login" TextColor="White" BackgroundColor="#f7436a"/>
+                <StackLayout Orientation="Horizontal" Margin="10,10,0,0">
+                    <CheckBox IsChecked="{Binding Remember}"/>
+                    <Label Text="Remember me" TextColor="Gray" FontSize="18" Style="{StaticResource Medium}"/>
+
+                </StackLayout>
+                <Button x:Name="LoginBtn" Command="{Binding LoginCommand}"  Margin="10,20,10,0" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Login" TextColor="White" BackgroundColor="#f7436a"/>
                 <Grid  HorizontalOptions="Center" Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Don't have account ?" TextColor="Gray" FontSize="18" Style="{StaticResource Medium}"/>
-                        <Label Text="Create new account" TextColor="#f7436a" FontSize="18" Style="{StaticResource Bold}"/>
+                        <Label Text="Create new account" TextColor="#f7436a" FontSize="18" Style="{StaticResource Bold}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                     </StackLayout>
                 </Grid>
-                <Label Text="Forgot password"   TextColor="Gray" FontAttributes="Italic" FontSize="18"  HorizontalOptions="Center" Style="{StaticResource ItalicMedium}" TextDecorations="Underline"/>
+                <Label Text="Forgot password" Margin="0,0,0,50"  TextColor="Gray" FontAttributes="Italic" FontSize="18"  HorizontalOptions="Center" Style="{StaticResource ItalicMedium}" TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgotCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
 
             </StackLayout>
         </ScrollView>

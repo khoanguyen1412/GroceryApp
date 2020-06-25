@@ -91,6 +91,10 @@ namespace GroceryApp.ViewModels
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "store/update", myStore);
             //update store ở database local
             DataUpdater.UpdateStore(myStore);
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataUpdateStore(myStore);
+            PushNotificationService.Push(NotiNumber.UpdateStore, datas, true);
         }
 
         public async void ChangeImage()

@@ -150,7 +150,7 @@ namespace GroceryApp.ViewModels
             //Reload data OrderManager
             LoadData();
             //Reload data ProductManager
-            (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData();
+            (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData(true);
 
 
             //PUSH NOTI

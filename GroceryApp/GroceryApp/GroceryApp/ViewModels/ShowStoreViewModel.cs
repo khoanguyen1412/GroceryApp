@@ -157,7 +157,7 @@ namespace GroceryApp.ViewModels
         public ShowStoreViewModel(string IDStore)
         {
             this.IDStore = IDStore;
-            LoadData();
+            LoadData(false);
             ShowDetailProductCommand = new Command<ProductItem>(ShowDetailProduct);
             ChooseCommand = new Command<TypeItem>(Choose);
         }
@@ -256,12 +256,12 @@ namespace GroceryApp.ViewModels
             if (choosingIndex != currentType)
             {
                 currentType = choosingIndex;
-                LoadProducts();
+                LoadProducts(false);
             }
             if (_typeItems[choosingIndex].isChosen == false)
             {
                 currentType = -1;
-                LoadProducts();
+                LoadProducts(false);
             }
 
             TypeItems = new ObservableCollection<TypeItem>(_typeItems);
@@ -276,16 +276,17 @@ namespace GroceryApp.ViewModels
             await App.Current.MainPage.Navigation.PushAsync(detailPage, true);
         }
 
-        public void LoadData()
+        public void LoadData(bool isReload)
         {
-            LoadProducts();
+            LoadProducts(isReload);
             LoadOrderedBills();
             LoadProductTypes();
         }
 
-        public void LoadProducts()
+        public void LoadProducts(bool isReload)
         {
-            if(_saveProducts == null)
+
+            if(_saveProducts == null || isReload)
             {
                 List<ProductItem> productItems = new List<ProductItem>();
                 var dataProvider = DataProvider.GetInstance();

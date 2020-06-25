@@ -23,14 +23,6 @@ namespace GroceryApp.Views.Popups
             
         }
 
-        private async void Add_Clicked(object sender, EventArgs e)
-        {
-            Product NewProduct = (this.BindingContext as AddProductPopupViewModel).GetNewProduct();
-            if (NewProduct == null) return;
-            //(App.Current.MainPage.Navigation.NavigationStack.ElementAt(0).BindingContext as ProductManagerViewModel).AddProduct(NewProduct);
-            (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).AddProduct(NewProduct);
-
-            await PopupNavigation.Instance.PopAsync();
-        }
+       
     }
 }

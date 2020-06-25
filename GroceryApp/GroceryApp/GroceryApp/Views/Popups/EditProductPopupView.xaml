@@ -47,10 +47,14 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Grid.RowSpan="2" Source="{Binding ImageURL}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
+                    <Image Grid.Row="0" Grid.RowSpan="2" Source="{Binding ProductImage}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
                     <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black" Opacity="0.4">
                     </Frame>
-                    <Image Grid.Row="1" Margin="13" Source="addphoto" HorizontalOptions="Center" Opacity="1" VerticalOptions="Center" Aspect="AspectFit"/>
+                    <Image Grid.Row="1" Margin="13" Source="addphoto" HorizontalOptions="Center" Opacity="1" VerticalOptions="Center" Aspect="AspectFit">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
 
                 </Grid>
             </pancake:PancakeView>
@@ -133,7 +137,7 @@
 
             <StackLayout Orientation="Horizontal" Margin="0,20,0,0" Grid.Row="11" Grid.ColumnSpan="2" HorizontalOptions="End" HeightRequest="50" VerticalOptions="End">
                 <Button Command="{Binding ExitCommand}" Text="Cancel" Margin="0,0,-15,0" TextColor="Accent" BackgroundColor="White"/>
-                <Button Clicked="Save_Click"  Text="Save" TextColor="Accent" BackgroundColor="White"/>
+                <Button Command="{Binding SaveCommand}"  Text="Save" TextColor="Accent" BackgroundColor="White"/>
             </StackLayout>
         </Grid>
     </ScrollView>

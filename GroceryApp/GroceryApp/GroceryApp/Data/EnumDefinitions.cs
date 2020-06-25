@@ -1,4 +1,8 @@
-﻿public enum ProductState
+﻿using GroceryApp.Data;
+using ImTools;
+using System.Collections.Generic;
+
+public enum ProductState
 {
     InStore=1,
     InCart=2,
@@ -29,6 +33,8 @@ public enum NotiNumber
     AddProduct,
     AnswerFeedback,
     DeliverOrder,
+    UpdateStore,
+    UpdateUser,
 }
 
 public class NotiContent
@@ -52,5 +58,6 @@ public class NotiContent
         }
         return "";
     }
+
 }
 

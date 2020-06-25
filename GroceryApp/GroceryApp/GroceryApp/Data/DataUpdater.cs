@@ -232,5 +232,34 @@ namespace GroceryApp.Data
                     return;
                 }
         }
+
+
+        public static void AddUser(User user)
+        {
+            if (CheckUserExist(user)) return;
+            Database.Users.Add(user);
+        }
+
+        public static bool CheckUserExist(User newUser)
+        {
+            foreach (User user in Database.Users)
+                if (user.IDUser == newUser.IDUser)
+                    return true;
+            return false;
+        }
+
+        public static void AddStore(Store store)
+        {
+            if (CheckStoreExist(store)) return;
+            Database.Stores.Add(store);
+        }
+
+        public static bool CheckStoreExist(Store newStore)
+        {
+            foreach (Store store in Database.Stores)
+                if (store.IDStore == newStore.IDStore)
+                    return true;
+            return false;
+        }
     }
 }

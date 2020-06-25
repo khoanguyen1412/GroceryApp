@@ -6,7 +6,9 @@
              mc:Ignorable="d"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="False"
-             x:Class="GroceryApp.Views.Screens.RegisterView">
+             x:Class="GroceryApp.Views.Screens.RegisterView"
+             
+             >
     <ContentPage.BindingContext>
         <vm:RegisterViewModel/>
     </ContentPage.BindingContext>
@@ -72,7 +74,8 @@
                         </Image>
                     </StackLayout>
                 </StackLayout>
-                <Button Command="{Binding SaveChangeCommand}"  Margin="10,40,10,0" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Sign up" TextColor="White" BackgroundColor="#f7436a"/>
+                <Label  Margin="0,5,0,0" Text="{Binding ErrorStr}" IsVisible="{Binding ShowError}" TextColor="Red" FontAttributes="Italic" FontSize="17" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                <Button Command="{Binding SignUpCommand}"  Margin="10,40,10,0" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Sign up" TextColor="White" BackgroundColor="#f7436a"/>
                 
             </StackLayout>
         </ScrollView>

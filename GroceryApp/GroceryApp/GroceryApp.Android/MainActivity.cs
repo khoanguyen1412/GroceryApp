@@ -16,7 +16,7 @@ using Android.Content;
 
 namespace GroceryApp.Droid
 {
-    [Activity(Label = "GroceryApp", Icon = "@mipmap/icon", 
+    [Activity(Label = "GroceryApp", Icon = "@mipmap/iconapp", 
         Theme = "@style/MainTheme", 
         MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity

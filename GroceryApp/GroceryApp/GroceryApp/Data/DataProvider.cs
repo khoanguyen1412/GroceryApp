@@ -381,10 +381,10 @@ namespace GroceryApp.Data
         }
         //==========================================================
         //LOGIN VIEW==========================================================
-        public bool CheckUserExist(string IDUser)
+        public bool CheckAccountExist(string IDUser,string Password)
         {
             foreach (User user in Database.Users)
-                if (user.IDUser == IDUser) return true;
+                if (user.IDUser == IDUser && user.Password==Password) return true;
             return false;
         }
 
@@ -403,5 +403,7 @@ namespace GroceryApp.Data
                     result.Add(user.IDUser);
             return result;
         } 
+
+        
     }
 }

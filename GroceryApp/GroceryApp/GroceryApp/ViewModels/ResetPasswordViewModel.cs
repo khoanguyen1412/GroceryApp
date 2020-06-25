@@ -1,0 +1,151 @@
+﻿using Acr.UserDialogs;
+using GroceryApp.Data;
+using GroceryApp.Models;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace GroceryApp.ViewModels
+{
+    public interface IResetPasswordViewModel
+    {
+
+    }
+    public class ResetPasswordViewModel : BaseViewModel, IResetPasswordViewModel
+    {
+        public User user;
+        private string _newPassword;
+        public string NewPassword
+        {
+            get { return _newPassword; }
+            set { _newPassword = value; OnPropertyChanged(nameof(NewPassword)); }
+        }
+
+        private string _confirmPassword;
+        public string ConfirmPassword
+        {
+            get { return _confirmPassword; }
+            set { _confirmPassword = value; OnPropertyChanged(nameof(ConfirmPassword)); }
+        }
+
+        private bool _hide1;
+        public bool Hide1
+        {
+            get { return _hide1; }
+            set { _hide1 = value; OnPropertyChanged(nameof(Hide1)); }
+        }
+
+        private bool _hide2;
+        public bool Hide2
+        {
+            get { return _hide2; }
+            set { _hide2 = value; OnPropertyChanged(nameof(Hide2)); }
+        }
+
+
+        private bool _showError;
+        public bool ShowError
+        {
+            get { return _showError; }
+            set { _showError = value; OnPropertyChanged(nameof(ShowError)); }
+        }
+
+        private string _errorStr;
+        public string ErrorStr
+        {
+            get { return _errorStr; }
+            set { _errorStr = value; OnPropertyChanged(nameof(ErrorStr)); }
+        }
+
+        public ICommand Hide1Command { get; set; }
+        public ICommand Hide2Command { get; set; }
+        public ICommand ResetCommand { get; set; }
+
+        public ResetPasswordViewModel(User user)
+        {
+            this.user = user;
+            SetUpData();
+            ShowError = false;
+            ErrorStr = "";
+            Hide1Command = new Command(ChangeHide1);
+            Hide2Command = new Command(ChangeHide2);
+            ResetCommand = new Command(Reset);
+        }
+
+        public async void Reset()
+        {
+            if (!CheckValidNewPassword())
+            {
+
+                return;
+            }
+            ShowError = false;
+            List<User> z = Database.Users;
+            user.Password = NewPassword;
+            using (UserDialogs.Instance.Loading("Reseting.."))
+            {
+                //update user ở database server
+                var httpClient = new HttpClient();
+                List<User> x = Database.Users;
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);
+                List<User> y = Database.Users;
+                //update user ở database local
+                //DataUpdater.UpdateUser(CurrentUser);
+            }
+
+            await App.Current.MainPage.Navigation.PopToRootAsync();
+        }
+
+        public bool CheckValidNewPassword()
+        {
+            bool valid = true;
+            if (NewPassword == null || NewPassword == "")
+            {
+                ShowError = true;
+                ErrorStr = "New password must not be empty";
+                return false;
+            }
+
+            if (ConfirmPassword == null || ConfirmPassword == "")
+            {
+                ShowError = true;
+                ErrorStr = "Confirm password must not be empty";
+                return false;
+            }
+            if (NewPassword != ConfirmPassword)
+            {
+                ShowError = true;
+                ErrorStr = "Password and confirm password do not match";
+                return false;
+            }
+
+            return valid;
+        }
+
+        public void SetUpData()
+        {
+            Hide1 = true;
+            Hide2 = true;
+            NewPassword = "";
+            ConfirmPassword = "";
+        }
+
+        public void ChangeHide1()
+        {
+            Hide1 = !Hide1;
+        }
+        public void ChangeHide2()
+        {
+            Hide2 = !Hide2;
+        }
+
+        public ResetPasswordViewModel()
+        {
+            //NO USE
+
+        }
+    }
+}

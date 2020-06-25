@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -27,10 +28,10 @@ namespace GroceryApp
             //MainPage = new NavigationPage(new DetailProductView());
             //MainPage = new SharedTransitionNavigationPage(new TabBarCustomer());
 
-            Infor.IDUser = "1";
-            Infor.IDStore = "1";
-            Infor.IDCart = "1";
-            MainPage = new NavigationPage(new LoginTempView());
+            //Infor.IDUser = "1";
+            //Infor.IDStore = "1";
+            //Infor.IDCart = "1";
+            MainPage = new NavigationPage(LoginView.GetInstance());
             OneSignal.Current.StartInit("b5f59a9f-3873-47a9-80e5-ca37fb75610a")
                 .HandleNotificationReceived(PushNotificationService.HandleNotificationReceived)
                 .InFocusDisplaying(OSInFocusDisplayOption.Notification)

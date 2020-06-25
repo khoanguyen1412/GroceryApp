@@ -106,8 +106,8 @@ namespace GroceryApp.ViewModels
         public void LoadData()
         {
             var dataProvider = DataProvider.GetInstance();
-            
-            _stores = new ObservableCollection<Store>(dataProvider.GetListStores());
+
+            Stores = new ObservableCollection<Store>(dataProvider.GetListStores());
         }
 
         public void LoadProductTypes()

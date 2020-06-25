@@ -3,6 +3,7 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.Screens;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
@@ -176,7 +177,12 @@ namespace GroceryApp.ViewModels
                 //update user ở database local
                 DataUpdater.UpdateUser(CurrentUser);
             }
-                
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataUpdateUser(CurrentUser);
+            PushNotificationService.Push(NotiNumber.UpdateUser, datas, true);
+
+
         }
 
         public async void ChangeImage()

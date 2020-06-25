@@ -35,44 +35,32 @@ namespace GroceryApp.ViewModels
     }
     public class StoreDashBoardViewModel : BaseViewModel, IStoreDashBoardViewModel
     {
+        DataProvider dataProvider = DataProvider.GetInstance();
+        private int _numberOfOrder;
         public int NumberOfOrder
         {
             get
             {
-                
-                DataProvider dataProvider = DataProvider.GetInstance();
-                return dataProvider.GetOrderBillByIDStore(Infor.IDStore).Count;
-
+                return _numberOfOrder;
             }
         }
 
+        private int _numberOfProduct;
         public int NumberOfProduct
         {
             get
             {
-                DataProvider dataProvider = DataProvider.GetInstance();
-                return dataProvider.GetProductByIDStore(Infor.IDStore).Count;
-
+                return _numberOfProduct;
             }
         }
+
+        private string _renenue;
 
         public string Renenue
         {
             get
             {
-                DataProvider dataProvider = DataProvider.GetInstance();
-                List<OrderBill> orders= dataProvider.GetOrderBillByIDStore(Infor.IDStore);
-                double total = 0;
-                foreach (OrderBill order in orders)
-                    if(order.State==OrderState.Received)
-                    {
-                        List<Product> orderedProducts = dataProvider.GetProductsInBillByIDBill(order.IDOrderBill);
-                        total += order.GetTotal();
-                    }
-                    
-
-
-                return total.ToString();
+                return _renenue;
             }
         }
 
@@ -83,45 +71,32 @@ namespace GroceryApp.ViewModels
                 return new List<int>() { 0, 1};
             }
         }
+
+        private ObservableCollection<ReviewItem> _reviews;
         public ObservableCollection<ReviewItem> Reviews
         {
             get
             {
-                ObservableCollection<ReviewItem> result = new ObservableCollection<ReviewItem>();
-                DataProvider dataProvider = DataProvider.GetInstance();
-                List<OrderBill> orders = dataProvider.GetMyReviewedOrder();
-                orders = SortByDate(orders);
-
-                for(int i = 0; i < orders.Count; i++)
-                {
-                    if (i == 5) break;
-                    User user = dataProvider.GetUserByIDUser(orders[i].IDUser);
-                    ReviewItem item = new ReviewItem
-                    {
-                        CustomerImage = user.ImageURL,
-                        CustomerName = user.UserName,
-                        Content = orders[i].Review,
-                        Date = orders[i].Date,
-                        Rating = orders[i].Rating
-                    };
-                    item = CreateStar(item);
-                    result.Add(item);
-                }
-
-                return result;
+                return _reviews;
             }
         }
-        public List<CategoryItem> Categories
+
+        ObservableCollection<CategoryItem> _categories;
+        public ObservableCollection<CategoryItem> Categories
         {
             get
             {
-                DataProvider dataProvider = DataProvider.GetInstance();
+                return _categories;
+            }
+        }
 
-                string label1 = dataProvider.GetNumberProductOutOfStock().ToString();
-                string label2 = dataProvider.GetNumberNewOrder().ToString();
-                string label3 = dataProvider.GetNumberNewFeedback().ToString();
-                
-                List<CategoryItem> categories = new List<CategoryItem>
+        public void LoadCategories()
+        {
+            string label1 = dataProvider.GetNumberProductOutOfStock().ToString();
+            string label2 = dataProvider.GetNumberNewOrder().ToString();
+            string label3 = dataProvider.GetNumberNewFeedback().ToString();
+
+            List<CategoryItem> categories = new List<CategoryItem>
                 {
                     new CategoryItem
                     {
@@ -152,9 +127,7 @@ namespace GroceryApp.ViewModels
                         Image="colortool",
                     },
                 };
-
-                return categories;
-            }
+            _categories = new ObservableCollection<CategoryItem>(categories);
         }
 
         private Chart _chart;
@@ -165,11 +138,10 @@ namespace GroceryApp.ViewModels
                 return _chart;
             }
         }
-
         public ICommand ShowDrawerCommand { get; set; }
         public StoreDashBoardViewModel()
         {
-            CreateChartData();
+            LoadData();
             ShowDrawerCommand = new Command(ShowDrawer);
         }
         public void ShowDrawer()
@@ -315,6 +287,48 @@ namespace GroceryApp.ViewModels
                 item.star5 = "fullstar";
             }
             return item;
+        }
+
+        public void LoadData()
+        {
+            CreateChartData();
+            _numberOfOrder =dataProvider.GetOrderBillByIDStore(Infor.IDStore).Count;
+            _numberOfProduct= dataProvider.GetProductByIDStore(Infor.IDStore).Count;
+
+            //===========
+            List<OrderBill> orders = dataProvider.GetOrderBillByIDStore(Infor.IDStore);
+            double total = 0;
+            foreach (OrderBill order in orders)
+                if (order.State == OrderState.Received)
+                {
+                    List<Product> orderedProducts = dataProvider.GetProductsInBillByIDBill(order.IDOrderBill);
+                    total += order.GetTotal();
+                }
+            _renenue= total.ToString();
+            //===========
+            List<ReviewItem> result = new List<ReviewItem>();
+            List<OrderBill> reviewOrders = dataProvider.GetMyReviewedOrder();
+            reviewOrders = SortByDate(reviewOrders);
+
+            for (int i = 0; i < reviewOrders.Count; i++)
+            {
+                if (i == 5) break;
+                User user = dataProvider.GetUserByIDUser(reviewOrders[i].IDUser);
+                ReviewItem item = new ReviewItem
+                {
+                    CustomerImage = user.ImageURL,
+                    CustomerName = user.UserName,
+                    Content = reviewOrders[i].Review,
+                    Date = reviewOrders[i].Date,
+                    Rating = reviewOrders[i].Rating
+                };
+                item = CreateStar(item);
+                result.Add(item);
+            }
+            _reviews = new ObservableCollection<ReviewItem>(result);
+
+            LoadCategories();
+
         }
     }
 }

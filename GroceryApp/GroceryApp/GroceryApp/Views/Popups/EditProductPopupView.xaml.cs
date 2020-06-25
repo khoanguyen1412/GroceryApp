@@ -22,15 +22,5 @@ namespace GroceryApp.Views.Popups
             InitializeComponent();
         }
 
-        private async void Save_Click(object sender, EventArgs e)
-        {
-            Product UpdatedProduct = (this.BindingContext as EditProductPopupViewModel).GetUpdatedProduct();
-            if (UpdatedProduct == null) return;
-            //(App.Current.MainPage.Navigation.NavigationStack.ElementAt(0).BindingContext as ProductManagerViewModel).UpdateProduct(UpdatedProduct);
-            (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).UpdateProduct(UpdatedProduct);
-
-            //TabbarStoreManager.GetInstance().Children.ElementAt(1)
-            await PopupNavigation.Instance.PopAsync();
-        }
     }
 }
