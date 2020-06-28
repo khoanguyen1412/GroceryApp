@@ -21,13 +21,39 @@ namespace GroceryApp.Data
 
         public static async Task LoadDataFromServer()
         {
-            if (Users.Count > 0) return;
             var httpClient = new HttpClient();
+            if (Users.Count > 0)
+            {
+                //CHECK THỬ CONNECT ĐƯỢC SERVER KHÔNG TRƯỚC KHI LOGIN LẠI
+                try
+                {
+                    var testInternet = await httpClient.GetStringAsync(ServerDatabase.localhost + "user/getuserbyid/" + Database.Users[0].IDUser);
+
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                    return;
+                }
+                return;
+            }
+            
             JsonSerializer serializer = new JsonSerializer();
 
             //GET PRODUCTTYPES
-            var TypeResponse = await httpClient.GetStringAsync(ServerDatabase.localhost + "producttype/getallproducttype");
-            JObject TypeResponseObj = JObject.Parse(TypeResponse);
+            JObject TypeResponseObj = null;
+
+            try
+            {
+                var TypeResponse = await httpClient.GetStringAsync(ServerDatabase.localhost + "producttype/getallproducttype");
+                TypeResponseObj = JObject.Parse(TypeResponse);
+            }
+            catch (Exception e)
+            {
+                throw e;
+                return;
+            }
+
             try
             {
                 int count = 0;

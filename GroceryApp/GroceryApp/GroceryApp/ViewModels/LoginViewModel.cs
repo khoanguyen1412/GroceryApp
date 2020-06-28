@@ -64,21 +64,41 @@ namespace GroceryApp.ViewModels
 
         public async void ResetPassword()
         {
-            using (UserDialogs.Instance.Loading("Waiting.."))
+            try
             {
-                await LoadServerDataAsync();
-                await App.Current.MainPage.Navigation.PushAsync(new EmailVerifyView());
+                using (UserDialogs.Instance.Loading("Waiting.."))
+                {
+                    await LoadServerDataAsync();
+                    await App.Current.MainPage.Navigation.PushAsync(new EmailVerifyView());
+                }
             }
+            catch (Exception e)
+            {
+                UserDialogs.Instance.HideLoading();
+                HandleException.BeforeLogin();
+                return;
+            }
+            
                 
         }
 
         public async void Register()
         {
-            using (UserDialogs.Instance.Loading("Waiting.."))
+            try
             {
-                await LoadServerDataAsync();
-                await App.Current.MainPage.Navigation.PushAsync(new RegisterView(), true);
+                using (UserDialogs.Instance.Loading("Waiting.."))
+                {
+                    await LoadServerDataAsync();
+                    await App.Current.MainPage.Navigation.PushAsync(new RegisterView(), true);
+                }
             }
+            catch 
+            {
+                UserDialogs.Instance.HideLoading();
+                HandleException.BeforeLogin();
+                return;
+            }
+            
             
         }
 
@@ -96,16 +116,36 @@ namespace GroceryApp.ViewModels
                 Preferences.Set("Password", "");
                 Preferences.Set("Remember", false);
             }
-            using (UserDialogs.Instance.Loading("Loging.."))
+            try
             {
-                await LoadServerDataAsync();
-                await App.Current.MainPage.Navigation.PushAsync(new MiddleView(Username, Password), true);
+                using (UserDialogs.Instance.Loading("Waiting.."))
+                {
+                    await LoadServerDataAsync();
+                    await App.Current.MainPage.Navigation.PushAsync(new MiddleView(Username, Password), true);
+                }
+                    
             }
+            catch(Exception e)
+            {
+                UserDialogs.Instance.HideLoading();
+                HandleException.BeforeLogin();
+                return;
+            }
+            
         }
 
         public async Task LoadServerDataAsync()
         {
-            await ServerDatabase.LoadDataFromServer();
+            try
+            {
+                await ServerDatabase.LoadDataFromServer();
+            }
+            catch(Exception e)
+            {
+                throw e;
+                return;
+            }
+            
             Database.LoadDataToLocal();
         }
 
