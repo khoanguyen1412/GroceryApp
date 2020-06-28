@@ -32,8 +32,8 @@ namespace GroceryApp.Views.Screens
 
             using (UserDialogs.Instance.Loading("Loging.."))
             {
-                await LoadServerDataAsync();
-                await App.Current.MainPage.Navigation.PushAsync(new MiddleView(username.Text,password.Text), true);
+                //await LoadServerDataAsync();
+                 App.Current.MainPage=new NavigationPage(new MiddleView(username.Text,password.Text));
             }
             
             
