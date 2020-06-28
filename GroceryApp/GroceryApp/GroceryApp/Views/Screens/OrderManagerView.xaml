@@ -18,7 +18,11 @@
             <StackLayout Orientation="Vertical">
                 <AbsoluteLayout HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                     <Label FontSize="25" TextColor="ForestGreen" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource LabelTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Your Orders"/>
-                    <Image x:Name="backLabel" Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+                    <Image x:Name="backLabel" Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GobackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </AbsoluteLayout>
                 <Label Margin="20,20,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Waiting Orders"/>
                 <Grid HeightRequest="{Binding WaitingOrders,Converter={StaticResource GridHeightOrderConverter}}">

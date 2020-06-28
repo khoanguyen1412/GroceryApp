@@ -11,7 +11,7 @@ namespace GroceryApp.Models
         public string ImageURL { get; set; }
         public string StoreDescription { get; set; }
         public string StoreAddress { get; set; }
-        public int RatingStore { get; set; }
+        public double RatingStore { get; set; }
         public int IsActive { get; set; }
     }
    

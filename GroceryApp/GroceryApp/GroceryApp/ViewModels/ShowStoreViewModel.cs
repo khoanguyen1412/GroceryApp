@@ -1,4 +1,5 @@
-﻿using FFImageLoading.Forms.Args;
+﻿using Acr.UserDialogs;
+using FFImageLoading.Forms.Args;
 using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Services;
@@ -74,21 +75,12 @@ namespace GroceryApp.ViewModels
             set { _orderedBills = value; OnPropertyChanged(nameof(OrderBills)); }
         }
 
+
+        private ObservableCollection<FeedBack> _feedBacks;
         public ObservableCollection<FeedBack> FeedBacks
         {
-            get
-            {
-                ObservableCollection<FeedBack> feedBack = new ObservableCollection<FeedBack>();
-                foreach (OrderBill order in _orderedBills)
-                    if(order.State== OrderState.Received)
-                    {
-                        FeedBack newFeedBack = new FeedBack();
-                        newFeedBack.CustomerReview = order.Review;
-                        newFeedBack.StoreAnswer = order.StoreAnswer;
-                        feedBack.Add(newFeedBack);
-                    }
-                return feedBack;
-            }
+            get { return _feedBacks; }
+            set { _feedBacks = value; OnPropertyChanged(nameof(FeedBacks)); }
         }
 
         private string _selectedProductId;
@@ -139,6 +131,13 @@ namespace GroceryApp.ViewModels
             }
         }
 
+        public double Rating { 
+            get
+            {
+                var dataProvider = DataProvider.GetInstance();
+                return dataProvider.GetStoreByIDStore(IDStore).RatingStore;
+            }
+        }
         public ICommand ShowDetailProductCommand { get; set; }
         public ICommand ChooseCommand { get; set; }
         
@@ -158,10 +157,40 @@ namespace GroceryApp.ViewModels
         {
             this.IDStore = IDStore;
             LoadData(false);
+            LoadReviews();
             ShowDetailProductCommand = new Command<ProductItem>(ShowDetailProduct);
             ChooseCommand = new Command<TypeItem>(Choose);
         }
 
+        public void LoadReviews()
+        {
+            List<FeedBack> feedBack = new List<FeedBack>();
+            foreach (OrderBill order in _orderedBills)
+                if (order.State == OrderState.Received && !string.IsNullOrEmpty(order.Review))
+                {
+                    FeedBack newFeedBack = new FeedBack();
+                    newFeedBack.CustomerReview = order.Review;
+                    newFeedBack.StoreAnswer = order.StoreAnswer;
+                    feedBack.Add(newFeedBack);
+                }
+            FeedBacks=new ObservableCollection<FeedBack>(feedBack);
+        }
+
+        public void SetIDStore(string IDStore)
+        {
+            this.IDStore = IDStore;
+            LoadData(false);
+        }
+
+        public bool CheckNoSelectedProduct()
+        {
+            for (int i = 0; i < _saveProducts.Count; i++)
+                if (_saveProducts[i].Product.QuantityOrder > 0)
+                {
+                    return false;
+                }
+            return true;
+        }
         public async void AddToCart()
         {
             List<Product> changedProducts = new List<Product>();
@@ -274,6 +303,9 @@ namespace GroceryApp.ViewModels
             var detailPage = new DetailProductView();
             detailPage.BindingContext = item.Product;
             await App.Current.MainPage.Navigation.PushAsync(detailPage, true);
+
+
+
         }
 
         public void LoadData(bool isReload)

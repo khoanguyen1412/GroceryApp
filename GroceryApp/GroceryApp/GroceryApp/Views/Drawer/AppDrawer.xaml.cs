@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.Screens;
 using GroceryApp.Views.TabBars;
 using Plugin.SharedTransitions;
@@ -44,7 +45,7 @@ namespace GroceryApp.Views.Drawer
             Icon = "store",
             FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems
         };
-        FlyoutItem flyoutUserSetting = new FlyoutItem
+        public FlyoutItem flyoutUserSetting = new FlyoutItem
         {
             Title = "Setting",
             Icon = "setting",
@@ -154,7 +155,7 @@ namespace GroceryApp.Views.Drawer
 
         private async void FlyoutUserSetting_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            using (UserDialogs.Instance.Loading("wait.."))
+            using (UserDialogs.Instance.Loading("Loading.."))
             {
                 await Task.Delay(500);
             }
@@ -162,7 +163,7 @@ namespace GroceryApp.Views.Drawer
 
         private async void FlyoutStore_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            using (UserDialogs.Instance.Loading("wait.."))
+            using (UserDialogs.Instance.Loading("Loading.."))
             {
                 await Task.Delay(500);
             }
@@ -170,13 +171,11 @@ namespace GroceryApp.Views.Drawer
 
         private async void FlyoutShopping_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            using (UserDialogs.Instance.Loading("wait.."))
+            using (UserDialogs.Instance.Loading("Loading.."))
             {
                 await Task.Delay(500);
             }
         }
-
-
 
 
         protected override bool OnBackButtonPressed()

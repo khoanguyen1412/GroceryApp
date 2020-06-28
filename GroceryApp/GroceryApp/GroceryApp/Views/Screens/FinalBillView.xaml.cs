@@ -1,4 +1,5 @@
 ﻿using GroceryApp.Models;
+using GroceryApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace GroceryApp.Views.Screens
         {
             InitializeComponent();
             
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessageService.Show("Order successfully", 0);
         }
     }
 }

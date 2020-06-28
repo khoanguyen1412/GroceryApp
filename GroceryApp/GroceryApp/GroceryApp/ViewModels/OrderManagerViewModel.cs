@@ -1,4 +1,5 @@
-﻿using GroceryApp.Data;
+﻿using Acr.UserDialogs;
+using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Services;
 using GroceryApp.Views.Popups;
@@ -93,31 +94,43 @@ namespace GroceryApp.ViewModels
         public ICommand ShowDetailOrderCommand { get; set; }
         public ICommand DeliverCommand { get; set; }
         public ICommand CancelCommand { get; set; }
+        public ICommand GobackCommand { get; set; }
         public OrderManagerViewModel()
         {
             LoadData();
             ShowDetailOrderCommand = new Command<OrderBill>(ShowDetailOrder);
             DeliverCommand = new Command<OrderBill>(DeliverOrder);
             CancelCommand = new Command<OrderBill>(CancelOrder);
+            GobackCommand = new Command(Goback);
+        }
+        public void Goback()
+        {
+            var Tabbar = TabbarStoreManager.GetInstance();
+            Tabbar.CurrentPage = Tabbar.Children[0];
         }
 
         public async void DeliverOrder(OrderBill order)
         {
-            order.State = OrderState.Delivering;
-            //Update database local
-            DataUpdater.UpdateStateOrderbill(order);
-            //Reload views
-            foreach(OrderBill orderItem in Orders)
-                if(orderItem.IDOrderBill==order.IDOrderBill)
-                {
-                    orderItem.State = OrderState.Delivering;
-                    break;
-                }
-            LoadKindsOfOrders();
+            using (UserDialogs.Instance.Loading("Delivering order"))
+            {
+                order.State = OrderState.Delivering;
+                //Update database local
+                DataUpdater.UpdateStateOrderbill(order);
+                //Reload views
+                foreach (OrderBill orderItem in Orders)
+                    if (orderItem.IDOrderBill == order.IDOrderBill)
+                    {
+                        orderItem.State = OrderState.Delivering;
+                        break;
+                    }
+                LoadKindsOfOrders();
 
-            //api update database server
-            var httpClient = new HttpClient();
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/update", order);
+                //api update database server
+                var httpClient = new HttpClient();
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/update", order);
+
+            }
+            MessageService.Show("Delivered order successfully", 0);
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataDeliverOrder(order);
@@ -126,32 +139,36 @@ namespace GroceryApp.ViewModels
 
         public async void CancelOrder(OrderBill orderBill)
         {
-            var httpClient = new HttpClient();
-            List<Product> productInOrder = dataProvider.GetProductsInBillByIDBill(orderBill.IDOrderBill);
-            //update quantityinventory ở local
-            List<Product> sourceProducts = DataUpdater.ReturnListProductToSource(productInOrder);
-            //api update quantityinventory ở server
-            foreach (Product product in sourceProducts)
+            using(UserDialogs.Instance.Loading("Canceling order"))
             {
-                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", product);
+                var httpClient = new HttpClient();
+                List<Product> productInOrder = dataProvider.GetProductsInBillByIDBill(orderBill.IDOrderBill);
+                //update quantityinventory ở local
+                List<Product> sourceProducts = DataUpdater.ReturnListProductToSource(productInOrder);
+                //api update quantityinventory ở server
+                foreach (Product product in sourceProducts)
+                {
+                    await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", product);
+                }
+
+                //api delete products trong order bị xóa (ở server)
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/deletebyidorderbill/" + orderBill.IDOrderBill, new { });
+
+                //delete product ở local
+                DataUpdater.DeleteProducts(productInOrder);
+
+                //delete orderbill server
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/deleteorderbillbyid/" + orderBill.IDOrderBill, new { });
+                //delete orderbill local
+                DataUpdater.DeleteOrderBillByID(orderBill.IDOrderBill);
+
+                //Reload data OrderManager
+                LoadData();
+                //Reload data ProductManager
+                (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData(true);
+
             }
-
-            //api delete products trong order bị xóa (ở server)
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/deletebyidorderbill/" + orderBill.IDOrderBill, new { });
-
-            //delete product ở local
-            DataUpdater.DeleteProducts(productInOrder);
-
-            //delete orderbill server
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/deleteorderbillbyid/" + orderBill.IDOrderBill, new { });
-            //delete orderbill local
-            DataUpdater.DeleteOrderBillByID(orderBill.IDOrderBill);
-
-            //Reload data OrderManager
-            LoadData();
-            //Reload data ProductManager
-            (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData(true);
-
+            MessageService.Show("Cancel order successfully", 0);
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataCancelOrder(orderBill);

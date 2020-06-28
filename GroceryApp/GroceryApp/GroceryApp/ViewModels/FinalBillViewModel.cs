@@ -26,7 +26,8 @@ namespace GroceryApp.ViewModels
         public OrderBillItem OrderItem { get; set; }
         //public OrderBill Order { get; set; }
         public ICommand SendOrderCommand { get; set; }
-        
+        public ICommand GoBackCommand { get; set; }
+
         public string StoreName
         {
             get
@@ -59,6 +60,11 @@ namespace GroceryApp.ViewModels
             this.OrderItem = orderItem;
             //this.Order = orderItem.Order;
             SendOrderCommand = new Command(SendOrder);
+        }
+
+        public async void GoBack()
+        {
+            await App.Current.MainPage.Navigation.PopAsync();
         }
         public async void SendOrder()
         {
@@ -100,8 +106,9 @@ namespace GroceryApp.ViewModels
             var ordersVM = TabBarCustomer.GetInstance().Children[3].BindingContext as ListOrdersViewModel;
             ordersVM.LoadData();
 
-            await PopupNavigation.Instance.PushAsync(successPopup);
-
+            //await PopupNavigation.Instance.PushAsync(successPopup);
+            await App.Current.MainPage.Navigation.PopAsync();
+            
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataInsertOrderBill(OrderItem.Order);
             PushNotificationService.Push(NotiNumber.MakeBill, datas,false);
@@ -112,6 +119,8 @@ namespace GroceryApp.ViewModels
             //NO USE
             //SendOrderCommand = new Command<object>(SendOrder);
         }
+
+       
 
     }
 }

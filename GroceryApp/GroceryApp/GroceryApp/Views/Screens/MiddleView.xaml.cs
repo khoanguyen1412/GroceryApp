@@ -2,6 +2,7 @@
 using Com.OneSignal;
 using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.Drawer;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,18 @@ namespace GroceryApp.Views.Screens
 
                 Infor.IDCart = this.Username;
                 App.Current.MainPage = AppDrawer.GetInstance();
+                if (dataProvider.IsLackOfInfor())
+                {
+                    
+                    bool result = await DisplayAlert("Notice", "Update your infor to use our services!", "Go", "Later");
+                    if (result)
+                    {
+                        var shell= AppDrawer.GetInstance();
+                        shell.CurrentItem = shell.flyoutUserSetting;
+                    }
+                }
+
+                MessageService.Show("Login success",1);
             }
             
 

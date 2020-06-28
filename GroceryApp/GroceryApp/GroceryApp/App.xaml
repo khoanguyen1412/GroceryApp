@@ -38,6 +38,8 @@
             <converter:ShowPasswordConverter x:Key="ShowPasswordConverter"/>
             <converter:FlyoutBackgroundConverter x:Key="FlyoutBackgroundConverter"/>
             <converter:ValueNegativeConverter x:Key="ValueNegativeConverter"/>
+            <converter:StoreRatingConverter x:Key="StoreRatingConverter"/>
+            <converter:RatingIconConverter x:Key="RatingIconConverter"/>
             <selector:DataTemplateSliderSelector x:Key="DataTemplateSliderSelector"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"

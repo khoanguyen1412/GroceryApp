@@ -1,6 +1,8 @@
-﻿using GroceryApp.Data;
+﻿using Acr.UserDialogs;
+using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Screens;
+using GroceryApp.Views.TabBars;
 using Plugin.SharedTransitions;
 using System;
 using System.Collections.Generic;
@@ -37,12 +39,26 @@ namespace GroceryApp.ViewModels
 
         public ICommand ShowStoreCommand { get; set; }
         public ICommand ChooseTypeCommand { get; set; }
+        public ICommand GoCartCommand { get; set; }
         public ListStoresViewModel()
         {
             LoadProductTypes();
             LoadData();
             ShowStoreCommand = new Command<string>(ShowStore);
             ChooseTypeCommand = new Command<TypeItem>(ChooseType);
+            GoCartCommand = new Command(GoCart);
+        }
+        public void GoCart()
+        {
+            var Tabbar = TabBarCustomer.GetInstance();
+            Tabbar.CurrentPage = Tabbar.Children[2];
+        }
+
+        public void ResetChooseType()
+        {
+            foreach (TypeItem item in TypeItems)
+                item.isChosen = false;
+            
         }
 
         public void ChooseType(TypeItem typeItem)
@@ -98,9 +114,11 @@ namespace GroceryApp.ViewModels
 
         public async void ShowStore(string IDStore)
         {
-            var showStoreView =  ShowStoreView.GetInstance();
+            ShowStoreView showStoreView=null;
+            ShowStoreView.Destroy();
+            showStoreView = ShowStoreView.GetInstance();
             showStoreView.BindingContext = new ShowStoreViewModel(IDStore);
-            await App.Current.MainPage.Navigation.PushAsync(showStoreView, true);
+            await App.Current.MainPage.Navigation.PushAsync(showStoreView,true);
         }
 
         public void LoadData()

@@ -51,9 +51,20 @@
                 <Label Text="Store Settings" VerticalOptions="End" VerticalTextAlignment="End" FontSize="35" Style="{StaticResource Bold}" />
                 <Image Source="setting" Grid.Column="1" Margin="0,0,0,5" VerticalOptions="End" HorizontalOptions="End" WidthRequest="40" HeightRequest="40"/>
             </Grid>
-            <Label Grid.Row="1" Text="Update your settings like Store edit, change infor ect." VerticalOptions="End" VerticalTextAlignment="End" FontSize="17" TextColor="Gray" Style="{StaticResource Medium}" />
+            <StackLayout Grid.Row="1" Orientation="Vertical">
+                <Label  Text="Update your settings like Store edit, change infor ect." VerticalOptions="End" VerticalTextAlignment="End" FontSize="17" TextColor="Gray" Style="{StaticResource Medium}" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Activate store:"   FontSize="25"   Style="{StaticResource Bold}" />
+                    <Image Source="{Binding ActiveImage}" Margin="-25,-5,0,0" WidthRequest="130" HeightRequest="65" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeActiveCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </StackLayout>
 
-            <AbsoluteLayout Grid.Row="2" HeightRequest="200" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" >
+            
+            <AbsoluteLayout Grid.Row="2" HeightRequest="200" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" >
                 <pancake:PancakeView  CornerRadius="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1"   AbsoluteLayout.LayoutFlags="All" >
                     <Image Source="{Binding StoreImage}" Aspect="AspectFill"/>
                 </pancake:PancakeView>

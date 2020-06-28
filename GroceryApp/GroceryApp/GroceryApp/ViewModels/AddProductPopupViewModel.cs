@@ -3,6 +3,8 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
+using GroceryApp.Views.Drawer;
 using GroceryApp.Views.TabBars;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
@@ -257,44 +259,53 @@ namespace GroceryApp.ViewModels
 
         public async void Add()
         {
-            Product NewProduct = GetNewProduct();
-            if (NewProduct == null) return;
-
-            if (ImagePath != "" && isNewImage)
+            using (UserDialogs.Instance.Loading("Adding.."))
             {
-                Account account = new Account(
-                    "ungdung-grocery-xamarin-by-dk",
-                    "378791526477571",
-                    "scsyCxQS_C74MbAGdOutpwrzlnU"
-                    );
+                Product NewProduct = GetNewProduct();
+                if (NewProduct == null)
+                {
+                    var app = AppDrawer.GetInstance();
+                    await app.DisplayAlert("Error", "Product's infor is missing or invalid, please check again!", "OK");
+                    return;
+                }
 
-                Cloudinary cloudinary = new Cloudinary(account);
-                var uploadParams = new ImageUploadParams()
+                if (ImagePath != "" && isNewImage)
                 {
-                    File = new FileDescription(ImagePath)
-                };
-                try
-                {
-                    using (UserDialogs.Instance.Loading("Saving.."))
+                    Account account = new Account(
+                        "ungdung-grocery-xamarin-by-dk",
+                        "378791526477571",
+                        "scsyCxQS_C74MbAGdOutpwrzlnU"
+                        );
+
+                    Cloudinary cloudinary = new Cloudinary(account);
+                    var uploadParams = new ImageUploadParams()
                     {
-                        var uploadResult = await cloudinary.UploadAsync(uploadParams);
-                        string url = uploadResult.SecureUri.ToString();
-                        NewProduct.ImageURL = url;
-                        isNewImage = false;
+                        File = new FileDescription(ImagePath)
+                    };
+                    try
+                    {
+                        using (UserDialogs.Instance.Loading("Saving.."))
+                        {
+                            var uploadResult = await cloudinary.UploadAsync(uploadParams);
+                            string url = uploadResult.SecureUri.ToString();
+                            NewProduct.ImageURL = url;
+                            isNewImage = false;
+                        }
+
+
                     }
-
-
+                    catch (Exception ex)
+                    {
+                        var page = TabbarStoreManager.GetInstance();
+                        await page.DisplayAlert("Error", "Error upload image to server, try again!", "Ok");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    var page = TabbarStoreManager.GetInstance();
-                    await page.DisplayAlert("Error", "Error upload image to server, try again!", "Ok");
-                }
+
+                (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).AddProduct(NewProduct);
+
+                await PopupNavigation.Instance.PopAsync();
             }
-
-            (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).AddProduct(NewProduct);
-
-            await PopupNavigation.Instance.PopAsync();
+            MessageService.Show("Add product successfully", 0);
         }
 
 

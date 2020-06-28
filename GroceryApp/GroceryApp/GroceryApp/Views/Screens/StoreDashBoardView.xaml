@@ -8,6 +8,7 @@
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              NavigationPage.HasNavigationBar="False"
+             x:Name="DashBoard"
              x:Class="GroceryApp.Views.Screens.StoreDashBoardView">
     <ContentPage.BindingContext>
         <vm:StoreDashBoardViewModel/>
@@ -62,7 +63,10 @@
                                         <StackLayout Margin="0,10,5,0" Grid.Column="1" Orientation="Vertical">
                                             <Label Text="{Binding Title}" FontSize="17" FontFamily="{StaticResource RubikMedium}"/>
                                             <Label Text="{Binding Description}" FontSize="20" TextColor="#FAA437" FontFamily="{StaticResource RubikMedium}"/>
-                                            <Button Text="{Binding Action}" Margin="0,10,0,0" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="5" BackgroundColor="#0589e1" FontSize="16" TextColor="White" FontFamily="{StaticResource RubikMedium}" HeightRequest="50"/>
+                                            <Button Text="{Binding Action}" Margin="0,10,0,0" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="5" BackgroundColor="#0589e1" FontSize="16" TextColor="White" FontFamily="{StaticResource RubikMedium}" HeightRequest="50"
+                                                    Command="{Binding BindingContext.GotoCommand,Source={x:Reference Name=DashBoard}}"
+                                                    CommandParameter="{Binding .}"/>
+                                            
                                         </StackLayout>
                                     </Grid>
                                     
@@ -74,7 +78,11 @@
                 </CollectionView>
                 <AbsoluteLayout HeightRequest="50" Margin="20,20,20,0" HorizontalOptions="FillAndExpand">
                     <Label Margin="0" Style="{StaticResource LabelWellcomeStyle}" Text="Lastest Feedbacks" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="Start" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
-                    <Label Margin="0" Style="{StaticResource LabelWellcomeStyle}" FontSize="18" Text="View all >>" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="End" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
+                    <Label Margin="0" Style="{StaticResource LabelWellcomeStyle}" FontSize="18" Text="View all >>" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="End" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GotoReviewCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
 
                 </AbsoluteLayout>
                 <ListView HeightRequest="{Binding Reviews,Converter={StaticResource GridHeightOrderConverter}}" VerticalScrollBarVisibility="Never" Margin="20,10,20,20" ItemsSource="{Binding Reviews}" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="None">

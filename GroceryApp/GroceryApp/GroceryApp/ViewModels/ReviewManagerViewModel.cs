@@ -1,6 +1,7 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Popups;
+using GroceryApp.Views.TabBars;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,18 @@ namespace GroceryApp.ViewModels
         DataProvider dataProvider = DataProvider.GetInstance();
         public ICommand ReplyCommand { get; set; }
         public ICommand ShowDetailOrderCommand { get; set; }
+        public ICommand GobackCommand { get; set; }
         public ReviewManagerViewModel()
         {
             LoadData();
             ReplyCommand = new Command<ReviewItem>(ShowReviewInfor);
             ShowDetailOrderCommand = new Command<ReviewItem>(ShowDetailOrder);
+            GobackCommand = new Command(Goback);
+        }
+        public void Goback()
+        {
+            var Tabbar = TabbarStoreManager.GetInstance();
+            Tabbar.CurrentPage = Tabbar.Children[0];
         }
 
         public async void ShowReviewInfor(ReviewItem reviewItem)

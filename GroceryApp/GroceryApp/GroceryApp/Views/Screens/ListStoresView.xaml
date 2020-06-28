@@ -18,7 +18,11 @@
             <StackLayout >
                 <AbsoluteLayout HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand">
                     <Label FontSize="25" TextColor="ForestGreen" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource LabelTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Stores"/>
-                    <Image Source="greencart" AbsoluteLayout.LayoutBounds="1,0.5,35,35" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+                    <Image Source="greencart" AbsoluteLayout.LayoutBounds="1,0.5,35,35" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoCartCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
 
                     <Image x:Name="backLabel" Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
 
@@ -99,7 +103,7 @@
                                                 <Frame Margin="0,-210,240,175" WidthRequest="50" Padding="2" HasShadow="False" CornerRadius="15" BackgroundColor="Red" IsClippedToBounds="True">
                                                     <StackLayout Orientation="Horizontal"  HeightRequest="25" WidthRequest="50">
                                                         <Image Margin="10,0,0,0" Source="star" Aspect="AspectFit" HeightRequest="25" WidthRequest="25" />
-                                                        <Label Margin="0" Text="2.5" Style="{StaticResource BoldTitleStyle}" FontSize="15" TextColor="White"/>
+                                                        <Label Margin="0" Text="{Binding RatingStore}" Style="{StaticResource BoldTitleStyle}" FontSize="15" TextColor="White"/>
                                                         <Label Margin="-5,0,0,0" Text="/5" Style="{StaticResource LabelDefaultStyle}" VerticalTextAlignment="End" TextColor="White"/>
 
                                                     </StackLayout>

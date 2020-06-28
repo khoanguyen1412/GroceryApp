@@ -1,4 +1,5 @@
 ﻿using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.ViewModels;
 using GroceryApp.Views.TabBars;
 using Rg.Plugins.Popup.Pages;
@@ -20,6 +21,11 @@ namespace GroceryApp.Views.Popups
         public EditProductPopupView()
         {
             InitializeComponent();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
         }
 
     }

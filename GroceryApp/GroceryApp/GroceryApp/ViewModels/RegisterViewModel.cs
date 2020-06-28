@@ -85,7 +85,7 @@ namespace GroceryApp.ViewModels
             {
                 return;
             }
-            if (CheckExistNewPassword())
+            if (CheckExistUsername())
             {
                 return;
             }
@@ -156,7 +156,7 @@ namespace GroceryApp.ViewModels
             return valid;
         }
 
-        public bool CheckExistNewPassword()
+        public bool CheckExistUsername()
         {
             foreach(User user in Database.Users)
                 if (user.IDUser == Username)

@@ -79,6 +79,12 @@ namespace GroceryApp.Views.Popups
 
         private async void SendClick(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(AnswerEntry.Text))
+            {
+                await DisplayAlert("Error", "Your answer must not be blank!", "OK");
+                return;
+            }
+            
             //call api update orderbill
             ReviewItem reviewItem = this.BindingContext as ReviewItem;
             DataProvider dataProvider = DataProvider.GetInstance();
@@ -92,6 +98,7 @@ namespace GroceryApp.Views.Popups
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/update", order);
             await PopupNavigation.Instance.PopAsync();
 
+            MessageService.Show("Send answer successfully",0);
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataAnswerFeedback(order);
             PushNotificationService.Push(NotiNumber.AnswerFeedback, datas, true);

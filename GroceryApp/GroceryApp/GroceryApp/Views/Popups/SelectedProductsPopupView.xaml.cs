@@ -1,4 +1,8 @@
-﻿using GroceryApp.ViewModels;
+﻿using GroceryApp.Data;
+using GroceryApp.Models;
+using GroceryApp.Services;
+using GroceryApp.ViewModels;
+using GroceryApp.Views.Drawer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +30,22 @@ namespace GroceryApp.Views.Popups
         public void AddToCart(object sender, EventArgs e)
         {
             var viewmodel = this.BindingContext as ShowStoreViewModel;
+            if (viewmodel.CheckNoSelectedProduct())
+            {
+                MessageService.Show("No product is chosen", 0);
+                return;
+            }
+            User user = DataProvider.GetInstance().GetUserByIDUser(Infor.IDUser);
+            if(!user.CheckValidInfor())
+            {
+                var app = AppDrawer.GetInstance();
+                app.DisplayAlert("Error","Your information is not enough, please update your infor and try again!", "OK");
+                return;
+            }
             viewmodel.AddToCart();
             viewmodel.updateSelectedProduct();
-
+            CollapseTapped(sender,e);
+            MessageService.Show("Add to cart success", 0);
         }
 
         public int HeaderHeight { get; private set; } = 70;

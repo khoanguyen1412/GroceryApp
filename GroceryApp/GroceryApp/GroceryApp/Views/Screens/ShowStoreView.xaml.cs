@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,10 +27,18 @@ namespace GroceryApp.Views.Screens
             }
             return _instance;
         }
+        public static void Destroy()
+        {
+            _instance = null;
+        }
         private ShowStoreView()
         {
             InitializeComponent();
-            
+            TimeSpan interval = new TimeSpan(0, 0, 3);
+            Device.StartTimer(interval, () => {
+                UserDialogs.Instance.HideLoading();
+                return true;
+            });
         }
 
         protected override void OnAppearing()
@@ -37,8 +46,10 @@ namespace GroceryApp.Views.Screens
             CartPopup.OnExpandTapped += OnExpand;
             CartPopup.OnCollapseTapped += OnCollapse;
             base.OnAppearing();
+            UserDialogs.Instance.ShowLoading("Loading...");
         }
 
+        
         protected override void OnSizeAllocated(double width, double height)
         {
             pageHeight = height;

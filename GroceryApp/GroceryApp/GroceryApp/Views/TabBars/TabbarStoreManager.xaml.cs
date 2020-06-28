@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroceryApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,5 +48,7 @@ namespace GroceryApp.Views.TabBars
             }
             tabbar.CurrentPage = tabbar.Children[0];
         }
+
+     
     }
 }

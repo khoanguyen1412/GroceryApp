@@ -1510,8 +1510,40 @@ namespace GroceryApp.Data
             Products = ServerDatabase.Products;
             OrderBills = ServerDatabase.OrderBills;
 
+            //Init infor
             foreach (OrderBill order in OrderBills)
                 order.Init();
+
+            foreach(Store store in Stores)
+            {
+                double totalRate = 0;
+                int count = 0;
+                foreach(OrderBill order in OrderBills)
+                    if(order.IDStore==store.IDStore && order.State == OrderState.Received)
+                    {
+                        totalRate += order.Rating;
+                        count++;
+                    }
+                store.RatingStore = GetRoundedRating(totalRate,count);
+            }
+
+        }
+
+        public static double GetRoundedRating(double total, int count)
+        {
+            if (count == 0) return 0;
+            double result = total / count;
+            if (result < 5.0f && result >= 4.5f) result = 4.5;
+            if (result < 4.5f && result >= 4.0f) result = 4.0;
+            if (result < 4.0f && result >= 3.5f) result = 3.5;
+            if (result < 3.5f && result >= 3.0f) result = 3.0;
+            if (result < 3.0f && result >= 2.5f) result = 2.5;
+            if (result < 2.5f && result >= 2.0f) result = 2.0;
+            if (result < 2.0f && result >= 1.5f) result = 1.5;
+            if (result < 1.5f && result >= 1.0f) result = 1.0;
+            if (result < 1.0f && result >= 0.5f) result = 0.5;
+            if (result < 0.5f) result = 0;
+            return result;
         }
     }
 }

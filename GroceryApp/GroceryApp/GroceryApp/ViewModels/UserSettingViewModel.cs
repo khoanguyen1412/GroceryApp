@@ -131,7 +131,13 @@ namespace GroceryApp.ViewModels
 
         public async void SaveChange()
         {
-
+            string message = CheckInfor();
+            if (message != "")
+            {
+                var app = GroceryApp.Views.Drawer.AppDrawer.GetInstance();
+                app.DisplayAlert("Error", message, "OK");
+                return;
+            }
             if (ImagePath != "" && isNewImage)
             {
                 Account account = new Account(
@@ -164,9 +170,9 @@ namespace GroceryApp.ViewModels
                 }
             }
 
-            CurrentUser.BirthDate = BirthDate;
             CurrentUser.UserName = FullName;
             CurrentUser.PhoneNumber = PhoneNumber;
+            CurrentUser.BirthDate = BirthDate;
             CurrentUser.Email= Email;
 
             using (UserDialogs.Instance.Loading("Updating.."))
@@ -178,11 +184,22 @@ namespace GroceryApp.ViewModels
                 DataUpdater.UpdateUser(CurrentUser);
             }
 
+            MessageService.Show("Update infor successfully", 0);
+
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataUpdateUser(CurrentUser);
             PushNotificationService.Push(NotiNumber.UpdateUser, datas, true);
 
 
+        }
+
+        public string CheckInfor()
+        {
+            if (string.IsNullOrEmpty(FullName)) return "User's name must not be blank, try again!";
+            if (string.IsNullOrEmpty(PhoneNumber)) return "Phone number must not be blank, try again!";
+            if (string.IsNullOrEmpty(Email)) return "Email must not be blank, try again!";
+            if (!EmailService.CheckValidEmail(Email)) return "Email is not valid, try again!";
+            return "";
         }
 
         public async void ChangeImage()

@@ -60,6 +60,32 @@ namespace GroceryApp.Data
             return addedProducts;
         }
 
+        //HOME PAGE==========================================================
+        public string GetMyName()
+        {
+            string fullname = "";
+            foreach(User user in Database.Users)
+                if (user.IDUser == Infor.IDUser)
+                {
+                    fullname = user.UserName;
+                    break;
+                }
+
+            if (string.IsNullOrEmpty(fullname)) return "";
+            string[] parts = fullname.Split(' ');
+            return parts[0];
+        }
+
+        public ProductType GetTypeByID(string idType)
+        {
+            foreach(ProductType type in Database.ProductTypes)
+                if(type.IDType== idType)
+                {
+                    return type;
+                }
+            return null;
+        }
+
         //CART==========================================================
 
         public Product GetProductByID(string ID)
@@ -404,6 +430,54 @@ namespace GroceryApp.Data
             return result;
         } 
 
-        
+        public bool IsLackOfInfor()
+        {
+            User myUser = null;
+            foreach(User user in Database.Users)
+                if (user.IDUser == Infor.IDUser)
+                {
+                    myUser = user;
+                    break;
+                }
+            if (string.IsNullOrEmpty(myUser.PhoneNumber)) return true;
+            if (!CheckValidAddress(myUser.Address)) return true;
+            if (string.IsNullOrEmpty(myUser.Email)) return true;
+            if (string.IsNullOrEmpty(myUser.ImageURL)) return true;
+            if (string.IsNullOrEmpty(myUser.UserName)) return true;
+            return false;
+        }
+
+        public bool IsLackOfStoreInfor()
+        {
+            Store myStore = null;
+            foreach (Store store in Database.Stores)
+                if (store.IDStore == Infor.IDStore)
+                {
+                    myStore = store;
+                    break;
+                }
+
+            if (string.IsNullOrEmpty(myStore.StoreName)) return true;
+            if (string.IsNullOrEmpty(myStore.ImageURL)) return true;
+            if (!CheckValidAddress(myStore.StoreAddress)) return true;
+            return false;
+        }
+
+        public bool CheckValidAddress(string address)
+        {
+            string[] parts = address.Split('#');
+            for (int i = 0; i < parts.Length; i++)
+                if (!string.IsNullOrEmpty(parts[i]))
+                    return true;
+            return false;
+        }
+
+        public bool HasProductInMyStore()
+        {
+            foreach (Product product in Database.Products)
+                if (product.IDStore == Infor.IDStore && product.State == ProductState.InStore && product.StateInStore==ProductStateInStore.Selling)
+                    return true;
+            return false;
+        }
     }
 }

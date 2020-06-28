@@ -1,6 +1,8 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using GroceryApp.Views.Drawer;
+using GroceryApp.Views.TabBars;
 using ImTools;
 using Microcharts;
 using SkiaSharp;
@@ -139,11 +141,45 @@ namespace GroceryApp.ViewModels
             }
         }
         public ICommand ShowDrawerCommand { get; set; }
+        public ICommand GotoCommand { get; set; }
+        public ICommand GotoReviewCommand { get; set; }
         public StoreDashBoardViewModel()
         {
             LoadData();
             ShowDrawerCommand = new Command(ShowDrawer);
+            GotoCommand = new Command<CategoryItem>(Goto);
+            GotoReviewCommand = new Command(GotoReview);
         }
+
+        public void GotoReview()
+        {
+            var Tabbar = TabbarStoreManager.GetInstance();
+            Tabbar.CurrentPage = Tabbar.Children[3];
+        }
+
+        public void Goto(CategoryItem item)
+        {
+            int index = 0;
+            switch (item.Title)
+            {
+                case "Manage Products":
+                    index = 1;
+                    break;
+                case "Handle Orders":
+                    index = 2;
+                    break;
+                case "Feedback":
+                    index = 3;
+                    break;
+                case "Build store":
+                    index = 4;
+                    break;
+            }
+            var Tabbar = TabbarStoreManager.GetInstance();
+            Tabbar.CurrentPage = Tabbar.Children[index];
+            
+        }
+
         public void ShowDrawer()
         {
             var appDrawer = AppDrawer.GetInstance();

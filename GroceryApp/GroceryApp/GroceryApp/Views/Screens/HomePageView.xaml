@@ -19,7 +19,11 @@
                 
                 <AbsoluteLayout HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand">
                     <Label FontSize="25" TextColor="ForestGreen" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource LabelTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Grocery World"/>
-                    <Image x:Name="CartLabel" Source="greencart" AbsoluteLayout.LayoutBounds="1,0.5,35,35" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+                    <Image  Source="greencart" AbsoluteLayout.LayoutBounds="1,0.5,35,35" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoCartCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                     <Image Source="draw" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ShowDrawerCommand}"/>
@@ -27,7 +31,7 @@
                     </Image>
                 </AbsoluteLayout>
                 <StackLayout Margin="20,0,20,0">
-                    <Label Text="Hi Khoa!" Style="{StaticResource LabelWellcomeStyle}"/>
+                    <Label Text="{Binding Title}" Style="{StaticResource LabelWellcomeStyle}"/>
                     <Label Text="what are you looking for?" Style="{StaticResource LabelWellcomeStyle}"/>
                 </StackLayout>
                 <Frame HasShadow="True" IsClippedToBounds="True" Margin="20,10,20,0" HeightRequest="60" CornerRadius="10" Padding="0">
@@ -54,7 +58,10 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Frame Grid.Column="0" Grid.Row="0" HeightRequest="50" CornerRadius="25" HasShadow="True" IsClippedToBounds="True" Padding="0">
-                        <StackLayout x:Name="OrderField" Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoOrderCommand}"/>
+                            </StackLayout.GestureRecognizers>
                             <Frame HeightRequest="50" WidthRequest="50" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="{StaticResource AccentColor}">
                                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                                     <Image Source="iconorder" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
@@ -64,7 +71,10 @@
                         </StackLayout>
                     </Frame>
                     <Frame Grid.Column="1" Grid.Row="0" HeightRequest="50" CornerRadius="25" HasShadow="True" IsClippedToBounds="True" Padding="0">
-                        <StackLayout x:Name="CartField" Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoCartCommand}"/>
+                            </StackLayout.GestureRecognizers>
                             <Frame HeightRequest="50" WidthRequest="50" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="{StaticResource AccentColor}">
                                 <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                                     <Image Source="iconcart" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
@@ -85,18 +95,27 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Frame Grid.Column="0" Grid.Row="0" HeightRequest="100" BackgroundColor="{StaticResource MainColor}" CornerRadius="5" HasShadow="True" IsClippedToBounds="True" Padding="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FruitCommand}"/>
+                        </Frame.GestureRecognizers>
                         <StackLayout VerticalOptions="Center">
                             <Image Source="fruits" BackgroundColor="White" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                             <Label Text="Fruits" Style="{StaticResource LabelTitleStyle}" HorizontalTextAlignment="Center" TextColor="White"/>
                         </StackLayout>
                     </Frame>
                     <Frame Grid.Column="1" Grid.Row="0"  HeightRequest="100" BackgroundColor="{StaticResource MainColor}" CornerRadius="5" HasShadow="True" IsClippedToBounds="True" Padding="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding VegetCommand}"/>
+                        </Frame.GestureRecognizers>
                         <StackLayout VerticalOptions="Center">
                             <Image Source="veggies" BackgroundColor="White" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                             <Label Text="veggies" Style="{StaticResource LabelTitleStyle}" HorizontalTextAlignment="Center" TextColor="White"/>
                         </StackLayout>
                     </Frame>
                     <Frame Grid.Column="2" Grid.Row="0" HeightRequest="100" BackgroundColor="{StaticResource MainColor}" CornerRadius="5" HasShadow="True" IsClippedToBounds="True" Padding="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DrinkCommand}"/>
+                        </Frame.GestureRecognizers>
                         <StackLayout VerticalOptions="Center">
                             <Image Source="drinks" BackgroundColor="White" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                             <Label Text="Drinks" Style="{StaticResource LabelTitleStyle}" HorizontalTextAlignment="Center" TextColor="White"/>
@@ -112,12 +131,18 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Frame Grid.Column="0" Grid.Row="0" HeightRequest="100" WidthRequest="100" Margin="55,0,0,0" BackgroundColor="{StaticResource MainColor}" CornerRadius="5" HasShadow="True" IsClippedToBounds="True" Padding="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CandyCommand}"/>
+                        </Frame.GestureRecognizers>
                         <StackLayout VerticalOptions="Center">
                             <Image Source="candies" BackgroundColor="White" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                             <Label Text="Candies" Style="{StaticResource LabelTitleStyle}" HorizontalTextAlignment="Center" TextColor="White"/>
                         </StackLayout>
                     </Frame>
                     <Frame Grid.Column="1" Grid.Row="0" HeightRequest="100" WidthRequest="100" Margin="0,0,55,0" BackgroundColor="{StaticResource MainColor}" CornerRadius="5" HasShadow="True" IsClippedToBounds="True" Padding="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CakeCommand}"/>
+                        </Frame.GestureRecognizers>
                         <StackLayout VerticalOptions="Center">
                             <Image Source="bakes" BackgroundColor="White" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                             <Label Text="Cakes" Style="{StaticResource LabelTitleStyle}" HorizontalTextAlignment="Center" TextColor="White"/>
@@ -126,7 +151,11 @@
                 </Grid>
                 <AbsoluteLayout HeightRequest="50" Margin="20,20,20,0" HorizontalOptions="FillAndExpand">
                     <Label Margin="0" Style="{StaticResource LabelWellcomeStyle}" Text="Recommend" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="Start" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
-                    <Label x:Name="ShowAllStoreLabel" Margin="0" Style="{StaticResource LabelWellcomeStyle}" FontSize="18" Text="Show all >>" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="End" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All"/>
+                    <Label  Margin="0" Style="{StaticResource LabelWellcomeStyle}" FontSize="18" Text="Show all >>" AbsoluteLayout.LayoutBounds="0,0,1,1" HorizontalTextAlignment="End" VerticalTextAlignment="End" AbsoluteLayout.LayoutFlags="All">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoStoreCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
 
                 </AbsoluteLayout>
 
@@ -150,14 +179,19 @@
                                             </Frame>
                                             <Label Margin="10,0" Text="{Binding StoreName}" Style="{StaticResource LabelTitleStyle}"/>
                                             <StackLayout Margin="10,0" Orientation="Horizontal">
-                                                <Image Source="star35" WidthRequest="180" HeightRequest="53" Aspect="AspectFill"/>
+                                                <Image Source="{Binding RatingStore,Converter={StaticResource StoreRatingConverter}}" WidthRequest="180" HeightRequest="53" Aspect="AspectFill"/>
                                             </StackLayout>
                                             <BoxView Margin="10,0,10,0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
-                                            <StackLayout Margin="10,-10,10,0" Orientation="Horizontal">
-                                                <Image Source="imoji" WidthRequest="45" HeightRequest="45" HorizontalOptions="Start"/>
-                                                <Label Text="7.1" VerticalTextAlignment="Center" Style="{StaticResource LabelWellcomeStyle}" HorizontalOptions="Start"/>
-                                                <Label Text="/10" VerticalOptions="Center" Style="{StaticResource LabelTitleStyle}" HorizontalOptions="StartAndExpand"/>
-                                                <Image Source="gotostore" WidthRequest="70" HeightRequest="70" HorizontalOptions="End"/>
+                                            <StackLayout Margin="10,0,10,0" Orientation="Horizontal">
+                                                <Image Source="{Binding RatingStore,Converter={StaticResource RatingIconConverter}}" WidthRequest="45" HeightRequest="45" HorizontalOptions="Start"/>
+                                                <Label Text="{Binding RatingStore}" VerticalTextAlignment="Center" Style="{StaticResource LabelWellcomeStyle}" HorizontalOptions="Start"/>
+                                                <Label Text="/5" VerticalOptions="Center" Style="{StaticResource LabelTitleStyle}" HorizontalOptions="StartAndExpand"/>
+                                                <Image Source="fastcart" WidthRequest="55" HeightRequest="55" HorizontalOptions="End">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.ShowStoreCommand,Source={x:Reference Name=homepage}}"
+                                                                                  CommandParameter="{Binding .}"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>

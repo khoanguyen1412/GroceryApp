@@ -52,7 +52,7 @@
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <Label Margin="0,3,3,3" Text="{Binding StoreDescription}" Style="{StaticResource LabelDefaultStyle}" HorizontalOptions="Center"/>
-                                            <Image Margin="10,-5,3,3" Source="star35" WidthRequest="100" HeightRequest="40" Aspect="AspectFit" HorizontalOptions="Start"/>
+                                            <Image Margin="10,-5,3,3" Source="{Binding Rating,Converter={StaticResource StoreRatingConverter}}" WidthRequest="100" HeightRequest="40" Aspect="AspectFit" HorizontalOptions="Start"/>
 
                                         </StackLayout>
                                     </StackLayout>

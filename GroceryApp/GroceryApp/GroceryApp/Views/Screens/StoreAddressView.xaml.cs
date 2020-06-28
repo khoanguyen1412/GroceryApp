@@ -23,6 +23,12 @@ namespace GroceryApp.Views.Screens
 
         private void Save_Clicked(object sender, EventArgs e)
         {
+            string message = CheckInfor();
+            if (message != "")
+            {
+                DisplayAlert("Error", message, "OK");
+                return;
+            }
             AddressItem newAddress = new AddressItem
             {
                 Country = CountryText.Text,
@@ -37,6 +43,15 @@ namespace GroceryApp.Views.Screens
             else
                 (UserSettingView.GetInstance().BindingContext as UserSettingViewModel).ChangeAddress(newAddress); 
             App.Current.MainPage.Navigation.PopAsync();
+        }
+
+        private string CheckInfor()
+        {
+            if (string.IsNullOrEmpty(CountryText.Text)
+                && string.IsNullOrEmpty(CityText.Text)
+                && string.IsNullOrEmpty(HouseNumberText.Text)
+                && string.IsNullOrEmpty(DistrictText.Text)) return "At least one field has to have information";
+            return "";
         }
     }
 }

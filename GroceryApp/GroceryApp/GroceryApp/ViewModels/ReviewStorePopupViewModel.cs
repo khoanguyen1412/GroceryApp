@@ -1,4 +1,5 @@
-﻿using GroceryApp.Data;
+﻿using Acr.UserDialogs;
+using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Services;
 using GroceryApp.Views.TabBars;
@@ -109,19 +110,23 @@ namespace GroceryApp.ViewModels
 
         public async void SendReview()
         {
-            var httpClient = new HttpClient();
-            order.Rating = GetRating();
-            order.Review = Review;
-            DataUpdater.ReceiveOder(order);
-            order.State = OrderState.Received;
-            //call api update orderbill
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/update" , order);
+            using (UserDialogs.Instance.Loading("Receiving order"))
+            {
+                var httpClient = new HttpClient();
+                order.Rating = GetRating();
+                order.Review = Review;
+                DataUpdater.ReceiveOder(order);
+                order.State = OrderState.Received;
+                //call api update orderbill
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/update", order);
 
-            //reload list orders view
-            (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).LoadData();
+                //reload list orders view
+                (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).LoadData();
 
-            await PopupNavigation.Instance.PopAllAsync();
-
+                await PopupNavigation.Instance.PopAllAsync();
+            }
+                
+            MessageService.Show("Received successfully", 0);
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataReceiveOrder(order);
             PushNotificationService.Push(NotiNumber.ReceiveOrder,datas, false); 

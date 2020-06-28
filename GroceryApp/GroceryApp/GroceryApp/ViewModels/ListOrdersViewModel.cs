@@ -1,4 +1,5 @@
-﻿using GroceryApp.Data;
+﻿using Acr.UserDialogs;
+using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Services;
 using GroceryApp.Views.Popups;
@@ -103,31 +104,35 @@ namespace GroceryApp.ViewModels
 
         public async void DeleteOrder(OrderBill orderBill)
         {
-            var httpClient = new HttpClient();
-            List<Product> productInOrder = dataProvider.GetProductsInBillByIDBill(orderBill.IDOrderBill);
-            //update quantityinventory ở local
-            List<Product> sourceProducts= DataUpdater.ReturnListProductToSource(productInOrder);
-            //api update quantityinventory ở server
-            foreach(Product product in sourceProducts)
+            using (UserDialogs.Instance.Loading("Canceling order"))
             {
-                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", product);
+                var httpClient = new HttpClient();
+                List<Product> productInOrder = dataProvider.GetProductsInBillByIDBill(orderBill.IDOrderBill);
+                //update quantityinventory ở local
+                List<Product> sourceProducts = DataUpdater.ReturnListProductToSource(productInOrder);
+                //api update quantityinventory ở server
+                foreach (Product product in sourceProducts)
+                {
+                    await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", product);
+                }
+
+                //api delete products trong order bị xóa (ở server)
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/deletebyidorderbill/" + orderBill.IDOrderBill, new { });
+
+                //delete product ở local
+                DataUpdater.DeleteProducts(productInOrder);
+
+                //delete orderbill server
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/deleteorderbillbyid/" + orderBill.IDOrderBill, new { });
+                //delete orderbill local
+                DataUpdater.DeleteOrderBillByID(orderBill.IDOrderBill);
+
+
+                //reload ListOrdersView
+                LoadData();
             }
-
-            //api delete products trong order bị xóa (ở server)
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/deletebyidorderbill/"+ orderBill.IDOrderBill, new { });
-
-            //delete product ở local
-            DataUpdater.DeleteProducts(productInOrder);
-
-            //delete orderbill server
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/deleteorderbillbyid/" + orderBill.IDOrderBill,new { });
-            //delete orderbill local
-            DataUpdater.DeleteOrderBillByID(orderBill.IDOrderBill);
-
-
-            //reload ListOrdersView
-            LoadData();
-
+                
+            MessageService.Show("Cancel order successfully", 0);
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataCancelOrder(orderBill);

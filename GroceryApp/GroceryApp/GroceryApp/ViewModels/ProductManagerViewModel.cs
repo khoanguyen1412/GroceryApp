@@ -1,7 +1,9 @@
-﻿using GroceryApp.Data;
+﻿using Acr.UserDialogs;
+using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Services;
 using GroceryApp.Views.Popups;
+using GroceryApp.Views.TabBars;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -59,6 +61,7 @@ namespace GroceryApp.ViewModels
         public ICommand EditProductCommand { get; set; }
         public ICommand RestoreProductCommand { get; set; }
         public ICommand ChooseTypeCommand { get; set; }
+        public ICommand GobackCommand { get; set; }
         public ProductManagerViewModel()
         {
             LoadData(false);
@@ -67,16 +70,28 @@ namespace GroceryApp.ViewModels
             ChooseTypeCommand = new Command<TypeItem>(ChooseType);
             DeleteProductCommand = new Command<ProductItem>(DeleteProduct);
             RestoreProductCommand = new Command<ProductItem>(RestoreProduct);
+            GobackCommand = new Command(Goback);
+        }
+
+        public void Goback()
+        {
+            var Tabbar = TabbarStoreManager.GetInstance();
+            Tabbar.CurrentPage = Tabbar.Children[0];
         }
 
         public async void RestoreProduct(ProductItem productItem)
         {
-            Product restoredProduct = DataUpdater.RestoreProductInStore(productItem.Product);
-            //update product ở database server
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", restoredProduct);
+            Product restoredProduct = null;
+            using (UserDialogs.Instance.Loading("Restoring.."))
+            {
+                restoredProduct = DataUpdater.RestoreProductInStore(productItem.Product);
+                //update product ở database server
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", restoredProduct);
 
-            LoadProducts(false);
-
+                LoadProducts(false);
+            }
+                
+            MessageService.Show("Restore product successfully", 0);
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataUpdateProduct(restoredProduct);
             PushNotificationService.Push(NotiNumber.UpdateProduct, datas, true);
@@ -84,14 +99,18 @@ namespace GroceryApp.ViewModels
 
         public async void DeleteProduct(ProductItem productItem)
         {
+            Product deletedProduct = null;
+            using (UserDialogs.Instance.Loading("Deleting.."))
+            {
+                //update product ở database local
+                deletedProduct = DataUpdater.DeleteProductInStore(productItem.Product);
+                //update product ở database server
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", deletedProduct);
 
-            //update product ở database local
-            Product deletedProduct= DataUpdater.DeleteProductInStore(productItem.Product);
-            //update product ở database server
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", deletedProduct);
-
-            LoadProducts(false);
-
+                LoadProducts(false);
+            }
+                
+            MessageService.Show("Delete product successfully", 0);
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataUpdateProduct(deletedProduct);
             PushNotificationService.Push(NotiNumber.UpdateProduct, datas, true);
