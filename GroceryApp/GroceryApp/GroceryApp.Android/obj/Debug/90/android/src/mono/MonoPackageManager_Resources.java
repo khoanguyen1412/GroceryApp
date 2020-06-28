@@ -26,6 +26,8 @@ public class MonoPackageManager_Resources {
 		"Newtonsoft.Json.Bson.dll",
 		"Newtonsoft.Json.dll",
 		"OneSignal.Android.Binding.dll",
+		"PCLStorage.Abstractions.dll",
+		"PCLStorage.dll",
 		"Plugin.FilePicker.dll",
 		"Plugin.SharedTransitions.dll",
 		"Prism.dll",

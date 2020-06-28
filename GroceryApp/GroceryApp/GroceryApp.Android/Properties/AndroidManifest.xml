@@ -15,4 +15,6 @@
   <permission android:name="com.companyname.groceryapp.permission.C2D_MESSAGE"
               android:protectionLevel="signature" />
   <uses-permission android:name="com.companyname.groceryapp.permission.C2D_MESSAGE" />
+<uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 </manifest>

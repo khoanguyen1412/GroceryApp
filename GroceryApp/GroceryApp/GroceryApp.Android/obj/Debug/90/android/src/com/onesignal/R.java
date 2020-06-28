@@ -230,30 +230,30 @@ public final class R {
 		public static final int consumer_onesignal_keep = 0x7f0d0000;
 	}
 	public static final class string {
-		public static final int common_google_play_services_enable_button = 0x7f0e002b;
-		public static final int common_google_play_services_enable_text = 0x7f0e002c;
-		public static final int common_google_play_services_enable_title = 0x7f0e002d;
-		public static final int common_google_play_services_install_button = 0x7f0e002e;
-		public static final int common_google_play_services_install_text = 0x7f0e002f;
-		public static final int common_google_play_services_install_title = 0x7f0e0030;
-		public static final int common_google_play_services_notification_channel_name = 0x7f0e0031;
-		public static final int common_google_play_services_notification_ticker = 0x7f0e0032;
-		public static final int common_google_play_services_unknown_issue = 0x7f0e0033;
-		public static final int common_google_play_services_unsupported_text = 0x7f0e0034;
-		public static final int common_google_play_services_update_button = 0x7f0e0035;
-		public static final int common_google_play_services_update_text = 0x7f0e0036;
-		public static final int common_google_play_services_update_title = 0x7f0e0037;
-		public static final int common_google_play_services_updating_text = 0x7f0e0038;
-		public static final int common_google_play_services_wear_update_text = 0x7f0e0039;
-		public static final int common_open_on_phone = 0x7f0e003a;
-		public static final int common_signin_button_text = 0x7f0e003b;
-		public static final int common_signin_button_text_long = 0x7f0e003c;
-		public static final int fcm_fallback_notification_channel_label = 0x7f0e003f;
-		public static final int location_not_available_message = 0x7f0e0042;
-		public static final int location_not_available_open_settings_message = 0x7f0e0043;
-		public static final int location_not_available_open_settings_option = 0x7f0e0044;
-		public static final int location_not_available_title = 0x7f0e0045;
-		public static final int status_bar_notification_info_overflow = 0x7f0e004d;
+		public static final int common_google_play_services_enable_button = 0x7f0e002d;
+		public static final int common_google_play_services_enable_text = 0x7f0e002e;
+		public static final int common_google_play_services_enable_title = 0x7f0e002f;
+		public static final int common_google_play_services_install_button = 0x7f0e0030;
+		public static final int common_google_play_services_install_text = 0x7f0e0031;
+		public static final int common_google_play_services_install_title = 0x7f0e0032;
+		public static final int common_google_play_services_notification_channel_name = 0x7f0e0033;
+		public static final int common_google_play_services_notification_ticker = 0x7f0e0034;
+		public static final int common_google_play_services_unknown_issue = 0x7f0e0035;
+		public static final int common_google_play_services_unsupported_text = 0x7f0e0036;
+		public static final int common_google_play_services_update_button = 0x7f0e0037;
+		public static final int common_google_play_services_update_text = 0x7f0e0038;
+		public static final int common_google_play_services_update_title = 0x7f0e0039;
+		public static final int common_google_play_services_updating_text = 0x7f0e003a;
+		public static final int common_google_play_services_wear_update_text = 0x7f0e003b;
+		public static final int common_open_on_phone = 0x7f0e003c;
+		public static final int common_signin_button_text = 0x7f0e003d;
+		public static final int common_signin_button_text_long = 0x7f0e003e;
+		public static final int fcm_fallback_notification_channel_label = 0x7f0e0041;
+		public static final int location_not_available_message = 0x7f0e0044;
+		public static final int location_not_available_open_settings_message = 0x7f0e0045;
+		public static final int location_not_available_open_settings_option = 0x7f0e0046;
+		public static final int location_not_available_title = 0x7f0e0047;
+		public static final int status_bar_notification_info_overflow = 0x7f0e004f;
 	}
 	public static final class style {
 		public static final int Base_CardView = 0x7f0f000c;

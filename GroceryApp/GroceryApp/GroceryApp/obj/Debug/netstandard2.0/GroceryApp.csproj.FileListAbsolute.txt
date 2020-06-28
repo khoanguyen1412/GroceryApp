@@ -87,7 +87,6 @@ C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstan
 C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Sliders\StatisticSliderView.xaml.g.cs
 C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\TabBars\TabBarCustomer.xaml.g.cs
 C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\TabBars\TabbarStoreManager.xaml.g.cs
-C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csproj.CoreCompileInputs.cache
 C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.AssemblyInfoInputs.cache
 C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.AssemblyInfo.cs
 C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.dll
@@ -97,4 +96,5 @@ C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\bin\Debug\netstan
 C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\bin\Debug\netstandard2.0\GroceryApp.dll
 C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\bin\Debug\netstandard2.0\ref\GroceryApp.dll
 C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\bin\Debug\netstandard2.0\GroceryApp.pdb
+C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csproj.CoreCompileInputs.cache
 C:\Users\DungHK\Desktop\clone\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\XamlC.stamp

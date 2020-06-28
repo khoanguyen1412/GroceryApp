@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "whkgFD8RWjhZQRIR7/xfo9dZXB1buUxml1DILgaUmh7sFaY9fvl2GxXHXUUSBcaV2/bO/TpEzmE1rLT1JTmecA==",
+  "dgSpecHash": "qOHjn9RF+aL2A3DoQ6PL7OSr7Cv3EnQl3dPXhLXyTi59Rg70yXf98OufNFo8JXlZ6bBHl96iOh6h/z/TapPUrA==",
   "success": true,
   "projectFilePath": "C:\\Users\\DungHK\\Desktop\\clone\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,7 @@
     "C:\\Users\\DungHK\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\DungHK\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
     "C:\\Users\\DungHK\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
+    "C:\\Users\\DungHK\\.nuget\\packages\\pclstorage\\1.0.2\\pclstorage.1.0.2.nupkg.sha512",
     "C:\\Users\\DungHK\\.nuget\\packages\\prism.core\\7.2.0.1422\\prism.core.7.2.0.1422.nupkg.sha512",
     "C:\\Users\\DungHK\\.nuget\\packages\\prism.dryioc.forms\\7.2.0.1422\\prism.dryioc.forms.7.2.0.1422.nupkg.sha512",
     "C:\\Users\\DungHK\\.nuget\\packages\\prism.forms\\7.2.0.1422\\prism.forms.7.2.0.1422.nupkg.sha512",

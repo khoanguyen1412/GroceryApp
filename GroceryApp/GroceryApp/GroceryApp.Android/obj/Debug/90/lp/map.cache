@@ -6,6 +6,7 @@ FFImageLoading.Platform
 FormsViewGroup
 Microcharts.Droid
 OneSignal.Android.Binding
+PCLStorage
 Plugin.FilePicker
 Plugin.SharedTransitions
 Prism.Forms

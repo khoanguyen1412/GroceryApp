@@ -8,6 +8,7 @@ using GroceryApp.Views.TabBars;
 using Nancy.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +22,7 @@ namespace GroceryApp.Services
 {
     public class PushNotificationService
     {
-        public static void HandleNotificationReceived(OSNotification notification)
+        public async static void HandleNotificationReceived(OSNotification notification)
         {
             OSNotificationPayload payload = notification.payload;
             string message = payload.body;
@@ -30,8 +31,14 @@ namespace GroceryApp.Services
             {
                 Console.WriteLine("noti trống");
             }
+            //String filename ="username.txt";
+            //IFolder folder = FileSystem.Current.LocalStorage;
+           // IFile file = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
 
-            var json = notification.payload.additionalData["content"].ToString();
+
+         
+
+            /*var json = notification.payload.additionalData["content"].ToString();
             string[] datas = json.Split('~');
             switch (datas[1])
             {
@@ -65,7 +72,7 @@ namespace GroceryApp.Services
             }
             
 
-
+    */
         }
         #region process received data from Notification
         public static void AddToCartAction(string data)
