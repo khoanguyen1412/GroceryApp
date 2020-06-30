@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tVhzUz7cjsmklPS/eA04tGP55v+XI5TCO1p1dNaimdn60At4OSba1H2LTsRe2b7KtjCIfZI/371yMNQPASL0Cg==",
+  "dgSpecHash": "kE+sBoL56uI8hqhZBJk2AX2v1cMrj2PYGAa0TK1JgVSRcHt38xKDruaq95lU3gqkdzdtxEDqPmhZkHdiTmpA4Q==",
   "success": true,
   "projectFilePath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\User\\.nuget\\packages\\acr.userdialogs\\7.1.0.442\\acr.userdialogs.7.1.0.442.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\acr.userdialogs\\7.1.0.446\\acr.userdialogs.7.1.0.446.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\autofac\\5.2.0\\autofac.5.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\cloudinary.core\\1.31.0\\cloudinary.core.1.31.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\com.onesignal\\3.9.0\\com.onesignal.3.9.0.nupkg.sha512",

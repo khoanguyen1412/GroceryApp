@@ -819,3 +819,6 @@ F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\ob
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\fastcart.png
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\inactive.png
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\active.png
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\onboard3.png
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\onboard1.png
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\onboard2.png

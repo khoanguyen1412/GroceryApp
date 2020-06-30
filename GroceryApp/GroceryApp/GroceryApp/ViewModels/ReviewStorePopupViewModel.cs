@@ -129,8 +129,8 @@ namespace GroceryApp.ViewModels
             MessageService.Show("Received successfully", 0);
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataReceiveOrder(order);
-            PushNotificationService.Push(NotiNumber.ReceiveOrder,datas, false); 
-
+            PushNotificationService.Push(NotiNumber.ReceiveOrderForStore,datas, false);
+            PushNotificationService.Push(NotiNumber.ReceiveOrderForOther, datas, true);
         }
 
         public int GetRating()

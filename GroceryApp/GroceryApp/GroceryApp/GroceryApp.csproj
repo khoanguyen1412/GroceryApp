@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.442" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.446" />
     <PackageReference Include="Autofac" Version="5.2.0" />
     <PackageReference Include="Cloudinary.Core" Version="1.31.0" />
     <PackageReference Include="Com.OneSignal" Version="3.9.0" />
@@ -136,6 +136,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Screens\ShowStoreView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Screens\SplashScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Screens\StoreAddressView.xaml">

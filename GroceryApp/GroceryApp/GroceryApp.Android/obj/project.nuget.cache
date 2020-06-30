@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "X/dkYux2TEZqyutE3iQqQ4pOxBw/uEAV7ZeiZj21yiT29HsP8sWzaa5TC8H9lwOVNE5ICcpJuqhFpMexcQUy/A==",
+  "dgSpecHash": "lLoZNiZsmlDvx2aoaO94E80cdd+c6AEs35PACWfi9TZ3e1vNQzDE4ppKFZRkFVJ+ryHV/uD5b3+KO8atzJlJRQ==",
   "success": true,
   "projectFilePath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\User\\.nuget\\packages\\acr.userdialogs\\7.1.0.442\\acr.userdialogs.7.1.0.442.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\acr.userdialogs\\7.1.0.446\\acr.userdialogs.7.1.0.446.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\andhud\\1.4.2\\andhud.1.4.2.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\autofac\\5.2.0\\autofac.5.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\cloudinary.core\\1.31.0\\cloudinary.core.1.31.0.nupkg.sha512",

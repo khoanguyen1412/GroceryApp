@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:GroceryApp.ViewModels"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="GroceryApp.Views.Screens.SplashScreenView">
+    <ContentPage.BindingContext>
+        <vm:SplashScreenViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" Margin="0,50,0,0">
+                <CarouselView
+                          ItemsSource="{Binding OnboardingImages}" 
+                          HeightRequest="345"
+                          Margin="0"
+                          PeekAreaInsets="15"
+                          BackgroundColor="White"
+                              CurrentItem="{Binding CurrentImage}"
+                          >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate >
+                            <Image Source="{Binding source}" WidthRequest="365"/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <Label Text="{Binding TextBold}"  FontFamily="{StaticResource CataBold}" FontAttributes="Bold" FontSize="22" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black"/>
+                <Label Text="{Binding Text}" TextColor="DarkGray" FontFamily="{StaticResource CataMedium}" FontAttributes="Bold" FontSize="18" Margin="20,0" HorizontalOptions="Center" HorizontalTextAlignment="Start" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,0" Spacing="10">
+                    <pancake:PancakeView WidthRequest="35" BorderColor="Gray" BorderThickness="1" HeightRequest="16" BackgroundColor="{Binding Color1}" CornerRadius="5"/>
+                    <pancake:PancakeView WidthRequest="35" BorderColor="Gray" BorderThickness="1" HeightRequest="16" BackgroundColor="{Binding Color2}" CornerRadius="5"/>
+                    <pancake:PancakeView WidthRequest="35" BorderColor="Gray" BorderThickness="1" HeightRequest="16" BackgroundColor="{Binding Color3}" CornerRadius="5"/>
+                </StackLayout>
+                
+            </StackLayout>
+            <ActivityIndicator  Grid.Row="1" VerticalOptions="End" HorizontalOptions="Center" IsRunning="{Binding Busy}" Margin="0,0,0,0"/>
+            <Label x:Name="loadLabel" Grid.Row="2" IsVisible="{Binding Busy}"  Text="{Binding Load}" TextColor="Black" FontFamily="{StaticResource CataMedium}" FontAttributes="Bold" FontSize="18" Margin="0,0,0,30" />
+
+            <Button IsVisible="{Binding Busy,Converter={StaticResource ValueNegativeConverter}}" Grid.Row="1"  Margin="25,40,25,30" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Get started" FontAttributes="Bold" FontFamily="{StaticResource CataBold}" TextColor="White" BackgroundColor="#26B999"
+                             Command="{Binding SaveChangeCommand}"/>
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

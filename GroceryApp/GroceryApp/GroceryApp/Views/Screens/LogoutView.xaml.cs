@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -34,8 +34,9 @@ namespace GroceryApp.Views.Screens
             User user = dataProvider.GetUserByIDUser(Infor.IDUser);
             user.IsLogined = 0;
 
-            OneSignal.Current.SetExternalUserId(user.IDUser);
-            OneSignal.Current.SendTag("IsLogined", "0");
+            OneSignal.Current.SetExternalUserId("");
+            Preferences.Set("IDLogin", "");
+            //OneSignal.Current.SendTag("IsLogined", "0");
 
             var httpClient = new HttpClient();
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);

@@ -45,7 +45,7 @@
           "dependencies": {
             "Acr.UserDialogs": {
               "target": "Package",
-              "version": "[7.1.0.442, )"
+              "version": "[7.1.0.446, )"
             },
             "Autofac": {
               "target": "Package",

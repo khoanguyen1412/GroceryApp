@@ -134,7 +134,8 @@ namespace GroceryApp.ViewModels
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataDeliverOrder(order);
-            PushNotificationService.Push(NotiNumber.DeliverOrder, datas, false);
+            PushNotificationService.Push(NotiNumber.DeliverOrderForCustomer, datas, false);
+            PushNotificationService.Push(NotiNumber.DeliverOrderForOther, datas, true);
         }
 
         public async void CancelOrder(OrderBill orderBill)
@@ -172,7 +173,8 @@ namespace GroceryApp.ViewModels
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataCancelOrder(orderBill);
-            PushNotificationService.Push(NotiNumber.CancelOrder, datas, true);
+            PushNotificationService.Push(NotiNumber.CancelOrderForCustomer, datas, false);
+            PushNotificationService.Push(NotiNumber.CancelOrderForOther, datas, true);
         }
 
         public async void ShowDetailOrder(OrderBill order)

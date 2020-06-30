@@ -11,7 +11,7 @@ namespace GroceryApp.Data
 {
     public class ServerDatabase
     {
-        public static string localhost = "http://192.168.137.1:3000/";
+        public static string localhost = "https://xamgroceryapp.herokuapp.com/";
 
         public static List<User> Users = new List<User>();
         public static List<Store> Stores = new List<Store>();

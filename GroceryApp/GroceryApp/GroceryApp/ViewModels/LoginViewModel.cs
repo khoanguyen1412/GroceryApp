@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Com.OneSignal;
 using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Screens;
@@ -104,6 +105,9 @@ namespace GroceryApp.ViewModels
 
         public async void Login()
         {
+            DataProvider dataProvider = DataProvider.GetInstance();
+            Preferences.Set("UsernameLogin", Username);
+            Preferences.Set("PasswordLogin", Password);
             if (Remember)
             {
                 Preferences.Set("Username", Username);
@@ -120,7 +124,16 @@ namespace GroceryApp.ViewModels
             {
                 using (UserDialogs.Instance.Loading("Waiting.."))
                 {
-                    await LoadServerDataAsync();
+                    while(Database.Users.Count==0)
+                        await LoadServerDataAsync();
+                    if (!dataProvider.CheckAccountExist(this.Username, this.Password))
+                    {
+                        OneSignal.Current.SetExternalUserId("");
+
+                        await LoginView.GetInstance().DisplayAlert("Account not exist", "Wrong username or password, please try again", "OK");
+                        return;
+                    }
+
                     await App.Current.MainPage.Navigation.PushAsync(new MiddleView(Username, Password), true);
                 }
                     
@@ -136,16 +149,9 @@ namespace GroceryApp.ViewModels
 
         public async Task LoadServerDataAsync()
         {
-            try
-            {
+            while (ServerDatabase.Users.Count == 0)
                 await ServerDatabase.LoadDataFromServer();
-            }
-            catch(Exception e)
-            {
-                throw e;
-                return;
-            }
-            
+
             Database.LoadDataToLocal();
         }
 

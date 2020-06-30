@@ -25,16 +25,22 @@ public enum OrderState
 public enum NotiNumber
 {
     AddToCart,
-    MakeBill,
+    MakeBillForStore,//push tới store được order
+    MakeBillForOther,//push tới các user khác
     ReturnProductCart,
-    CancelOrder,
-    ReceiveOrder,
+    CancelOrderForStore,//push tới store bị hủy order
+    CancelOrderForOther,//Push trới các user khác
+    CancelOrderForCustomer,//push tới customer bị hủy order
+    ReceiveOrderForStore,//push tới store của order được nhận
+    ReceiveOrderForOther,//push tới các user khác
     UpdateProduct,
     AddProduct,
     AnswerFeedback,
-    DeliverOrder,
+    DeliverOrderForCustomer,//push tới khách hàng bị hủy order
+    DeliverOrderForOther,//push tới các user khác
     UpdateStore,
     UpdateUser,
+    Login,
 }
 
 public class NotiContent
@@ -43,17 +49,23 @@ public class NotiContent
     {
         switch (notiNumber)
         {
-            case NotiNumber.MakeBill:
+            case NotiNumber.MakeBillForStore:
                 return "Cửa hàng của bạn vừa nhận một order mới!";
                 break;
-            case NotiNumber.CancelOrder:
+            case NotiNumber.CancelOrderForStore:
                 return "Cửa hàng của bạn có một order đã bị hủy";
                 break;
-            case NotiNumber.ReceiveOrder:
+            case NotiNumber.CancelOrderForCustomer:
+                return "Bạn có một order đã bị hủy";
+                break;
+            case NotiNumber.ReceiveOrderForStore:
                 return "Cửa hàng của bạn có một order đã được nhận!";
                 break;
-            case NotiNumber.DeliverOrder:
+            case NotiNumber.DeliverOrderForCustomer:
                 return "Đơn hàng của bạn đã bắt đầu được giao!";
+                break;
+            case NotiNumber.Login:
+                return "Tài khoảng của bạn vừa được đăng nhập bởi một máy khác!";
                 break;
         }
         return "";

@@ -1,5 +1,6 @@
 ﻿using CloudinaryDotNet.Actions;
 using GroceryApp.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -430,6 +431,102 @@ namespace GroceryApp.Data
             return result;
         } 
 
+        public List<string> GetUserIdsByPushnotiType(NotiNumber notiNumber,string datas)
+        {
+
+            List<string> result = new List<string>();
+            if (notiNumber == NotiNumber.Login)
+            {
+                result.Add(Infor.IDUser);
+                return result;
+            }
+            if (notiNumber == NotiNumber.MakeBillForStore)
+            {
+                string[] parts = datas.Split('~');
+                OrderBill newOrder = JsonConvert.DeserializeObject<OrderBill>(parts[0]);
+                string idUser = this.GetIDUserByIDStore(newOrder.IDStore);//user có idstore là store của order
+                result.Add(idUser);
+                return result;
+            }
+            if (notiNumber == NotiNumber.MakeBillForOther)
+            {
+                string[] parts = datas.Split('~');
+                OrderBill newOrder = JsonConvert.DeserializeObject<OrderBill>(parts[0]);
+                string idUser = this.GetIDUserByIDStore(newOrder.IDStore);//user có idstore là store của order
+                foreach (User user in Database.Users)
+                    if (user.IDUser != Infor.IDUser && user.IDUser != idUser)
+                        result.Add(user.IDUser);
+                return result;
+            }
+            if (notiNumber == NotiNumber.CancelOrderForStore)
+            {
+                string[] parts = datas.Split('~');
+                OrderBill canceledOrder = JsonConvert.DeserializeObject<OrderBill>(parts[0]);
+                string idUser = this.GetIDUserByIDStore(canceledOrder.IDStore);//user có idstore là store của order
+                result.Add(idUser);
+                return result;
+            }
+            if (notiNumber == NotiNumber.CancelOrderForOther)
+            {
+                string[] parts = datas.Split('~');
+                OrderBill canceledOrder = JsonConvert.DeserializeObject<OrderBill>(parts[0]);
+                string idUser = this.GetIDUserByIDStore(canceledOrder.IDStore);//user có idstore là store của order
+                foreach (User user in Database.Users)
+                    if (user.IDUser != Infor.IDUser && user.IDUser != idUser)
+                        result.Add(user.IDUser);
+                return result;
+            }
+            if (notiNumber == NotiNumber.CancelOrderForCustomer)
+            {
+                string[] parts = datas.Split('~');
+                OrderBill canceledOrder = JsonConvert.DeserializeObject<OrderBill>(parts[0]);
+                string idUser = canceledOrder.IDUser;//iduser là customer bị hủy order
+                result.Add(idUser);
+                return result;
+            }
+            if (notiNumber == NotiNumber.ReceiveOrderForStore)
+            {
+                string[] parts = datas.Split('~');
+                OrderBill receivedOrder = JsonConvert.DeserializeObject<OrderBill>(parts[0]);
+                string idUser = this.GetIDUserByIDStore(receivedOrder.IDStore);//user có idstore là store của order
+                result.Add(idUser);
+                return result;
+            }
+            if (notiNumber == NotiNumber.ReceiveOrderForOther)
+            {
+                string[] parts = datas.Split('~');
+                OrderBill receivedOrder = JsonConvert.DeserializeObject<OrderBill>(parts[0]);
+                string idUser = this.GetIDUserByIDStore(receivedOrder.IDStore);//user có idstore là store của order
+                foreach (User user in Database.Users)
+                    if (user.IDUser != Infor.IDUser && user.IDUser != idUser)
+                        result.Add(user.IDUser);
+                return result;
+            }
+            if (notiNumber == NotiNumber.DeliverOrderForCustomer)
+            {
+                string[] parts = datas.Split('~');
+                OrderBill deliveredOrder = JsonConvert.DeserializeObject<OrderBill>(parts[0]);
+                string idCustomer = deliveredOrder.IDUser;//user có idstore là store của order
+                result.Add(idCustomer);
+                return result;
+            }
+            if (notiNumber == NotiNumber.DeliverOrderForOther)
+            {
+                string[] parts = datas.Split('~');
+                OrderBill deliveredOrder = JsonConvert.DeserializeObject<OrderBill>(parts[0]);
+                string idCustomer = deliveredOrder.IDUser;//user có idstore là store của order
+                foreach (User user in Database.Users)
+                    if (user.IDUser != Infor.IDUser && user.IDUser != idCustomer)
+                        result.Add(user.IDUser);
+                return result;
+            }
+
+            foreach (User user in Database.Users)
+                if (user.IDUser != Infor.IDUser)
+                    result.Add(user.IDUser);
+            return result;
+        }
+
         public bool IsLackOfInfor()
         {
             User myUser = null;
@@ -478,6 +575,14 @@ namespace GroceryApp.Data
                 if (product.IDStore == Infor.IDStore && product.State == ProductState.InStore && product.StateInStore==ProductStateInStore.Selling)
                     return true;
             return false;
+        }
+
+        public string GetIDUserByIDStore(string idStore)
+        {
+            foreach (User user in Database.Users)
+                if (idStore == user.IDStore)
+                    return user.IDUser;
+            return null;
         }
     }
 }

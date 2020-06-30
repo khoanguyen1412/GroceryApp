@@ -9,7 +9,7 @@
     ".NETStandard,Version=v2.0/": {
       "GroceryApp/1.0.0": {
         "dependencies": {
-          "Acr.UserDialogs": "7.1.0.442",
+          "Acr.UserDialogs": "7.1.0.446",
           "Autofac": "5.2.0",
           "Cloudinary.Core": "1.31.0",
           "Com.OneSignal": "3.9.0",
@@ -33,11 +33,11 @@
           "GroceryApp.dll": {}
         }
       },
-      "Acr.UserDialogs/7.1.0.442": {
+      "Acr.UserDialogs/7.1.0.446": {
         "runtime": {
           "lib/netstandard2.0/Acr.UserDialogs.dll": {
-            "assemblyVersion": "7.1.0.442",
-            "fileVersion": "7.1.0.442"
+            "assemblyVersion": "7.1.0.446",
+            "fileVersion": "7.1.0.446"
           }
         }
       },
@@ -1383,12 +1383,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Acr.UserDialogs/7.1.0.442": {
+    "Acr.UserDialogs/7.1.0.446": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4z+sp3nTkFZuY75gd4zo2+86S8eaWlHl7KhLs/EAG9TH7Ng9+a4jfOap8v3fq1RXrF3gVae2ycLPcndZptxHZQ==",
-      "path": "acr.userdialogs/7.1.0.442",
-      "hashPath": "acr.userdialogs.7.1.0.442.nupkg.sha512"
+      "sha512": "sha512-7YF7hk4qy4x9pKrVzKnjTEvua+kTSlHqdPPvP4gIqsxymPH6I3nAW2lpSo8kX97nTBbwkfddtrikwAXIYxRNIw==",
+      "path": "acr.userdialogs/7.1.0.446",
+      "hashPath": "acr.userdialogs.7.1.0.446.nupkg.sha512"
     },
     "Autofac/5.2.0": {
       "type": "package",

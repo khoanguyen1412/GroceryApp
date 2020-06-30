@@ -111,7 +111,8 @@ namespace GroceryApp.ViewModels
             
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataInsertOrderBill(OrderItem.Order);
-            PushNotificationService.Push(NotiNumber.MakeBill, datas,false);
+            PushNotificationService.Push(NotiNumber.MakeBillForStore, datas,false);
+            PushNotificationService.Push(NotiNumber.MakeBillForOther, datas, true);
         }
 
         public FinalBillViewModel()

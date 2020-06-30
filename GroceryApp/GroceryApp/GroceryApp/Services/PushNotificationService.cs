@@ -1,4 +1,5 @@
 ﻿using CloudinaryDotNet.Actions;
+using Com.OneSignal;
 using Com.OneSignal.Abstractions;
 using GroceryApp.Data;
 using GroceryApp.Models;
@@ -15,7 +16,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-
+using Xamarin.Essentials;
 
 namespace GroceryApp.Services
 {
@@ -68,12 +69,27 @@ namespace GroceryApp.Services
                 case "11":
                     UpdateUserAction(datas[0]);
                     break;
+                case "12":
+                    LoginAction(datas[0]);
+                    break;
             }
             
 
 
         }
         #region process received data from Notification
+        public static void LoginAction(string data)
+        {
+            User user = JsonConvert.DeserializeObject<User>(data);
+            DataUpdater.UpdateUser(user);
+
+            OneSignal.Current.SetExternalUserId(user.IDUser);
+            OneSignal.Current.SendTag("IsLogined", "0");
+            Preferences.Set("IDLogin", "");
+            App.Current.MainPage.DisplayAlert("Notice", "This account has been signed up in another device!", "OK");
+            App.Current.MainPage.Navigation.PushAsync(new LogoutView());
+
+        }
         public static void AddToCartAction(string data)
         {
             List<Product> receivedProducts = JsonConvert.DeserializeObject<List<Product>>(data);
@@ -114,8 +130,6 @@ namespace GroceryApp.Services
 
             //fetch data products in server
             await ServerDatabase.FetchProductData();
-
-            Product x = DataProvider.GetInstance().GetProductByID("2002");
 
             //xóa orderbill
             DataUpdater.DeleteOrderBillByID(canceledOder.IDOrderBill);
@@ -292,6 +306,13 @@ namespace GroceryApp.Services
             json += "~11";
             return json;
         }
+
+        public static string ConvertDataLogin(User user)
+        {
+            var json = JsonConvert.SerializeObject(user);
+            json += "~12";
+            return json;
+        }
         #endregion
 
         public async static void Push(NotiNumber notiNumber, string datas, bool isSilent)
@@ -306,11 +327,11 @@ namespace GroceryApp.Services
 
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             dictionary.Add("content", datas);
+
             //GET EXTERNALIDS DỰA VÀO NOTINUMBER Ở ĐÂY
             DataProvider dataProvider = DataProvider.GetInstance();
-            string[] externalIDs = dataProvider.GetAllOtherUserIDs().ToArray();
-            //string[] externalIDs = { "1", "2" };
-
+            string[] externalIDs = dataProvider.GetUserIdsByPushnotiType(notiNumber,datas).ToArray();
+            
             object obj = null;
             if (isSilent)
                 obj = SilentNoti(externalIDs, dictionary);

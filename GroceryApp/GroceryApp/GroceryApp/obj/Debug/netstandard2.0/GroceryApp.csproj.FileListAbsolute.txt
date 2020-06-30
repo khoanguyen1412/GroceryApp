@@ -51,3 +51,4 @@ F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\EmailVerifyView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\CodeVerifyView.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\ResetPasswordView.xaml.g.cs
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Screens\SplashScreenView.xaml.g.cs
