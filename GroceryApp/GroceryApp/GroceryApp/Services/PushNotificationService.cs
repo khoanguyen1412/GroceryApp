@@ -229,7 +229,7 @@ namespace GroceryApp.Services
             DataUpdater.UpdateUser(user);
             //load lại list review cho tất cả user
             (TabbarStoreManager.GetInstance().Children.ElementAt(3).BindingContext as ReviewManagerViewModel).LoadData();
-
+            (TabbarStoreManager.GetInstance().Children.ElementAt(0).BindingContext as StoreDashBoardViewModel).LoadData();
         }
 
         #endregion
@@ -391,7 +391,7 @@ namespace GroceryApp.Services
                 contents = new { en = NotiContent.Get(notiNumber) },
                 content_available = true,
                 include_external_user_ids = externalIDs,
-                
+                small_icon="pushnotiicon",
                 data = datas
             };
             return shownObj;

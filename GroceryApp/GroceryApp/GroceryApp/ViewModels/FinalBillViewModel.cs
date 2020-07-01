@@ -106,13 +106,15 @@ namespace GroceryApp.ViewModels
             var ordersVM = TabBarCustomer.GetInstance().Children[3].BindingContext as ListOrdersViewModel;
             ordersVM.LoadData();
 
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataInsertOrderBill(OrderItem.Order);
+            PushNotificationService.Push(NotiNumber.MakeBillForStore, datas, false);
+            PushNotificationService.Push(NotiNumber.MakeBillForOther, datas, true);
+
             //await PopupNavigation.Instance.PushAsync(successPopup);
             await App.Current.MainPage.Navigation.PopAsync();
             
-            //PUSH NOTI
-            string datas = PushNotificationService.ConvertDataInsertOrderBill(OrderItem.Order);
-            PushNotificationService.Push(NotiNumber.MakeBillForStore, datas,false);
-            PushNotificationService.Push(NotiNumber.MakeBillForOther, datas, true);
+            
         }
 
         public FinalBillViewModel()

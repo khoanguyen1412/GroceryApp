@@ -213,6 +213,7 @@ namespace GroceryApp.Data
                     store.StoreDescription = updatedStore.StoreDescription;
                     store.StoreAddress = updatedStore.StoreAddress;
                     store.ImageURL = updatedStore.ImageURL;
+                    store.IsActive = updatedStore.IsActive;
                     return;
                 }
         }
