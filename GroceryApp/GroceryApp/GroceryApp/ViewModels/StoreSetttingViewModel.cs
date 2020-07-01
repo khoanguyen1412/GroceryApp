@@ -6,6 +6,7 @@ using GroceryApp.Models;
 using GroceryApp.Services;
 using GroceryApp.Views.Screens;
 using GroceryApp.Views.TabBars;
+using Microsoft.WindowsAzure.Storage;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
 using System;
@@ -30,6 +31,7 @@ namespace GroceryApp.ViewModels
         DataProvider dataProvider = DataProvider.GetInstance();
         private Store myStore;
         string ImagePath;
+        Stream streamer;
         bool changeActive = false;
         
         private ImageSource _storeImage;
@@ -110,9 +112,9 @@ namespace GroceryApp.ViewModels
                 await app.DisplayAlert("Error", message, "OK");
                 return;
             }
-            if (ImagePath != "")
+            if (streamer != null)
             {
-                Account account = new Account(
+                /*Account account = new Account(
                     "ungdung-grocery-xamarin-by-dk",
                     "378791526477571",
                     "scsyCxQS_C74MbAGdOutpwrzlnU"
@@ -138,7 +140,17 @@ namespace GroceryApp.ViewModels
                 {
                     var page = TabbarStoreManager.GetInstance().Children.ElementAt(4) as StoreSettingView;
                     await page.DisplayAlert("Error", "Error upload image to server, try again!", "Ok");
-                }
+                }*/
+
+                var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=didong;AccountKey=JXk6dW2Dmg8JABIhDhnPG9OINDbYR3WyJEiuDXp0hKAxv1t738Tu82IyZj5MC+1VTu9PdJyF+uvOEKD7BWA/Yw==;EndpointSuffix=core.windows.net");
+                var client = account.CreateCloudBlobClient();
+                var container = client.GetContainerReference("xamarin-blob");
+                await container.CreateIfNotExistsAsync();
+                var name = Guid.NewGuid().ToString();
+                var blockBlob = container.GetBlockBlobReference($"{name}.png");
+                await blockBlob.UploadFromStreamAsync(streamer);
+                string URL = blockBlob.Uri.OriginalString;
+                myStore.ImageURL = URL;
             }
 
             using (UserDialogs.Instance.Loading("Saving.."))
@@ -183,13 +195,14 @@ namespace GroceryApp.ViewModels
             
             try
             {
-                FileData fileData = await CrossFilePicker.Current.PickFile();
+                /*FileData fileData = await CrossFilePicker.Current.PickFile();
                 if (fileData == null)
                     return; // user canceled file picking
                 string path = fileData.FilePath;
 
                 StoreImage = (ImageSource)path;
-                ImagePath = path;
+                ImagePath = path;*/
+                streamer = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
             }
             catch (Exception ex)
             {

@@ -27,13 +27,13 @@ attr;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Andro
 background;obj\Debug\90\res\mipmap-anydpi-v26\icon.xml
 background;obj\Debug\90\res\mipmap-anydpi-v26\icon_round.xml
 cache-path;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\52\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+color;obj\Debug\90\res\values\colors.xml
+corners;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\drawable\roundedbg.xml
+corners;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\drawable\roundedbgdark.xml
 changeBounds;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\9\jl\res\transition\navigation_transition.xml
 changeClipBounds;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\9\jl\res\transition\navigation_transition.xml
 changeImageTransform;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\9\jl\res\transition\navigation_transition.xml
 changeTransform;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\9\jl\res\transition\navigation_transition.xml
-color;obj\Debug\90\res\values\colors.xml
-corners;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\drawable\roundedbg.xml
-corners;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\drawable\roundedbgdark.xml
 declare-styleable;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\values\attrs.xml
 declare-styleable;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\59\jl\res\values\attrs.xml
 external-cache-path;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\52\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
@@ -83,11 +83,11 @@ set;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Androi
 set;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\9\jl\res\anim\flip_out.xml
 shape;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\drawable\roundedbg.xml
 shape;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\drawable\roundedbgdark.xml
+style;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\59\jl\res\values\styles.xml
+style;obj\Debug\90\res\values\styles.xml
 string;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\values\strings.xml
 string;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\6\jl\res\values\strings.xml
 string;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\7\jl\res\values\values.xml
-style;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\59\jl\res\values\styles.xml
-style;obj\Debug\90\res\values\styles.xml
 TextView;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\layout\loading.xml
 TextView;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\layout\loadingimage.xml
 TextView;F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\lp\1\jl\res\layout\loadingprogress.xml
