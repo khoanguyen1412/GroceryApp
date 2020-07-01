@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 namespace GroceryApp.Data
 {
     public class ServerDatabase
-    {
-        public static string localhost = "https://xamgroceryapp.herokuapp.com/";
+    { 
+        public static string localhost = "https://newappgroc.azurewebsites.net/";
 
         public static List<User> Users = new List<User>();
         public static List<Store> Stores = new List<Store>();

@@ -346,10 +346,9 @@ namespace GroceryApp.ViewModels
         public string GetUnit()
         {
             string result = "";
-            if (UnitAmount != 0) result += UnitAmount.ToString();
-            result += "#";
+            result += UnitAmount.ToString() + "#";
 
-            if (RadioDefault) result += CurrentUnit.ToString();
+            if (RadioDefault) result += CurrentUnit;
             else result += OtherUnit;
 
             return result;

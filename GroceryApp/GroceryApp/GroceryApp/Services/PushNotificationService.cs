@@ -94,6 +94,11 @@ namespace GroceryApp.Services
         {
             List<Product> receivedProducts = JsonConvert.DeserializeObject<List<Product>>(data);
             DataUpdater.UpdateProduct(receivedProducts);
+            var showStore = ShowStoreView.GetInstance();
+            if (showStore != null)
+            {
+                (showStore.BindingContext as ShowStoreViewModel).LoadData(true);
+            }
             if(receivedProducts[0].IDStore==Infor.IDStore)
                 (TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as ProductManagerViewModel).LoadData(false);
         }
@@ -372,7 +377,6 @@ namespace GroceryApp.Services
                 //contents = new { en = datas },
                 content_available = true,
                 include_external_user_ids = externalIDs,
-                filters = new object[] { new { field = "tag", key = "IsLogined", value = "1" } },
                 data = datas
             };
             return silentObj;

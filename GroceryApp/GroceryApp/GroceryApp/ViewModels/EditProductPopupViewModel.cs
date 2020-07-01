@@ -326,10 +326,9 @@ namespace GroceryApp.ViewModels
         public string GetUnit()
         {
             string result = "";
-            if (UnitAmount != 0) result += UnitAmount.ToString();
-            result += "#";
+            result += UnitAmount.ToString()+ "#";
 
-            if (RadioDefault) result += CurrentUnit.ToString();
+            if (RadioDefault) result += CurrentUnit;
             else result += OtherUnit;
 
             return result;
@@ -391,14 +390,14 @@ namespace GroceryApp.ViewModels
         {
             RadioDefault = false;
             string[] UnitItems = SourceProduct.Unit.Split('#');
-            if (UnitItems[0] == "") UnitAmount = 0;
-            else UnitAmount = (Int16.Parse(UnitItems[0].ToString()));
+            UnitAmount = (Int16.Parse(UnitItems[0].ToString()));
 
             for (int i = 0; i < UnitNames.Count; i++)
-                if (UnitNames[i] == UnitItems[UnitItems.Length - 1])
+                if (UnitNames[i] == UnitItems[1])
                 {
                     CurrentUnit = UnitNames[i];
                     RadioDefault = true;
+                    break;
                 }
 
             if (!RadioDefault) OtherUnit = UnitItems[1];
