@@ -40,7 +40,11 @@
                     <Label  FontSize="25"  AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource Bold}" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Forgot Password">
 
                     </Label>
-                    <Image x:Name="backLabel" Source="back" AbsoluteLayout.LayoutBounds="0,0.7,27,27" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+                    <Image x:Name="backLabel" Source="back" AbsoluteLayout.LayoutBounds="0,0.7,27,27" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding UserSetting.GobackCommand,Source={StaticResource Locator}}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </AbsoluteLayout>
 
                 <pancake:PancakeView Margin="0,20,0,0" BackgroundColor="Transparent" HeightRequest="170" WidthRequest="170" >
@@ -58,7 +62,7 @@
                     <Entry x:Name="EmailEntry" Text="khoanguyen1412v@gmail.com" HeightRequest="50" HorizontalOptions="FillAndExpand" FontSize="20" FontFamily="{StaticResource CataMedium}"/>
                 </StackLayout>
 
-                <Button x:Name="SendBtn" Clicked="SendBtn_Clicked"  Margin="10,40,10,0" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Send code" TextColor="White" BackgroundColor="#61C5B2"/>
+                <Button x:Name="SendBtn" Clicked="SendBtn_Clicked"  Margin="10,40,10,20" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Send code" TextColor="White" BackgroundColor="#61C5B2"/>
 
             </StackLayout>
         </ScrollView>

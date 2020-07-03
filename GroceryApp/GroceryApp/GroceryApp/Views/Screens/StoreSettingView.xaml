@@ -29,18 +29,12 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid Margin="20,0,20,0">
+        <Grid Margin="20,0,20,0" VerticalOptions="FillAndExpand" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition />
-
             </Grid.RowDefinitions>
 
             <Grid>
@@ -63,58 +57,63 @@
                 </StackLayout>
             </StackLayout>
 
+            <ScrollView Grid.Row="2" Orientation="Vertical">
+                <StackLayout Orientation="Vertical">
+                    <AbsoluteLayout Grid.Row="2" HeightRequest="200" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" >
+                        <pancake:PancakeView  CornerRadius="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1"   AbsoluteLayout.LayoutFlags="All" >
+                            <Image Source="{Binding StoreImage}" Aspect="AspectFill"/>
+                        </pancake:PancakeView>
+                        <pancake:PancakeView HeightRequest="35" WidthRequest="120" Margin="10" CornerRadius="10"  BackgroundColor="Black" Opacity="0.7" AbsoluteLayout.LayoutBounds="1,0" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                            </pancake:PancakeView.GestureRecognizers>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="whitedelete" Margin="12,12,0,12" RotationX="0.5" RotationY="0.5" Rotation="45"/>
+                                <Label Text="Change" TextColor="White" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="20" Margin="0,-5,0,0" Style="{StaticResource Medium}" />
+                            </StackLayout>
+                        </pancake:PancakeView>
+
+                    </AbsoluteLayout>
+                    <BoxView Grid.Row="3"  Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+                    <Grid Grid.Row="4">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="infor" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                            <Label Text="Store information"   FontSize="18"   Style="{StaticResource Bold}" />
+                            <Label Text="Change store's name, description ect."  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                        </StackLayout>
+                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+                    </Grid>
+                    <BoxView Grid.Row="5"  Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+                    <Grid Grid.Row="6">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddressSettingCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="location" WidthRequest="30" HeightRequest="30"/>
+                        <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
+                            <Label Text="Location"   FontSize="18"   Style="{StaticResource Bold}" />
+                            <Label Text="Change store's address"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
+                        </StackLayout>
+                        <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
+                    </Grid>
+                    <BoxView Grid.Row="7"  Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
+
+                </StackLayout>
+            </ScrollView>
             
-            <AbsoluteLayout Grid.Row="2" HeightRequest="200" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" >
-                <pancake:PancakeView  CornerRadius="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1"   AbsoluteLayout.LayoutFlags="All" >
-                    <Image Source="{Binding StoreImage}" Aspect="AspectFill"/>
-                </pancake:PancakeView>
-                <pancake:PancakeView HeightRequest="35" WidthRequest="120" Margin="10" CornerRadius="10"  BackgroundColor="Black" Opacity="0.7" AbsoluteLayout.LayoutBounds="1,0" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
-                    <pancake:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
-                    </pancake:PancakeView.GestureRecognizers>
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="whitedelete" Margin="12,12,0,12" RotationX="0.5" RotationY="0.5" Rotation="45"/>
-                        <Label Text="Change" TextColor="White" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="20" Margin="0,-5,0,0" Style="{StaticResource Medium}" />
-                    </StackLayout>
-                </pancake:PancakeView>
-                
-            </AbsoluteLayout>
-            <BoxView Grid.Row="3"  Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
-            <Grid Grid.Row="4">
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding InforSettingCommand}"/>
-                </Grid.GestureRecognizers>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <Image Source="infor" WidthRequest="30" HeightRequest="30"/>
-                <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
-                    <Label Text="Store information"   FontSize="18"   Style="{StaticResource Bold}" />
-                    <Label Text="Change store's name, description ect."  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
-                </StackLayout>
-                <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
-            </Grid>
-            <BoxView Grid.Row="5"  Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
-            <Grid Grid.Row="6">
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding AddressSettingCommand}"/>
-                </Grid.GestureRecognizers>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <Image Source="location" WidthRequest="30" HeightRequest="30"/>
-                <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-5,0,0">
-                    <Label Text="Location"   FontSize="18"   Style="{StaticResource Bold}" />
-                    <Label Text="Change store's address"  Margin="0,-5,0,0"  TextColor="Gray"  FontSize="15" Style="{StaticResource Medium}" />
-                </StackLayout>
-                <Image Grid.Column="2" Source="grayarrow" WidthRequest="20" HeightRequest="20"/>
-            </Grid>
-            <BoxView Grid.Row="7"  Margin="0,10,0,10" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" WidthRequest="1"/>
-            <Button Grid.Row="8" Command="{Binding SaveChangeCommand}" VerticalOptions="End" Margin="0,40,0,20" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Save changes" TextColor="White" BackgroundColor="#f7436a"/>
+            <Button Grid.Row="3" Command="{Binding SaveChangeCommand}" VerticalOptions="End" Margin="0,10,0,20" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Save changes" TextColor="White" BackgroundColor="#f7436a"/>
 
         </Grid>
     </ContentPage.Content>

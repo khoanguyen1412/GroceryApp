@@ -34,7 +34,11 @@
             </Grid.RowDefinitions>
             <AbsoluteLayout HeightRequest="50" Margin="0" HorizontalOptions="FillAndExpand">
                 <Label FontSize="30" Style="{StaticResource Medium}"  AbsoluteLayout.LayoutBounds="0,0,1,1"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Store Information"/>
-                <Image x:Name="backLabel" Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
+                <Image x:Name="backLabel" Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UserSetting.GobackCommand,Source={StaticResource Locator}}"/>
+                    </Image.GestureRecognizers>
+                </Image>
             </AbsoluteLayout>
             <StackLayout Grid.Row="1" Margin="0,50,0,0" Spacing="0">
                 <Label FontSize="17" Style="{StaticResource Medium}" Margin="5,0,0,-5" TextColor="Gray" FontAttributes="Bold" Text="Store name"/>

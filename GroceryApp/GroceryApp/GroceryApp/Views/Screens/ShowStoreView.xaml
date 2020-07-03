@@ -13,7 +13,6 @@
              x:Class="GroceryApp.Views.Screens.ShowStoreView"
              NavigationPage.HasNavigationBar="False"
              x:Name="DetailStore"
-            
              
              >
 

@@ -109,7 +109,7 @@
                         </Frame.GestureRecognizers>
                         <StackLayout VerticalOptions="Center">
                             <Image Source="veggies" BackgroundColor="White" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
-                            <Label Text="veggies" Style="{StaticResource LabelTitleStyle}" HorizontalTextAlignment="Center" TextColor="White"/>
+                            <Label Text="Veggies" Style="{StaticResource LabelTitleStyle}" HorizontalTextAlignment="Center" TextColor="White"/>
                         </StackLayout>
                     </Frame>
                     <Frame Grid.Column="2" Grid.Row="0" HeightRequest="100" BackgroundColor="{StaticResource MainColor}" CornerRadius="5" HasShadow="True" IsClippedToBounds="True" Padding="0">

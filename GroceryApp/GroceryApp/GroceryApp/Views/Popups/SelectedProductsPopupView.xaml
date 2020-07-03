@@ -8,7 +8,6 @@
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="GroceryApp.Views.Popups.SelectedProductsPopupView">
     <ContentView.Content>
-        <ScrollView Orientation="Vertical">
             
         <Grid              
             RowSpacing="0">
@@ -121,7 +120,7 @@
                 Grid.Row="1"
                 BackgroundColor="#32A060">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
@@ -133,17 +132,19 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <StackLayout Orientation="Horizontal" Margin="0,5" HorizontalOptions="FillAndExpand" >
-                                        <Frame CornerRadius="40" HeightRequest="50" WidthRequest="50" Padding="0">
+                                        <Frame CornerRadius="40" HeightRequest="50" WidthRequest="50" Padding="0" VerticalOptions="Center">
                                             <Image Source="{Binding ImageURL}" Aspect="AspectFill" WidthRequest="70" HeightRequest="70"/>
                                         </Frame>
-                                        <Label TextColor="White" VerticalOptions="Center" Margin="0,0,0,0" Text="x" Style="{StaticResource LabelTitleStyle}"/>
-                                        <Label TextColor="White" VerticalOptions="Center" Margin="-5,0,0,0" Text="{Binding QuantityOrder}" Style="{StaticResource LabelTitleStyle}"/>
-                                        <Label TextColor="White" FontSize="20" VerticalOptions="Center" Margin="10,0,0,0" Text="{Binding ProductName}" Style="{StaticResource BoldTitleStyle}"/>
+                                        <StackLayout Grid.Column="1" Orientation="Horizontal" Margin="0,5" HorizontalOptions="FillAndExpand" >
 
-                                    </StackLayout>
-                                        <Label TextColor="White" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,10,0"  Text="{Binding .,Converter={StaticResource SinglePriceSelectedProductConverter}}" Style="{StaticResource LabelTitleStyle}"/>
+                                            <Label TextColor="White" VerticalOptions="Center" Margin="0,0,0,0" Text="x" Style="{StaticResource LabelTitleStyle}"/>
+                                            <Label TextColor="White" VerticalOptions="Center" Margin="-5,0,0,0" Text="{Binding QuantityOrder}" Style="{StaticResource LabelTitleStyle}"/>
+                                            <Label TextColor="White" FontSize="20" VerticalOptions="Center" Margin="10,0,0,0" Text="{Binding ProductName}" Style="{StaticResource BoldTitleStyle}"/>
+
+                                        </StackLayout>
+                                        <Label TextColor="White" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" Margin="10,0,10,0"  Text="{Binding .,Converter={StaticResource SinglePriceSelectedProductConverter}}" Style="{StaticResource LabelTitleStyle}"/>
 
                                 </Grid>
                                 
@@ -167,7 +168,7 @@
                     HeightRequest="48"
                     CornerRadius="24, 0, 24, 0"
                     BackgroundColor="White"
-                    Margin="24, 20, 0, 0">
+                    Margin="24, 20, 0, 100">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60" />
@@ -185,6 +186,5 @@
                 </pancake:PancakeView>
             </Grid>
         </Grid>
-        </ScrollView>
     </ContentView.Content>
 </ContentView>

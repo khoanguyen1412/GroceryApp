@@ -117,6 +117,7 @@ namespace GroceryApp.ViewModels
         public ICommand EmailEditCommand { get; set; }
         public ICommand SaveChangeCommand { get; set; }
         public ICommand ChangeImageCommand { get; set; }
+        public ICommand GobackCommand { get; set; }
         public UserSettingViewModel()
         {
             LoadData();
@@ -127,6 +128,12 @@ namespace GroceryApp.ViewModels
             EmailEditCommand = new Command(ChangeEmailEdit);
             SaveChangeCommand = new Command(SaveChange);
             ChangeImageCommand = new Command(ChangeImage);
+            GobackCommand = new Command(GoBack);
+        }
+
+        public async void GoBack()
+        {
+            await App.Current.MainPage.Navigation.PopAsync();
         }
 
         public async void SaveChange()
@@ -240,6 +247,7 @@ namespace GroceryApp.ViewModels
         {
 
             var addressPage = new StoreAddressView();
+            addressPage.SetForUser();
             addressPage.parentName = "UserSetting";
             string[] items = CurrentUser.Address.Split('#');
             addressPage.BindingContext = new AddressItem

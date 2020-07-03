@@ -66,11 +66,20 @@ namespace GroceryApp.ViewModels
             get { return "RECEIVED"; }
         }
 
+        public ICommand CloseCommand { get; set; }
+
+
         public ICommand ShowReviewPopupCommand { get; set; }
         public OrderDetailPopupViewModel()
         {
             LoadData();
             ShowReviewPopupCommand = new Command<OrderBillItem>(ShowReviewPopup);
+            CloseCommand = new Command(Close);
+        }
+
+        public async void Close()
+        {
+            await PopupNavigation.PopAllAsync();
         }
         public async void ShowReviewPopup(OrderBillItem orderItem)
         {

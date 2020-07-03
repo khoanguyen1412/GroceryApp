@@ -91,25 +91,25 @@
     <Shell.FlyoutHeaderTemplate >
         <DataTemplate x:Name="datatemplate">
             <ContentView HeightRequest="180" BackgroundColor="#FFFFFF">
-                <pancake:PancakeView  CornerRadius="0,20,0,20" Margin="0,20,20,10" BackgroundColor="#8998FF">
+                <pancake:PancakeView  CornerRadius="0,20,0,20" Margin="0,20,10,10" BackgroundColor="#8998FF">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <pancake:PancakeView BackgroundColor="#4dffb8" CornerRadius="90" Margin="20,30,30,30">
+                        <pancake:PancakeView VerticalOptions="Center" BackgroundColor="#4dffb8" WidthRequest="70" HeightRequest="70" CornerRadius="90" Margin="20,30,0,30" >
                             <Grid BackgroundColor="Transparent" Margin="4">
                                 <pancake:PancakeView BackgroundColor="White"  CornerRadius="90" Margin="0" Padding="0">
                                     <Grid BackgroundColor="Transparent" Margin="4">
                                         <pancake:PancakeView BackgroundColor="MediumPurple"  CornerRadius="90" Margin="0" Padding="0">
-                                            <Image x:Name="UserImage" Source="{Binding ImageURL}" Aspect="AspectFit"/>
+                                            <Image x:Name="UserImage" Source="{Binding ImageURL}" WidthRequest="70" HeightRequest="70" Aspect="AspectFill"/>
                                         </pancake:PancakeView>
                                     </Grid>
                                 </pancake:PancakeView>
                             </Grid>
 
                         </pancake:PancakeView>
-                        <StackLayout Grid.Column="1" VerticalOptions="Center" BackgroundColor="Transparent" Margin="-20,0,0,0">
+                        <StackLayout Grid.Column="1" VerticalOptions="Center" BackgroundColor="Transparent" Margin="0,0,0,0">
                             <Label x:Name="NameLabel" Text="{Binding UserName}" TextColor="White" FontSize="22"  Style="{StaticResource BoldTitleStyle}" />
                             <Label x:Name="EmailLabel" Text="{Binding Email}" TextColor="White" Style="{StaticResource LabelTitleStyle}"  FontSize="13"/>
                         </StackLayout>

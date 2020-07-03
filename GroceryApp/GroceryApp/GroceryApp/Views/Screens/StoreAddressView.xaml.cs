@@ -21,6 +21,11 @@ namespace GroceryApp.Views.Screens
             InitializeComponent();
         }
 
+        public void SetForUser()
+        {
+            titleLabel.Text = "Your Address";
+        }
+
         private void Save_Clicked(object sender, EventArgs e)
         {
             string message = CheckInfor();

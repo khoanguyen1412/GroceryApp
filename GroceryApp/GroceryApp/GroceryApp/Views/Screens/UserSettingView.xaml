@@ -28,7 +28,7 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid Margin="20,0,20,0">
+        <Grid Margin="20,0,20,0" Padding="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -40,12 +40,15 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <Grid>
+            <Grid Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Label Text="Your Information" VerticalOptions="End" VerticalTextAlignment="End" FontSize="35" Style="{StaticResource Bold}" />
+                <Label Text="Your Information" Style="{StaticResource Bold}" VerticalOptions="End" VerticalTextAlignment="End" FontSize="35"  />
                 <Image Source="squareinfor" Grid.Column="1" Margin="0,0,0,5" VerticalOptions="End" HorizontalOptions="End" WidthRequest="35" HeightRequest="35"/>
             </Grid>
             <Label Grid.Row="1" Text="Setting up your information and account recurity." VerticalOptions="End" VerticalTextAlignment="End" FontSize="17" TextColor="Gray" Style="{StaticResource Medium}" />

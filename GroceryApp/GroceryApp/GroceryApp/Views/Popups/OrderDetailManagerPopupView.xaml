@@ -6,8 +6,9 @@
              mc:Ignorable="d"
               
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             x:Class="GroceryApp.Views.Popups.OrderDetailManagerPopupView">
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+                 xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 x:Class="GroceryApp.Views.Popups.OrderDetailManagerPopupView">
     <popup:PopupPage.Animation>
 
         <animations:MoveAnimation 
@@ -20,8 +21,24 @@
          HasBackgroundAnimation="True"/>
 
     </popup:PopupPage.Animation>
-    <StackLayout Margin="20,50" BackgroundColor="White" Orientation="Vertical" >
-        <Grid Margin="0,10,0,10">
+    <StackLayout Margin="20,50" BackgroundColor="White" Orientation="Vertical" Spacing="0">
+        <Grid Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label  Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" FontSize="20" Text="Bill infor"/>
+            <pancake:PancakeView Grid.Column="1" CornerRadius="90" HeightRequest="40" WidthRequest="40" BorderColor="Black" BorderThickness="0">
+                <pancake:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OrderDetail.CloseCommand,Source={StaticResource Locator}}"/>
+                </pancake:PancakeView.GestureRecognizers>
+                <Image Source="delete" Margin="10"/>
+            </pancake:PancakeView>
+        </Grid>
+        <Grid Margin="0,0,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -32,15 +49,15 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Margin="20,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Customer:" FontSize="20"/>
-            <Label Grid.Row="1" Grid.Column="0" Margin="20,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Phone:" FontSize="20"/>
-            <Label Grid.Row="2" Grid.Column="0" Margin="20,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Address:" FontSize="20"/>
-            <Label Grid.Row="0" Grid.Column="1" Margin="0,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.UserName}" FontSize="20"/>
-            <Label Grid.Row="1" Grid.Column="1" Margin="0,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.CustomerPhone}" FontSize="20"/>
-            <Label Grid.Row="2" Grid.Column="1" Margin="0,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.CustomerAddress,Converter={StaticResource AddressFormatConverter}}" FontSize="20"/>
+            <Label Grid.Row="0" Grid.Column="0" Margin="20,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Customer:" FontSize="18"/>
+            <Label Grid.Row="1" Grid.Column="0" Margin="20,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Phone:" FontSize="18"/>
+            <Label Grid.Row="2" Grid.Column="0" Margin="20,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Address:" FontSize="18"/>
+            <Label Grid.Row="0" Grid.Column="1" Margin="0,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.UserName}" FontSize="18"/>
+            <Label Grid.Row="1" Grid.Column="1" Margin="0,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.CustomerPhone}" FontSize="18"/>
+            <Label Grid.Row="2" Grid.Column="1" Margin="0,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.CustomerAddress,Converter={StaticResource AddressFormatConverter}}" FontSize="18"/>
 
         </Grid>
-        <Label  Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" Text="Products"/>
+        <Label  Margin="20,0,20,0" Style="{StaticResource LabelWellcomeStyle}" FontSize="18" Text="Products"/>
         <Grid VerticalOptions="FillAndExpand" Margin="0" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -99,21 +116,21 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Subtotal" FontSize="20" TextColor="Black"/>
-                    <Label Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Delivery" FontSize="20" TextColor="Black"/>
-                    <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Subtotal" FontSize="20" TextColor="Black"/>
-                    <Label Grid.Row="2" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Total" FontSize="20" TextColor="Black"/>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Subtotal" FontSize="18" TextColor="Black"/>
+                    <Label Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Delivery" FontSize="18" TextColor="Black"/>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Subtotal" FontSize="18" TextColor="Black"/>
+                    <Label Grid.Row="2" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Total" FontSize="18" TextColor="Black"/>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                         <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
-                        <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.SubTotalPrice}" FontSize="20" TextColor="Black"/>
+                        <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.SubTotalPrice}" FontSize="18" TextColor="Black"/>
                     </StackLayout>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
                         <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
-                        <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.DeliveryPrice}" FontSize="20" TextColor="Black"/>
+                        <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.DeliveryPrice}" FontSize="18" TextColor="Black"/>
                     </StackLayout>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
                         <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
-                        <Label  Margin="-5,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="{Binding Order.TotalPrice}" FontSize="20" TextColor="Black"/>
+                        <Label  Margin="-5,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="{Binding Order.TotalPrice}" FontSize="18" TextColor="Black"/>
                     </StackLayout>
 
                     <Grid Grid.Row="3" Grid.ColumnSpan="2"  HorizontalOptions="FillAndExpand">
@@ -121,14 +138,14 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button IsVisible="{Binding Order.State,Converter={StaticResource OrderDetailManagerButtonVisibleConverter}}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" 
-                            BackgroundColor="Red" 
+                        <Button IsVisible="{Binding Order.State,Converter={StaticResource OrderDetailManagerButtonVisibleConverter}}" CornerRadius="10" FontSize="23" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" 
+                            BackgroundColor="Red" Padding="0"
                             Text="Cancel"   HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"
                             Command="{Binding CancelCommand}"
                                 CommandParameter="{Binding Order}"
                             />
-                        <Button IsVisible="{Binding Order.State,Converter={StaticResource OrderDetailManagerButtonVisibleConverter}}" CornerRadius="10" FontSize="25" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" 
-                            BackgroundColor="#00cc00" 
+                        <Button IsVisible="{Binding Order.State,Converter={StaticResource OrderDetailManagerButtonVisibleConverter}}" CornerRadius="10" FontSize="23" Style="{StaticResource LabelWellcomeStyle}" TextColor="White" Margin="0,0,0,10" 
+                            BackgroundColor="#00cc00" Padding="0"
                             Text="Deliver"  Grid.Column="1"  HorizontalOptions="Center" WidthRequest="300" HeightRequest="45"
                             Command="{Binding DeliverCommand}"
                                 CommandParameter="{Binding Order}"

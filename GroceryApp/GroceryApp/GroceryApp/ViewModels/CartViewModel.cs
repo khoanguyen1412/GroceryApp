@@ -188,10 +188,11 @@ namespace GroceryApp.ViewModels
                 if (item.isChosen)
                     ListProducts.Add(item.Product);
             string id="OrderBill_"+ DateTime.Now.ToString("HHmmss");
+            User customer = DataProvider.GetInstance().GetUserByIDUser(Infor.IDUser);
             OrderBill order = new OrderBill()
             {
                 IDOrderBill = id,
-                IDUser = Infor.IDUser,
+                IDUser = customer.IDUser,
                 IDStore = StoreItems[currentStore].IDStore,
                 Date = DateTime.Today,
                 SubTotalPrice = Subtotal,
@@ -203,6 +204,9 @@ namespace GroceryApp.ViewModels
                 Review = "",
                 StoreAnswer = "",
                 Rating = -1,
+                CustomerPhone= customer.PhoneNumber,
+                UserName=customer.UserName
+                
             };
 
             OrderBillItem orderBillItem = new OrderBillItem
