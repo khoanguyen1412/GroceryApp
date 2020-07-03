@@ -10,7 +10,7 @@
                  x:Class="GroceryApp.Views.Popups.ConfirmInforOrderPopupView"
                  HeightRequest="400"
                  x:Name="ConfirmOrder"
-                 
+                 xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                  >
     <popup:PopupPage.Animation>
 
@@ -50,19 +50,19 @@
                         <Label Grid.Row="0" TextColor="Black" Margin="0,20,0,20" Style="{StaticResource LabelWellcomeStyle}" Text="Deliver to:"/>
                         <StackLayout Grid.Row="1" Orientation="Horizontal" >
 
-                            <Image Source="{Binding DefaultAddress,Converter={StaticResource RadioAddressConverter}}" HeightRequest="25" WidthRequest="25">
-                                <Image.GestureRecognizers>
+                            <ffimage:CachedImage Source="{Binding DefaultAddress,Converter={StaticResource RadioAddressConverter}}" HeightRequest="25" WidthRequest="25">
+                                <ffimage:CachedImage.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding DefaultCheckCommand}"/>
-                                </Image.GestureRecognizers>
-                            </Image>
+                                </ffimage:CachedImage.GestureRecognizers>
+                            </ffimage:CachedImage>
                             <Label TextColor="{Binding DefaultAddress, Converter={StaticResource TextColorEnableConverter}}" Text="{Binding UserAddress,Converter={StaticResource AddressFormatConverter}}" VerticalOptions="Center" FontSize="20" Margin="5,0,0,0"/>
                         </StackLayout>
                         <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="0,5,0,0">
-                            <Image Source="{Binding OtherAddress,Converter={StaticResource RadioAddressConverter}}" HeightRequest="25" WidthRequest="25">
-                                <Image.GestureRecognizers>
+                            <ffimage:CachedImage Source="{Binding OtherAddress,Converter={StaticResource RadioAddressConverter}}" HeightRequest="25" WidthRequest="25">
+                                <ffimage:CachedImage.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding OtherCheckCommand}"/>
-                                </Image.GestureRecognizers>
-                            </Image>
+                                </ffimage:CachedImage.GestureRecognizers>
+                            </ffimage:CachedImage>
                             <Label Text="Another Address:" TextColor="{Binding OtherAddress, Converter={StaticResource TextColorEnableConverter}}" VerticalOptions="Center" FontSize="20" Margin="5,0,0,0"/>
                         </StackLayout>
                         <controls:CustomEntry IsEnabled="{Binding OtherAddress}"  Text="{Binding NewAddress}" Placeholder="new address.." Grid.Row="3" Margin="35,0,0,0" HeightRequest="50" VerticalOptions="Start"/>
@@ -81,8 +81,8 @@
                             </Grid.ColumnDefinitions>
                             <Label Margin="0,0,-35,0" HorizontalOptions="Center" Text="NEXT" Style="{StaticResource LabelDefaultStyle}" FontSize="25" TextColor="White"/>
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,0">
-                                <Image Margin="0,0,-20,0" Source="rightarrow" WidthRequest="26" HeightRequest="26"/>
-                                <Image Margin="0,0,3,0" Source="rightarrow" WidthRequest="26" HeightRequest="26" />
+                                <ffimage:CachedImage Margin="0,0,-20,0" Source="rightarrow" WidthRequest="26" HeightRequest="26"/>
+                                <ffimage:CachedImage Margin="0,0,3,0" Source="rightarrow" WidthRequest="26" HeightRequest="26" />
                             </StackLayout>
                         </Grid>
                     </Frame>

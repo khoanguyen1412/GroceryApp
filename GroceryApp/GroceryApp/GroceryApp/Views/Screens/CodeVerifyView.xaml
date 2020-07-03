@@ -9,9 +9,7 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="GroceryApp.Views.Screens.CodeVerifyView"
              >
-    <ContentPage.BindingContext>
-        <vm:RegisterViewModel/>
-    </ContentPage.BindingContext>
+
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="Normal">
             <Setter Property="FontFamily" Value="{StaticResource Cata}"/>
@@ -43,9 +41,7 @@
 
                     </Label>
                     <Image x:Name="backLabel" Source="back" AbsoluteLayout.LayoutBounds="0,0.7,27,27" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding UserSetting.GobackCommand,Source={StaticResource Locator}}"/>
-                        </Image.GestureRecognizers>
+                        
                     </Image>
                 </AbsoluteLayout>
 
@@ -61,7 +57,7 @@
                     <Entry x:Name="CodeEntry"  HeightRequest="50" HorizontalOptions="FillAndExpand" FontSize="20" FontFamily="{StaticResource CataMedium}"/>
                 </StackLayout>
 
-                <Button  x:Name="ConfirmBtn" Clicked="ConfirmBtn_Clicked" Command="{Binding SaveChangeCommand}"  Margin="10,40,10,20" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Confirm" TextColor="White" BackgroundColor="#1BBC9B"/>
+                <Button  Clicked="ConfirmBtn_Clicked"   Margin="10,40,10,20" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Confirm" TextColor="White" BackgroundColor="#1BBC9B"/>
 
             </StackLayout>
         </ScrollView>

@@ -94,7 +94,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Frame Grid.Column="0" Grid.Row="0" HeightRequest="100" BackgroundColor="{StaticResource MainColor}" CornerRadius="5" HasShadow="True" IsClippedToBounds="True" Padding="0">
+                    <Frame x:Name="frameFruit" Grid.Column="0" Grid.Row="0" HeightRequest="100" BackgroundColor="{StaticResource MainColor}" CornerRadius="5" HasShadow="True" IsClippedToBounds="True" Padding="0">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding FruitCommand}"/>
                         </Frame.GestureRecognizers>
@@ -130,7 +130,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Frame Grid.Column="0" Grid.Row="0" HeightRequest="100" WidthRequest="100" Margin="55,0,0,0" BackgroundColor="{StaticResource MainColor}" CornerRadius="5" HasShadow="True" IsClippedToBounds="True" Padding="0">
+                    <Frame Grid.Column="0" Grid.Row="0" HeightRequest="100"  Margin="55,0,0,0" BackgroundColor="{StaticResource MainColor}" CornerRadius="5" HasShadow="True"  Padding="0">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CandyCommand}"/>
                         </Frame.GestureRecognizers>

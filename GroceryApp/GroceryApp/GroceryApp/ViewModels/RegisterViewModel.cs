@@ -68,7 +68,7 @@ namespace GroceryApp.ViewModels
         public ICommand Hide1Command { get; set; }
         public ICommand Hide2Command { get; set; }
         public ICommand SignUpCommand { get; set; }
-
+        public ICommand GoBackCommand { get; set; }
         public RegisterViewModel()
         {
             SetUpData();
@@ -77,6 +77,12 @@ namespace GroceryApp.ViewModels
             Hide1Command = new Command(ChangeHide1);
             Hide2Command = new Command(ChangeHide2);
             SignUpCommand = new Command(SignUp);
+            GoBackCommand = new Command(GoBack);
+        }
+
+        public async void GoBack()
+        {
+            await App.Current.MainPage.Navigation.PopAsync();
         }
 
         public async void SignUp()
@@ -98,11 +104,12 @@ namespace GroceryApp.ViewModels
             {
                 IDStore = idStore,
                 StoreName="",
-                ImageURL="",
+                ImageURL="defaultstore",
                 StoreDescription="",
                 StoreAddress="###",
                 RatingStore=0,
-                IsActive=0
+                IsActive=0,
+                
             };
             //TẠO USER TƯƠNG ỨNG
             User newUser = new User
@@ -113,7 +120,7 @@ namespace GroceryApp.ViewModels
                 PhoneNumber="",
                 Address="###",
                 Email="",
-                ImageURL="",
+                ImageURL="defaultuser",
                 BirthDate=DateTime.Today,
                 UserName="",
                 IsLogined=0

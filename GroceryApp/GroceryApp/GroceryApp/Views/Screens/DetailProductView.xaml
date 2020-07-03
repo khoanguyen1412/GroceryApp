@@ -32,6 +32,7 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
@@ -52,16 +53,22 @@
                                 </Grid.ColumnDefinitions>
                                 <StackLayout Orientation="Vertical" Margin="20,0,0,0">
                                     <Label Text="Quantity" TextColor="Gray" Style="{StaticResource LabelDefaultStyle}"/>
-                                    <Label Margin="0,-5,0,0" FontSize="25" Text="{Binding Unit,Converter={StaticResource UnitConverter}}" Style="{StaticResource LabelDefaultStyle}"/>
+                                    <Label  Margin="0,-5,0,0" FontSize="25" Text="{Binding QuantityInventory}" Style="{StaticResource LabelDefaultStyle}"/>
+
+                                    <Label IsVisible="False" Margin="0,-5,0,0" FontSize="25" Text="{Binding Unit,Converter={StaticResource UnitConverter}}" Style="{StaticResource LabelDefaultStyle}"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical" Grid.Column="1" HorizontalOptions="End" Margin="0,0,20,0">
                                     <Label Text="Price"  TextColor="Gray" Style="{StaticResource LabelDefaultStyle}"/>
                                     <Label Margin="0,-5,0,0" FontSize="25" Text="{Binding Price}" Style="{StaticResource LabelDefaultStyle}"/>
                                 </StackLayout>
                             </Grid>
-                            <Label Margin="20,20,0,0" Grid.Row="2" TextColor="Gray" Text="Description" Style="{StaticResource LabelDefaultStyle}"/>
-                            <Label Margin="20,0,0,0" Grid.Row="3" FontSize="20" Text="{Binding ProductDescription}" Style="{StaticResource LabelDefaultStyle}"/>
-                            <Grid Grid.Row="4" Margin="0,20,0,0"  Padding="0">
+                            <StackLayout Grid.Row="2" Orientation="Vertical" Margin="20,0,0,0">
+                                <Label Text="Unit" TextColor="Gray" Style="{StaticResource LabelDefaultStyle}"/>
+                                <Label  Margin="0,-5,0,0" FontSize="25" Text="{Binding Unit,Converter={StaticResource UnitConverter}}" Style="{StaticResource LabelDefaultStyle}"/>
+                            </StackLayout>
+                            <Label Margin="20,20,0,0" Grid.Row="3" TextColor="Gray" Text="Description" Style="{StaticResource LabelDefaultStyle}"/>
+                            <Label Margin="20,0,0,0" Grid.Row="4" FontSize="20" Text="{Binding ProductDescription}" Style="{StaticResource LabelDefaultStyle}"/>
+                            <Grid Grid.Row="5" Margin="0,20,0,0"  Padding="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto"/>
@@ -84,7 +91,7 @@
                                 </Frame>
                                 
                             </Grid>
-                            <Button Clicked="AddToChosenProducts" BackgroundColor="#f7436a" Margin="40,170,40,0" TextColor="White" CornerRadius="10" VerticalOptions="End" Grid.Row="5" HeightRequest="60" WidthRequest="200"  Text="Add to order" Style="{StaticResource LabelWellcomeStyle}"/>
+                            <Button Clicked="AddToChosenProducts" BackgroundColor="#f7436a" Margin="40,170,40,0" TextColor="White" CornerRadius="10" VerticalOptions="End" Grid.Row="6" HeightRequest="60" WidthRequest="200"  Text="Add to order" Style="{StaticResource LabelWellcomeStyle}"/>
                         </Grid>
                         <Frame BackgroundColor="Transparent" HeightRequest="200"/>
                     </StackLayout>

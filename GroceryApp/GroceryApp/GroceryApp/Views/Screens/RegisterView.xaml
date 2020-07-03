@@ -41,7 +41,7 @@
                 <StackLayout Orientation="Horizontal">
                     <Image Source="back" HeightRequest="27" WidthRequest="27">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding UserSetting.GobackCommand,Source={StaticResource Locator}}"/>
+                            <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
                         </Image.GestureRecognizers>
                     </Image>
                     <Label Text="Sign in" Style="{StaticResource Bold}" TextColor="Black" FontSize="20" VerticalTextAlignment="Center" VerticalOptions="Center" Margin="10,-6,0,0"/>

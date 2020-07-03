@@ -823,3 +823,5 @@ F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\ob
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\onboard1.png
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\onboard2.png
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\pushnotiicon.png
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\defaultuser.png
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\defaultstore.png

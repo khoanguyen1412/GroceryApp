@@ -22,6 +22,11 @@ namespace GroceryApp.Views.Screens
         public CodeVerifyView()
         {
             InitializeComponent();
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) => {
+                App.Current.MainPage.Navigation.PopAsync();
+            };
+            backLabel.GestureRecognizers.Add(tapGestureRecognizer);
         }
 
         public void SetUserData(User user, EmailVerifyItem emailItem)

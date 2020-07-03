@@ -15,6 +15,7 @@ namespace GroceryApp.Views.Converters
             string[] unitParts = unit.Split('#');
             if (unitParts.Length == 1) return unit;
             result = unitParts[0] + " " + unitParts[1];
+            if (unitParts[1] == "One") result = "One";
             return result;
         }
 

@@ -23,6 +23,7 @@ namespace GroceryApp.ViewModels
     }
     public class FinalBillViewModel:BaseViewModel,IFinalBillViewModel
     {
+        public bool hasSent = false;
         public OrderBillItem OrderItem { get; set; }
         //public OrderBill Order { get; set; }
         public ICommand SendOrderCommand { get; set; }
@@ -110,6 +111,8 @@ namespace GroceryApp.ViewModels
             string datas = PushNotificationService.ConvertDataInsertOrderBill(OrderItem.Order);
             PushNotificationService.Push(NotiNumber.MakeBillForStore, datas, false);
             PushNotificationService.Push(NotiNumber.MakeBillForOther, datas, true);
+
+            hasSent = true;
 
             //await PopupNavigation.Instance.PushAsync(successPopup);
             await App.Current.MainPage.Navigation.PopAsync();

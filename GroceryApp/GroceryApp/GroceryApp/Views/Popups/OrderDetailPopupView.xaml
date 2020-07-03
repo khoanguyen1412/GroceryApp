@@ -61,7 +61,7 @@
                                 </Frame>
                                 <StackLayout Grid.Column="2" Orientation="Vertical" VerticalOptions="Center">
                                     <Label  Margin="0,0,0,-5" Style="{StaticResource BoldTitleStyle}" Text="{Binding ProductName}" FontSize="16"/>
-                                    <Label  Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Unit}" FontSize="16" TextColor="#a6a8a5"/>
+                                    <Label  Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Unit,Converter={StaticResource UnitConverter}}" FontSize="16" TextColor="#a6a8a5"/>
                                     <StackLayout Orientation="Horizontal">
                                         <Image Margin="-3,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
                                         <Label  Margin="-7,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Price}" FontSize="18" TextColor="#d54a71"/>

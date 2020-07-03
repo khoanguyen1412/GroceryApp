@@ -61,7 +61,7 @@ namespace GroceryApp.Services
             string code = "";
             using (UserDialogs.Instance.Loading("Sending code.."))
             {
-                
+
                 code = CreateCode();
 
                 string content = "This is a GroceryApp's automatic email for verification, enter this code to reset your password: " + code + ". The code is valid for 2 minutes.";
@@ -75,7 +75,7 @@ namespace GroceryApp.Services
                 client.EnableSsl = true;
                 client.Send(mail);
 
-                
+
             }
             EmailVerifyItem emailItem = new EmailVerifyItem
             {

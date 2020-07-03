@@ -26,10 +26,17 @@ namespace GroceryApp.Views.Screens
         public EmailVerifyView()
         {
             InitializeComponent();
+
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) => {
+                App.Current.MainPage.Navigation.PopAsync();
+            };
+            backLabel.GestureRecognizers.Add(tapGestureRecognizer);
+
         }
 
 
-        private async void SendBtn_Clicked(object sender, EventArgs e)
+        private async void Send_Clicked(object sender, EventArgs e)
         {
             
             if (CheckValidInfor() == false)

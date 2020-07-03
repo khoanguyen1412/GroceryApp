@@ -21,8 +21,9 @@ namespace GroceryApp.Views.Screens
 
         protected override void OnDisappearing()
         {
+            bool hasSent = (this.BindingContext as GroceryApp.ViewModels.FinalBillViewModel).hasSent;
             base.OnDisappearing();
-            MessageService.Show("Order successfully", 0);
+            if(hasSent) MessageService.Show("Order successfully", 0);
         }
     }
 }
