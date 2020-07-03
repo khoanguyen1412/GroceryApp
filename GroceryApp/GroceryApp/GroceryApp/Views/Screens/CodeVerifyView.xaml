@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              mc:Ignorable="d"
              BackgroundColor="White"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              NavigationPage.HasNavigationBar="False"
              x:Class="GroceryApp.Views.Screens.CodeVerifyView"
@@ -40,9 +41,9 @@
                     <Label  FontSize="25"  AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource Bold}" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Code Verification">
 
                     </Label>
-                    <Image x:Name="backLabel" Source="back" AbsoluteLayout.LayoutBounds="0,0.7,27,27" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
+                    <ffimage:CachedImage x:Name="backLabel" Source="back" AbsoluteLayout.LayoutBounds="0,0.7,27,27" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
                         
-                    </Image>
+                    </ffimage:CachedImage>
                 </AbsoluteLayout>
 
                 <pancake:PancakeView Margin="0,20,0,10" Padding="-10" BackgroundColor="Transparent" CornerRadius="200" Elevation="8" WidthRequest="170" HeightRequest="170" HasShadow="True" HorizontalOptions="Center">

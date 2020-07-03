@@ -40,6 +40,7 @@
             <converter:ValueNegativeConverter x:Key="ValueNegativeConverter"/>
             <converter:StoreRatingConverter x:Key="StoreRatingConverter"/>
             <converter:RatingIconConverter x:Key="RatingIconConverter"/>
+            <converter:IDStoreToImageConverter x:Key="IDStoreToImageConverter"/>
             <selector:DataTemplateSliderSelector x:Key="DataTemplateSliderSelector"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"

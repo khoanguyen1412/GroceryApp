@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              BackgroundColor="{StaticResource BgColor}"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
@@ -175,23 +176,23 @@
                                     <Frame HorizontalOptions="Center" Grid.Column="0" CornerRadius="5" HasShadow="True"  WidthRequest="250" Padding="0" IsClippedToBounds="True">
                                         <StackLayout Orientation="Vertical" Margin="0">
                                             <Frame Margin="0" Padding="0" HasShadow="False" CornerRadius="5" IsClippedToBounds="True">
-                                                <Image Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="150"/>
+                                                <ffimage:CachedImage Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="150"/>
                                             </Frame>
                                             <Label Margin="10,0" Text="{Binding StoreName}" Style="{StaticResource LabelTitleStyle}"/>
                                             <StackLayout Margin="10,0" Orientation="Horizontal">
-                                                <Image Source="{Binding RatingStore,Converter={StaticResource StoreRatingConverter}}" WidthRequest="180" HeightRequest="53" Aspect="AspectFill"/>
+                                                <ffimage:CachedImage Source="{Binding RatingStore,Converter={StaticResource StoreRatingConverter}}" WidthRequest="180" HeightRequest="53" Aspect="AspectFill"/>
                                             </StackLayout>
                                             <BoxView Margin="10,0,10,0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
                                             <StackLayout Margin="10,0,10,0" Orientation="Horizontal">
-                                                <Image Source="{Binding RatingStore,Converter={StaticResource RatingIconConverter}}" WidthRequest="45" HeightRequest="45" HorizontalOptions="Start"/>
+                                                <ffimage:CachedImage Source="{Binding RatingStore,Converter={StaticResource RatingIconConverter}}" WidthRequest="45" HeightRequest="45" HorizontalOptions="Start"/>
                                                 <Label Text="{Binding RatingStore}" VerticalTextAlignment="Center" Style="{StaticResource LabelWellcomeStyle}" HorizontalOptions="Start"/>
                                                 <Label Text="/5" VerticalOptions="Center" Style="{StaticResource LabelTitleStyle}" HorizontalOptions="StartAndExpand"/>
-                                                <Image Source="fastcart" WidthRequest="55" HeightRequest="55" HorizontalOptions="End">
-                                                    <Image.GestureRecognizers>
+                                                <ffimage:CachedImage Source="fastcart" WidthRequest="55" HeightRequest="55" HorizontalOptions="End">
+                                                    <ffimage:CachedImage.GestureRecognizers>
                                                         <TapGestureRecognizer Command="{Binding BindingContext.ShowStoreCommand,Source={x:Reference Name=homepage}}"
                                                                                   CommandParameter="{Binding .}"/>
-                                                    </Image.GestureRecognizers>
-                                                </Image>
+                                                    </ffimage:CachedImage.GestureRecognizers>
+                                                </ffimage:CachedImage>
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>

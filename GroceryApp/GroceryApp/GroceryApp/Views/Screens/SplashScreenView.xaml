@@ -47,7 +47,7 @@
             <Label x:Name="loadLabel" Grid.Row="2" IsVisible="{Binding Busy}"  Text="{Binding Load}" TextColor="Black" FontFamily="{StaticResource CataMedium}" FontAttributes="Bold" FontSize="18" Margin="0,0,0,30" />
 
             <Button IsVisible="{Binding Busy,Converter={StaticResource ValueNegativeConverter}}" Grid.Row="1"  Margin="25,40,25,30" WidthRequest="300" HeightRequest="55" CornerRadius="5" FontSize="20" Text="Get started" FontAttributes="Bold" FontFamily="{StaticResource CataBold}" TextColor="White" BackgroundColor="#26B999"
-                             Command="{Binding SaveChangeCommand}"/>
+                             Command="{Binding OpenLoginCommand}"/>
         </Grid>
         
     </ContentPage.Content>

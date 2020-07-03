@@ -5,109 +5,45 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              BackgroundColor="{StaticResource BgColor}"
-             BindingContext="{Binding HomePage,Source={StaticResource Locator}}"
-             xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
+             xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="GroceryApp.Views.Screens.TestParallax"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView Orientation="Vertical"  HorizontalScrollBarVisibility="Never">
-            <StackLayout >
-                <AbsoluteLayout HeightRequest="50" Margin="20,0,20,0" HorizontalOptions="FillAndExpand">
-                    <Label FontSize="25" TextColor="ForestGreen" AbsoluteLayout.LayoutBounds="0,0,1,1" Style="{StaticResource LabelTitleStyle}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" Text="Grocery World"/>
-                    <Image Source="greencart" AbsoluteLayout.LayoutBounds="1,0.5,35,35" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
-                    <Image Source="draw" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
-                </AbsoluteLayout>
-                <StackLayout Margin="20,0,20,0">
-                    <Label Text="Hi Khoa!" Style="{StaticResource LabelWellcomeStyle}"/>
-                    <Label Text="what are you looking for?" Style="{StaticResource LabelWellcomeStyle}"/>
-                </StackLayout>
-                <Frame HasShadow="True" IsClippedToBounds="True" Margin="20,10,20,0" HeightRequest="60" CornerRadius="10" Padding="0">
-                    <controls:CustomEntry Placeholder="Search" 
-                       BorderColor="White" 
-                       BackgroundColor="White" 
-                       FontFamily="{StaticResource Avo}" 
-                       FontSize="20" 
-                       TextColor="{StaticResource TextColor}" 
-                       HeightRequest="60" 
-                       Image="search" 
-                       ImageAlignment="Right" 
-                       ImageWidth="15" 
-                       ImageHeight="15" 
-                       CornerRadius="10" 
-                       IsCurvedCornersEnabled="True"/>
-                </Frame>
-                <Grid Margin="20,20,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Frame Grid.Column="0" Grid.Row="0" HeightRequest="50" CornerRadius="25" HasShadow="True" IsClippedToBounds="True" Padding="0">
-                        <StackLayout Orientation="Horizontal">
-                            <Frame HeightRequest="50" WidthRequest="50" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="{StaticResource AccentColor}">
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                                    <Image Source="iconorder" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                </StackLayout>
-                            </Frame>
-                            <Label Text="Your Orders" VerticalTextAlignment="Center" Style="{StaticResource LabelDefaultStyle}"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame Grid.Column="1" Grid.Row="0" HeightRequest="50" CornerRadius="25" HasShadow="True" IsClippedToBounds="True" Padding="0">
-                        <StackLayout Orientation="Horizontal">
-                            <Frame HeightRequest="50" WidthRequest="50" CornerRadius="25" Padding="0" HasShadow="False" BackgroundColor="{StaticResource AccentColor}">
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                                    <Image Source="iconcart" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                </StackLayout>
-                            </Frame>
-                            <Label Text="Your Cart" VerticalTextAlignment="Center" Style="{StaticResource LabelDefaultStyle}"/>
-                        </StackLayout>
-                    </Frame>
-                </Grid>
-                
-                
+            <StackLayout Padding="0,0,60,0">
+                <Grid HeightRequest="180">
+                    <pancake:PancakeView  CornerRadius="0,20,0,20" Margin="0,20,10,10" BackgroundColor="Transparent" >
+                        <Image Source="{Binding IDStore}" Aspect="AspectFill" />
+                    </pancake:PancakeView>
 
-                <StackLayout Orientation="Vertical" Margin="20,0,20,10" BackgroundColor="LightGray">
-                    <CollectionView
-                        
-                        ItemsSource="{Binding Stores}" 
-                        HeightRequest="330"
-                          Margin="0">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout
-                            Orientation="Horizontal"/>
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate >
-                                <Grid  Margin="20,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <Frame HorizontalOptions="Center" Grid.Column="0" CornerRadius="5" HasShadow="True"  WidthRequest="250" Padding="0" IsClippedToBounds="True">
-                                        <StackLayout Orientation="Vertical" Margin="0">
-                                            <Frame Margin="0" Padding="0" HasShadow="False" CornerRadius="5" IsClippedToBounds="True">
-                                                <Image Source="{Binding ImageURL}" Aspect="AspectFill" HeightRequest="150"/>
-                                            </Frame>
-                                            <Label Margin="10,0" Text="{Binding StoreName}" Style="{StaticResource LabelTitleStyle}"/>
-                                            <StackLayout Margin="10,0" Orientation="Horizontal">
-                                                <Image Source="star35" WidthRequest="180" HeightRequest="53" Aspect="AspectFill"/>
-                                            </StackLayout>
-                                            <BoxView Margin="10,0,10,0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
-                                            <StackLayout Margin="10,-10,10,0" Orientation="Horizontal">
-                                                <Image Source="imoji" WidthRequest="45" HeightRequest="45" HorizontalOptions="Start"/>
-                                                <Label Text="7.1" VerticalTextAlignment="Center" Style="{StaticResource LabelWellcomeStyle}" HorizontalOptions="Start"/>
-                                                <Label Text="/10" VerticalOptions="Center" Style="{StaticResource LabelTitleStyle}" HorizontalOptions="StartAndExpand"/>
-                                                <Image Source="gotostore" WidthRequest="70" HeightRequest="70" HorizontalOptions="End"/>
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </Frame>
+                    <pancake:PancakeView  CornerRadius="0,20,0,20" Margin="0,20,10,10" BackgroundColor="Black" Opacity="0.3"/>
+                    <pancake:PancakeView  CornerRadius="0,20,0,20" Margin="0,20,10,10" BackgroundColor="Transparent">
+                        <Grid Margin="0,0,0,20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <pancake:PancakeView VerticalOptions="End" BackgroundColor="#4dffb8"  CornerRadius="90" Margin="10,0,0,0" >
+                                <Grid BackgroundColor="Transparent" Margin="4">
+                                    <pancake:PancakeView BackgroundColor="White"  CornerRadius="90" Margin="0" Padding="0">
+                                        <Grid BackgroundColor="Transparent" Margin="4">
+                                            <pancake:PancakeView BackgroundColor="MediumPurple"  CornerRadius="90" Margin="0" Padding="0">
+                                                <ffimage:CachedImage x:Name="UserImage" Source="{Binding ImageURL}"  Aspect="AspectFill"/>
+                                            </pancake:PancakeView>
+                                        </Grid>
+                                    </pancake:PancakeView>
                                 </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    
-                </StackLayout>
+
+                            </pancake:PancakeView>
+                            <StackLayout Grid.Column="1" VerticalOptions="End" BackgroundColor="Transparent" Margin="0,0,0,0">
+                                <Label x:Name="NameLabel" Text="{Binding UserName}" TextColor="White" FontSize="22"  Style="{StaticResource BoldTitleStyle}" />
+                                <Label x:Name="EmailLabel" Text="{Binding Email}" TextColor="White" Style="{StaticResource LabelTitleStyle}"  FontSize="13"/>
+                            </StackLayout>
+                        </Grid>
+                    </pancake:PancakeView>
+
+                </Grid>
+
             </StackLayout>
         </ScrollView>
 

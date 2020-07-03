@@ -8,7 +8,7 @@
              xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:controls="clr-namespace:GroceryApp.Views.CustomedControls"
-             
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="GroceryApp.Views.Popups.ReplyPopupView">
     <popup:PopupPage.Animation>
 
@@ -49,7 +49,7 @@
                             <BoxView Grid.Row="0" HeightRequest="40" VerticalOptions="Start" Grid.Column="0" WidthRequest="3" Margin="0,10,0,10" BackgroundColor="Accent" />
                             <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
                                 <pancake:PancakeView Margin="5,15,0,0"  WidthRequest="60" HeightRequest="55" CornerRadius="5" Padding="0">
-                                    <Image Source="{Binding CustomerImage}" Aspect="AspectFill"/>
+                                    <ffimage:CachedImage Source="{Binding CustomerImage}" Aspect="AspectFill"/>
                                 </pancake:PancakeView>
                                 <Label FontSize="17" Margin="0,15,0,0" Text="{Binding CustomerName}" Style="{StaticResource BoldTitleStyle}"/>
                             </StackLayout>

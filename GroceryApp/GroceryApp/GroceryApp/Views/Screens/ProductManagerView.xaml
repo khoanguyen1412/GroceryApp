@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              NavigationPage.HasNavigationBar="False"
              x:Name="ManageProductPage"
@@ -65,7 +66,7 @@
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="40"/>
                                                 </Grid.RowDefinitions>
-                                                <Image Source="{Binding productType.ImageURL}" HeightRequest="50" WidthRequest="50" Aspect="AspectFit"/>
+                                                <ffimage:CachedImage Source="{Binding productType.ImageURL}" HeightRequest="50" WidthRequest="50" Aspect="AspectFit"/>
                                             </Grid>
                                         </pancake:PancakeView>
                                     </Grid>
@@ -93,7 +94,7 @@
                                                 </Grid.RowDefinitions>
 
                                                 <Frame Grid.Column="0" Margin="5" Padding="0" HasShadow="False" CornerRadius="5" IsClippedToBounds="True">
-                                                    <Image Grid.Column="1" Source="{Binding Product.ImageURL}" HeightRequest="90" WidthRequest="90" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
+                                                    <ffimage:CachedImage Grid.Column="1" Source="{Binding Product.ImageURL}" HeightRequest="90" WidthRequest="90" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
                                                 </Frame>
                                                 <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center">
                                                     <Label  Margin="0,0,0,-5" Style="{StaticResource BoldTitleStyle}" Text="{Binding Product.ProductName}" FontSize="16"/>
@@ -184,7 +185,7 @@
                                                             <ColumnDefinition />
                                                         </Grid.ColumnDefinitions>
                                                         <pancake:PancakeView  CornerRadius="90" HasShadow="True" Margin="20,0">
-                                                            <Image Source="{Binding Product.ImageURL}" Aspect="AspectFill"/>
+                                                            <ffimage:CachedImage Source="{Binding Product.ImageURL}" Aspect="AspectFill"/>
                                                         </pancake:PancakeView>
                                                         <Image Margin="-30,0,0,0" WidthRequest="30" HeightRequest="30" Grid.Column="1"  Source="restore"  VerticalOptions="Start" HorizontalOptions="Center">
                                                             <Image.GestureRecognizers>

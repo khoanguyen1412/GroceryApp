@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              NavigationPage.HasNavigationBar="False"
@@ -61,7 +62,7 @@
                 <StackLayout Orientation="Vertical">
                     <AbsoluteLayout Grid.Row="2" HeightRequest="200" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" >
                         <pancake:PancakeView  CornerRadius="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1"   AbsoluteLayout.LayoutFlags="All" >
-                            <Image Source="{Binding StoreImage}" Aspect="AspectFill"/>
+                            <ffimage:CachedImage Source="{Binding StoreImage}" Aspect="AspectFill"/>
                         </pancake:PancakeView>
                         <pancake:PancakeView HeightRequest="35" WidthRequest="120" Margin="10" CornerRadius="10"  BackgroundColor="Black" Opacity="0.7" AbsoluteLayout.LayoutBounds="1,0" AbsoluteLayout.LayoutFlags="YProportional,XProportional">
                             <pancake:PancakeView.GestureRecognizers>

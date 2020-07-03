@@ -23,7 +23,7 @@ namespace GroceryApp.Views.Screens {
         private global::Xamarin.Forms.DatePicker datePicker;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Image userimage;
+        private global::FFImageLoading.Forms.CachedImage userimage;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.PancakeView.PancakeView changeBtn;
@@ -33,7 +33,7 @@ namespace GroceryApp.Views.Screens {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(UserSettingView));
             dateCard = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "dateCard");
             datePicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.DatePicker>(this, "datePicker");
-            userimage = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Image>(this, "userimage");
+            userimage = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::FFImageLoading.Forms.CachedImage>(this, "userimage");
             changeBtn = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.PancakeView.PancakeView>(this, "changeBtn");
         }
     }

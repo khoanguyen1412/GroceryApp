@@ -11,6 +11,7 @@ using GroceryApp.Data;
 using ImTools;
 using System.Net.Http;
 using GroceryApp.Services;
+using GroceryApp.Views.TabBars;
 
 namespace GroceryApp.ViewModels
 {
@@ -33,7 +34,7 @@ namespace GroceryApp.ViewModels
     public class CartViewModel : BaseViewModel, ICartViewModel
     {
         DataProvider dataProvider = DataProvider.GetInstance();
-
+        bool loadDone = false;
         private int currentStore;
 
         private bool _canOrder;
@@ -65,7 +66,10 @@ namespace GroceryApp.ViewModels
         public ObservableCollection<ProductItemCart> Products
         {
             get { return _products; }
-            set { _products = value; OnPropertyChanged(nameof(Products)); }
+            set { _products = value;
+                OnPropertyChanged(nameof(Products));
+                //if (loadDone) UpdatePayment();
+            }
         }
 
         private ObservableCollection<StoreItem> _storeItems=new ObservableCollection<StoreItem>();
@@ -73,12 +77,17 @@ namespace GroceryApp.ViewModels
         public ObservableCollection<StoreItem> StoreItems
         {
             get { return _storeItems; }
-            set { _storeItems = value; OnPropertyChanged(nameof(StoreItems)); }
+            set { 
+
+                _storeItems = value;
+                OnPropertyChanged(nameof(StoreItems)); 
+            }
         }
 
         public ICommand ShowConfirmInforCommand { get; set; }
         public ICommand ChooseStoreCommand { get; set; }
         public ICommand ReturnProductCommand { get; set; }
+        public ICommand GoHomeCommand { get; set; }
 
         public CartViewModel()
         {
@@ -100,6 +109,14 @@ namespace GroceryApp.ViewModels
             ShowConfirmInforCommand = new Command(ShowConfirmInfor);
             ChooseStoreCommand = new Command<string>(ChooseStore);
             ReturnProductCommand = new Command<ProductItemCart>(ReturnProduct);
+            GoHomeCommand = new Command(GoHome);
+            loadDone = true;
+        }
+
+        public void GoHome()
+        {
+            var tabbar = TabBarCustomer.GetInstance();
+            tabbar.CurrentPage = tabbar.Children[0];
         }
 
         public async void ReturnProduct(ProductItemCart productItem)

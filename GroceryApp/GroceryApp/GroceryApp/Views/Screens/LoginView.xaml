@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:GroceryApp.ViewModels"
              mc:Ignorable="d"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="False"
              x:Class="GroceryApp.Views.Screens.LoginView">
@@ -47,11 +48,11 @@
                     <Label FontSize="19" Style="{StaticResource Medium}" Margin="5,0,0,-5" TextColor="Gray" FontAttributes="Bold" Text="Password"/>
                     <StackLayout Orientation="Horizontal">
                         <Entry x:Name="password" IsPassword="{Binding Hide}" Text="{Binding Password}"  HeightRequest="50" HorizontalOptions="FillAndExpand" FontSize="20" FontFamily="{StaticResource CataMedium}"/>
-                        <Image Source="{Binding Hide,Converter={StaticResource ShowPasswordConverter}}" WidthRequest="30" HeightRequest="30">
-                            <Image.GestureRecognizers>
+                        <ffimage:CachedImage Source="{Binding Hide,Converter={StaticResource ShowPasswordConverter}}" WidthRequest="30" HeightRequest="30">
+                            <ffimage:CachedImage.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding HideCommand}"/>
-                            </Image.GestureRecognizers>
-                        </Image>
+                            </ffimage:CachedImage.GestureRecognizers>
+                        </ffimage:CachedImage>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Margin="10,10,0,0">

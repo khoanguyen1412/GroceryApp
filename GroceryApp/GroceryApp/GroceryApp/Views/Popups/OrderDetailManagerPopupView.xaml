@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-              
+              xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
                  xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -78,13 +78,13 @@
                                     <RowDefinition Height="100"/>
                                 </Grid.RowDefinitions>
                                 <Frame Grid.Column="1" Margin="5" Padding="0" HasShadow="False" CornerRadius="5" IsClippedToBounds="True">
-                                    <Image Grid.Column="1" Source="{Binding ImageURL}" HeightRequest="90" WidthRequest="90" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
+                                    <ffimage:CachedImage Grid.Column="1" Source="{Binding ImageURL}" HeightRequest="90" WidthRequest="90" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
                                 </Frame>
                                 <StackLayout Grid.Column="2" Orientation="Vertical" VerticalOptions="Center">
                                     <Label  Margin="0,0,0,-5" Style="{StaticResource BoldTitleStyle}" Text="{Binding ProductName}" FontSize="16"/>
                                     <Label  Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Unit,Converter={StaticResource UnitConverter}}" FontSize="16" TextColor="#a6a8a5"/>
                                     <StackLayout Orientation="Horizontal">
-                                        <Image Margin="-3,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
+                                        <ffimage:CachedImage Margin="-3,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
                                         <Label  Margin="-7,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Price}" FontSize="18" TextColor="#d54a71"/>
                                     </StackLayout>
                                 </StackLayout>
@@ -121,15 +121,15 @@
                     <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="Subtotal" FontSize="18" TextColor="Black"/>
                     <Label Grid.Row="2" Grid.Column="0" Margin="0,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="Total" FontSize="18" TextColor="Black"/>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-                        <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
+                        <ffimage:CachedImage Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
                         <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.SubTotalPrice}" FontSize="18" TextColor="Black"/>
                     </StackLayout>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-                        <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
+                        <ffimage:CachedImage Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
                         <Label  Margin="-5,0,0,0" Style="{StaticResource LabelWellcomeStyle}" Text="{Binding Order.DeliveryPrice}" FontSize="18" TextColor="Black"/>
                     </StackLayout>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-                        <Image Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
+                        <ffimage:CachedImage Margin="0,0,0,0" Source="money" HeightRequest="18" WidthRequest="18"/>
                         <Label  Margin="-5,0,0,0" Style="{StaticResource BoldTitleStyle}" Text="{Binding Order.TotalPrice}" FontSize="18" TextColor="Black"/>
                     </StackLayout>
 

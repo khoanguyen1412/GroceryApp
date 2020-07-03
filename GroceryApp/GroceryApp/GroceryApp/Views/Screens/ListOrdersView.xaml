@@ -7,7 +7,7 @@
              BackgroundColor="White"
              x:Name="ListOrdersPage"
              NavigationPage.HasNavigationBar="False"
-             
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="GroceryApp.Views.Screens.ListOrdersView">
     <ContentPage.BindingContext>
         <vm:ListOrdersViewModel/>

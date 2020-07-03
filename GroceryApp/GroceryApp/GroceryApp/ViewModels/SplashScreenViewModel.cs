@@ -88,18 +88,6 @@ namespace GroceryApp.ViewModels
 
         public SplashScreenViewModel()
         {
-            LoadData();
-            OpenLoginCommand = new Command(OpenLogin);
-        }
-
-        public async void OpenLogin()
-        {
-            await App.Current.MainPage.Navigation.PushAsync(LoginView.GetInstance(), true);
-        }
-
-
-        public async void LoadData()
-        {
             OnboardingImages = new List<ImageItem>
             {
                 new ImageItem{source="onboard1" },
@@ -107,8 +95,6 @@ namespace GroceryApp.ViewModels
                 new ImageItem{source="onboard3" },
             };
             index = 2;
-            int loadindex = 2;
-
             Device.StartTimer(TimeSpan.FromSeconds(1.7), (Func<bool>)(() =>
             {
                 index = (index + 1) % 3;
@@ -117,16 +103,31 @@ namespace GroceryApp.ViewModels
                 SetTextbyIndex(index);
                 return true;
             }));
+            LoadData();
+            OpenLoginCommand = new Command(OpenLogin);
+        }
 
+        public async void OpenLogin()
+        {
+            LoadData();
+            //await App.Current.MainPage.Navigation.PushAsync(LoginView.GetInstance(), true);
+        }
+
+
+        public async void LoadData()
+        {
+            Busy = true;
+            int loadindex = 2;
             Device.StartTimer(TimeSpan.FromSeconds(0.5), (Func<bool>)(() =>
             {
                 loadindex = (loadindex + 1) % 3;                
                 SetLoadbyIndex(loadindex);
+                if (!Busy) return false;
                 return true;
             }));
 
-            Busy = true;
-            //await Task.Delay(7000);
+            
+            
             LoadDataFromServer();
             //Busy = false;
         }
@@ -164,7 +165,7 @@ namespace GroceryApp.ViewModels
             }
             catch (Exception e)
             {
-                
+                Busy = false;
                 HandleException.Onboarding();
                 return;
             }

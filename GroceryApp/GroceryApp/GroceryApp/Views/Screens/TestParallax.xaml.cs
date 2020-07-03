@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GroceryApp.Data;
+using GroceryApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +18,13 @@ namespace GroceryApp.Views.Screens
         public TestParallax()
         {
             InitializeComponent();
-            
+            this.BindingContext = new User
+            {
+                ImageURL = "https://bom.to/2ggnay",
+                Email = "khoanguyen1412v@gmail.com",
+                UserName = "Khoa athony",
+                IDStore = "defaultstore"
+            };
         }
 
     }

@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-              
+              xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="GroceryApp.Views.Popups.SelectedProductsPopupView">
     <ContentView.Content>
@@ -135,7 +135,7 @@
                                         <ColumnDefinition Width="auto"/>
                                     </Grid.ColumnDefinitions>
                                         <Frame CornerRadius="40" HeightRequest="50" WidthRequest="50" Padding="0" VerticalOptions="Center">
-                                            <Image Source="{Binding ImageURL}" Aspect="AspectFill" WidthRequest="70" HeightRequest="70"/>
+                                            <ffimage:CachedImage Source="{Binding ImageURL}" Aspect="AspectFill" WidthRequest="70" HeightRequest="70"/>
                                         </Frame>
                                         <StackLayout Grid.Column="1" Orientation="Horizontal" Margin="0,5" HorizontalOptions="FillAndExpand" >
 
