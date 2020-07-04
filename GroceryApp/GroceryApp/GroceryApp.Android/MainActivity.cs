@@ -40,7 +40,7 @@ namespace GroceryApp.Droid
             //====================
             Instance = this;
             //====================
-            Forms.SetFlags(new string[] { "IndicatorView_Experimental", "SwipeView_Experimental" });
+            Forms.SetFlags(new string[] { "SwipeView_Experimental", "IndicatorView_Experimental"  });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             

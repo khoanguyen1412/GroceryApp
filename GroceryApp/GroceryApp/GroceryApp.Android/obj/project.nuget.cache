@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1fmOpkHyuW3a9Bdx6+q1NkyOWKLIXskqM4LJvJZsqHgAgqEJaKBGmRewxyw0V9eXIfUnT4PdH83qar9hnumx9Q==",
+  "dgSpecHash": "mYipB39BPsTTvBKR5RwxpAHS+lCAHmlmr7vWRxAK0KZeHNze947htkHHTpLGzhtPcH2i3JP47SSCZPuHb07SBQ==",
   "success": true,
   "projectFilePath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
   "expectedPackageFiles": [
@@ -132,7 +132,7 @@
     "C:\\Users\\User\\.nuget\\packages\\xamarin.firebase.iid.interop\\71.1601.0\\xamarin.firebase.iid.interop.71.1601.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.firebase.measurement.connector\\71.1701.0\\xamarin.firebase.measurement.connector.71.1701.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.firebase.messaging\\71.1740.0\\xamarin.firebase.messaging.71.1740.0.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\xamarin.forms\\4.7.0.1080\\xamarin.forms.4.7.0.1080.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\xamarin.forms\\4.7.0.968\\xamarin.forms.4.7.0.968.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.forms.pancakeview\\1.4.2\\xamarin.forms.pancakeview.1.4.2.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.google.autovalue.annotations\\1.6.5\\xamarin.google.autovalue.annotations.1.6.5.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\xamarin.googleplayservices.ads.identifier\\71.1600.0\\xamarin.googleplayservices.ads.identifier.71.1600.0.nupkg.sha512",

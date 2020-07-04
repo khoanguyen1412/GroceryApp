@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -95,12 +96,16 @@ namespace GroceryApp.ViewModels
             {
                 //update user ở database server
                 var httpClient = new HttpClient();
-                List<User> x = Database.Users;
                 await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);
-                List<User> y = Database.Users;
                 //update user ở database local
-                //DataUpdater.UpdateUser(CurrentUser);
+                DataUpdater.UpdateUser(user);
             }
+
+            MessageService.Show("Update infor successfully", 0);
+
+            //PUSH NOTI
+            string datas = PushNotificationService.ConvertDataUpdateUser(user);
+            PushNotificationService.Push(NotiNumber.UpdateUser, datas, true);
 
             await App.Current.MainPage.Navigation.PopToRootAsync();
         }

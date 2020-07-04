@@ -4912,11 +4912,12 @@ public final class R {
     public static final int veggies=0x7f070112;
     public static final int whitedelete=0x7f070113;
     public static final int write=0x7f070114;
-    public static final int yelcake=0x7f070115;
-    public static final int yelcandy=0x7f070116;
-    public static final int yeldrink=0x7f070117;
-    public static final int yelfruit=0x7f070118;
-    public static final int yelveget=0x7f070119;
+    public static final int writefeedback=0x7f070115;
+    public static final int yelcake=0x7f070116;
+    public static final int yelcandy=0x7f070117;
+    public static final int yeldrink=0x7f070118;
+    public static final int yelfruit=0x7f070119;
+    public static final int yelveget=0x7f07011a;
   }
   public static final class id {
     public static final int ALT=0x7f080000;

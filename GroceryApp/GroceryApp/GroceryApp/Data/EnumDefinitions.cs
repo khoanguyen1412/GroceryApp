@@ -41,6 +41,7 @@ public enum NotiNumber
     UpdateStore,
     UpdateUser,
     Login,
+    SendReview
 }
 
 public class NotiContent
@@ -67,6 +68,8 @@ public class NotiContent
             case NotiNumber.Login:
                 return "Tài khoảng của bạn vừa được đăng nhập bởi một máy khác!";
                 break;
+            case NotiNumber.SendReview:
+                return "Order của cửa hàng vừa nhận được một feedback từ khách hàng!";
         }
         return "";
     }

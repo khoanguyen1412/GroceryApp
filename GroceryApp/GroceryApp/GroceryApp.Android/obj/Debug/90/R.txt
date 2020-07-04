@@ -1181,11 +1181,12 @@ int drawable user_circle 0x7f070111
 int drawable veggies 0x7f070112
 int drawable whitedelete 0x7f070113
 int drawable write 0x7f070114
-int drawable yelcake 0x7f070115
-int drawable yelcandy 0x7f070116
-int drawable yeldrink 0x7f070117
-int drawable yelfruit 0x7f070118
-int drawable yelveget 0x7f070119
+int drawable writefeedback 0x7f070115
+int drawable yelcake 0x7f070116
+int drawable yelcandy 0x7f070117
+int drawable yeldrink 0x7f070118
+int drawable yelfruit 0x7f070119
+int drawable yelveget 0x7f07011a
 int id ALT 0x7f080000
 int id CTRL 0x7f080001
 int id FUNCTION 0x7f080002

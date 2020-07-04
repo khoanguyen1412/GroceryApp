@@ -435,6 +435,14 @@ namespace GroceryApp.Data
         {
 
             List<string> result = new List<string>();
+            if (notiNumber == NotiNumber.SendReview)
+            {
+                string[] parts = datas.Split('~');
+                OrderBill Order = JsonConvert.DeserializeObject<OrderBill>(parts[0]);
+                string idUser = this.GetIDUserByIDStore(Order.IDStore);//user có idstore là store của order
+                result.Add(idUser);
+                return result;
+            }
             if (notiNumber == NotiNumber.Login)
             {
                 result.Add(Infor.IDUser);

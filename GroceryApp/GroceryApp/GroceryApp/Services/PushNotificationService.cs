@@ -72,6 +72,9 @@ namespace GroceryApp.Services
                 case "12":
                     LoginAction(datas[0]);
                     break;
+                case "13":
+                    SendReviewAction(datas[0]);
+                    break;
             }
             
 
@@ -232,6 +235,16 @@ namespace GroceryApp.Services
             (TabbarStoreManager.GetInstance().Children.ElementAt(0).BindingContext as StoreDashBoardViewModel).LoadData();
         }
 
+        public static void SendReviewAction(string data)
+        {
+            OrderBill order = JsonConvert.DeserializeObject<OrderBill>(data);
+            DataUpdater.UpdateOrderBill(order);
+
+            (TabBarCustomer.GetInstance().Children.ElementAt(3).BindingContext as ListOrdersViewModel).LoadData();
+            (TabbarStoreManager.GetInstance().Children.ElementAt(0).BindingContext as StoreDashBoardViewModel).LoadData();
+            (TabbarStoreManager.GetInstance().Children.ElementAt(3).BindingContext as ReviewManagerViewModel).LoadData();
+        }
+
         #endregion
 
 
@@ -316,6 +329,13 @@ namespace GroceryApp.Services
         {
             var json = JsonConvert.SerializeObject(user);
             json += "~12";
+            return json;
+        }
+
+        public static string ConvertDataWrireReview(OrderBill order)
+        {
+            var json = JsonConvert.SerializeObject(order);
+            json += "~13";
             return json;
         }
         #endregion

@@ -7,7 +7,6 @@
              BackgroundColor="White"
              x:Name="ListOrdersPage"
              NavigationPage.HasNavigationBar="False"
-             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="GroceryApp.Views.Screens.ListOrdersView">
     <ContentPage.BindingContext>
         <vm:ListOrdersViewModel/>
@@ -54,7 +53,7 @@
                                                 <ContentView.GestureRecognizers>
                                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" CommandParameter="{Binding .}"/>
                                                 </ContentView.GestureRecognizers>
-                                                <Grid BackgroundColor="White" Margin="0,0,5,0">
+                                                <Grid BackgroundColor="White" Padding="0,0,5,0">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="50"/>
                                                         <ColumnDefinition/>
@@ -138,7 +137,7 @@
                                                 <ContentView.GestureRecognizers>
                                                     <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" />
                                                 </ContentView.GestureRecognizers>
-                                                <Grid BackgroundColor="White" Margin="0,0,5,0">
+                                                <Grid BackgroundColor="White" Padding="0,0,5,0">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="50"/>
                                                         <ColumnDefinition/>
@@ -196,50 +195,75 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <ContentView HorizontalOptions="Fill" VerticalOptions="Fill">
-                                        <ContentView.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" />
-                                        </ContentView.GestureRecognizers>
-                                        <Grid BackgroundColor="White">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="100"/>
-                                            </Grid.RowDefinitions>
-                                            <Button Grid.Column="0" Text="{Binding OrderNumber}" FontSize="15" Padding="0" Margin="12,32" TextColor="#f7436a" BackgroundColor="Transparent" BorderWidth="1" BorderColor="DarkGray"/>
-                                            <Grid Grid.Column="1">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition />
-                                                    <RowDefinition />
-                                                </Grid.RowDefinitions>
-                                                <!--Dòng: tên + giá-->
-                                                <Grid Grid.Row="0" Margin="0,15,0,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition Width="auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding ., Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
-                                                    <StackLayout  Grid.Column="1" Orientation="Horizontal">
-                                                        <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
-                                                        <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>
-                                                    </StackLayout>
+                                    <SwipeView>
+                                        <SwipeView.RightItems>
+                                            <SwipeItems Mode="Reveal">
+                                                <SwipeItemView>
+                                                    <SwipeItemView.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding ListOrders.WriteReviewPopupCommand, Source={StaticResource Locator}}"
+                                                                              CommandParameter="{Binding .}"/>
+                                                    </SwipeItemView.GestureRecognizers>
+                                                    <Grid WidthRequest="60" BackgroundColor="#e6e6e6">
+                                                        <pancake:PancakeView Margin="10,15" CornerRadius="10" Padding="5" BackgroundColor="#00cc7a">
+                                                            <Image
+                                                            Source="writefeedback"
+                                                            HorizontalOptions="Center" VerticalOptions="Center"
+                                                            Aspect="AspectFit"/>
+                                                        </pancake:PancakeView>
 
-                                                </Grid>
-                                                <!--Dòng: mô tả + date-->
-                                                <Grid Grid.Row="1">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition Width="auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding CustomerAddress, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="DarkGray"/>
-                                                    <Label Grid.Column="1" Text="{Binding Date, Converter={StaticResource DateTimeConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="Black"/>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </ContentView>
+                                                    </Grid>
 
+                                                </SwipeItemView>
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
+                                        <SwipeView.Content>
+                                            <ContentView HorizontalOptions="Fill" VerticalOptions="Fill">
+                                                <ContentView.GestureRecognizers>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding BindingContext.ShowDetailOrderCommand,Source={x:Reference Name=ListOrdersPage}}" />
+                                                </ContentView.GestureRecognizers>
+                                                <Grid BackgroundColor="White" Padding="0,0,5,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50"/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="100"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Button Grid.Column="0" Text="{Binding OrderNumber}" FontSize="15" Padding="0" Margin="12,32" TextColor="#f7436a" BackgroundColor="Transparent" BorderWidth="1" BorderColor="DarkGray"/>
+                                                    <Grid Grid.Column="1">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition />
+                                                            <RowDefinition />
+                                                        </Grid.RowDefinitions>
+                                                        <!--Dòng: tên + giá-->
+                                                        <Grid Grid.Row="0" Margin="0,15,0,0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding ., Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource BoldTitleStyle}" FontSize="17" TextColor="Black"/>
+                                                            <StackLayout  Grid.Column="1" Orientation="Horizontal">
+                                                                <Image Margin="0,3,-5,0" Source="money" HeightRequest="18" WidthRequest="18"  VerticalOptions="Start"/>
+                                                                <Label Text="{Binding TotalPrice}" Style="{StaticResource LabelWellcomeStyle}" FontSize="17" TextColor="#f7436a"/>
+                                                            </StackLayout>
+
+                                                        </Grid>
+                                                        <!--Dòng: mô tả + date-->
+                                                        <Grid Grid.Row="1">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition Width="auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding CustomerAddress, Converter={StaticResource ShortStringTitleConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="DarkGray"/>
+                                                            <Label Grid.Column="1" Text="{Binding Date, Converter={StaticResource DateTimeConverter}}" Style="{StaticResource LabelWellcomeStyle}" FontSize="15" TextColor="Black"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                </Grid>
+                                            </ContentView>
+
+                                        </SwipeView.Content>
+                                    </SwipeView>
+                                    
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

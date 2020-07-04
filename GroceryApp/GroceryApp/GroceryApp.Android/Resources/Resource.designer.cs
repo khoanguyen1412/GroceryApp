@@ -18694,19 +18694,22 @@ namespace GroceryApp.Droid
 			public const int write = 2131165460;
 			
 			// aapt resource value: 0x7F070115
-			public const int yelcake = 2131165461;
+			public const int writefeedback = 2131165461;
 			
 			// aapt resource value: 0x7F070116
-			public const int yelcandy = 2131165462;
+			public const int yelcake = 2131165462;
 			
 			// aapt resource value: 0x7F070117
-			public const int yeldrink = 2131165463;
+			public const int yelcandy = 2131165463;
 			
 			// aapt resource value: 0x7F070118
-			public const int yelfruit = 2131165464;
+			public const int yeldrink = 2131165464;
 			
 			// aapt resource value: 0x7F070119
-			public const int yelveget = 2131165465;
+			public const int yelfruit = 2131165465;
+			
+			// aapt resource value: 0x7F07011A
+			public const int yelveget = 2131165466;
 			
 			static Drawable()
 			{

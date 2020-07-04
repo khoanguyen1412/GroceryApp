@@ -91,15 +91,24 @@ namespace GroceryApp.ViewModels
 
         public ICommand ShowDetailOrderCommand { get; set; }
         public ICommand ShowReviewPopupCommand { get; set; }
+        public ICommand WriteReviewPopupCommand { get; set; }
         public ICommand DeleteOrderCommand { get; set; }
 
         public ListOrdersViewModel()
         {
             LoadData();
             ShowDetailOrderCommand = new Command<OrderBill>(ShowDetailOrder);
+            WriteReviewPopupCommand = new Command<OrderBill>(WriteReviewPopup);
             ShowReviewPopupCommand = new Command<OrderBill>(ShowReviewPopup);
             DeleteOrderCommand = new Command<OrderBill>(DeleteOrder);
 
+        }
+
+        public async void WriteReviewPopup(OrderBill order)
+        {
+            var ReviewPopup = new WriteReviewPopupView();
+            ReviewPopup.BindingContext = new WriteReviewPopupViewModel(order);
+            await PopupNavigation.Instance.PushAsync(ReviewPopup);
         }
 
         public async void DeleteOrder(OrderBill orderBill)
