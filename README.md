@@ -16,8 +16,8 @@
 
 
 ## Members
-* [Nguyễn Hồng Khoa](https://github.com/) - 17520087
-* [Nguyễn Tiến Dũng](https://github.com/) - 17520376
+* [Nguyễn Hồng Khoa](https://github.com/khoanguyen1412) - 17520087
+* [Nguyễn Tiến Dũng](https://github.com/tiendunghk) - 17520376
 
 ## Technology
 * [Xamarin.Forms](https://dotnet.microsoft.com/apps/xamarin/xamarin-forms)
@@ -31,8 +31,8 @@
 * __For developers__
    * Install Visual Studio 2019 with Mobile development with .NET
    * Clone or download this repository
-   * Open this reponsitory in your computer, select default project is Grocery.Android
-   * Make sure that you install or update all nuget packages, connect to Android device to build
+   * Open this reponsitory in your computer, set default project is GroceryApp.Android
+   * Make sure that you installed or updated all nuget packages, connect to Android device to build app
 * __For users__
    * Download Grocery.apk file in release folder
    * Install it on your Android device and user it
