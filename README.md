@@ -26,7 +26,14 @@
 * [OneSignal](https://onesignal.com/)
 * [PanCakeView](https://github.com/sthewissen/Xamarin.Forms.PancakeView)
 * [Cloudinary](https://cloudinary.com/)
-## Monitors
+## Screens
+||||
+|:---:|:---:|:---:|
+|![a]<br>màn hình 1|![b]<br>màn hình 2|![c]<br>màn hình 3|
+|![d]<br>màn hình 4|![e]<br>màn hình 5|![f]<br>màn hình 6|
+|![g]<br>màn hình 7|![h]<br>màn hình 8|![i]<br>màn hình9|
+
+
 ## Setting
 * __For developers__
    * Install Visual Studio 2019 with Mobile development with .NET
@@ -42,3 +49,14 @@ Mr. Nguyễn Hồng Khoa
 Email: 
 
 [khoanguyen1412v@gmail.com](mailto:khoanguyen1412v@gmail.com)
+
+
+[a]: https://didong.blob.core.windows.net/xamarin-blob/1.png
+[b]: https://didong.blob.core.windows.net/xamarin-blob/1.png
+[c]: https://didong.blob.core.windows.net/xamarin-blob/5.png
+[d]: https://didong.blob.core.windows.net/xamarin-blob/1.png
+[e]: https://didong.blob.core.windows.net/xamarin-blob/1.png
+[f]: https://didong.blob.core.windows.net/xamarin-blob/5.png
+[g]: https://didong.blob.core.windows.net/xamarin-blob/1.png
+[h]: https://didong.blob.core.windows.net/xamarin-blob/5.png
+[i]: https://didong.blob.core.windows.net/xamarin-blob/1.png
