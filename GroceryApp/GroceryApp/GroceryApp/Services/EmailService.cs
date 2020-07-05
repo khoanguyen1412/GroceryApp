@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using GroceryApp.Data;
 using GroceryApp.Models;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,13 @@ namespace GroceryApp.Services
             {
                 return false;
             }
+        }
+
+        public static bool CheckExistedEmail(string email)
+        {
+            foreach (User user in Database.Users)
+                if (user.Email == email) return true;
+            return false;
         }
 
         public static EmailVerifyItem SendCodeToEmail(string email)

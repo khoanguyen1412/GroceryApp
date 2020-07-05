@@ -149,7 +149,7 @@
                         <Image Source="phone" WidthRequest="30" HeightRequest="30"/>
                         <StackLayout Orientation="Vertical" Grid.Column="1" Spacing="0" VerticalOptions="Center" Margin="10,-10,0,-10" >
                             <Label Text="Phone number"  Margin="2,0,0,0" FontSize="13"   Style="{StaticResource Bold}" />
-                            <Entry Text="{Binding PhoneNumber}" BackgroundColor="Transparent" Margin="0,-5,0,0"/>
+                            <Entry Keyboard="Numeric" Text="{Binding PhoneNumber}" BackgroundColor="Transparent" Margin="0,-5,0,0"/>
                         </StackLayout>
                         <Image Grid.Column="2" Source="save" WidthRequest="25" HeightRequest="25">
                             <Image.GestureRecognizers>

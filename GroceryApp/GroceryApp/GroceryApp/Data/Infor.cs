@@ -9,5 +9,6 @@ namespace GroceryApp.Data
         public static string IDUser { get; set; }
         public static string IDStore { get; set; }
         public static string IDCart { get; set; }
+        public static string Password { get; set; }
     }
 }

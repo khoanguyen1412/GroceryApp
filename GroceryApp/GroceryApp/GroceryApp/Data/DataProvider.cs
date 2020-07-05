@@ -1,5 +1,6 @@
 ﻿using CloudinaryDotNet.Actions;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -411,7 +412,12 @@ namespace GroceryApp.Data
         public bool CheckAccountExist(string IDUser,string Password)
         {
             foreach (User user in Database.Users)
-                if (user.IDUser == IDUser && user.Password==Password) return true;
+                if (user.IDUser == IDUser)
+                {
+                    string encodedPass = MD5Service.EncodeToMD5(Password);
+                    if (encodedPass.ToLower() == user.Password.ToLower()) return true;
+                    break;
+                }
             return false;
         }
 

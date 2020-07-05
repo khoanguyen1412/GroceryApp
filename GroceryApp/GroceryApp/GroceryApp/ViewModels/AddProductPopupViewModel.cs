@@ -175,7 +175,8 @@ namespace GroceryApp.ViewModels
 
             try
             {
-                FileData fileData = await CrossFilePicker.Current.PickFile();
+                string[] types = { "image/*" };
+                FileData fileData = await CrossFilePicker.Current.PickFile(types);
                 if (fileData == null)
                     return; // user canceled file picking
                 string path = fileData.FilePath;

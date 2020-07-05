@@ -90,8 +90,8 @@ namespace GroceryApp.ViewModels
                 return;
             }
             ShowError = false;
-            List<User> z = Database.Users;
-            user.Password = NewPassword;
+            
+            user.Password = MD5Service.EncodeToMD5(NewPassword);
             using (UserDialogs.Instance.Loading("Reseting.."))
             {
                 //update user ở database server

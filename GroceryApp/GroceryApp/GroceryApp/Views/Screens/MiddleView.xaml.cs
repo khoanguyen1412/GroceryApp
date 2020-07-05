@@ -59,6 +59,7 @@ namespace GroceryApp.Views.Screens
                 Infor.IDUser = this.Username;
                 Infor.IDStore = dataProvider.GetIDStoreByIDUser(this.Username);
                 Infor.IDCart = this.Username;
+                Infor.Password = this.Password;
 
                 if (!isAlreadyLogined)
                 {

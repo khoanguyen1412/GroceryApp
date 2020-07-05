@@ -1,5 +1,6 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
+using GroceryApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -111,11 +112,13 @@ namespace GroceryApp.ViewModels
                 IsActive=0,
                 
             };
+            //encode password
+            string encodePass = MD5Service.EncodeToMD5(NewPassword);
             //TẠO USER TƯƠNG ỨNG
             User newUser = new User
             {
                 IDUser= Username,
-                Password=NewPassword,
+                Password= encodePass,
                 IDStore=idStore,
                 PhoneNumber="",
                 Address="###",

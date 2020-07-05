@@ -181,7 +181,7 @@ namespace GroceryApp.ViewModels
             CurrentUser.PhoneNumber = PhoneNumber;
             CurrentUser.BirthDate = BirthDate;
             CurrentUser.Email= Email;
-
+            CurrentUser.Password = MD5Service.EncodeToMD5(Infor.Password);
             using (UserDialogs.Instance.Loading("Updating.."))
             {
                 //update user ở database server
@@ -206,6 +206,7 @@ namespace GroceryApp.ViewModels
             if (string.IsNullOrEmpty(PhoneNumber)) return "Phone number must not be blank, try again!";
             if (string.IsNullOrEmpty(Email)) return "Email must not be blank, try again!";
             if (!EmailService.CheckValidEmail(Email)) return "Email is not valid, try again!";
+            if (EmailService.CheckExistedEmail(Email)) return "Email is used for another account, try again!";
             return "";
         }
 
@@ -214,7 +215,8 @@ namespace GroceryApp.ViewModels
 
             try
             {
-                FileData fileData = await CrossFilePicker.Current.PickFile();
+                string[] types = { "image/*" };
+                FileData fileData = await CrossFilePicker.Current.PickFile(types);
                 if (fileData == null)
                     return; // user canceled file picking
                 string path = fileData.FilePath;
@@ -263,7 +265,7 @@ namespace GroceryApp.ViewModels
         public async void ChangePassword()
         {
             var changePasswordPage = new ChangePasswordView();
-            ChangePasswordViewModel vm = new ChangePasswordViewModel(CurrentUser.Password);
+            ChangePasswordViewModel vm = new ChangePasswordViewModel(Infor.Password);
             changePasswordPage.BindingContext = vm;
             await App.Current.MainPage.Navigation.PushAsync(changePasswordPage, true);
         }
@@ -277,7 +279,7 @@ namespace GroceryApp.ViewModels
             PhoneNumber = CurrentUser.PhoneNumber;
             Email = CurrentUser.Email;
             UserImage = CurrentUser.ImageURL;
-            Password = ConvertPassword(CurrentUser.Password);
+            Password = ConvertPassword(Infor.Password);
 
             FullNameEditMode = false;
             PhoneNumberEditMode = false;
@@ -294,7 +296,8 @@ namespace GroceryApp.ViewModels
         public void ChangePassword(string newPassword)
         {
             Password = ConvertPassword(newPassword);
-            CurrentUser.Password = newPassword;
+            Infor.Password = newPassword;
+            
         }
 
 
