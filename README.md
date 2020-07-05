@@ -22,6 +22,7 @@
 ## Technology
 * [Xamarin.Forms](https://dotnet.microsoft.com/apps/xamarin/xamarin-forms)
 * [.NET](https://dotnet.microsoft.com/)
+* [NodeJS](https://nodejs.org/en/)
 ## Libraries, extensions
 * [OneSignal](https://onesignal.com/)
 * [PanCakeView](https://github.com/sthewissen/Xamarin.Forms.PancakeView)
