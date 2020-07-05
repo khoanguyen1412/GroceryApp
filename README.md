@@ -1,5 +1,10 @@
 # GroceryApp - Xamarin - SE346 UIT
 * Application for Purchasing and Selling grocery products
+#
+
+<p align="center">
+  <img width="180" height="180" src="https://didong.blob.core.windows.net/xamarin-blob/unnamed.jpg">
+</p>
  
 ## Contents
 * [Members](#members)
@@ -28,8 +33,8 @@
    * Clone or download this repository
    * Open this reponsitory in your computer, select default project is Grocery.Android, connect to Android device to build
 * __For users__
-   * Download apk file
-   * Install it
+   * Download Grocery.apk file in release
+   * Install it on your Android device
 ## Contact
 Mr. Nguyễn Hồng Khoa
 Email: 
