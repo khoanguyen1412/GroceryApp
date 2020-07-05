@@ -10,7 +10,7 @@
 * [Members](#members)
 * [Technology](#technology)
 * [Libraries, extensions](#libraries-extensions)
-* [Monitors](#monitors)
+* [Screens](#screens)
 * [Setting](#setting)
 * [Contact](#contact)
 
