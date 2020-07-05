@@ -1,30 +1,36 @@
 # GroceryApp - Xamarin - SE346 UIT
 * Application for Purchasing and Selling grocery products
  
-## Mục lục
-* [Thành viên trong nhóm](#thành-viên-trong-nhóm)
-* [Nền tảng](#nền-tảng)
-* [Thư viện, tiện ích đã sử dụng](#thư-viện-tiện-ích-đã-sử-dụng)
-* [Các màn hình]
-* [Cài đặt](#cài-đặt)
-* [Thông tin liên hệ](#thông-tin-liên-hệ)
+## Contents
+* [Members](#members)
+* [Technology](#technology)
+* [Libraries, extensions](#libraries-extensions)
+* [Monitors](#monitors)
+* [Setting](#setting)
+* [Contact](#contact)
 
 
-## Thành viên trong nhóm
+## Members
 * [Nguyễn Hồng Khoa](https://github.com/) - 17520087
 * [Nguyễn Tiến Dũng](https://github.com/) - 17520376
 
-## Nền tảng
-[Xamarin.Forms](https://dotnet.microsoft.com/apps/xamarin/xamarin-forms)
-## Thư viện, tiện ích đã sử dụng
+## Technology
+* [Xamarin.Forms](https://dotnet.microsoft.com/apps/xamarin/xamarin-forms)
+* [.NET](https://dotnet.microsoft.com/)
+## Libraries, extensions
 * [OneSignal](https://onesignal.com/)
 * [PanCakeView](https://github.com/sthewissen/Xamarin.Forms.PancakeView)
 * [Cloudinary](https://cloudinary.com/)
-## Cài đặt
-* Cài dặt Visual Studio 2019 chọn Mobile development with .NET
-* Clone hoặc tải repository này
-* Mở res vừa tạo trong máy, chọn project mặc định là Grocery.Android, kết nối thiết bị di động với máy tính và cài đặt
-## Thông tin liên hệ
-Nguyễn Hồng Khoa
+## Monitors
+## Setting
+* __For developers__
+   * Install Visual Studio 2019 with Mobile development with .NET
+   * Clone or download this repository
+   * Open this reponsitory in your computer, select default project is Grocery.Android, connect to Android device to build
+* __For users__
+   * Download apk file
+   * Install it
+## Contact
+Mr. Nguyễn Hồng Khoa
 Email: 
 [khoanguyen1412v@gmail.com](mailto:khoanguyen1412v@gmail.com)
