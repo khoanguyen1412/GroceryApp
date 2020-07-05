@@ -44,6 +44,8 @@
    * Download Grocery.apk file in release folder
    * Install it on your Android device and user it
 ## Contact
+For more information please contact
+
 Mr. Nguyễn Hồng Khoa
 
 Email: 
