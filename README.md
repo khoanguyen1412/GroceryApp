@@ -31,10 +31,11 @@
 * __For developers__
    * Install Visual Studio 2019 with Mobile development with .NET
    * Clone or download this repository
-   * Open this reponsitory in your computer, select default project is Grocery.Android, connect to Android device to build
+   * Open this reponsitory in your computer, select default project is Grocery.Android
+   * Make sure that you install or update all nuget packages, connect to Android device to build
 * __For users__
-   * Download Grocery.apk file in release
-   * Install it on your Android device
+   * Download Grocery.apk file in release folder
+   * Install it on your Android device and user it
 ## Contact
 Mr. Nguyễn Hồng Khoa
 Email: 
