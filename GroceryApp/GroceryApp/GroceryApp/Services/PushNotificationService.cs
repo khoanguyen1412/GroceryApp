@@ -98,7 +98,7 @@ namespace GroceryApp.Services
             List<Product> receivedProducts = JsonConvert.DeserializeObject<List<Product>>(data);
             DataUpdater.UpdateProduct(receivedProducts);
             var showStore = ShowStoreView.GetInstance();
-            if (showStore != null)
+            if (showStore.BindingContext != null)
             {
                 (showStore.BindingContext as ShowStoreViewModel).LoadData(true);
             }

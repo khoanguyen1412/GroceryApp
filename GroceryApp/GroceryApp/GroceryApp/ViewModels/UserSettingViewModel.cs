@@ -219,7 +219,7 @@ namespace GroceryApp.ViewModels
             if (string.IsNullOrEmpty(PhoneNumber)) return "Phone number must not be blank, try again!";
             if (string.IsNullOrEmpty(Email)) return "Email must not be blank, try again!";
             if (!EmailService.CheckValidEmail(Email)) return "Email is not valid, try again!";
-            if (EmailService.CheckExistedEmail(Email)) return "Email is used for another account, try again!";
+            if (string.IsNullOrEmpty(CurrentUser.Email) && EmailService.CheckExistedEmail(Email)) return "Email is used for another account, try again!";
             return "";
         }
 

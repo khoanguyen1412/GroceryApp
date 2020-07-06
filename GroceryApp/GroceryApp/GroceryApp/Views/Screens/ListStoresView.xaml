@@ -28,7 +28,7 @@
                     <Image x:Name="backLabel" Source="backarrow" AbsoluteLayout.LayoutBounds="0,0.7,25,25" AbsoluteLayout.LayoutFlags="YProportional,XProportional"/>
 
                 </AbsoluteLayout>
-                <Frame  HasShadow="True" IsClippedToBounds="True" Margin="20,10,20,0" HeightRequest="60" CornerRadius="10" Padding="0">
+                <Frame IsVisible="False" HasShadow="True" IsClippedToBounds="True" Margin="20,10,20,0" HeightRequest="60" CornerRadius="10" Padding="0">
                     <controls:CustomEntry Placeholder="Search" 
                        BorderColor="White" 
                        BackgroundColor="White" 

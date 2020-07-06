@@ -66,7 +66,7 @@ public class NotiContent
                 return "Đơn hàng của bạn đã bắt đầu được giao!";
                 break;
             case NotiNumber.Login:
-                return "Tài khoảng của bạn vừa được đăng nhập bởi một máy khác!";
+                return "Tài khoản của bạn vừa được đăng nhập bởi một máy khác!";
                 break;
             case NotiNumber.SendReview:
                 return "Order của cửa hàng vừa nhận được một feedback từ khách hàng!";

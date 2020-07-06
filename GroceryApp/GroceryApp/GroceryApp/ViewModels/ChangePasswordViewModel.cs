@@ -76,6 +76,7 @@ namespace GroceryApp.ViewModels
         public ICommand Hide3Command { get; set; }
 
         public ICommand SaveChangeCommand { get; set; }
+        public ICommand GoBackCommand { get; set; }
 
         public ChangePasswordViewModel()
         {
@@ -93,6 +94,12 @@ namespace GroceryApp.ViewModels
             Hide2Command = new Command(ChangeHide2);
             Hide3Command = new Command(ChangeHide3);
             SaveChangeCommand = new Command(SaveChange);
+            GoBackCommand = new Command(GoBack);
+        }
+
+        public async void GoBack()
+        {
+            await App.Current.MainPage.Navigation.PopAsync();
         }
 
         public async void SaveChange()
