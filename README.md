@@ -54,15 +54,15 @@ Email:
 [khoanguyen1412v@gmail.com](mailto:khoanguyen1412v@gmail.com)
 
 
-[login]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[create]: https://didong.blob.core.windows.net/xamarin-blob/createacc.jpg
-[forgot]: https://didong.blob.core.windows.net/xamarin-blob/forgot.jpg
+[login]: https://didong.blob.core.windows.net/xamarin-blob/signin.jpg
+[create]: https://didong.blob.core.windows.net/xamarin-blob/create.jpg
+[forgot]: https://didong.blob.core.windows.net/xamarin-blob/forot.jpg
 [mains]: https://didong.blob.core.windows.net/xamarin-blob/main.jpg
-[store]: https://didong.blob.core.windows.net/xamarin-blob/mainstore.jpg
+[store]: https://didong.blob.core.windows.net/xamarin-blob/store.jpg
 [cart]: https://didong.blob.core.windows.net/xamarin-blob/cart.jpg
 [order]: https://didong.blob.core.windows.net/xamarin-blob/order.jpg
 [ystore]: https://didong.blob.core.windows.net/xamarin-blob/store.jpg
 [product]: https://didong.blob.core.windows.net/xamarin-blob/product.jpg
 [feedback]: https://didong.blob.core.windows.net/xamarin-blob/feedback.jpg
-[settings]: https://didong.blob.core.windows.net/xamarin-blob/settingstore.jpg
+[settings]: https://didong.blob.core.windows.net/xamarin-blob/storeset.jpg
 [sorder]: https://didong.blob.core.windows.net/xamarin-blob/orderstore.jpg
