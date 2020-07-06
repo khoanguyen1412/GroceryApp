@@ -55,14 +55,14 @@ Email:
 
 
 [login]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[create]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[forgot]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[mains]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[store]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[cart]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[order]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[ystore]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[product]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[feedback]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[settings]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
-[sorder]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[create]: https://didong.blob.core.windows.net/xamarin-blob/createacc.jpg
+[forgot]: https://didong.blob.core.windows.net/xamarin-blob/forgot.jpg
+[mains]: https://didong.blob.core.windows.net/xamarin-blob/main.jpg
+[store]: https://didong.blob.core.windows.net/xamarin-blob/mainstore.jpg
+[cart]: https://didong.blob.core.windows.net/xamarin-blob/cart.jpg
+[order]: https://didong.blob.core.windows.net/xamarin-blob/order.jpg
+[ystore]: https://didong.blob.core.windows.net/xamarin-blob/store.jpg
+[product]: https://didong.blob.core.windows.net/xamarin-blob/product.jpg
+[feedback]: https://didong.blob.core.windows.net/xamarin-blob/feedback.jpg
+[settings]: https://didong.blob.core.windows.net/xamarin-blob/settingstore.jpg
+[sorder]: https://didong.blob.core.windows.net/xamarin-blob/orderstore.jpg
