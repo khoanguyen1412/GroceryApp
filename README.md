@@ -3,7 +3,7 @@
 #
 
 <p align="center">
-  <img width="180" height="180" src="https://didong.blob.core.windows.net/xamarin-blob/unnamed.jpg">
+  <img width="180" height="180" src="https://image.flaticon.com/icons/svg/1205/1205047.svg">
 </p>
  
 ## Contents
