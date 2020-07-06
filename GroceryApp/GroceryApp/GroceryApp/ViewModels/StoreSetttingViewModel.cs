@@ -77,9 +77,24 @@ namespace GroceryApp.ViewModels
             ChangeActiveCommand = new Command(ChangeActive);
         }
 
-        public void ChangeActive()
+        public async void ChangeActive()
         {
             IsActive = 1-IsActive;
+            //TEST INTERNET CONNECTTION 
+            var httpClient = new HttpClient();
+            string x = "";
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+            }
+            catch (Exception ex)
+            {
+                IsActive = 1 - IsActive;
+                await App.Current.MainPage.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
+
             if (IsActive == 1)
             {
                 if(dataProvider.IsLackOfStoreInfor())
@@ -103,6 +118,20 @@ namespace GroceryApp.ViewModels
 
         public async void SaveChange()
         {
+            //TEST INTERNET CONNECTTION 
+            var httpClient = new HttpClient();
+            string x = "";
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                x = testInternet;
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
             string message = CheckInfor();
             if (message != "")
             {
@@ -144,7 +173,6 @@ namespace GroceryApp.ViewModels
             using (UserDialogs.Instance.Loading("Saving.."))
             {
                 //update store ở database server
-                var httpClient = new HttpClient();
                 await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "store/update", myStore);
                 //update store ở database local
                 DataUpdater.UpdateStore(myStore);

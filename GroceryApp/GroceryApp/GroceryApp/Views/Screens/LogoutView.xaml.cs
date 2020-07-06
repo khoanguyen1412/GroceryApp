@@ -34,12 +34,24 @@ namespace GroceryApp.Views.Screens
             User user = dataProvider.GetUserByIDUser(Infor.IDUser);
             user.IsLogined = 0;
 
-            OneSignal.Current.SetExternalUserId("");
+            
             Preferences.Set("IDLogin", "");
             //OneSignal.Current.SendTag("IsLogined", "0");
 
+            //TEST INTERNET CONNECTTION 
             var httpClient = new HttpClient();
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);
+
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                OneSignal.Current.SetExternalUserId("");
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
             App.Current.MainPage = new NavigationPage( LoginView.GetInstance());
 
         }

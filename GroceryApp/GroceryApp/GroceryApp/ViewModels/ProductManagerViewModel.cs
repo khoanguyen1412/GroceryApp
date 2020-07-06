@@ -266,7 +266,7 @@ namespace GroceryApp.ViewModels
 
         public async void UpdateProduct(Product updatedProduct)
         {
-            foreach(ProductItem item in _saveProducts)
+            foreach (ProductItem item in _saveProducts)
                 if (item.Product.IDProduct == updatedProduct.IDProduct)
                 {
                     item.Product = updatedProduct;

@@ -9,6 +9,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,12 +70,25 @@ namespace GroceryApp.ViewModels
         }
         public async void SendOrder()
         {
-            var successPopup = new SuccessNotiPopupView();
-            
-            
+
+            //TEST INTERNET CONNECTTION 
+            var httpClient = new HttpClient();
+            string x = "";
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                x = testInternet;
+            }
+            catch (Exception ex)
+            {
+                var stack = App.Current.MainPage.Navigation.NavigationStack;
+                var page = stack[stack.Count - 1];
+                await page.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
             using (UserDialogs.Instance.Loading("wait.."))
             {
-                var httpClient = new HttpClient();
                 var result= await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/insert", OrderItem.Order);
                 var a = await result.Content.ReadAsStringAsync();
                 JObject rss = JObject.Parse(a);

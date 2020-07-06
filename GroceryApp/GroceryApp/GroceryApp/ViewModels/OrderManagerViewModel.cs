@@ -111,6 +111,20 @@ namespace GroceryApp.ViewModels
 
         public async void DeliverOrder(OrderBill order)
         {
+            //TEST INTERNET CONNECTTION 
+            var httpClient = new HttpClient();
+            string x = "";
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                x = testInternet;
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
             using (UserDialogs.Instance.Loading("Delivering order"))
             {
                 order.State = OrderState.Delivering;
@@ -126,7 +140,6 @@ namespace GroceryApp.ViewModels
                 LoadKindsOfOrders();
 
                 //api update database server
-                var httpClient = new HttpClient();
                 await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "orderbill/update", order);
 
             }

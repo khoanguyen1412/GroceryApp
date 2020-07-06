@@ -12,6 +12,7 @@ using ImTools;
 using System.Net.Http;
 using GroceryApp.Services;
 using GroceryApp.Views.TabBars;
+using Acr.UserDialogs;
 
 namespace GroceryApp.ViewModels
 {
@@ -121,22 +122,39 @@ namespace GroceryApp.ViewModels
 
         public async void ReturnProduct(ProductItemCart productItem)
         {
-            Product product = productItem.Product;
+            //TEST INTERNET CONNECTTION 
             var httpClient = new HttpClient();
+            string x = "";
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                x = testInternet;
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
+            Product product = productItem.Product;
             Product deletedProduct = dataProvider.GetProductInCartByIDSourceProduct(product.IDSourceProduct);
             DataUpdater.ReturnProductToSourceProduct(deletedProduct);
-            
+
 
             Product changedProduct = dataProvider.GetProductByID(product.IDSourceProduct);
-            //Update lại product cho server database
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", changedProduct);
-            //xóa product bị hủy trong cart 
-            await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/deleteproductbyid/"+ deletedProduct.IDProduct,new { });
+            using (UserDialogs.Instance.Loading("wait.."))
+            {
+                //Update lại product cho server database
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/update", changedProduct);
+                //xóa product bị hủy trong cart 
+                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/deleteproductbyid/" + deletedProduct.IDProduct, new { });
 
 
-            //load lại data product cho store được trả về VÀ TRONG CART
-            DataUpdater.DeletedProductInCart(deletedProduct);
-            LoadData();
+                //load lại data product cho store được trả về VÀ TRONG CART
+                DataUpdater.DeletedProductInCart(deletedProduct);
+                LoadData();
+            }
+                
 
 
             //PUSH NOTI

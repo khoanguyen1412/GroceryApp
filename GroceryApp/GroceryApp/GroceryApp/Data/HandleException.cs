@@ -18,5 +18,11 @@ namespace GroceryApp.Data
             var loginPage = LoginView.GetInstance();
             await loginPage.DisplayAlert("Error","Load data fail, check your internet connection and try again!","OK");
         }
+
+        public static async void ConnectionFail()
+        {
+            var loginPage = LoginView.GetInstance();
+            await loginPage.DisplayAlert("Error", "Load data fail, check your internet connection and try again!", "OK");
+        }
     }
 }

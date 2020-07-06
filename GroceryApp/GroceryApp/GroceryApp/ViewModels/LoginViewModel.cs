@@ -5,6 +5,7 @@ using GroceryApp.Models;
 using GroceryApp.Views.Screens;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -105,6 +106,18 @@ namespace GroceryApp.ViewModels
 
         public async void Login()
         {
+            //TEST INTERNET CONNECTTION 
+            var httpClient = new HttpClient();
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
             DataProvider dataProvider = DataProvider.GetInstance();
             Preferences.Set("UsernameLogin", Username);
             Preferences.Set("PasswordLogin", Password);

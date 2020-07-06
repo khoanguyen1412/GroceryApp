@@ -113,9 +113,22 @@ namespace GroceryApp.ViewModels
 
         public async void DeleteOrder(OrderBill orderBill)
         {
+            //TEST INTERNET CONNECTTION 
+            var httpClient = new HttpClient();
+            string x = "";
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                x = testInternet;
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
             using (UserDialogs.Instance.Loading("Canceling order"))
             {
-                var httpClient = new HttpClient();
                 List<Product> productInOrder = dataProvider.GetProductsInBillByIDBill(orderBill.IDOrderBill);
                 //update quantityinventory ở local
                 List<Product> sourceProducts = DataUpdater.ReturnListProductToSource(productInOrder);

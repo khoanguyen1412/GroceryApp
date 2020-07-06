@@ -138,6 +138,20 @@ namespace GroceryApp.ViewModels
 
         public async void SaveChange()
         {
+            //TEST INTERNET CONNECTTION 
+            var httpClient = new HttpClient();
+            string x = "";
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                x = testInternet;
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
             string message = CheckInfor();
             if (message != "")
             {
@@ -185,7 +199,6 @@ namespace GroceryApp.ViewModels
             using (UserDialogs.Instance.Loading("Updating.."))
             {
                 //update user ở database server
-                var httpClient = new HttpClient();
                 await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", CurrentUser);
                 //update user ở database local
                 DataUpdater.UpdateUser(CurrentUser);

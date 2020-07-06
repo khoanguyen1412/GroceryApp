@@ -110,9 +110,22 @@ namespace GroceryApp.ViewModels
 
         public async void SendReview()
         {
+            //TEST INTERNET CONNECTTION 
+            var httpClient = new HttpClient();
+            string x = "";
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                x = testInternet;
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
             using (UserDialogs.Instance.Loading("Receiving order"))
             {
-                var httpClient = new HttpClient();
                 order.Rating = GetRating();
                 order.Review = Review;
                 DataUpdater.ReceiveOder(order);

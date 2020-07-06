@@ -3,9 +3,11 @@ using GroceryApp.Models;
 using GroceryApp.Services;
 using GroceryApp.ViewModels;
 using GroceryApp.Views.Drawer;
+using GroceryApp.Views.Screens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,8 +29,23 @@ namespace GroceryApp.Views.Popups
 
         }
 
-        public void AddToCart(object sender, EventArgs e)
+        public async void AddToCart(object sender, EventArgs e)
         {
+            //TEST INTERNET CONNECTTION 
+            var httpClient = new HttpClient();
+            string x = "";
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                x = testInternet;
+            }
+            catch (Exception ex)
+            {
+                await ShowStoreView.GetInstance().DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
+            
             var viewmodel = this.BindingContext as ShowStoreViewModel;
             if (viewmodel.CheckNoSelectedProduct())
             {
