@@ -30,10 +30,10 @@
 ## Screens
 ||||
 |:---:|:---:|:---:|
-|![login]<br>Login|![create]<br>Create new acc|![forgot]<br>Forgot password|
-|![mains]<br>Main screen|![store]<br>Store|![cart]<br>Cart|
-|![order]<br>Order|![ystore]<br>Your store|![product]<br>Prodcut|
-|![feedback]<br>Feedback|![settings]<br>Setting store|![sorder]<br>Store order|
+|![login]<br>__Login__|![create]<br>__Create new acc__|![forgot]<br>__Forgot password__|
+|![mains]<br>__Main screen__|![store]<br>__Store__|![cart]<br>__Cart__|
+|![order]<br>__Order__|![ystore]<br>__Your store__|![product]<br>__Product__|
+|![feedback]<br>__Feedback__|![settings]<br>__Setting store__|![sorder]<br>__Store order__|
 
 ## Setting
 * __For developers__
