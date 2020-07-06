@@ -1,4 +1,4 @@
-# GroceryApp - Xamarin - SE346 UIT
+# GroceryApp - Xamarin - UIT
 * Application for Purchasing and Selling grocery products
 #
 
