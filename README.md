@@ -30,10 +30,10 @@
 ## Screens
 ||||
 |:---:|:---:|:---:|
-|![a]<br>màn hình 1|![b]<br>màn hình 2|![c]<br>màn hình 3|
-|![d]<br>màn hình 4|![e]<br>màn hình 5|![f]<br>màn hình 6|
-|![g]<br>màn hình 7|![h]<br>màn hình 8|![i]<br>màn hình9|
-
+|![login]<br>Login|![create]<br>Create new acc|![forgot]<br>Forgot password|
+|![mains]<br>Main screen|![store]<br>Store|![cart]<br>Cart|
+|![order]<br>Order|![ystore]<br>Your store|![product]<br>Prodcut|
+|![feedback]<br>Feedback|![settings]<br>Setting store|![sorder]<br>Store order|
 
 ## Setting
 * __For developers__
@@ -54,12 +54,15 @@ Email:
 [khoanguyen1412v@gmail.com](mailto:khoanguyen1412v@gmail.com)
 
 
-[a]: https://didong.blob.core.windows.net/xamarin-blob/1.png
-[b]: https://didong.blob.core.windows.net/xamarin-blob/1.png
-[c]: https://didong.blob.core.windows.net/xamarin-blob/5.png
-[d]: https://didong.blob.core.windows.net/xamarin-blob/1.png
-[e]: https://didong.blob.core.windows.net/xamarin-blob/1.png
-[f]: https://didong.blob.core.windows.net/xamarin-blob/5.png
-[g]: https://didong.blob.core.windows.net/xamarin-blob/1.png
-[h]: https://didong.blob.core.windows.net/xamarin-blob/5.png
-[i]: https://didong.blob.core.windows.net/xamarin-blob/1.png
+[login]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[create]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[forgot]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[mains]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[store]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[cart]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[order]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[ystore]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[product]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[feedback]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[settings]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
+[sorder]: https://didong.blob.core.windows.net/xamarin-blob/login.jpg
