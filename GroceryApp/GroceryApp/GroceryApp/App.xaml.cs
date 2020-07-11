@@ -34,6 +34,7 @@ namespace GroceryApp
             MainPage = new NavigationPage(new SplashScreenView());
             OneSignal.Current.StartInit("b5f59a9f-3873-47a9-80e5-ca37fb75610a")
                 .HandleNotificationReceived(PushNotificationService.HandleNotificationReceived)
+                .HandleNotificationOpened(PushNotificationService.HandleNotificationOpened)
                 .InFocusDisplaying(OSInFocusDisplayOption.Notification)
                 .EndInit();
 

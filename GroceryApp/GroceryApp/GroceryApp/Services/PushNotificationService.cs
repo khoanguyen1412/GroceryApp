@@ -416,5 +416,10 @@ namespace GroceryApp.Services
             };
             return shownObj;
         }
+
+        public static void HandleNotificationOpened(OSNotificationOpenedResult result)
+        {
+
+        }
     }
 }
