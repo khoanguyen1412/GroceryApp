@@ -13,6 +13,7 @@ using Acr.UserDialogs;
 using System.Threading.Tasks;
 using System.IO;
 using Android.Content;
+using Xamarin.Forms.PancakeView.Droid;
 
 namespace GroceryApp.Droid
 {
@@ -48,9 +49,12 @@ namespace GroceryApp.Droid
             Window.SetSoftInputMode(Android.Views.SoftInput.AdjustPan);
 
             UserDialogs.Init(this);
-
+            // Init pancakes
+            PancakeViewRenderer.Init();
             LoadApplication(new App());
 
+
+            
             
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

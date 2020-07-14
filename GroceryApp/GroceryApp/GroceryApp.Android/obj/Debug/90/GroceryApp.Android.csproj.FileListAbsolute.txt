@@ -1660,3 +1660,14 @@ C:\Users\DungHK\Desktop\gitappgrocery\GroceryApp\GroceryApp\GroceryApp\GroceryAp
 C:\Users\DungHK\Desktop\gitappgrocery\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Users\DungHK\Desktop\gitappgrocery\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\DungHK\Desktop\gitappgrocery\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\res\drawable\gosearch.png
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\flata\FB3E50E1C4AFC78E.stamp
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\flata\6C52B18C508925CD.stamp
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\flata\FB3E50E1C4AFC78E.flata
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\flata\6C52B18C508925CD.flata
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\android\assets\Xamarin.RangeSlider.Common.dll
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\android\assets\Xamarin.RangeSlider.Droid.dll
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\android\assets\Xamarin.RangeSlider.Forms.dll
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\android\assets\Xamarin.RangeSlider.Forms.Droid.dll
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\android\src\crc647d6fdacd6da56749\RangeSliderRenderer.java
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp.Android\obj\Debug\90\android\src\crc64d528ded20b131891\RangeSliderControl.java

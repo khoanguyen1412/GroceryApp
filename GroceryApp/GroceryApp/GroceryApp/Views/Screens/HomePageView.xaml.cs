@@ -18,5 +18,21 @@ namespace GroceryApp.Views.Screens
             InitializeComponent();
         }
 
+        private void SearchBar_Focused(object sender, FocusEventArgs e)
+        {
+            listsearch.IsVisible = true;
+        }
+
+        private void SearchBar_Unfocused(object sender, FocusEventArgs e)
+        {
+            if((this.BindingContext as HomePageViewModel).isChoosing)
+            {
+                (this.BindingContext as HomePageViewModel).isChoosing = false;
+                return;
+            }
+            listsearch.IsVisible = false;
+        }
+
+       
     }
 }

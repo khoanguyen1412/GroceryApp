@@ -51,25 +51,30 @@ public class NotiContent
         switch (notiNumber)
         {
             case NotiNumber.MakeBillForStore:
-                return "Cửa hàng của bạn vừa nhận một order mới!";
+                //return "Cửa hàng của bạn vừa nhận một order mới!";
+                return "Your store has just received a new order!";
                 break;
             case NotiNumber.CancelOrderForStore:
-                return "Cửa hàng của bạn có một order đã bị hủy";
+                //return "Cửa hàng của bạn có một order đã bị hủy";
+                return "An order has just been canceled by customer";
                 break;
             case NotiNumber.CancelOrderForCustomer:
-                return "Bạn có một order đã bị hủy";
+                //return "Bạn có một order đã bị hủy";
+                return "An order has just been canceled by store";
                 break;
             case NotiNumber.ReceiveOrderForStore:
-                return "Cửa hàng của bạn có một order đã được nhận!";
+                //return "Cửa hàng của bạn có một order đã được nhận!";
+                return "An order has just been received by customer!";
                 break;
             case NotiNumber.DeliverOrderForCustomer:
-                return "Đơn hàng của bạn đã bắt đầu được giao!";
+                return "Your order has just started delivering!";
                 break;
             case NotiNumber.Login:
-                return "Tài khoản của bạn vừa được đăng nhập bởi một máy khác!";
+                return "Your account has just been signed up in another device!";
                 break;
             case NotiNumber.SendReview:
-                return "Order của cửa hàng vừa nhận được một feedback từ khách hàng!";
+                //return "Order của cửa hàng vừa nhận được một feedback từ khách hàng!";
+                return "Your store's order has just received a feedback from customer!";
         }
         return "";
     }

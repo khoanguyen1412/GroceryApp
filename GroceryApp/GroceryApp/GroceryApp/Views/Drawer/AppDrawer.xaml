@@ -53,7 +53,7 @@
                             <VisualState.Setters>
                                 <Setter Property="BackgroundGradientStartColor" Value="#73D8D4"/>
                                 <Setter Property="BackgroundGradientEndColor" Value="White"/>
-                                <Setter Property="BackgroundGradientAngle" Value="45"/>
+                                <!--<Setter Property="BackgroundGradientAngle" Value="45"/>-->
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>

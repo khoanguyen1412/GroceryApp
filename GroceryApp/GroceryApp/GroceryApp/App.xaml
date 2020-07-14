@@ -41,6 +41,8 @@
             <converter:StoreRatingConverter x:Key="StoreRatingConverter"/>
             <converter:RatingIconConverter x:Key="RatingIconConverter"/>
             <converter:IDStoreToImageConverter x:Key="IDStoreToImageConverter"/>
+            <converter:SearchBarRowHeightConverter x:Key="SearchBarRowHeightConverter"/>
+            <converter:EnableLabelColorConverter x:Key="EnableLabelColorConverter"/>
             <selector:DataTemplateSliderSelector x:Key="DataTemplateSliderSelector"/>
         </ResourceDictionary>
         <OnPlatform x:Key="Avo"

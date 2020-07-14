@@ -65,3 +65,5 @@ Xamarin.GooglePlayServices.Base
 Xamarin.GooglePlayServices.Basement
 Xamarin.GooglePlayServices.Stats
 Xamarin.GooglePlayServices.Tasks
+Xamarin.RangeSlider.Droid
+Xamarin.RangeSlider.Forms.Droid

@@ -48,8 +48,6 @@ F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\TabBars\TabbarStoreManager.xaml.g.cs
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.AssemblyInfoInputs.cache
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.AssemblyInfo.cs
-F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csproj.CoreCompileInputs.cache
-F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\XamlC.stamp
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.dll
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\ref\GroceryApp.dll
 F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.pdb
@@ -108,3 +106,6 @@ C:\Users\DungHK\Desktop\gitappgrocery\GroceryApp\GroceryApp\GroceryApp\GroceryAp
 C:\Users\DungHK\Desktop\gitappgrocery\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.dll
 C:\Users\DungHK\Desktop\gitappgrocery\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\ref\GroceryApp.dll
 C:\Users\DungHK\Desktop\gitappgrocery\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.pdb
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\GroceryApp.csproj.CoreCompileInputs.cache
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\XamlC.stamp
+F:\DO AN XAMARIN OFFICIAL\GroceryApp\GroceryApp\GroceryApp\GroceryApp\obj\Debug\netstandard2.0\Views\Popups\FilterPopupView.xaml.g.cs

@@ -19,6 +19,7 @@ namespace GroceryApp.ViewModels
     }
     public class HomePageViewModel: BaseViewModel, IHomePageViewModel
     {
+        public bool isChoosing = false;
         DataProvider dataProvider = DataProvider.GetInstance();
         private ObservableCollection<Store> _stores;
 
@@ -26,6 +27,35 @@ namespace GroceryApp.ViewModels
         {
             get { return _stores; }
             set { _stores = value; OnPropertyChanged(nameof(Stores)); }
+        }
+
+        private ObservableCollection<SearchItemHome> SourceSearchItems;
+        private ObservableCollection<SearchItemHome> _searchList;
+
+        public ObservableCollection<SearchItemHome> SearchList
+        {
+            get { return _searchList; }
+            set { _searchList = value; OnPropertyChanged(nameof(SearchList)); }
+        }
+
+        private string _searchText;
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set { 
+                _searchText = value;
+                OnSearch(value);
+                OnPropertyChanged(nameof(SearchText)); 
+            }
+        }
+
+        private bool _showList;
+
+        public bool ShowList
+        {
+            get { return _showList; }
+            set { _showList = value; OnPropertyChanged(nameof(ShowList)); }
         }
 
         public string Title { get; set; }
@@ -39,6 +69,7 @@ namespace GroceryApp.ViewModels
         public ICommand CandyCommand { get; set; }
         public ICommand CakeCommand { get; set; }
         public ICommand ShowStoreCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
         public HomePageViewModel()
         {
             LoadData();
@@ -52,6 +83,51 @@ namespace GroceryApp.ViewModels
             GoOrderCommand = new Command(GoOrder);
             GoStoreCommand = new Command(GoStore);
             ShowStoreCommand = new Command<Store>(ShowStore);
+            SearchCommand = new Command<SearchItemHome>(Search);
+        }
+
+        public void Search(SearchItemHome searchItem)
+        {
+            isChoosing = false;
+            ShowList = false;
+            
+            switch (searchItem.Name)
+            {
+                case "Cart": 
+                    GoCart();
+                    return;
+                case "Orders":
+                    GoOrder();
+                    return;
+                case "Stores":
+                    GoStore();
+                    return;
+                case "Fruits":
+                    ChooseFruit();
+                    return;
+                case "Vegetables":
+                    ChooseVeget();
+                    return;
+                case "Drinks":
+                    ChooseDrink();
+                    return;
+                case "Candies":
+                    ChooseCandy();
+                    return;
+                case "Cakes":
+                    ChooseCake();
+                    return;
+                case "Your Store":
+                    GoStoreManager();
+                    return;
+            }
+        }
+
+        public void GoStoreManager()
+        {
+
+            var tabbar = AppDrawer.GetInstance();
+            tabbar.CurrentItem = tabbar.Items[1];
         }
 
         public async void ShowStore(Store store)
@@ -156,6 +232,67 @@ namespace GroceryApp.ViewModels
             if (Title == "") Title = "Hi there!";
             else Title = "Hi " + Title + "!";
             _stores = new ObservableCollection<Store>(dataProvider.GetListStores());
+
+            //Load list cho search bar
+            SourceSearchItems = new ObservableCollection<SearchItemHome>
+            {
+                new SearchItemHome
+                {
+                    Name="Cart",
+                    Image="heartcart"
+                },
+                new SearchItemHome
+                {
+                    Name="Orders",
+                    Image="colororder"
+                },
+                new SearchItemHome
+                {
+                    Name="Stores",
+                    Image="drawerstore"
+                },
+                new SearchItemHome
+                {
+                    Name="Fruits",
+                    Image="colorfruit"
+                },
+                new SearchItemHome
+                {
+                    Name="Vegetables",
+                    Image="greenveget"
+                },
+                new SearchItemHome
+                {
+                    Name="Drinks",
+                    Image="colordrink"
+                },
+                new SearchItemHome
+                {
+                    Name="Candies",
+                    Image="colorcandy"
+                },
+                new SearchItemHome
+                {
+                    Name="Cakes",
+                    Image="colorcake"
+                },
+                new SearchItemHome
+                {
+                    Name="Your Store",
+                    Image="colortool"
+                },
+            };
+
+            SearchText = "";
+        }
+
+        public void OnSearch(string text)
+        {
+            List<SearchItemHome> updatedList = new List<SearchItemHome>();
+            foreach (SearchItemHome item in SourceSearchItems)
+                if (item.Name.ToLower().Contains(text.ToLower()))
+                    updatedList.Add(item);
+            SearchList = new ObservableCollection<SearchItemHome>(updatedList);
         }
     }
 }

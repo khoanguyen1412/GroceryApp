@@ -90,6 +90,10 @@ public class MonoPackageManager_Resources {
 		"Xamarin.GooglePlayServices.Basement.dll",
 		"Xamarin.GooglePlayServices.Stats.dll",
 		"Xamarin.GooglePlayServices.Tasks.dll",
+		"Xamarin.RangeSlider.Common.dll",
+		"Xamarin.RangeSlider.Droid.dll",
+		"Xamarin.RangeSlider.Forms.dll",
+		"Xamarin.RangeSlider.Forms.Droid.dll",
 	};
 	public static String[] Dependencies = new String[]{
 	};
