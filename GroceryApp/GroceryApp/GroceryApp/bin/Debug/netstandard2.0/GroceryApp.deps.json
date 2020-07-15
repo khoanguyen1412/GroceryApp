@@ -20,7 +20,7 @@
           "Nancy": "2.0.0",
           "Prism.DryIoc.Forms": "7.2.0.1422",
           "Rg.Plugins.Popup": "2.0.0.3",
-          "SkiaSharp": "2.80.0",
+          "SkiaSharp": "2.80.1",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.FFImageLoading": "2.4.11.982",
           "Xamarin.FFImageLoading.Forms": "2.4.11.982",
@@ -98,7 +98,7 @@
       },
       "Microcharts/0.7.1": {
         "dependencies": {
-          "SkiaSharp": "2.80.0",
+          "SkiaSharp": "2.80.1",
           "System.ValueTuple": "4.4.0"
         },
         "runtime": {
@@ -379,20 +379,20 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
-      "SkiaSharp/2.80.0": {
+      "SkiaSharp/2.80.1": {
         "dependencies": {
           "System.Memory": "4.5.3"
         },
         "runtime": {
           "lib/netstandard2.0/SkiaSharp.dll": {
             "assemblyVersion": "2.80.0.0",
-            "fileVersion": "2.80.0.0"
+            "fileVersion": "2.80.1.0"
           }
         }
       },
       "SkiaSharp.Views.Forms/1.59.1.1": {
         "dependencies": {
-          "SkiaSharp": "2.80.0",
+          "SkiaSharp": "2.80.1",
           "Xamarin.Forms": "4.7.0.968"
         },
         "runtime": {
@@ -1677,12 +1677,12 @@
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
     },
-    "SkiaSharp/2.80.0": {
+    "SkiaSharp/2.80.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-I0yKGbSgUefnhtCbULNRfOBiL0EVPtoY6+RUcwNtStQB5su26o45r141CJJ7SHy4ebIzMUpQ27d0QclRJVFcYw==",
-      "path": "skiasharp/2.80.0",
-      "hashPath": "skiasharp.2.80.0.nupkg.sha512"
+      "sha512": "sha512-CiQwnDzG+1JNGzjAN9G/9n/lJgUVA/NPOFgSlEtu6c7qQ0O7P1tMjrXp/+PtWfX0xyyY9ABsFAZK2kW34U7r/A==",
+      "path": "skiasharp/2.80.1",
+      "hashPath": "skiasharp.2.80.1.nupkg.sha512"
     },
     "SkiaSharp.Views.Forms/1.59.1.1": {
       "type": "package",

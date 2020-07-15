@@ -1,6 +1,7 @@
 ﻿using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Views.Drawer;
+using GroceryApp.Views.Popups;
 using GroceryApp.Views.Screens;
 using GroceryApp.Views.TabBars;
 using System;
@@ -132,6 +133,12 @@ namespace GroceryApp.ViewModels
 
         public async void ShowStore(Store store)
         {
+            //TẠO FILTER TRƯỚC CHO STORE
+            var filterView = FilterPopupView.GetInstance();
+            double maxPrice = dataProvider.FindMaxPriceInStore(store.IDStore);
+            var VM = new FilterPopupViewModel(maxPrice);
+            filterView.BindingContext = VM;
+
             ShowStoreView.Destroy();
             var showStoreView = ShowStoreView.GetInstance();
             showStoreView.BindingContext = new ShowStoreViewModel(store.IDStore);

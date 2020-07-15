@@ -91,7 +91,7 @@
             },
             "SkiaSharp": {
               "target": "Package",
-              "version": "[2.80.0, )"
+              "version": "[2.80.1, )"
             },
             "Xamarin.Essentials": {
               "target": "Package",

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using GroceryApp.Views.Screens;
+using GroceryApp.Views.TabBars;
+using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -95,9 +99,12 @@ namespace GroceryApp.ViewModels
         public double HighestValue { get; set; }
 
         public ICommand ApplyCommand { get; set; }
+        public ICommand GobackCommand { get; set; }
         public FilterPopupViewModel(double highestPrice)
         {
             LoadData(highestPrice);
+            ApplyCommand = new Command(Apply);
+            GobackCommand = new Command(Goback);
 
         }
 
@@ -117,7 +124,28 @@ namespace GroceryApp.ViewModels
 
         public async void Apply()
         {
+            using(UserDialogs.Instance.Loading("Applying filter.."))
+            {
+                bool isFilter = IsUse;
+                string SortType = SelectedOrder;
+                double FilterMin = -1;
+                double FilterMax = -1;
 
+                if (IsFilter)
+                {
+                    FilterMin = LowPrice;
+                    FilterMax = HighPrice;
+                }
+
+                var ShowStoreVM = ShowStoreView.GetInstance().BindingContext as ShowStoreViewModel;
+                ShowStoreVM.ApplyFilter(isFilter, SortType, FilterMin, FilterMax);
+                await PopupNavigation.Instance.PopAllAsync();
+            }
+            
+        }
+        public async void Goback()
+        {
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
         }
 
         public void OnSelectedSortChange(string value)
@@ -136,16 +164,6 @@ namespace GroceryApp.ViewModels
         public FilterPopupViewModel()
         {
             //NO USE
-            this.HighestValue = 900000;
-            IsFilter = false;
-            IsSort = false;
-            IsUse = false;
-            HighPrice = 900000;
-            LowPrice = 0;
-            SelectedSort = SortBy[0];
-            OrderBy = new ObservableCollection<string>(OrderByName);
-            SelectedOrder = OrderBy[0];
-            ApplyCommand = new Command(Apply);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CloudinaryDotNet.Actions;
 using GroceryApp.Models;
 using GroceryApp.Services;
+using ImTools;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -597,6 +598,20 @@ namespace GroceryApp.Data
                 if (idStore == user.IDStore)
                     return user.IDUser;
             return null;
+        }
+
+        //LOGIN VIEW==========================================================
+        public double FindMaxPriceInStore(string IDStore)
+        {
+            double result = 1;
+            List<Product> products = GetProductByIDStore(IDStore);
+            double max = 0;
+            foreach (Product product in products)
+                if (product.Price > max) max = product.Price;
+
+            for (int i = 1; i <= max.ToString().Length; i++)
+                result *= 10;
+            return result;
         }
     }
 }

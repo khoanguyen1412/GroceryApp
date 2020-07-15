@@ -52,6 +52,6 @@
     <Import Project="$(NuGetPackageRoot)xamarin.firebase.common\71.1610.0\build\MonoAndroid90\Xamarin.Firebase.Common.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.firebase.common\71.1610.0\build\MonoAndroid90\Xamarin.Firebase.Common.targets')" />
     <Import Project="$(NuGetPackageRoot)xamarin.firebase.iid\71.1710.0\build\MonoAndroid90\Xamarin.Firebase.Iid.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.firebase.iid\71.1710.0\build\MonoAndroid90\Xamarin.Firebase.Iid.targets')" />
     <Import Project="$(NuGetPackageRoot)xamarin.firebase.messaging\71.1740.0\build\MonoAndroid90\Xamarin.Firebase.Messaging.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.firebase.messaging\71.1740.0\build\MonoAndroid90\Xamarin.Firebase.Messaging.targets')" />
-    <Import Project="$(NuGetPackageRoot)skiasharp\2.80.0\build\monoandroid1.0\SkiaSharp.targets" Condition="Exists('$(NuGetPackageRoot)skiasharp\2.80.0\build\monoandroid1.0\SkiaSharp.targets')" />
+    <Import Project="$(NuGetPackageRoot)skiasharp\2.80.1\build\monoandroid1.0\SkiaSharp.targets" Condition="Exists('$(NuGetPackageRoot)skiasharp\2.80.1\build\monoandroid1.0\SkiaSharp.targets')" />
   </ImportGroup>
 </Project>

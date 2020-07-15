@@ -13,7 +13,17 @@ namespace GroceryApp.Views.Popups
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FilterPopupView : PopupPage
     {
-        public FilterPopupView()
+        private static FilterPopupView _instance;
+
+        public static FilterPopupView GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new FilterPopupView();
+            }
+            return _instance;
+        }
+        private FilterPopupView()
         {
             InitializeComponent();
         }

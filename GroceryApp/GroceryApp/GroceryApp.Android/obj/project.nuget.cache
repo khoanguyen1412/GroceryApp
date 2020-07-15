@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6xdSFFOHL5EotnVhv2AkznRNESg0pL55g7HrfNd3ee9ZAeIH9tC8rTk/SowOcjqyaoBn5erHyfUqyS9hj0Z0MA==",
+  "dgSpecHash": "qH4QjauGVX6khMUStkWILI5XJGgKfw2rUOjHuBo50ksTSC9fnl5TutBu6ukA1rBdRJWu7Lhk77BkXEg25fds+Q==",
   "success": true,
   "projectFilePath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
   "expectedPackageFiles": [
@@ -27,7 +27,7 @@
     "C:\\Users\\User\\.nuget\\packages\\prism.dryioc.forms\\7.2.0.1422\\prism.dryioc.forms.7.2.0.1422.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\prism.forms\\7.2.0.1422\\prism.forms.7.2.0.1422.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\rg.plugins.popup\\2.0.0.3\\rg.plugins.popup.2.0.0.3.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\skiasharp\\2.80.0\\skiasharp.2.80.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\skiasharp\\2.80.1\\skiasharp.2.80.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\skiasharp.views\\1.59.1.1\\skiasharp.views.1.59.1.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\skiasharp.views.forms\\1.59.1.1\\skiasharp.views.forms.1.59.1.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",

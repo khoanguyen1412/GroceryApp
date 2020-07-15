@@ -34,7 +34,7 @@ namespace GroceryApp.Views.Screens
         private ShowStoreView()
         {
             InitializeComponent();
-            TimeSpan interval = new TimeSpan(0, 0, 3);
+            TimeSpan interval = new TimeSpan(0, 0, 2);
             Device.StartTimer(interval, () => {
                 UserDialogs.Instance.HideLoading();
                 return true;

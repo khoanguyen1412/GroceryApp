@@ -510,7 +510,7 @@
           }
         }
       },
-      "SkiaSharp/2.80.0": {
+      "SkiaSharp/2.80.1": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.5.3"
@@ -2700,10 +2700,10 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
-    "SkiaSharp/2.80.0": {
-      "sha512": "I0yKGbSgUefnhtCbULNRfOBiL0EVPtoY6+RUcwNtStQB5su26o45r141CJJ7SHy4ebIzMUpQ27d0QclRJVFcYw==",
+    "SkiaSharp/2.80.1": {
+      "sha512": "CiQwnDzG+1JNGzjAN9G/9n/lJgUVA/NPOFgSlEtu6c7qQ0O7P1tMjrXp/+PtWfX0xyyY9ABsFAZK2kW34U7r/A==",
       "type": "package",
-      "path": "skiasharp/2.80.0",
+      "path": "skiasharp/2.80.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2773,7 +2773,7 @@
         "runtimes/win10-x86/nativeassets/uap10.0/libEGL.dll",
         "runtimes/win10-x86/nativeassets/uap10.0/libGLESv2.dll",
         "runtimes/win10-x86/nativeassets/uap10.0/libSkiaSharp.dll",
-        "skiasharp.2.80.0.nupkg.sha512",
+        "skiasharp.2.80.1.nupkg.sha512",
         "skiasharp.nuspec",
         "xamarin.interactive/SkiaSharp.Workbooks.dll"
       ]
@@ -6937,7 +6937,7 @@
       "Nancy >= 2.0.0",
       "Prism.DryIoc.Forms >= 7.2.0.1422",
       "Rg.Plugins.Popup >= 2.0.0.3",
-      "SkiaSharp >= 2.80.0",
+      "SkiaSharp >= 2.80.1",
       "Xamarin.Essentials >= 1.5.3.2",
       "Xamarin.FFImageLoading >= 2.4.11.982",
       "Xamarin.FFImageLoading.Forms >= 2.4.11.982",
@@ -7041,7 +7041,7 @@
           },
           "SkiaSharp": {
             "target": "Package",
-            "version": "[2.80.0, )"
+            "version": "[2.80.1, )"
           },
           "Xamarin.Essentials": {
             "target": "Package",

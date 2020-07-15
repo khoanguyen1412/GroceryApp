@@ -3,15 +3,18 @@ using FFImageLoading.Forms.Args;
 using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Services;
+using GroceryApp.Views.Popups;
 using GroceryApp.Views.Screens;
 using GroceryApp.Views.TabBars;
 using Plugin.SharedTransitions;
 using Prism.Commands;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
@@ -19,6 +22,23 @@ using Xamarin.Forms;
 
 namespace GroceryApp.ViewModels
 {
+    public class NameComparer : IComparer<ProductItem>
+    {
+        public int Compare(ProductItem x, ProductItem y)
+        {
+            return String.Compare(x.Product.ProductName, y.Product.ProductName);
+        }
+    }
+
+    public class PriceComparer : IComparer<ProductItem>
+    {
+        public int Compare(ProductItem x, ProductItem y)
+        {
+            if (x.Product.Price > y.Product.Price) return 1;
+            if (x.Product.Price == y.Product.Price) return 0;
+            return -1;
+        }
+    }
 
     public interface IShowStoreViewModel
     {
@@ -37,6 +57,11 @@ namespace GroceryApp.ViewModels
 
     public class ShowStoreViewModel : BaseViewModel, IShowStoreViewModel
     {
+        //thuộc tính filter
+        public string SortType;
+        public double FilterMin;
+        public double FilterMax;
+        public bool isFilter;
 
         DataProvider dataProvider = DataProvider.GetInstance();
         public ShowStoreViewModel()
@@ -45,6 +70,7 @@ namespace GroceryApp.ViewModels
             //LoadData();
             //ShowDetailProductCommand = new Command<Product>(ShowDetailProduct);
         }
+        
         public int currentType = -1;
         public string IDStore { get; set; }
 
@@ -140,7 +166,8 @@ namespace GroceryApp.ViewModels
         }
         public ICommand ShowDetailProductCommand { get; set; }
         public ICommand ChooseCommand { get; set; }
-        
+        public ICommand FilterCommand { get; set; }
+
         public void updateSelectedProduct()
         {
             List<Product> selectedProducts = new List<Product>();
@@ -160,6 +187,18 @@ namespace GroceryApp.ViewModels
             LoadReviews();
             ShowDetailProductCommand = new Command<ProductItem>(ShowDetailProduct);
             ChooseCommand = new Command<TypeItem>(Choose);
+            FilterCommand = new Command(OpenFilter);
+        }
+
+
+
+        public async void OpenFilter()
+        {
+            using (UserDialogs.Instance.Loading("Loading.."))
+            {
+                await PopupNavigation.Instance.PushAsync(FilterPopupView.GetInstance());
+
+            }
         }
 
         public void LoadReviews()
@@ -265,7 +304,15 @@ namespace GroceryApp.ViewModels
             PushNotificationService.Push(NotiNumber.AddToCart, datas,true);
         }
 
-        
+        public void ApplyFilter(bool isFilter, string sortType, double filterMin,double filterMax)
+        {
+            this.isFilter = isFilter;
+            if (!isFilter) return;
+            this.SortType = sortType;
+            this.FilterMin = filterMin;
+            this.FilterMax = filterMax;
+            LoadProducts(false);
+        }
         public void Choose(TypeItem typeItem)
         {
             int choosingIndex = -1;
@@ -310,6 +357,7 @@ namespace GroceryApp.ViewModels
 
         public void LoadData(bool isReload)
         {
+            isFilter = false;
             LoadProducts(isReload);
             LoadOrderedBills();
             LoadProductTypes();
@@ -375,6 +423,7 @@ namespace GroceryApp.ViewModels
 
                 Products = new ObservableCollection<ProductItem>(items);
             }
+            FiltProducts();
         }
 
         public void LoadOrderedBills()
@@ -398,6 +447,49 @@ namespace GroceryApp.ViewModels
                 typeItems.Add(typeItem);
             }
             _typeItems = new ObservableCollection<TypeItem>(typeItems);
+        }
+
+        public void FiltProducts()
+        {
+            if (!isFilter) return;
+            List<ProductItem> source = Products.ToList();
+            List<ProductItem> filterList = new List<ProductItem>();
+            if (FilterMin != -1)
+            {
+                foreach (ProductItem item in source)
+                    if (item.Product.Price >= FilterMin && item.Product.Price <= FilterMax)
+                        filterList.Add(item);
+            }
+            else
+            {
+                filterList = source;
+            }
+
+            if (!string.IsNullOrEmpty(SortType))
+            {
+                NameComparer nameCompare = new NameComparer();
+                PriceComparer priceCompare = new PriceComparer();
+                if(SortType== "A->Z")
+                {
+                    filterList.Sort(nameCompare);
+                }
+                if (SortType == "Z->A")
+                {
+                    filterList.Sort(nameCompare);
+                    filterList.Reverse();
+                }
+                if (SortType == "Min->Max")
+                {
+                    filterList.Sort(priceCompare);
+                }
+                if (SortType == "Max->Min")
+                {
+                    filterList.Sort(priceCompare);
+                    filterList.Reverse();
+                }
+            }
+
+            Products = new ObservableCollection<ProductItem>(filterList);
         }
     }
 }
