@@ -23,8 +23,123 @@
 
     </popup:PopupPage.Animation>
     <ScrollView Orientation="Vertical">
-        <StackLayout>
-            
-        </StackLayout>
+        <Grid Margin="20"  BackgroundColor="White" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <pancake:PancakeView Grid.ColumnSpan="2" HeightRequest="150"  BackgroundColor="LightGray" CornerRadius="10" Margin="0,0,0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ffimage:CachedImage Grid.Row="0" Grid.RowSpan="2" Source="{Binding ProductImage}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
+                    <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black" Opacity="0.4">
+                    </Frame>
+                    <ffimage:CachedImage Grid.Row="1" Margin="13" Source="addphoto" HorizontalOptions="Center" Opacity="1" VerticalOptions="Center" Aspect="AspectFit">
+                        <ffimage:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                        </ffimage:CachedImage.GestureRecognizers>
+                    </ffimage:CachedImage>
+
+                </Grid>
+            </pancake:PancakeView>
+            <Label Grid.Row="1" Grid.Column="0" Text="Name:"  Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+
+            <controls:CustomEntry  Grid.Row="1" Grid.Column="1" Text="{Binding ProductName}"  HorizontalOptions="FillAndExpand"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Text="Type:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <pancake:PancakeView Margin="0,0,0,10" HasShadow="True" Grid.Row="2" Elevation="2" Grid.Column="1" CornerRadius="10" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                <Picker  Margin="7,0,0,0" ItemsSource="{Binding typeNames}" SelectedItem="{Binding CurrentType}">
+
+                </Picker>
+            </pancake:PancakeView>
+
+            <Label Grid.Row="3" Grid.Column="0" Text="Unit:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center">
+                <ffimage:CachedImage Source="{Binding RadioDefault,Converter={StaticResource RadioAddressConverter}}" HeightRequest="25" WidthRequest="25">
+                    <ffimage:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChooseDefaultCommand}"/>
+                    </ffimage:CachedImage.GestureRecognizers>
+                </ffimage:CachedImage>
+                <pancake:PancakeView BorderColor="Black" HasShadow="True" Grid.Row="2" Elevation="2" Grid.Column="1" CornerRadius="10" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                    <Picker IsEnabled="{Binding RadioDefault}" Margin="7,0,0,0" ItemsSource="{Binding UnitNames}" SelectedItem="{Binding CurrentUnit}">
+
+                    </Picker>
+                </pancake:PancakeView>
+
+            </StackLayout>
+            <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center" Margin="0,0,0,10">
+                <ffimage:CachedImage Source="{Binding RadioOther,Converter={StaticResource RadioAddressConverter}}" HeightRequest="25" WidthRequest="25">
+                    <ffimage:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChooseOtherCommand}"/>
+                    </ffimage:CachedImage.GestureRecognizers>
+                </ffimage:CachedImage>
+                <controls:CustomEntry Text="{Binding OtherUnit}" IsEnabled="{Binding RadioOther}" Placeholder="Other.."  HorizontalOptions="FillAndExpand"/>
+
+            </StackLayout>
+
+            <Label Grid.Row="5"  Grid.Column="0" Text="Unit/" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <Label Grid.Row="6" Margin="0,-5,0,0" Grid.Column="0" Text="1 Product:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Start" />
+            <StackLayout Grid.Row="5" Margin="0,0,0,20" Grid.Column="1" Grid.RowSpan="2" BackgroundColor="Transparent"  VerticalOptions="Center" Orientation="Horizontal">
+                <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DecUnitAmountCommand}"/>
+                    </pancake:PancakeView.GestureRecognizers>
+                    <ffimage:CachedImage Source="subtract" Margin="3"/>
+                </pancake:PancakeView>
+                <controls:CustomEntry Keyboard="Numeric" Placeholder="0" Text="{Binding UnitAmount}"  HorizontalOptions="Center" WidthRequest="70"/>
+                <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IncUnitAmountCommand}"/>
+                    </pancake:PancakeView.GestureRecognizers>
+                    <ffimage:CachedImage Source="plus" Margin="3"/>
+                </pancake:PancakeView>
+            </StackLayout>
+
+            <Label Grid.Row="7"  Grid.Column="0" Text="Quantiy" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <Label Grid.Row="8" Margin="0,-5,0,0" Grid.Column="0" Text="in stock:" Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Start" />
+            <StackLayout Grid.Row="7" Margin="0,0,0,20"  Grid.Column="1" Grid.RowSpan="2" BackgroundColor="Transparent" VerticalOptions="Center" Orientation="Horizontal">
+                <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DecInventoryCommand}"/>
+                    </pancake:PancakeView.GestureRecognizers>
+                    <ffimage:CachedImage Source="subtract" Margin="3"/>
+                </pancake:PancakeView>
+                <controls:CustomEntry Keyboard="Numeric" Placeholder="0"  Text="{Binding QuantityInventory}"  HorizontalOptions="Center" WidthRequest="70"/>
+                <pancake:PancakeView HeightRequest="35" WidthRequest="35" CornerRadius="90" BackgroundColor="LightGray" HorizontalOptions="Center" VerticalOptions="Center">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IncInventoryCommand}"/>
+                    </pancake:PancakeView.GestureRecognizers>
+                    <ffimage:CachedImage Source="plus" Margin="3"/>
+                </pancake:PancakeView>
+            </StackLayout>
+
+            <Label Grid.Row="9" Grid.Column="0" Text="Price:"  Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <controls:CustomEntry Keyboard="Numeric" Grid.Row="9" Text="{Binding Price}" Grid.Column="1"  HorizontalOptions="FillAndExpand"/>
+
+            <Label Grid.Row="10" Grid.Column="0" Text="Description:"  Style="{StaticResource LabelDefaultStyle}" FontSize="20" VerticalOptions="Center"/>
+            <controls:CustomEntry  Grid.Row="10" Grid.Column="1" Text="{Binding Description}" HorizontalOptions="FillAndExpand"/>
+
+            <StackLayout Orientation="Horizontal" Margin="0,20,0,0" Grid.Row="11" Grid.ColumnSpan="2" HorizontalOptions="End" HeightRequest="50" VerticalOptions="End">
+                <Button Command="{Binding ExitCommand}" Text="Cancel" Margin="0,0,-15,0" TextColor="Accent" BackgroundColor="White"/>
+                <Button Command="{Binding AddCommand}"  Text="Save" TextColor="Accent" BackgroundColor="White"/>
+            </StackLayout>
+        </Grid>
     </ScrollView>
 </popup:PopupPage>
