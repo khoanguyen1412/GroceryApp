@@ -27,6 +27,11 @@
 * [OneSignal](https://onesignal.com/)
 * [PanCakeView](https://github.com/sthewissen/Xamarin.Forms.PancakeView)
 * [Cloudinary](https://cloudinary.com/)
+* [Acr.UserDialogs](https://www.nuget.org/packages/Acr.UserDialogs/)
+* [Microcharts](https://www.nuget.org/packages/Microcharts/0.8.5-pre)
+* [SkiaSharp](https://www.nuget.org/packages/SkiaSharp/)
+* [FilePicker](https://www.nuget.org/packages/Xamarin.Plugin.FilePicker/2.1.43-beta)
+  
 ## Screens
 ||||
 |:---:|:---:|:---:|
