@@ -41,29 +41,23 @@ namespace GroceryApp.ViewModels
         private int _numberOfOrder;
         public int NumberOfOrder
         {
-            get
-            {
-                return _numberOfOrder;
-            }
+            get { return _numberOfOrder; }
+            set { _numberOfOrder = value; OnPropertyChanged(nameof(NumberOfOrder)); }
         }
 
         private int _numberOfProduct;
         public int NumberOfProduct
         {
-            get
-            {
-                return _numberOfProduct;
-            }
+            get { return _numberOfProduct; }
+            set { _numberOfProduct = value; OnPropertyChanged(nameof(NumberOfProduct)); }
         }
 
         private string _renenue;
 
         public string Renenue
         {
-            get
-            {
-                return _renenue;
-            }
+            get { return _renenue; }
+            set { _renenue = value; OnPropertyChanged(nameof(Renenue)); }
         }
 
         public List<int> Sliders

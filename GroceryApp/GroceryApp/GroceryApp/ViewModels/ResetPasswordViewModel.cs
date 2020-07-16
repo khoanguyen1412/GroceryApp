@@ -92,14 +92,25 @@ namespace GroceryApp.ViewModels
             ShowError = false;
             
             user.Password = MD5Service.EncodeToMD5(NewPassword);
-            using (UserDialogs.Instance.Loading("Reseting.."))
+
+            try
             {
-                //update user ở database server
-                var httpClient = new HttpClient();
-                await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);
-                //update user ở database local
-                DataUpdater.UpdateUser(user);
+                using (UserDialogs.Instance.Loading("Reseting.."))
+                {
+                    //update user ở database server
+                    var httpClient = new HttpClient();
+                    await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);
+                    //update user ở database local
+                    DataUpdater.UpdateUser(user);
+                }
             }
+            catch
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+
+            
 
             MessageService.Show("Update infor successfully", 0);
 

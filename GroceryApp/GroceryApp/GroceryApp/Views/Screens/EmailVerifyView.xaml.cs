@@ -53,13 +53,22 @@ namespace GroceryApp.Views.Screens
                 return;
             }
 
-            //GỬI CODE QUA MAIL
-            EmailVerifyItem emailItem=null;
-            using (UserDialogs.Instance.Loading("Sending code.."))
+            EmailVerifyItem emailItem = null;
+            try
             {
-                emailItem = EmailService.SendCodeToEmail(EmailEntry.Text);
-    
+                //GỬI CODE QUA MAIL
+                using (UserDialogs.Instance.Loading("Sending code.."))
+                {
+                    emailItem = EmailService.SendCodeToEmail(EmailEntry.Text);
+
+                }
             }
+            catch
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+            
 
             //QUA PAGE NHẬP CODE
             using (UserDialogs.Instance.Loading("Waiting.."))

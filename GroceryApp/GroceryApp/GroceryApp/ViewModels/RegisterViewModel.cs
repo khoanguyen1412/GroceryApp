@@ -99,6 +99,22 @@ namespace GroceryApp.ViewModels
 
             ShowError = false;
 
+            //TEST INTERNET CONNECTTION =========================================
+            var httpClient = new HttpClient();
+            string x = "";
+            try
+            {
+                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                x = testInternet;
+            }
+            catch (Exception ex)
+            {
+                var stack = App.Current.MainPage.Navigation.NavigationStack;
+                var page = stack[stack.Count - 1];
+                await page.DisplayAlert("Error", "Action fail, check your internet connection and try again!", "OK");
+                return;
+            }
+            //===================================================
             //TẠO STORE
             string idStore = "Store_" + DateTime.Now.ToString("HHmmss");
             Store newStore = new Store
@@ -133,7 +149,6 @@ namespace GroceryApp.ViewModels
             DataUpdater.AddStore(newStore);
             DataUpdater.AddUser(newUser);
             //insert STORE và USER lên database online
-            var httpClient = new HttpClient();
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "store/insert", newStore);
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/insert", newUser);
 

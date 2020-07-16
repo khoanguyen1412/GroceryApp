@@ -8,6 +8,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
@@ -299,6 +300,8 @@ namespace GroceryApp.ViewModels
             await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "product/insert", newProduct);
 
             LoadProducts(false);
+            var StoreDashBoardVM = TabbarStoreManager.GetInstance().Children.ElementAt(1).BindingContext as StoreDashBoardViewModel;
+            StoreDashBoardVM.LoadData();
 
             //PUSH NOTI
             string datas = PushNotificationService.ConvertDataAddProduct(newProduct);
