@@ -94,7 +94,7 @@
                                                 </Grid.RowDefinitions>
 
                                                 <Frame Grid.Column="0" Margin="5" Padding="0" HasShadow="False" CornerRadius="5" IsClippedToBounds="True">
-                                                    <ffimage:CachedImage Grid.Column="1" Source="{Binding Product.ImageURL}" HeightRequest="90" WidthRequest="90" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
+                                                    <Image Grid.Column="1" Source="{Binding Product.ImageURL}" HeightRequest="90" WidthRequest="90" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
                                                 </Frame>
                                                 <StackLayout Grid.Column="1" Orientation="Vertical" VerticalOptions="Center">
                                                     <Label  Margin="0,0,0,-5" Style="{StaticResource BoldTitleStyle}" Text="{Binding Product.ProductName}" FontSize="16"/>

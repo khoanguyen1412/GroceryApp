@@ -47,6 +47,7 @@ namespace GroceryApp.ViewModels
 
     public class FeedBack
     {
+        public string CustomerName { get; set; }
         public string CustomerReview { get; set; }
         public string StoreAnswer { get; set; }
     }
@@ -208,6 +209,7 @@ namespace GroceryApp.ViewModels
                 if (order.State == OrderState.Received && !string.IsNullOrEmpty(order.Review))
                 {
                     FeedBack newFeedBack = new FeedBack();
+                    newFeedBack.CustomerName = order.UserName;
                     newFeedBack.CustomerReview = order.Review;
                     newFeedBack.StoreAnswer = order.StoreAnswer;
                     feedBack.Add(newFeedBack);

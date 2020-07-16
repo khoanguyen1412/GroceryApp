@@ -145,12 +145,12 @@
                                                                         <RowDefinition Height="4*"/>
                                                                         <RowDefinition Height="1*"/>
                                                                     </Grid.RowDefinitions>
-                                                                    <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="2" Source="{Binding Product.ImageURL}" Aspect="AspectFill" HeightRequest="150">
-                                                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                                                    <Image Grid.Row="0" Grid.RowSpan="2" Source="{Binding Product.ImageURL}" Aspect="AspectFill" HeightRequest="150">
+                                                                        <Image.GestureRecognizers>
                                                                             <TapGestureRecognizer Command="{Binding BindingContext.ShowDetailProductCommand,Source={x:Reference Name=DetailStore}}"
                                                                             CommandParameter="{Binding .}"/>
-                                                                        </ffimageloading:CachedImage.GestureRecognizers>
-                                                                    </ffimageloading:CachedImage>
+                                                                        </Image.GestureRecognizers>
+                                                                    </Image>
                                                                     <StackLayout Grid.Row="1" BackgroundColor="Black" Opacity="0.3">
                                                                         
                                                                     </StackLayout>
@@ -257,7 +257,7 @@
                                                             </Grid.RowDefinitions>
                                                             <StackLayout Orientation="Horizontal">
                                                                 <Image Source="user" HeightRequest="25" WidthRequest="25"/>
-                                                                <Label Text="Khoa" Style="{StaticResource LabelWellcomeStyle}" FontSize="20"/>
+                                                                <Label Text="{Binding CustomerName}" Style="{StaticResource LabelWellcomeStyle}" FontSize="20"/>
                                                             </StackLayout>
                                                             <Label Grid.Row="1" Text="{Binding CustomerReview}" FontSize="15" Style="{StaticResource LabelWellcomeStyle}" />
                                                             <BoxView Grid.Row="2" Margin="0" HorizontalOptions="FillAndExpand" HeightRequest="2" BackgroundColor="DarkGray"/>
