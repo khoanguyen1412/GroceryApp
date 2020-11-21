@@ -43,7 +43,7 @@ namespace GroceryApp.Views.Screens
 
             try
             {
-                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                var testInternet = await httpClient.GetStringAsync(ServerDatabase.localhost+"store/getstorebyid/test");
                 OneSignal.Current.SetExternalUserId("");
                 await httpClient.PostAsJsonAsync(ServerDatabase.localhost + "user/update", user);
             }

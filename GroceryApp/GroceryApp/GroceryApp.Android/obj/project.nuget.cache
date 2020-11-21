@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qH4QjauGVX6khMUStkWILI5XJGgKfw2rUOjHuBo50ksTSC9fnl5TutBu6ukA1rBdRJWu7Lhk77BkXEg25fds+Q==",
+  "dgSpecHash": "AZIbohx4lhx96SUu+Z0GL+jTgpRP3iFUU58kD8PU5BcuoPyXQvKG6XhL02LVwJ06iLMWbNhStnCMG5maWBmpjA==",
   "success": true,
-  "projectFilePath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
+  "projectFilePath": "C:\\Grocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\acr.userdialogs\\7.1.0.446\\acr.userdialogs.7.1.0.446.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\andhud\\1.4.2\\andhud.1.4.2.nupkg.sha512",

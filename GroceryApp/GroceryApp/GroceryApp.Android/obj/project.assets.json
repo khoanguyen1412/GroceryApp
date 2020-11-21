@@ -7542,11 +7542,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
+      "projectUniqueName": "C:\\Grocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
       "projectName": "GroceryApp.Android",
-      "projectPath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
+      "projectPath": "C:\\Grocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\GroceryApp.Android.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\obj\\",
+      "outputPath": "C:\\Grocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -7567,8 +7567,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj": {
-              "projectPath": "F:\\DO AN XAMARIN OFFICIAL\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj"
+            "C:\\Grocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj": {
+              "projectPath": "C:\\Grocery\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp\\GroceryApp.csproj"
             }
           }
         }

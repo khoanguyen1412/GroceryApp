@@ -85,7 +85,7 @@ namespace GroceryApp.ViewModels
             string x = "";
             try
             {
-                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                var testInternet = await httpClient.GetStringAsync(ServerDatabase.localhost+"store/getstorebyid/test");
             }
             catch (Exception ex)
             {

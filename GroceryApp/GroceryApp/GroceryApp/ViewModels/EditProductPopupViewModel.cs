@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using GroceryApp.Data;
 using GroceryApp.Models;
 using GroceryApp.Services;
 using GroceryApp.Views.Drawer;
@@ -281,7 +282,7 @@ namespace GroceryApp.ViewModels
             string x = "";
             try
             {
-                var testInternet = await httpClient.GetStringAsync("https://newappgroc.azurewebsites.net/store/getstorebyid/test");
+                var testInternet = await httpClient.GetStringAsync(ServerDatabase.localhost+ "store/getstorebyid/test");
                 x = testInternet;
             }
             catch (Exception ex)
