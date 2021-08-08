@@ -35,10 +35,10 @@
 ## Screens
 ||||
 |:---:|:---:|:---:|
-|![login]<br>__Login__|![create]<br>__Create new acc__|![forgot]<br>__Forgot password__|
+|![login]<br>__Login__|![create]<br>__Create new acc__|![product]<br>__Product__|
 |![mains]<br>__Main screen__|![store]<br>__Store__|![cart]<br>__Cart__|
-|![order]<br>__Order__|![ystore]<br>__Your store__|![product]<br>__Product__|
 |![feedback]<br>__Feedback__|![settings]<br>__Setting store__|![sorder]<br>__Store order__|
+|![order]<br>__Order__|![ystore]<br>__Your store__| ![forgot]<br>__Forgot password__|
 
 ## Setting
 * __For developers__
@@ -59,15 +59,15 @@ Email:
 [khoanguyen1412v@gmail.com](mailto:khoanguyen1412v@gmail.com)
 
 
-[login]: https://didong.blob.core.windows.net/xamarin-blob/signin.jpg
-[create]: https://didong.blob.core.windows.net/xamarin-blob/create.jpg
-[forgot]: https://didong.blob.core.windows.net/xamarin-blob/forot.jpg
-[mains]: https://didong.blob.core.windows.net/xamarin-blob/main.jpg
-[store]: https://didong.blob.core.windows.net/xamarin-blob/store.jpg
-[cart]: https://didong.blob.core.windows.net/xamarin-blob/cart.jpg
-[order]: https://didong.blob.core.windows.net/xamarin-blob/order.jpg
-[ystore]: https://didong.blob.core.windows.net/xamarin-blob/store.jpg
-[product]: https://didong.blob.core.windows.net/xamarin-blob/product.jpg
-[feedback]: https://didong.blob.core.windows.net/xamarin-blob/feedback.jpg
-[settings]: https://didong.blob.core.windows.net/xamarin-blob/storeset.jpg
-[sorder]: https://didong.blob.core.windows.net/xamarin-blob/orderstore.jpg
+[login]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/1.jpg
+[create]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/2.jpg
+[forgot]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/3.jpg
+[mains]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/4.jpg
+[store]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/5.jpg
+[cart]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/6.jpg
+[order]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/7.jpg
+[ystore]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/8.jpg
+[product]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/9.jpg
+[feedback]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/10.jpg
+[settings]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/11.jpg
+[sorder]: https://github.com/khoanguyen1412/GroceryApp/blob/master/introduction%20images/12.jpg
